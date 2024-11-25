@@ -1,7 +1,13 @@
 \subsection{Atomic action refinement}
 \label{subsec:atom-ref}
 
-We start by introducing an operator inspired by the refinement modality from~\Cref{sec:ref}. Herein, we introduce the modality $\srefbox{a}$, which publicly establishes (i.e., for all agents) that action $a$ must be distinguished from any other. Unlike the modality $\refbox{\plan_1}{\plan_2}$, this modality takes atomic actions (althought it will be generalized later to arbitrary plans), and has a single parameter, instead of two parameters. So, with the new operator we isolate the effect of one action, rather that separating a class according to the effects of two actions. This is useful as for instance, an uninformed agent may receive a concrete information about the actual effect of a particular action, thus this action becomes distinguishable from any other. These ideas are formalized below.
+
+We start by introducing an operator inspired by the refinement modality
+from~\Cref{sec:ref}. Herein, we introduce the modality $\srefbox{a}$, 
+which publicly establishes (i.e., for all agents) that action $a$ must be distinguished from any other. Unlike the modality $\refbox{\plan_1}{\plan_2}$, this modality takes atomic actions (although it will be generalized later to arbitrary plans), and has a single parameter, instead of two parameters. So, with the new operator we isolate the effect of one action, rather that separating a class according to the effects of two actions. This is useful as for instance, an uninformed agent may receive a concrete information about the actual effect of a particular action, thus this action becomes distinguishable from any other. These ideas are formalized below.
+
+
+
 
 \begin{definition}\label{def:ssrefsyntax}
 Formulas of the language $\AtomReflogic$ are given by
@@ -25,6 +31,7 @@ where $\modults^a = \tup{\W,\R,\Unc',\V}$, with:
 
 In a few words, the new dynamic modality is an announcement of that a given, single action, has a behaviour that can be uniquely determined. In case the action is not a part of the actions that are under the consideration of a certain agent, it is added to it, making the agent aware of its existence. 
 The following proposition states that the new modality is self-dual and normal.
+
 \begin{proposition} The following propositions hold:
 \begin{enumerate}
 \item $\models \srefbox{a}\varphi \lra \neg\srefbox{a}\neg\varphi$. 
