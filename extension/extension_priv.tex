@@ -1,7 +1,9 @@
 \subsection{Semi-private plan refinement}
 \label{sec:sempriv-planref}
 
-Finally, we can consider a last type of plan refinement. Notice that, so far, the dynamic modalities we introduced produce (according to the dynamic epistemic logic terminology) ``public'' updates. This means, that the information which is revealed is accessible to all the agents, similar to what is done in public annoucements (\cite{Plaza89:lopc}). However, other kinds of communication are possible, as the so-called semi-private and private communications, achieved via e.g. action models (see e.g.~\cite{BR16}). In this section, we will adapt the plan refinement modality from~\Cref{def:ssrefsyntax} in order to produce a semi-private update.
+Finally, we can consider a last type of plan refinement. Notice that, so far, the dynamic modalities we introduced produce (according to the dynamic epistemic logic terminology) ``public'' updates. This means, that the information which is revealed is accessible to all the agents, similar to what is done in public annoucements (\cite{Plaza89:lopc}). However, other kinds of communication are possible, as the so-called semi-private and private communications, achieved via e.g. action models (see e.g.~\cite{BR16}). The flexibility of our framework enables us to also doing so. In this section, we will adapt the plan refinement modality from~\Cref{def:ssrefsyntax} in order to produce a semi-private update.
+
+\medskip 
 
 \begin{definition}\label{def:srefgsyntax}
 Formulas of the language $\AgentReflogic$ are given by
@@ -11,6 +13,8 @@ Formulas of the language $\AgentReflogic$ are given by
 with $p \in \PROP$, $i\in\AGT$, $a \in \ACT$ and $\plan \in \ACT^*$. The modality $\srefbox{\plan,i}\varphi$ is read as \emph{``after it is announced to agent $i$ that the plan $\plan$ is distinguishable from any other plan, $\varphi$ holds''.}
 \end{definition}
 
+\medskip 
+
 \begin{definition}\label{def:srefgsemantics}
 Let $\modults = \tup{\W, \R, \Unc, \V}$ be an \ults, $\plan \in \ACT^*$ and  be a $\AgentReflogic$-formula, 
 \[
@@ -19,14 +23,18 @@ Let $\modults = \tup{\W, \R, \Unc, \V}$ be an \ults, $\plan \in \ACT^*$ and  be 
 where $\modults^\plan_i = \tup{\W,\R,\Unc',\V}$, with:
 \begin{itemize}
 \item $\Unc'(j) = \Unc(j)$ if $j \neq i$,
-\item $\Unc'(i) = (\Unc(i) \setminus \set{\plans}) \cup \set{\set{\plan}}$ if there is $\plans \in \Unc(i)$ such that $\plan \in \plans$,
+\item $\Unc'(i) = (\Unc(i) \setminus \set{\plans}) \cup \set{\set{\plan}}$, if there is $\plans \in \Unc(i)$ such that $\plan \in \plans$,
 \item $\Unc'(i) = \Unc(i) \cup \set{\set{\plan}}$ otherwise.
 \end{itemize}
 \end{definition}
 
+\medskip 
+
 \begin{example}
-Suppose as in~\Cref{ex:cook}, we have an expert chef $i$, but we have two inexpert chefs $j$ and $k$, with $\Unc(j)=\Unc'(k)=\set{\set{\mathit{ebfmsp},\mathit{ebmfsp}}}$. Suppose now, that agent $j$ subscribed for a course taught by agent $i$, while agent $k$ does not. Then, the information of that \textit{ebgmsp} is the correct course of action is only revealed to $j$, obtaining that $\srefbox{ebfmsp,j}\kh_j(h,g)$ while $\srefbox{ebfmsp,j}\neg\kh_k(h,g)$.
+Suppose as in~\Cref{ex:cook}, we have an expert chef $i$, but we have two inexpert chefs $j$ and $k$, with $\Unc(j)=\Unc(k)=\set{\set{\mathit{ebfmsp},\mathit{ebmfsp}}}$. Suppose now, that agent $j$ subscribed for a course taught by agent $i$, while agent $k$ does not. Then, the information of that \textit{ebgmsp} is the correct course of action is only revealed to $j$, obtaining that $\srefbox{ebfmsp,j}\kh_j(h,g)$ while $\srefbox{ebfmsp,j}\neg\kh_k(h,g)$.
 \end{example}
+
+\medskip 
 
 \begin{proposition} The following propositions hold:
 \begin{enumerate}
@@ -36,7 +44,11 @@ Suppose as in~\Cref{ex:cook}, we have an expert chef $i$, but we have two inexpe
 \end{enumerate}
 \end{proposition}
 
-Below we state the correcteness of the reduction axioms of~\Cref{tab:srefgaxiom}, that is similar to the ``public'' cases.
+\medskip 
+
+Below we state the correcteness of the reduction axioms of~\Cref{tab:srefgaxiom}, that is similar to the ``public'' cases. 
+
+\medskip 
 
 \begin{proposition}\label{pro:srefgaxioms}
 Let $P$ be defined as in~\Cref{pro:srefaxioms}. Then, the reduction axioms from~\Cref{tab:srefgaxiom} are valid.
@@ -78,12 +90,16 @@ Let $P$ be defined as in~\Cref{pro:srefaxioms}. Then, the reduction axioms from~
 
 Again, we can obtain the following results: 
 
+\medskip 
+
 \begin{corollary}
 The axiom system $\axset_{\AgentReflogic}+\axset_{\khi,\square}$ for $\AgentReflogic$ is sound and strongly complete w.r.t. the class of all models.
 \end{corollary}
 
+\medskip 
+
 \begin{corollary}
-$\AgentReflogic$ is decidable.
+The satisfiability problem for $\AgentReflogic$ is decidable.
 \end{corollary}
  
  

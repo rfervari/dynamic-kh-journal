@@ -4,6 +4,8 @@
 The idea introduced in the previous section has the novelty of admitting a sound and complete axiom system, a property that was missing in other approaches. However, one can argue that allowing action refinement only, is a bit limited. But, is this a real limitation of the framework? Or these ideas can actually be generalized to arbitrary plans? In this section we show that the latter is the case. Moreover, we show that all the results presented for $\AtomReflogic$ naturally extend to this case.
 We start by presenting the syntax and semantics of the new logic. 
 
+\medskip 
+
 \begin{definition}\label{def:srefsyntax}
 Formulas of the language $\PlanReflogic$ are given by
 \[
@@ -12,35 +14,44 @@ Formulas of the language $\PlanReflogic$ are given by
 with $p \in \PROP$, $i\in\AGT$, $a \in \ACT$ and $\plan \in \ACT^*$.  Formulas of the form $\srefbox{\plan}\varphi$ are read as: \emph{``after announcing that $\plan$ is distinguishable from any other plan, $\varphi$ holds''.} 
 \end{definition}
 
+\medskip 
+
 \begin{definition}\label{def:srefsemantics}
-Let $\modults = \tup{\W, \R, \Unc, \V}$ be an \ults, $\plan \in \ACT^*$ and  be a $\PlanReflogic$-formula,
+Let $\modults = \tup{\W, \R, \Unc, \V}$ be an \ults, $\plan \in \ACT^*$ and let $\varphi$ be a $\PlanReflogic$-formula,
 \[
 \modults,w \models \srefbox{\plan}\varphi \ \ \iff \ \ \modults^\plan,w \models \varphi,
 \]
 where $\modults^\plan = \tup{\W,\R,\Unc',\V}$, with:
 \begin{itemize}
-\item $\Unc'(i) = (\Unc(i) \setminus \set{\plans}) \cup \set{\set{\plan}}$ if there is $\plans \in \Unc(i)$ such that $\plan \in \plans$,
+\item $\Unc'(i) = (\Unc(i) \setminus \set{\plans}) \cup \set{\set{\plan}}$, if there is $\plans \in \Unc(i)$ such that $\plan \in \plans$,
 \item $\Unc'(i) = \Unc(i) \cup \set{\set{\plan}}$ otherwise.
 \end{itemize}
 \end{definition}
 
-The refinement in $\modults^\plan$ is essentially as in~\Cref{def:ssrefsemantics} except that now we allow arbitrary plans. This generalization enables us e.g. to handle the example we have been using along the paper.
+\medskip 
+
+The refinement in $\modults^\plan$ is essentially as in~\Cref{def:ssrefsemantics}, except that now we allow arbitrary plans. This generalization enables us e.g. to handle the example we discussed  along the paper.
+
+\medskip 
 
 \begin{example}\label{ex:sref}
 Recall the model $\modults$ from \Cref{ex:cook}.
 Now, suppose that a cooking professor teaches (announces) to both agents about the plan $\mathit{ebmfsp}$.
 Now every agent is able to distinguish the plan $\mathit{ebmfsp}$ from all others.
-Moreover, after the announcement, agent $j$ knows how to make a good cake.
+Moreover, after the announcement, agent~$j$ knows how to make a good cake.
 Thus, $\modults \models \srefbox{\mathit{ebmfsp}} \kh_j(h,g)$.
 \end{example}
 
 Again, we can state the following properties:
+
+\medskip 
+
 \begin{proposition}
-The following hold:
+The following propositions hold:
 \begin{enumerate}
 \item $\models \srefbox{\plan}\varphi \lra \neg\srefbox{\plan}\neg\varphi$. 
-\item $\models \srefbox{\plan}(\varphi_1 \ra \varphi_2) \ra (\srefbox{\plan}\varphi_1 \ra \srefbox{\plan}\varphi_2)$
-\item If $\models \varphi$, then $\models \srefbox{\plan}\varphi$
+\item $\models \srefbox{\plan}(\varphi_1 \ra \varphi_2) \ra (\srefbox{\plan}\varphi_1 \ra \srefbox{\plan}\varphi_2)$.
+\item If $\models \varphi$, then $\models \srefbox{\plan}\varphi$.
 \end{enumerate}
 \end{proposition}
 % \begin{proof}
@@ -50,9 +61,9 @@ The following hold:
 % \end{enumerate}
 % \end{proof}
 
-\subsubsection{Axiom System}
+\ssparagraph{Axiom System.} 
+Now it is time to investigate a complete axiomatization for $\PlanReflogic$, one of the main goals of introducing this framework over an extended basic language. As shown in what follows, the elimination of the dynamic modality $\srefbox{\plan}$ in presence of the modality $\khi$ requires a little bit more of work than the single action case we presented already.  The case in which the announcement does not affect the knowledge, is as before. For the other case, we need to make sure that if the announcement of $\plan$ guarantees that the precondition holds ($\srefbox{\plan}\varphi_1$), then $\plan$ is SE and after its execution, the postcondition holds ($\srefbox{\plan}\varphi_2$). The latter, is expressed by the predicate $P(\plan,\srefbox{\plan}\varphi_2)$, described below. Notice that $P$ can be defined as we extended the expressivity of the underlying language, by allowing basic action modalities.
 
-Now it is time to investigate a complete axiomatization for $\PlanReflogic$, one of the main goals of introducing this framework over an extended basic language. As shown in what follows, the elimination of the dynamic modality $\srefbox{\plan}$ in presence of the modality $\khi$ requires a little bit more of work than the single action case we presented already.  The case in which the announcement does not affect the knowledge, is straightforward. For the other case, we need to make sure than for every state in which after the announcement of $\plan$ guarantees that if the precondition holds ($\srefbox{\plan}\varphi_1$), then $\plan$ is SE and after its execution, the postcondition holds ($\srefbox{\plan}\varphi_2$). The latter, is expressed by the predicate $P(\plan,\srefbox{\plan}\varphi_2)$, described below. Notice that $P$ can be defined as we extended the expressivity of the underlying language, by allowing basic action modalities.
 \begin{table}[t]
 \begin{tabular}{l@{\quad}l}
 \toprule
@@ -67,8 +78,11 @@ Now it is time to investigate a complete axiomatization for $\PlanReflogic$, one
 \caption{Reduction axioms $\axset_{\PlanReflogic}$.}\label{tab:srefaxiom}
 \end{table}
 
+
+\medskip 
+
 \begin{proposition}\label{pro:srefaxioms}
-Let $\beta \in \ACT^*$, we define the extension of $\mlbox{a}$ for plan, $\mlbox{\beta}$ as
+Let $\beta \in \ACT^*$, we define the extension $\mlbox{\beta}\psi$ of $\mlbox{a}\psi$ as
 \[
 \mlbox{\beta} \psi = 
 \begin{cases}
@@ -76,7 +90,7 @@ Let $\beta \in \ACT^*$, we define the extension of $\mlbox{a}$ for plan, $\mlbox
 \mlbox{\beta[1]} \dots \mlbox{\beta[\card{\beta}]} \psi &\quad \beta \neq \epsilon \\
 \end{cases}
 \]
-With this, let $P$ be defined inductively as: 
+With this definition at hand, $P$ is defined inductively as: 
 \[
     \begin{array}{lcl}
         P(\epsilon,\psi) & = & \psi \\
@@ -94,6 +108,7 @@ Then, the reduction axioms from~\Cref{tab:srefaxiom} are valid.
 % with $P(\alpha,\psi) = (\bigwedge_{k=0}^{\card{\alpha}-1}(\mlbox{\alpha_k}\mldiam{\alpha[k+1]}\top) \wedge \mlbox{\alpha} \psi)$, $\mlbox{\beta} = \mlbox{\beta[1]}...\mlbox{\beta[\card{\beta}]}$ and $P(\epsilon,\psi) = \psi$.
 \end{proposition}
 \begin{proof}
+
 The proofs ideas for the first four items are similar to the ones in \Cref{pro:ssrefaxioms}. Let us focus again in the case of $\axm{RKh}$.  
 Let $\modults = \tup{\W, \R, \Unc, \V}$ be an \ults, then we prove below the two directions of the double implication.
 
@@ -119,15 +134,21 @@ The only thing left to prove is that $\set{\plan} \in \Unc'(i)$. But that is dir
 \end{itemize}
 \end{proof}
 
-Thus, by again putting all the pieces together (\Cref{pro:srefaxioms,th:cm-ults-khikt-completeness}), we get:
+Thus, by again putting all the pieces together (\Cref{pro:srefaxioms} and \Cref{th:cm-ults-khikt-completeness}), we get:
+
+\medskip 
 
 \begin{theorem}
 The axiom system $\axset_{\PlanReflogic}+\axset_{\khi,\square}$ for $\PlanReflogic$ is sound and strongly complete w.r.t. the class of all models.
 \end{theorem}
 
-By using~\Cref{,cor:extended-decidable}, we can conclude:
+\medskip 
+
+By using again~\Cref{cor:extended-decidable}, we can conclude:
+
+\medskip 
 
 \begin{corollary}
-$\PlanReflogic$ is decidable.
+The satisfiability problem for $\PlanReflogic$ is decidable.
 \end{corollary} \raul{revisar}
 

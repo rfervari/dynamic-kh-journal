@@ -22,7 +22,7 @@ Let $\modults = \tup{\W, \R, \Unc, \V}$ be an \ults, $a \in \ACT$ and let $\varp
 \] 
 where $\modults^a = \tup{\W,\R,\Unc',\V}$, with:
 \begin{itemize}
-\item $\Unc'(i) = (\Unc(i) \setminus \set{\plans}) \cup \set{\set{a}}$ if there is $\plans \in \Unc(i)$ such that $a \in \plans$,
+\item $\Unc'(i) = (\Unc(i) \setminus \set{\plans}) \cup \set{\set{a}}$, if there is $\plans \in \Unc(i)$ such that $a \in \plans$,
 \item $\Unc'(i) = \Unc(i) \cup \set{\set{a}}$ otherwise.
 \end{itemize}
 \end{definition}
@@ -62,8 +62,7 @@ Let $\modults$ be the single agent model depicted below, with $\Unc(i):=\set{\se
 \end{center} 
 \end{example}
 
-\subsubsection{Axiom System}
-
+\ssparagraph{Axiom System.} 
 We proceed now to introduce a complete axiom system for the logic $\AtomReflogic$. As we have previously mentioned, dealing with dynamic modalities is not easy. Fortunately, here the expressive power of the underlying static logic ($\KHiMLlogic$) is sufficient to capture the behaviour of $\srefbox{a}$, hence obtaining an axiomatization via reduction axioms (\Cref{tab:ssrefaxiom}) as a novelty.
 
 The proof using the reduction axioms consists in translating every formula of $\AtomReflogic$ into a formula of $\KHiMLlogic$. This is achieved by induction on the structure of $\AtomReflogic$ formulas. The challenge is, as usual, to eliminate the occurence of a $\srefbox{a}$ modality in presence of $\khi$. Consider a formula $\srefbox{a}\khi(\psi,\varphi)$. After the ``announcement'' of action $a$ being different to any other plan, there are two possible reasons of why $\khi(\psi,\varphi)$ holds. The first possibility, is that action $a$ plays no role in the truth of $\khi(\psi,\varphi)$. In this case, we can push the dynamic modality into the front of the pre and post-conditions of the $\khi$ modality, i.e., we obtain $\khi(\srefbox{a}\psi,\srefbox{a}\varphi)$. The second possibility is that $a$ is crucial in order to raise new knowledge for the agent. If the singleton $\set{a}$ is the witness for $\khi(\psi,\varphi)$ is because: 1) $a$ is SE at every state satisfying $\psi$ after the annoucement of $a$ (notice that as $a$ is a single action, SE is equivalent to executability); and 2) from every $\psi$-state, after every execution of $a$ we always get that $\varphi$ holds (in the model updated by $\srefbox{a}$). The former is captured in formula by $\srefbox{a}\psi\ra\mldiam{a}\top$ holding everywhere, while the latter is captured by $\mlbox{a}\srefbox{a}\varphi$. Putting all together, this case is reflected by $\A(\srefbox{a}\psi\ra(\mldiam{a}\top\wedge\mlbox{a}\srefbox{a}\varphi))$. The other cases are standard reductions, so we obtain the axioms shown in~\Cref{tab:ssrefaxiom}.
@@ -135,5 +134,5 @@ Finally, as the elimination of the dynamic modality takes a finite amount of ste
 \medskip 
 
 \begin{corollary}
-$\AtomReflogic$ is decidable.
+The satisfiability problem for $\AtomReflogic$ is decidable.
 \end{corollary} \raul{ver si dejamos este claim}
