@@ -178,6 +178,10 @@ As a consequence, the satisfiability problem for $\KHiMLlogic$ is decidable.
 The satisfiability problem for $\KHiMLlogic$ is decidable.
 \end{corollary}
 
+\begin{proof}
+Suppose $\varphi$ is satisfiable, then there exists a model $\modults$ and a state $w$ such that $\modults,w\models\varphi$. Let $\Sigma$ be the set of subformulas of $\varphi$ (including $\varphi$). Then, by~\Cref{th:filtration}, $\modults^\Sigma,[w]_\Sigma\models\varphi$. Since $\Sigma$ is finite, $\modults^\Sigma$ is finite, and of size at most exponential. Consequently, we know there exists a finite model of $\varphi$. Thus, we can list all the models and try one by one, whether they satisfy $\varphi$ or not, by calling a model-checking algorithm. Since model-checking is decidable (by simply combining the algorithm for basic modal logic~\cite{mlbook}, and the one for $\KHilogic$~\cite{AFSVQ21,AFSVQ23report}), the corollary follows. \raul{No tenemos demo especifica de que model-checking es decidible, dejamos asi como esta?}
+\end{proof}
+
 \medskip
 
 It is worth noticing that the conditions regarding the treatment of $\Unc^f(i)$ in~\Cref{def:filtrations} are slightly different from the conditions introduced in~\cite{AFSVQ23report} for the basic logic $\KHilogic$. Therein, the existence of a filtration is not established. Thus, in this work we update the definition of filtrations, making easier to guarantee that always we can obtain a finite model from any set of finite formulas, and consequently~\Cref{cor:extended-decidable}.
