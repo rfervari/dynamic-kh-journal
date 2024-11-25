@@ -1,0 +1,191 @@
+One might notice that knowing how operators are \emph{goal-directed}: the agent looks for a suitable course of action that makes her achieve a certain state.
+It is possible to define an operator that, when possible, \emph{guarantees} that the agent \emph{learns how} to achieve a goal.
+This action can be understood as a goal-directed learning how: it looks for a way to split \emph{some} existing set of plans $\plans$ in such a way that the agent knows how to achieve $\varphi$ given $\psi$. \raul{I am wondering whether introduce a new modality of simply stating only properties of learnability.}
+
+Let $\LHlogic$ (for ``learning how'') be $\KHilogic$ extended with the dynamic modality
+\[
+\lh{\psi}{\varphi}_i\chi := \arefdiam(\khi(\psi,\varphi) \wedge\chi),
+\]
+(and its `dual' $[\psi,\varphi]_i\chi := \neg\lh{\psi}{\varphi}_i\neg\chi$).
+Moreover, we define $\learn_i(\psi,\varphi) := \lh{\psi}{\varphi}_i\top$ an abbreviation for \emph{``the agent $i$ can learn how to make $\varphi$ true in the presence of $\psi$''}.
+Notice that $\LHlogic$ is a syntactic fragment of $\AReflogic$.
+
+The new dynamic modality is a ternary modality expressing that the agent is able to learn how to achieve $\varphi$ given $\psi$, and that after this learning operation takes place, $\chi$ holds.
+%However, as we will see below, it can be seen as a unary modality similarly to public announcements or action models.
+The modality $\learn_i$ is a test of what is learnable by the agent~$i$.
+Note that $\LHlogic$ is a syntactic fragment of $\AReflogic$ y thus reducible to the latter.
+However, $\AReflogic$ is indeed reducible to $\LHlogic$ and thus equivalent.
+
+\medskip
+
+\begin{proposition}\label{prop:lhequivaref}
+$\LHlogic \equiv \AReflogic$
+\end{proposition}
+\begin{proof}
+As $\LHlogic$ is a syntactic fragment of $\AReflogic$, then $\LHlogic \preceq \AReflogic$.
+Por the other direction, we have the following translation function $T: \AReflogic \to \LHlogic$ defined inductively as follows:
+\begin{itemize}
+\item $T(p) = p$,
+\item $T(\neg \varphi_1) = \neg T(\varphi_1)$,
+\item $T(\varphi_1 \vee \varphi_2) = T(\varphi_1) \vee T(\varphi_2)$,
+\item $T(\khi(\varphi_1, \varphi_2)) = \khi(T(\varphi_1), T(\varphi_2))$, and
+\item $T(\arefdiam \varphi_1) = \arefdiam (\khi(\bot,\bot) \wedge T(\varphi_1)) = \lh{\bot}{\bot}_i T(\varphi_1)$.
+\end{itemize}
+
+The goal is to prove by induction that for all $\varphi$ $\AReflogic$-formula, there exists $\varphi' = T(\varphi)$ s.t. for all \ults $\modults$ and $w \in \D{\modults}$, we have that $\modults,w \models \varphi$ iff $\modults,w \models T(\varphi)$.
+With this, $\AReflogic \preceq \LHlogic$. The first four cases hold using the definition of $\models$ and inductive hypothesis. Therefore, we will focus on the $\arefdiam$ case.
+Let $\modults = \tup{\W,\R,\Unc,\V}$ an \ults y $w \in \D{\modults}$, $\modults,w \models \arefdiam \varphi_1$ iff there exist $\plan_1,\plan_2 \in \ACT^*$ s.t. $\modults,w \models \refdiam{\plan_1}{\plan_2}\varphi_1$.
+This is equivalent to that there exist $\plan_1,\plan_2 \in \ACT^*$ and $\Unc'$ s.t. $\splitstr{\Unc}{\Unc'}{\plan_1}{\plan_2}$ y $\modults^{\Unc}_{\Unc'},w \models \varphi_1$.
+By inductive hypothesis, $\modults^{\Unc}_{\Unc'},w \models T(\varphi_1)$.
+As $\khi(\bot,\bot)$ is a valid formula (by definition of $\Unc(i) \neq \emptyset$), it holds true at every model.
+Then, $\modults^{\Unc}_{\Unc'},w \models \khi(\bot, \bot) \wedge T(\varphi_1)$ and using the definitions of $\models$ and $T$, it is equivalent to $\modults,w \models T(\arefdiam \varphi_1)$.
+Hence, $\AReflogic \preceq \LHlogic$ and $\AReflogic \equiv \LHlogic$.
+\end{proof}
+
+Thus, each of these logics can describe the concept of learning how.
+Getting back to the dynamic modalities, the following proposition illustrates some properties.
+
+\medskip
+
+\begin{proposition}\label{prop:nolearn}
+It follows from the semantics that:
+\begin{enumerate}
+\item\label{itm:nolearnable} $\not\models\learn_i(\varphi,\psi)$; %and $\not\models\lh{\psi}{\varphi}\kh(\psi,\varphi)$;
+\item\label{itm:learnboth} $\learn_i(\varphi,\psi) \wedge \learn_i(\varphi,\neg\psi)$ is satisfiable.
+%$\lh{\varphi}{\psi}\kh(\varphi,\psi)\wedge\lh{\varphi}{\psi}\kh(\varphi,\neg\psi)$ is satisfiable.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\Cref{itm:nolearnable} shows that not everything is learnable by an agent.
+%The properties of the underlying LTS
+The (un)avail\-abil\-i\-ty of certain actions in an \ults restricts
+what can be learnt.  Consider the following single-agent \ults $\modults$, with
+the set $\Unc(i)$ shown on the right.
+\begin{center}
+\begin{tabular}{c}
+\begin{tikzpicture}[->]
+\node [state, label = {[label-state]left:$w$}] (w1) {$p$};
+\node[left = of w1] (m) {$\modults$};
+\node [state, right = of w1] (w2) {$p$};
+\node [state, right = of w2] (w3) {$p,r$};
+
+\path (w1) edge node [label-edge, above] {$a$} (w2)
+        (w2) edge node [label-edge, above] {$b$} (w3);
+\end{tikzpicture}
+\end{tabular}
+\begin{picture}(90,0)
+\put(20,0){$\Unc(i) = \left\{
+    \begin{array}{c}
+        \{ab, a\}, \{\epsilon\}
+    \end{array}
+    \right\}$}
+\end{picture} 
+%
+%  \begin{tabular}{c}
+%  \begin{tikzpicture}[node distance = .5em and 2.5em]
+%    \draw (0,0) rectangle (1.5cm,1.7cm);
+%    \draw (.3cm,.3cm) rectangle (1.2cm,.7cm) node [pos = 0.5] {$a \ \ b \ \ \epsilon$};
+%    \draw (.5cm,1.1cm) rectangle (.9cm,1.5cm) node [pos = 0.5] {$ab$};
+%  \end{tikzpicture}
+%  \end{tabular}
+%\end{tabular}
+\end{center}
+Note that $\modults,w\not\models\khi(p,r)$.
+The set $\set{ab,a}$ is not executable at every $p$-state, it is only executable at $w$.
+On the other hand, $\set{\epsilon}$ is executable everywhere, but does not lead always to $r$-states.
+Moreover, $\modults,w\not\models\learn_i(p,r)$.
+The set $\set{\epsilon}$ cannot be refined, and no refinement of $\set{ab,a}$ does the work.
+Therefore, agent $i$ cannot learn how to make $r$ true when $p$ holds.
+
+For \Cref{itm:learnboth} consider $\modults'$ as in~\Cref{prop:expref}.
+As said, $\modults',w'\not\models\khi(p,q)$.
+%again $\modults$ above. %As said, $\modults,w\not\models\kh(p,r)$.
+However, there is a way to learn how to achieve $q$ given $p$: it is possible to split the set $\set{a,b}$ into $\set{a}$ and $\set{b}$; hence, $\modults',w'\models \learn_i(p,q)$ (witness $\set{a}$) but also $\modults',w'\models\learn_i(p,\neg q)$ (witness $\set{b}$).
+\end{proof}
+
+\Crefitem{itm:nolearnable} shows how, in certain scenarios, there is
+no room for learning. For instance, there might be no way to learn how
+to cure a disease, if there is no doctor
+available or no vaccine has been developed yet. \Crefitem{itm:learnboth} shows how the agent might be able
+to learn not only how to make a formula true under a given condition,
+but, at the same time, how to make the same formula false under the same condition.
+
+Once more, $[\chi,\psi]$ (seen as a unary modality) is a \emph{normal modality}:
+% the distributivity axiom {\sf DISTLh} and the
+% necessitation rule {\sf NECLh} are valid over arbitrary \ults{s}:
+
+\medskip
+
+\begin{proposition}\label{prop:lhgoal-normal}
+The modality $[\chi,\psi]$ is normal:
+\begin{enumerate}
+\item\label{itm:distaxiom} $\models[\chi,\psi](\theta \ra \varphi) \ra ([\chi,\psi]\theta \ra [\chi,\psi]\varphi)$.
+\item\label{itm:necessitation} If $\models\varphi$, then $\models{[\chi,\psi]\varphi}$.
+\end{enumerate}
+\end{proposition}
+
+\medskip
+
+%%
+%% MARCH 5, 2020: INTERESTING FOR LONG VERSION, BUT REMOVE IT FOR SAVING SPACE
+%%
+% \begin{proposition}\label{prop:nosubs}
+%   The following properties follow:
+%   \begin{enumerate}
+%     \item\label{itm:nocompkhlh} $\not\models\kh(\chi,\theta)\wedge\lh{\theta}{\psi}\varphi \ra \lh{\chi}{\psi}\varphi$;
+%     \item\label{itm:nocomplhlh} $\not\models\lh{\chi}{\theta}\lh{\theta}{\psi}\varphi \ra \lh{\chi}{\psi}\varphi$;
+%     \item\label{itm:khpres} $\models\kh(\chi,\psi) \wedge \varphi \ra \lh{\chi}{\psi}\varphi$.
+%   \end{enumerate}
+%  \end{proposition}
+
+% Notice that if $\kh(\chi,\psi)$ holds, there is some strategy $\plans$
+% leading from $\chi$-states to $\psi$-states. By taking the refinement
+% $\set{\plans,\emptyset}$ of $\plans$, we satisfy the required
+% semantic condition for the dynamic modality, without changing the knowledge
+% of the agent.
+
+We finish the section by stating some expressivity connections between the
+dynamic modalities we just discussed.
+
+\medskip
+
+\begin{proposition}\label{prop:explearn}
+The following propositions are true:
+\begin{enumerate}
+\item\label{itm:lhkh} $\LHlogic$ is more expressive than $\KHilogic$.
+\item\label{itm:lhref} $\LHlogic$ is not more expressive than $\Reflogic$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+\Cref{itm:lhkh} is proved as \Cref{prop:expref}: the formula $\learn_i(p,q)$ distinghuishes the two \ultss.
+For \Cref{itm:lhref} consider the two \ultss below:
+\begin{center}
+\begin{tabular}{l@{\qquad\quad}l}
+\begin{tabular}{c}
+    \begin{tikzpicture}[->]
+    \node [state, label = {[label-state]left:$w$}] (w1) {$r$};
+    \node [state, above right = 0.25em and 3em of w1] (w2) {$p$};
+    \node [state, below right = 0.25em and 3em of w1] (w3) {};
+    \path (w1) edge node [label-edge, above] {$a$} (w2)
+                edge node [label-edge, below] {$b$} (w3);
+    \node [ left = of w1] {$\modults$};
+    \end{tikzpicture}
+\end{tabular}
+&
+\begin{tabular}{c}
+    \begin{tikzpicture}[->]
+    \node [state, label = {[label-state]left:$w'$}] (w1) {$r$};
+    \node [state, above right = 0.25em and 3em of w1] (w2) {$p$};
+    \node [state, below right = 0.25em and 3em of w1] (w3) {};
+    \path (w1) edge node [label-edge, above] {$c$} (w2)
+                edge node [label-edge, below] {$d$} (w3);
+    \node [right = 7em of w1] {$\modults'$};
+    \end{tikzpicture}
+\end{tabular}
+\end{tabular} 
+\end{center}
+For each model, consider respective sets $\Unc(i)=\set{\set{a,b}}$ and $\Unc(i)'=\set{\set{c,d}}$.
+Since $\LHlogic$ cannot explicitely talk about plans, $\modults,w$ and $\modults',w'$ are indistinguishable for it.
+In $\Reflogic$, $\modults,w\models \dialhepis{a{\not\sim}b}\khi(r,p)$ and $\modults',w'\not\models\dialhepis{a{\not\sim}b}\khi(r,p)$.
+\end{proof}

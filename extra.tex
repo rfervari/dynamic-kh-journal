@@ -1,0 +1,81 @@
+\section{General}
+\newcommand{\extraopr}[1]{\textcolor{red}{\mlbox{\&#1}}}
+\newcommand{\extraopb}[1]{\textcolor{blue}{\mlbox{\&#1}}}
+\newcommand{\extraopt}[1]{\textcolor{teal}{\mlbox{\&#1}}}
+\newcommand{\extraopw}[1]{\textcolor{brown}{\mlbox{\&#1}}}
+
+\begin{definition}
+Formulas of the language $\mathit{Test}$ are given by
+\[
+\varphi ::= p \mid \neg\varphi \mid \varphi\vee\varphi \mid \khi(\varphi,\varphi) \mid \mlbox{a}\varphi \mid \extraopr{a}\varphi \mid \extraopb{\sigma}\varphi \mid \extraopw{\strategy,\sigma}\varphi \mid \extraopt{\strategy}\varphi,
+\]
+with $p \in \PROP$, $i\in\AGT$ and $a \in \ACT$. Formulas of the form $\extraopr{a}\varphi$ are read as: %\emph{``after announcing that $a$ is distinguishable from any other plan, $\varphi$ holds''.} 
+\end{definition}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Extra 3}
+\begin{definition}
+Let $\model = \tup{\W, \R, \S, \V}$ be an \ults, $\strategy \in (2^{\ACT^*} \setminus \emptyset)$, $\sigma \in \ACT^*$ s.t. $\sigma \notin \strategy$ and $\varphi$ be a $\mathit{Test}$-formula,
+\[
+\model,w \models \extraopw{\strategy,\sigma}\varphi \ \ \iff \ \ \model^{\extraopw{\strategy,\sigma}},w \models \varphi,
+\]
+where $\model^{\extraopw{\strategy,\sigma}} = \tup{\W,\R,\S',\V}$, with:
+\begin{itemize}
+\item $\S'_i = (\S_i \setminus \cset{\strategy \cup \cset{\sigma}}) \cup \cset{\strategy} \cup \cset{\cset{\sigma}}$ if $\strategy \cup \cset{\sigma} \in \S_i$,
+\item $\S'_i = \S_i \cup \cset{\cset{\sigma}}$ otherwise.
+\end{itemize}
+\end{definition}
+
+\begin{proposition}
+\begin{tabular}{ccl}
+$\models \extraopw{\strategy,\sigma} \khi(\varphi_1,\varphi_2)$ & $\lra$ & $\bigg( \khi(\extraopw{\strategy,\sigma} \varphi_1,\extraopw{\strategy,\sigma} \varphi_2) \vee$ \\
+& & $\A(\extraopw{\strategy,\sigma} \varphi_1 \ra P(\sigma,\extraopw{\strategy,\sigma}\varphi_2)) \vee$ \\
+& & $\bigwedge_{\gamma \in \strategy} \A(\extraopw{\strategy,\gamma} \varphi_1 \ra P(\gamma,\extraopw{\strategy,\gamma}\varphi_2)) \bigg)$ \\
+\end{tabular}
+\end{proposition}
+\begin{proof}
+Let $\model = \tup{\W, \R, \S, \V}$ be an \ults.
+
+$(\Rightarrow):$ $\model \models \extraopw{\strategy,\sigma} \khi(\varphi_1,\varphi_2)$ iff $\model^{\extraopw{\strategy,\sigma}} \models \khi(\varphi_1,\varphi_2)$ iff there is $\strategy' \in \S'_i$ s.t. $\truthset{\model^{\extraopw{\strategy,\sigma}}}{\varphi_1} \subseteq \stexec^{\model^{\extraopw{\strategy,\sigma}}}(\strategy')$ and $\R_{\strategy'}(\truthset{\model^{\extraopw{\strategy,\sigma}}}{\varphi_1}) \subseteq \truthset{\model^{\extraopw{\strategy,\sigma}}}{\varphi_2}$.
+Using $\truthset{\model^{\extraopw{\strategy,\sigma}}}{\psi} = \truthset{\model}{\extraopw{\strategy,\sigma} \psi}$ and $\stexec^{\model^{\extraopw{\strategy,\sigma}}}(\strategy') = \stexec^\model(\strategy')$ (since the relations remain unchanged), this is equivalent to say that there is $\strategy' \in \S'_i$ s.t. $\truthset{\model}{\extraopw{\strategy,\sigma} \varphi_1} \subseteq \stexec^\model(\strategy')$ and $\R_{\strategy'}(\truthset{\model}{\extraopw{\strategy,\sigma} \varphi_1}) \subseteq \truthset{\model}{\extraopw{\strategy,\sigma} \varphi_2}$. We need to consider two cases:
+
+\begin{itemize}
+\item If $\strategy' \neq \cset{\sigma}$ and $\strategy' \neq \strategy$, then $\strategy' \in \S_i$ and we get $\model \models \khi(\extraopw{\strategy,\sigma}\varphi_1,\extraopw{\strategy,\sigma}\varphi_2)$.
+\item If $\strategy' = \cset{\sigma}$, then $\truthset{\model}{\extraopw{\strategy,\sigma}\varphi_1} \subseteq \stexec^\model(\sigma)$ and $\R_\sigma(\truthset{\model}{\extraopw{\strategy,\sigma}\varphi_1}) \subseteq \truthset{\model}{\extraopw{\strategy,\sigma}\varphi_2}$.
+From the first part, using the definition of SE, we can derive that for all $w \in \truthset{\model}{\extraopw{\strategy,\sigma}\varphi_1}$, $k \in \intint{0}{\card{\sigma}-1}$ we have $\model,w \models \mlbox{\sigma_l}\mldiam{\sigma[l+1]}\top$.
+From the second one, we can reach that for all $w \in \truthset{\model}{\extraopw{\strategy,\sigma}\varphi_1}$, $\model,w \models \mlbox{\sigma} \extraopw{\strategy,\sigma}\varphi_2$.
+Thus, for all $w \in \W$, $\model,w \models \extraopw{\strategy,\sigma} \varphi_1 \ra P(\sigma,\extraopw{\strategy,\sigma}\varphi_2)$.
+\item If $\strategy' = \strategy$, then using the definitions of SE and $\R$ for a set of plans, it is equivalent to that for all $\gamma \in \strategy$, $\truthset{\model}{\extraopw{\strategy,\sigma}\varphi_1} \subseteq \stexec^\model(\gamma)$ and $\R_\gamma(\truthset{\model}{\extraopw{\strategy,\sigma}\varphi_1}) \subseteq \truthset{\model}{\extraopw{\strategy,\sigma}\varphi_2}$.
+From the first part, using the definition of SE, we can derive that for all $w \in \truthset{\model}{\extraopw{\strategy,\sigma}\varphi_1}$, $k \in \intint{0}{\card{\gamma}-1}$ we have $\model,w \models \mlbox{\gamma_l}\mldiam{\gamma[l+1]}\top$.
+From the second one, we can reach that for all $w \in \truthset{\model}{\extraopw{\strategy,\sigma}\varphi_1}$, $\model,w \models \mlbox{\gamma} \extraopw{\strategy,\sigma}\varphi_2$.
+Thus, for all $w \in \W$, $\model,w \models \extraopw{\strategy,\sigma} \varphi_1 \ra P(\gamma,\extraopw{\strategy,\sigma}\varphi_2)$.
+\end{itemize}
+
+$(\Leftarrow):$ If $\model \models \khi(\extraopw{\strategy,\sigma} \varphi_1,\extraopw{\strategy,\sigma} \varphi_2) \vee \A(\extraopw{\strategy,\sigma} \varphi_1 \ra P(\sigma,\extraopw{\strategy,\sigma}\varphi_2))$, then the disjunction is satified by either one of the following situations:
+\begin{itemize}
+\item  $\model \models \khi(\extraopw{\strategy,\sigma} \varphi_1,\extraopw{\strategy,\sigma} \varphi_2)$: Let $\strategy \in \S_i$ be s.t. $\truthset{\model}{\extraopw{\strategy,\sigma}\varphi_1} \subseteq \stexec^\model(\strategy)$ and $\R_\strategy(\truthset{\model}{\extraopw{\strategy,\sigma}\varphi_1}) \subseteq \truthset{\model}{\extraopw{\strategy,\sigma}\varphi_2}$.
+As we already stated, this is equivalent to say that $\truthset{\model^{\extraopw{\strategy,\sigma}}}{\varphi_1} \subseteq \stexec^{\model^{\extraopw{\strategy,\sigma}}}(\strategy)$ and $\R_\strategy(\truthset{\model^{\extraopw{\strategy,\sigma}}}{\varphi_1}) \subseteq \truthset{\model^{\extraopw{\strategy,\sigma}}}{\varphi_2}$.
+If $\sigma \notin \strategy$, then $\strategy \in \S'_i$.
+If $\sigma \in \strategy$, then $\cset{\sigma} \in \S'_i$. In any case, we get $\model \models \extraopw{\strategy,\sigma}\khi(\varphi_1,\varphi_2)$.
+
+\item $\model \models \A(\extraopw{\strategy,\sigma} \varphi_1 \ra P(\sigma,\extraopw{\strategy,\sigma}\varphi_2))$: Notice that $\sigma$ meets the strong executability and reachability conditions.
+The only thing left to prove is that $\cset{\sigma} \in \S'_i$. But that is direct since wheter $\sigma \in \strategy$ for some $\strategy \in (\S_i \setminus \cset{\cset{\sigma}})$ or not, in the end $\cset{\sigma} \in \S'_i$. Hence $\model \models \extraopw{\strategy,\sigma}\khi(\varphi_1,\varphi_2)$.
+
+\item $\model \models \bigwedge_{\gamma \in \strategy} \A(\extraopw{\strategy,\gamma} \varphi_1 \ra P(\gamma,\extraopw{\strategy,\gamma}\varphi_2))$:
+\end{itemize}
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Extra 4}
+\begin{definition}
+Let $\model = \tup{\W, \R, \S, \V}$ be an \ults, $a \in \ACT^*$ and  be a $\mathit{Test}$-formula,
+\[
+\model,w \models \extraopt{\strategy'}\varphi \ \ \iff \ \ \model^{\extraopt{\strategy'}},w \models \varphi,
+\] 
+where $\model^{\extraopt{\strategy'}} = \tup{\W,\R,\S',\V}$, with:
+\begin{itemize}
+\item $\S'_i = (\S_i \setminus \cset{\strategy}) \cup \cset{\strategy'}$ if there is $\strategy \in \S_i \setminus \cset{\strategy'}$ such that $\strategy' \subsetneq \strategy$,
+\item $\S'_i = \S_i \cup \cset{\cset{\sigma}}$ otherwise.
+\end{itemize}
+\end{definition}
+

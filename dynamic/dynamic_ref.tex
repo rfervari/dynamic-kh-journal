@@ -1,0 +1,574 @@
+One of the advantages of \ults{s} is that they allow a  natural
+representation of actions that affect the abilities of an agent, but also, her epistemic state. In an
+\ults, the crucial epistemic component is the set $\Unc(i)$,
+defining not only the plans agent $i$ is `aware of',
+but also the level at which she can discern among
+them. Thus we can represent changes in the epistemic state of
+an agent by means of operations that modify $\Unc(i)$. We will focus on alternatives in which the update's intention is to gain new information.
+
+\medskip
+
+\begin{example}\label{ex:ref}
+    Let $\modults$ be the \ults from \Cref{ex:cook}.
+    Recall that $\modults\not\models\kh_j(h,g)$. The conflicting plan is $\mathit{ebmfsp}$, which does not lead to a good cake. Thus, if agent $j$ is able to tell apart $\mathit{ebmfsp}$ from $\mathit{ebfmsp}$ (which is the good plan), she would be able to know how to get a good cake, provided she has the ingredients. If agent $j$ \emph{learns} that the
+    order of the actions matters (so $\mathit{ebmfsp}$ is distinct from $\mathit{ebfmsp}$), the set $\plans=\set{\mathit{ebfmsp}, \mathit{ebmfsp}}$ is split into two singleton sets (i.e., $\Unc'(j)=\set{\set{\mathit{ebfmsp}},\set{\mathit{ebmfsp}}}$, where $\Unc'$ is the set of indistinguishability classes obtained from the update). After such a splitting, she knows how to achieve $g$ given $h$.
+\end{example}
+
+\medskip
+
+
+% \begin{example}
+% Let $\modults'$ be the \ults from \Cref{ex:aircraft}, but with $\Unc(i)$ containing a
+% unique set of plans $\plans=\set{ew,we,eew}$. Now,
+% $\modults'\not\models\khi(s,s)$. The conflicting plan is $we$, since
+% from a safe zone (an $s$-state) it leads to a non-safe zone.
+% Thus, if agent $i$ is able to \emph{distinguish} between $we$ and the
+% rest of the plans, she would be able to know how to flight to a safe
+% zone, departing from a safe zone. If agent $i$ \emph{learns} that the
+% order of the actions matter (so $we$ is distinct from $ew$), she can
+% split $\plans$; one way of doing this produces
+% the set $\Unc(i)$ from \Cref{ex:aircraft}, where she now knows how to achieve
+% $s$ given $s$.
+% \end{example}
+
+% Moreover, knowing how frameworks deal with \emph{goal-oriented} knowledge.
+% So, by simply removing the uncertainty between two plans might not be helpful
+% (for instance, stating $\epsilon$ distinct to $we$ is not helpful in order to
+% learn how to achieve $s$). However, an alternative is to look for a splitting
+% of $\Unc$ that \emph{ensures} how to achieve $s$, given $s$. This approach is
+% more goal-oriented, such as knowing how frameworks usually are.
+
+% This section is devoted to explore such ideas, taking advantage of the
+% facilities given by the new uncertainty-based semantics we introduced.
+
+% One possible way of updating $\Unc$ is by adding some new plancei
+% $\plan \in \ACT^*$ to $\DS{\Unc}$. An operation that takes an arbitrary {\ults}
+% $\modults=\tup{\W,\R,\Unc,\V}$ and returns an {\ults}
+% $\modults'=\tup{\W,\R,\Unc',\V}$ in which $\plan \in \DS{\Unc'}$ can be
+% understood as an action through which the agent `becomes aware of'
+% $\plan$. The actual epistemic effect of this action depends on the
+% precise way in which $\plan$ is added. For example, becoming aware of
+% $\plan$ while also getting to know exactly which are its effects
+% (analogous to the \emph{explicit seeing} discussed in
+% \cite{BenthemVel09:tdoa} in the context of awareness logic) can be
+% represented by an operation in which $\plan$ gets its own strategy:
+% $\Unc' := \Unc \cup \set{\set{\plan}}$. On the other hand, one could
+% also add $\plan$ to an existing strategy $\plans$ (i.e.,
+% $\Unc'_{\plans} := (\Unc \setminus \plans) \cup \set{\plans \cup
+%   \set{\plan}}$); this might not help the agent to get new
+% abilities, and it might even ruin old ones, as $\plan$ might not
+% behave as the other plans that now cannot be distinguished from it.
+% \footnote{In this informal discussion it has been assumed that
+% $\plan \notin \DS{\Unc}$. A more general operation that does not make
+% the assumption requires more care, as the condition $\plans_1,
+% \plans_2 \in \Unc'$ imply $\plans_1 \cap \plans_2 =
+% \emptyset$ must be preserved. Additional care is also needed when
+% additional model conditions are imposed (e.g., those discussed in
+% \Cref{subsec:compos}), as they also must be preserved.}
+
+% But even if the agent does not `become aware of' new plans, she might
+% still get new abilities simply by realizing that two previously
+% indistinguishable plans are in fact different. The remainder of this
+% section discusses two ways in which this idea can be implemented.
+
+% The \emph{goal-oriented learning-how} modality of
+% \Cref{def:goallearnsem} looks for a way to split an existing strategy
+% $\plans$ to ensure that an agent knows how to make $\psi$ true when
+% $\chi$ is the case.
+We introduce an operation that eliminates uncertainty between specific
+plans.  In an {\ults}, there might be different ways of
+making distinguishable two previously indistinguishable plans:  the
+different ways one can split a set containing both. First,
+we proceed to introduce some notation.
+
+%For now, we will talk about the one-agent version of $\KHilogic$ for $\ults$ models, $\KHilogic$.
+
+\medskip
+
+\begin{definition}
+Let $\plans, \plans_1, \plans_2 \in 2^{\ACT^*}$, and $S \subseteq 2^{\ACT^*}$.  We write $\plans = \plans_1\uplus\plans_2$ iff $\plans=\plans_1\cup\plans_2$ and $\plans_1\cap\plans_2=\emptyset$.
+
+For $\plans \in S$ and $\plans=\plans_1\uplus\plans_2$, define  $\lmodel{S}{\plans}{\set{\plans_1,\plans_2}} \subseteq 2^{\ACT^*}$ as the result of refining~$\plans$ through $\set{\plans_1,\plans_2}$: $\lmodel{S}{\plans}{\set{\plans_1,\plans_2}} := (S\setminus\set{\plans})\cup\set{\plans_1,\plans_2}$.
+\end{definition}
+
+\medskip
+
+Once we have defined how a set is obtained as a result of a certain update, we define below a relation between sets that links sets before an update, with those sets after the update.
+
+\medskip
+
+\begin{definition}\label{def:splitstr}
+Let $S,S' \subseteq 2^{(\ACT^*)}$; and let $\plan_1,\plan_2 \in \ACT^*$ be such that $\plan_1\neq\plan_2$.
+We write $\splitstr{S}{S'}{\plan_1}{\plan_2}$ if and only if either
+\begin{itemize} \itemsep 0cm
+\item $S' = S$ and there is no $\plans\in S$ satisfying $\set{\plan_1, \plan_2} \subseteq \plans$, or
+\item $S' = \lmodel{S}{\plans}{\set{\plans_1,\plans_2}}$ for some $\plans \in S$ satisfying $\set{\plan_1, \plan_2} \subseteq \plans$, with $\plans_1, \plans_2 \in 2^{\ACT^*}$ such that
+$\plans = \plans_1\uplus\plans_2$ and
+$\plan_1 \in \plans_1$, $\plan_2 \in \plans_2$.
+\end{itemize}
+\end{definition}
+
+\medskip
+
+Notice that the relation $\splitstr{}{}{\plan_1}{\plan_2}$ is serial. Moreover, if $S$ is the set of sets of plans for a given agent $i$ in some \ults (i.e., $S=\Unc(i)$) and $S'$ is a set satisfying $\splitstr{S}{S'}{\plan_1}{\plan_2}$, then the structure resulting from replacing $S$ by $S'$ is an \ults.
+
+\medskip
+
+\begin{definition}
+Let $\modults=\tup{\W,\R,\Unc,\V}$ be an \ults, and let $\Unc'=\set{\Unc'(i)}_{i\in\AGT}$ with ${\Unc'(i)\subseteq 2^{(\ACT^*)}}$.
+Let $\plan_1,\plan_2 \in \ACT^*$. We write $\splitstr{\Unc}{\Unc'}{\plan_1}{\plan_2}$ iff for each $i\in\AGT$, $\splitstr{\Unc(i)}{\Unc(i)'}{\plan_1}{\plan_2}$.
+We denote by $\modults^{\Unc}_{\Unc'}$ the \ults obtained by replacing $\Unc$ by $\Unc'$.
+%, and $\card{\Unc}=\card{\Unc'}$.
+\end{definition}
+
+\medskip
+
+The definition above guarantees there is a one-to-one correspondence between the sets in $\Unc$ and those in $\Unc'$. 
+%In a sense, $\Unc'$ is a refinement of the sets in $\Unc$, for each particular agent, potentially eliminating some uncertainty for them. 
+With these tools at hand, we introduce the new modality $\refdiam{\plan_1}{\plan_2}$, semantically interpreted
+as an action through which all agents learn that plans $\plan_1$ and
+$\plan_2$ are  different.
+We use $\Reflogic$ ({\small\textsf{Ref}} for ``refinement'') to denote the extension of $\KHilogic$ with formulas of the for $\refdiam{\plan_1}{\plan_2}\varphi$.
+
+\medskip
+
+\begin{definition}\label{def:ref-sem}
+Let $\modults=\tup{\W,\R,\Unc,\V}$ be an \ults and $w \in \W$.
+For $\plan_1\neq\plan_2$,
+\[
+\begin{array}{l@{\ \ }c@{\ \ }l}
+\modults,w\models \refdiam{\plan_1}{\plan_2}\varphi & \iffdef & \text{there is } \Unc' \text{ such that } \splitstr{\Unc}{\Unc'}{\plan_1}{\plan_2} \text{ and }  \modults^{\Unc}_{\Unc'},w \models \varphi.
+\end{array}
+\]
+As usual, we define $\refbox{\plan_1}{\plan_2}\varphi := \lnot \refdiam{\plan_1}{\plan_2}\lnot\varphi$.
+\end{definition}
+
+\medskip
+
+Formulas of the form $\refdiam{\plan_1}{\plan_2}\varphi$ can be read as follows: \emph{``after it is stated that plans $\plan_1$ and $\plan_2$ are distinguishable, $\varphi$ holds''}. For instance, taking~\Cref{ex:ref}, $\refdiam{\mathit{ebmfsp}}{\mathit{ebfmsp}}\kh_j(h,g)$ establishes that \emph{``after it is stated that $\mathit{ebmfsp}$ and $\mathit{ebfmsp}$ are distinguishable plans, agent $j$ knows how to produce a good cake, provided she has the ingredientes''}. 
+
+The proposed modality has some natural properties: it is normal and serial.
+
+\medskip
+
+\begin{proposition}\label{prop:ref-normal-serial}
+It follows from the semantics (\Cref{def:ref-sem}) that:
+\begin{enumerate}
+\item\label{itm:distref} $\models \refbox{\plan_1}{\plan_2}(\varphi \ra \psi) \ra (\refbox{\plan_1}{\plan_2}\varphi \ra
+\refbox{\plan_1}{\plan_2}\psi)$.
+\item\label{itm:necessitationref} If $\models \varphi$, then $\models \refbox{\plan_1}{\plan_2}\varphi$.
+\item\label{itm:serialityref}  $\models \refbox{\plan_1}{\plan_2}\varphi \ra \refdiam{\plan_1}{\plan_2}\varphi$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\Cref{itm:distref} follows from the standard $\forall$ pattern in the semantics of $\refbox{\plan_1}{\plan_2}$.
+\Cref{itm:necessitationref} holds because the structure resulting from the operation is an \ults.
+The seriality of $\splitstr{}{}{\plan_1}{\plan_2}$ ensures \Cref{itm:serialityref}.
+\end{proof}
+
+This dynamic modality both preserves knowledge and can generate new one.
+
+\medskip
+
+\begin{proposition}\label{prop:ref-preserves-gains}
+Let $\varphi,\psi$ be propositional formulas. Then,
+\begin{enumerate}
+\item\label{itm:preservesknowledge} $\models \khi(\varphi,\psi) \ra \refbox{\plan_1}{\plan_2}\khi(\varphi,\psi)$.
+\item\label{itm:gainsknowledge} If $\psi$ and $\varphi$ are satisfiable, then $\neg\khi(\psi,\varphi) \wedge \refdiam{\plan_1}{\plan_2}\khi(\psi,\varphi)$ is satisfiable.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+For \Cref{itm:preservesknowledge}, suppose $\modults, w \models \khi(\varphi,\psi)$.
+Then there is $\plans \in \Unc(i)$ s.t. $\truthset{\modults}{\varphi} \subseteq \stexec(\plans)$ and $\R_\plans(\truthset{\modults}{\varphi}) \subseteq \truthset{\modults}{\psi}$.
+Let $\plan_1$, $\plan_2$ $\in \ACT^*$.
+If $\plan_1 \not\in \plans$ or $\plan_2 \not\in \plans$, then $\plans$ does not change and is still the witness for $\khi(\varphi,\psi)$.
+If, however, $\plan_1,\plan_2 \in \plans$, there will be a partition of $\plans$, $\{\plans_1,\plans_2\}$ s.t. $\splitstr{\Unc(i)}{\lmodel{\Unc(i)}{\plans}{\set{\plans_1,\plans_2}}}{\plan_1}{\plan_2}$.
+But this does not cause any problem since $\truthset{\modults}{\varphi} \subseteq \stexec(\plans) \subseteq \stexec(\plans_k)$ and $\R_{\plans_k}(\truthset{\modults}{\varphi}) \subseteq \R_\plans(\truthset{\modults}{\varphi}) \subseteq \truthset{\modults}{\psi}$, for $k\in\set{1,2}$.
+Here agent $i$ knew how to %do a certain task under a restricted condition from the
+go from $\varphi$-states to $\psi$-states via $\plans$.
+Weakening such $\plans$ by making a partition still holds the property, allowing the agent to choose between $\plans_1$ or $\plans_2$ as her next witness.
+Since all the cases for $\plan_1$ and $\plan_2$ are covered, $\modults,w\models \refbox{\plan_1}{\plan_2}\khi(\varphi,\psi)$.
+For \Cref{itm:gainsknowledge}, see~\Cref{ex:ref}.
+\end{proof}
+% \bigfer{In the previous proposition, the standard problem in these cases is that $\truthset{\modults}{\varphi}$ and $\truthset{\modults^{\Unc}_{\Unc'}}{\varphi}$ might be different (because the model changes). Asking for $\varphi$ and $\psi$ to be propositional guarantees that $\truthset{\modults}{\varphi}$ and $\truthset{\modults^{\Unc}_{\Unc'}}{\varphi}$ coincide (as valuations do not change). But arguing whether that holds for arbitrary $\varphi$ (if that is indeed the case) might require more care.}
+
+However, the properties above are not true for arbitrary formulas, as shown below.
+
+\medskip
+
+\begin{example}
+Consider again~\Cref{ex:cook}, and let $\theta = \kh_j(h,g)$. Since $\modults\not\models\theta$, $\modults\models\kh_j(\theta,\theta)$. Since we have $\modults\models\refdiam{\mathit{ebmfsp}}{\mathit{ebfmsp}}\theta$, it cannot be the case that  $\modults \models \refdiam{\mathit{ebmfsp}}{\mathit{ebfmsp}}\kh_j(\theta,\neg \theta)$. Thus, $\modults \not\models \kh_j(\theta,\neg \theta) \ra \refdiam{\mathit{ebmfsp}}{\mathit{ebfmsp}}\kh_j(\theta,\neg \theta)$, falsifying \Cref{itm:preservesknowledge} from the proposition above for arbitrary formulas.
+
+For \Cref{itm:gainsknowledge}, notice that $\neg\khi(\top,\bot) \wedge \refdiam{\plan_1}{\plan_2}\khi(\top,\bot)$ is not satisfiable. \raul{revisar item 2, la demo esta mal, asume $\psi$ sat, y usa $\bot$ despues. Ver si es V o F esta prop.}
+\end{example}
+
+\medskip
+
+We show below that the new modality adds expressivity, as it can talk explicitly about plans:
+
+\medskip
+
+\begin{proposition}\label{prop:expref}
+$\Reflogic$ is more expressive than $\KHilogic$.
+\end{proposition}
+\begin{proof}
+We need to display two $\KHilogic$-bisimilar \ultss that can be distinguished by an $\Reflogic$-formula.
+%Consider the \ultss $\modults$ and $\modults'$ below:
+Let $\modults$ and $\modults'$ be the single agent models depicted below, with $\Unc(i):=\set{\set{a}}$ and $\Unc'(i):=\set{\set{a,b}}$, respectively:
+\begin{center}
+\begin{tikzpicture}[->, grow' = right, level/.style={sibling distance = 2em/#1}, level distance = 1.5em]
+\node[state] at (0,1) (p) [label=left:$w$]{$p$};
+\node[left = of p] (m) {$\modults$};
+\node[state] at (1.75,0.6) (nq) {\phantom{$p$}};
+\node[state] at (1.75,1.4) (q) {$q$};
+\path (p) edge [above] node {$a$} (q);
+\path (p) edge [below] node {$a$} (nq);
+\end{tikzpicture}
+\hspace{2cm}
+\begin{tikzpicture}[->, grow' = right, level/.style={sibling distance = 2em/#1}, level distance = 3.5em]
+    \node[state] at (0,1) (p) [label=left:$w'$]{$p$};
+    \node[state] at (1.75,0.6) (nq) {\phantom{$p$}};
+\node[state] at (1.75,1.4) (q) {$q$};
+\path (p) edge [above] node {$a$} (q);
+\path (p) edge [below] node {$b$} (nq);
+\node[right = 7em of p] (m) {$\modults'$};
+\end{tikzpicture}
+\end{center}
+
+The models are $\KHilogic$-bisimilar, thus they satisfy the same formulas in $\KHilogic$ (in particular $\neg\khi(p,q)$). But, $\modults,w \not\models \refdiam{a}{b}\khi(p,q)$ since $\splitstr{\Unc(i)}{\Unc(i)}{a}{b}$, % then $\Unc=\overline{\Unc}$,
+whereas $\modults',w' \models \refdiam{a}{b}\khi(p,q)$, since there is $\Unc(i)''=\set{\set{a},\set{b}}$ such that $\splitstr{\Unc(i)'}{\Unc(i)''}{a}{b}$.
+
+
+% \begin{nscenter}
+% \begin{tabular}{@{}l@{}l@{}}
+% \begin{tabular}{@{}c}
+% \begin{tikzpicture}[->, grow' = right, level/.style={sibling distance = 3em/#1}, level distance = 3.5em]
+%
+% \node [state, label = {[label-state]left:$w$}] (r) {$p$}
+% child { node [state] {$p$}
+%         child { node [state] (n1) {$p$}
+%                 edge from parent node [label-edge, above] {$a$} }
+%         child { node [state] (n2) {}
+%                 edge from parent node [label-edge, below] {$a$} }
+%     edge from parent node [label-edge, above] {$a$} }
+% child { node [state] {}
+%         child { node [state] (n3) {$p$}
+%                 edge from parent node [label-edge, above] {$a$} }
+%         child { node [state] (n4) {}
+%                 edge from parent node [label-edge, below] {$a$} }
+%     edge from parent node [label-edge, below] {$a$} };
+%
+% \node[right = 0.5em of n1.center] {$\cdots$};
+% \node[right = 0.5em of n2.center] {$\cdots$};
+% \node[right = 0.5em of n3.center] {$\cdots$};
+% \node[right = 0.5em of n4.center] {$\cdots$};
+%
+% \node[node distance = 0.1em and 2em, above = 1em of r] {$\modults$};
+% \end{tikzpicture}
+% \end{tabular}
+% &
+% \begin{tabular}{c@{}}
+% \begin{tikzpicture}[->, grow' = right, level/.style={sibling distance = 3em/#1}, level distance = 3.5em]
+% \node [state, label = {[label-state]left:$w'$}] (r) {$p$}
+% child { node [state] {$p$}
+%         child { node [state] (n1) {$p$}
+%                 edge from parent node [label-edge, above] {$a$} }
+%         child { node [state] (n2) {}
+%                 edge from parent node [label-edge, below] {$b$} }
+%     edge from parent node [label-edge, above] {$a$} }
+% child { node [state] {}
+%         child { node [state] (n3) {$p$}
+%                 edge from parent node [label-edge, above] {$a$} }
+%         child { node [state] (n4) {}
+%                 edge from parent node [label-edge, below] {$b$} }
+%     edge from parent node [label-edge, below] {$b$} };
+%
+% \node[right = 0.5em of n1.center] {$\cdots$};
+% \node[right = 0.5em of n2.center] {$\cdots$};
+% \node[right = 0.5em of n3.center] {$\cdots$};
+% \node[right = 0.5em of n4.center] {$\cdots$};
+%
+% \node[node distance = 0.1em and 2em, above = 1em of r] {$\modults'$};
+% \end{tikzpicture}
+% \end{tabular}
+% \end{tabular}
+% \end{nscenter}
+%
+% They are binary trees, with each node forking in $p$ and $\neg p$. Consider a single agent $i$.
+% The respective sets of sets of plans are $\Unc(i)=\set{\set{a}}$ and $\Unc'(I)=\set{\set{a,b}}$.
+% It is clear that $\modults,w\bisim\modults',w'$, but $\modults,w \not\models \refdiam{a}{b}\khi(p,p)$ whereas $\modults',w' \models \refdiam{a}{b}\khi(p,p)$.
+\end{proof}
+
+We conclude this section by showing that \emph{uniform substitution}, a key form of syntactic transformation (very useful e.g. in axiomatizing a logic) fails in this logic. Uniform substitution establishes that given a valid formula $\varphi$, we can uniformly replace any propositional symbol appearing in $\varphi$ by an arbitrary formula, and obtain a valid formula.
+
+\medskip
+
+\begin{proposition}\label{prop:substitution-ref}
+    Uniform substitution fails in $\Reflogic$.
+\end{proposition}
+
+\begin{proof}
+Due to~\Cref{prop:ref-normal-serial} (seriality), the formula $p\to\refdiam{a}{b}p$ is a valid formula, for every $a,b\in\ACT$. Consider the model below, with $\Unc(i):=\set{\set{a,b}}$:
+
+\begin{center}
+\begin{tikzpicture}[->, grow' = right, level/.style={sibling distance = 2em/#1}, level distance = 1.5em]
+    \node[state] at (0,1) (p) [label=left:$w$]{$p$};
+    \node[left = of p] (m) {$\modults$};
+    \node[state] at (1.75,0.6) (nq) {\phantom{$p$}};
+    \node[state] at (1.75,1.4) (q) {$q$};
+    \path (p) edge [above] node {$a$} (q);
+    \path (p) edge [below] node {$b$} (nq);
+    \end{tikzpicture} 
+\end{center}
+Consider now the substitution of $p$ by $\neg\khi(p,q)$ in the formula above. The resulting formula is $\neg\khi(p,q)\to\refdiam{a}{b}\neg\khi(p,q)$. It is clear that $\modults\models\neg\khi(p,q)$, but $\modults\not\models\refdiam{a}{b}\neg\khi(p,q)$. Thus, $\neg\khi(p,q)\to\refdiam{a}{b}\neg\khi(p,q)$ is not a valid formula.
+\end{proof}
+
+It is well-known that the lack of uniform substitution in many dynamic logics poses a serious challenge in obtaining complete axiomatizations (see, e.g.,~\cite{HoHoIc11}). This issue has been dealt with in, e.g.,~\cite{BenthemMZ2022,BenthemLSY22}, for sabotage modal logics. Therein, basic hybrid logic machinery is used to get axiom systems. This approach seems difficult to apply in our setting, as the language is unable to talk about the actual plans witnessing a formula. Thus, we will use different ideas to tackle this problem in~\Cref{sec:extension}.
+
+% \begin{definition}[Reachability]\label{def:reachability}
+% Let $\modults = \tup{\W,\R,\Unc,\V}$ be \ultss, $\Unc'$ is finitely reachable from $\Unc$ if there is a finite sequence of $\Unc(k)$, $\plan_1^k$ and $\plan_2^k$ for $k=1,...,n$ such that $\splitstr{\Unc(k)}{\Unc(k+1)}{\plan_1^k}{\plan_2^k}$, $\Unc(1)=\Unc$ and $\Unc(n)=\Unc'$.
+% The set of all finitely reachable $\Unc'$ sets from $\Unc$ is denoted as $\REACH{\Unc}$.
+% \end{definition}
+%
+% Note that $\Unc \in \REACH{\Unc}$ as if $\plan_1 = \plan_2$, there would be no $\plans$ such that can be partitioned in two and have $\plan_1$ in each partition.
+
+% \begin{definition}[$\Reflogic$-bisimulation]\label{def:bisim-ref}
+% Let $\modults$ and $\modults'$ be two \ultss, with domains $\W$ and $\W'$, resp; take $Z \subseteq (\W \times \REACH{\Unc}) \times (\W' \times \REACH{\Unc'})$.
+% \begin{itemize}\itemsep 0cm
+% \item For $u \in \W$, $\Unc(0) \in \REACH{\Unc}, \Unc'(0) \in \REACH{\Unc'}$
+% and $U \subseteq \W$, define
+%
+% \begin{nscenter}
+% \begin{small}
+% \begin{tabular}{@{}c@{}}
+% $Z(u,\Unc(0),\Unc'(0)) := \csetsc{u' \in \W'}{(u,\Unc(0))Z(u',\Unc'(0))}$;
+% $Z(U,\Unc(0),\Unc'(0)) := \bigcup_{u \in U} Z(u,\Unc(0),\Unc'(0))$.
+% \end{tabular}
+% \end{small}
+% \end{nscenter}
+%
+% \item For $u' \in \W'$, $\Unc'(0) \in \REACH{\Unc'},\Unc(0) \in \REACH{\Unc}$
+% and $U' \subseteq \W'$, define
+%
+% \begin{nscenter}
+% \begin{small}
+% \begin{tabular}{@{}c@{}}
+% $Z^{-1}(u',\Unc'(0),\Unc(0)) := \csetsc{u \in \W}{(u,\Unc(0))Z(u',\Unc'(0))}$;
+% $Z^{-1}(U',\Unc'(0),\Unc(0)) := \bigcup_{u' \in U'} Z(u',\Unc'(0),\Unc(0))$.
+% \end{tabular}
+% \end{small}
+% \end{nscenter}
+%
+% \end{itemize}
+% \end{definition}
+
+% \begin{definition}[Submodel]\label{def:submodel}
+% Let $\modults = \tup{\W,\R,\Unc,\V}$ and $\modults' = \tup{\W',\R',\Unc',\V'}$ be \ultss, $\modults'$ is a submodel of $\modults$ if $\W' = \W$, $\R' = \R$, $\V' = \V$ and $\Unc'$ is finitely reachable from $\Unc$ (i.e. $\Unc' \in \REACH{\Unc}$).
+% We write $\modults' \subseteq \modults$ if $\modults'$ is a submodel of $\modults$.
+% Moreover, we denote this model as $\modults_{\Unc'}$.
+% \end{definition}
+
+% \begin{definition}\label{def:notation-ref}
+% Let $\modults=\tup{\W,\R,\Unc,\V}$ be an \ults.
+% For $\plans \in 2^{\ACT^*}$, $U,T \subseteq \W$,
+% \begin{itemize} \itemsep 0cm
+% \item write $U \ultsExecStrat{\plans}_{\Unc} T$ {\;\iffdef\;}
+% $U \subseteq \stexec^\modults(\plans)$ and $T = \R_{\plans}(U)$;
+% \item write $U \ultsExec_{\Unc} T$ {\;\iffdef\;}
+% if there is $\plans \in \Unc$ such that $U \ultsExecStrat{\plans}_{\Unc} T$.
+% \end{itemize}
+% \textcolor{red}{Additionally, we say that $U \subseteq \W$ is $\Reflogic$-propositionally definable in $\modults$ if and only if there
+% is an $\Reflogic$-propositional formula $\varphi$ such that $U = \truthset{\modults}{\varphi}$.}
+%
+% \bigraul{creo que la definicion abajo no es correcta; no deberiamos tomar siempre al nivel 0, si no que tenemos que tomar en $n$, y un update me mueve a $n+1$, mientras que $\khi$ trabajar en nivel $n$ en ambos lados}
+% \end{definition}
+% \begin{definition}
+% A non-empty $Z \subseteq (\W \times \REACH{\Unc}) \times (\W' \times \REACH{\Unc'})$ is called an $\Reflogic$-bisimulation between $\modults$ and $\modults'$ if and only if $(w,\Unc(0))Z(w',\Unc'(0))$ implies:
+% \begin{itemize} \itemsep 0cm
+% \item \textbf{Atom}: $\V(w)=\V'(w')$.
+%
+% \item \textbf{$\kh$-Zig}: for any \textcolor{red}{\emph{propositionally} definable} $U \subseteq \W$, if $U \ultsExec_{S_0} T$ for some $T \subseteq \W$, then there is $T' \subseteq \W'$ s.t.
+% \begin{ltabular}{l@{\;}l@{\qquad\qquad}l@{\;}l}
+% \ITM{i}  & $Z(U,\Unc(0),\Unc'(0)) \ultsExec_{\Unc'(0)} T'$, and &
+% \ITM{ii} & $T' \subseteq Z(T,\Unc(0),\Unc'(0))$.
+% \end{ltabular}
+%
+% \item \textbf{$\kh$-Zag}: for any \textcolor{red}{\emph{propositionally} definable} $U' \subseteq \W'$, if $U' \ultsExec_{\Unc'(0)} T'$ for some $T' \subseteq \W'$, then there is $T \subseteq \W$ s.t.
+% \begin{ltabular}{l@{\;}l@{\qquad\qquad}l@{\;}l}
+% \ITM{i}  & $Z^{-1}(U',\Unc'(0),\Unc(0)) \ultsExec_{\Unc(0)} T$, and &
+% \ITM{ii} & $T \subseteq Z^{-1}(T',\Unc'(0),\Unc(0))$.
+% \end{ltabular}
+%
+% \item \textbf{$\A$-Zig}: for all $u$ in $\W$ there is a $u'$ in $\W'$ such that $(u,\Unc(0))Z(u',\Unc'(0))$.
+%
+% \item \textbf{$\A$-Zag}: for all $u'$ in $\W'$ there is a $u$ in $\W$ such that $(u,\Unc(0))Z(u',\Unc'(0))$.
+%
+% \item \textbf{$\refdiam{\plan_1}{\plan_2}$-Zig}:
+% for all $\plan_1$, $\plan_2$ in $\ACT^*$ if there is a $\overline{\Unc}(0)$ in $\REACH{\Unc}$ such that $\splitstr{\Unc(0)}{\overline{\Unc}(0)}{\plan_1}{\plan_2}$, then there is a $\overline{\Unc}'_0$ in $\REACH{\Unc'}$ such that $\splitstr{\Unc'(0)}{\overline{\Unc}'_0}{\plan_1}{\plan_2}$ and $(w,\overline{\Unc}(0))Z(w',\overline{\Unc}'_0)$.
+%
+% \item \textbf{$\refdiam{\plan_1}{\plan_2}$-Zag}:
+% for all $\plan_1$, $\plan_2$ in $\ACT^*$ if there is a $\overline{\Unc}'_0$ in $\REACH{\Unc'}$ such that $\splitstr{\Unc'(0)}{\overline{\Unc}'_0}{\plan_1}{\plan_2}$, then there is a $\overline{\Unc}(0)$ in $\REACH{\Unc}$ such that $\splitstr{\Unc(0)}{\overline{\Unc}(0)}{\plan_1}{\plan_2}$ and $(w,\overline{\Unc}(0))Z(w',\overline{\Unc}'_0)$.
+% \end{itemize}
+%
+% We write $\modults,w \bisim_\Reflogic \modults',w'$ when there is an $\Reflogic$-bisimulation $Z$ between $\modults$ and $\modults'$ such that $(w,\Unc)Z(w',\Unc')$.
+% \end{definition}
+%
+% \begin{definition}[$\Reflogic$-equivalence]\label{def:equiv-ref}
+% The pointed \ultss $\modults, w$ and $\modults', w'$ are \emph{$\Reflogic$-equivalent} (written $\modults, w \modequiv_\Reflogic \modults', w'$) if and only if $\modults, w \models \varphi$ iff $\modults', w' \models \varphi$ for all $\varphi \in \Reflogic$.
+% \end{definition}
+%
+% \begin{theorem}[Invariance for $\Reflogic$]\label{th:refbisim-to-refequiv}
+% Let $\modults, w$ and $\modults', w'$ be pointed \ultss.
+% Then, $\modults,w \bisim_\Reflogic \modults', w' \text{ implies }\modults,w \modequiv_\Reflogic \modults',w'$.
+% \end{theorem}
+% \begin{proof}
+% The proof of $\Reflogic$-equivalence is by structural induction on $\Reflogic$-formulas.
+% The goal is to probe that $(u,\Unc(0))Z(u',\Unc(0)')$ (with the induced submodels $\modults_{\Unc(0)} \subseteq \modults$ and $\modults_{\Unc(0)'}' \subseteq \modults'$) implies $\modults_{\Unc(0)},u \modequiv_\Reflogic \modults_{\Unc(0)'}',u'$.
+% The cases for atomic propositions and Boolean operators are standard.
+%
+% For formulas of the form $\kh(\psi,\varphi)$, we have a similar approach as in Theorem \ref{th:khbisim-to-khequiv}.
+% Suppose $u \in \truthset{\modults_{\Unc(0)}}{\kh(\psi,\varphi)}$; then, there is $\plans \in \Unc(0)$
+% s.t. $\truthset{\modults_{\Unc(0)}}{\psi} \ultsExecStrat{\plans}_{\Unc(0)} T$ and
+% $T=\R_{\plans}(\truthset{\modults_{\Unc(0)}}{\psi}) \subseteq \truthset{\modults_{\Unc(0)}}{\varphi}$.
+% First, note how $Z(\truthset{\modults_{\Unc(0)}}{\psi},\Unc(0),\Unc(0)') = \truthset{\modults_{\Unc(0)'}'}{\psi}$.
+% Indeed, $(\subseteq)$ if $v' \in Z(\truthset{\modults_{\Unc(0)}}{\psi},\Unc(0),\Unc(0)')$, then there is $v \in \truthset{\modults_{\Unc(0)}}{\psi}$ such that $(v,\Unc(0))Z(v',\Unc(0)')$; thus, from IH we have $v' \in \truthset{\modults_{\Unc(0)'}'}{\psi}$.
+% $(\supseteq)$ If $v' \in \truthset{\modults_{\Unc(0)'}'}{\psi}$, by $\A$-Zag there is $v$ with $(v,\Unc(0))Z(v',\Unc(0)')$; thus, from IH we have $v \in \truthset{\modults_{\Unc(0)}}{\psi}$.
+% Hence, $v' \in Z(\truthset{\modults_{\Unc(0)}}{\psi},\Unc(0),\Unc(0)')$.
+%
+% The set \textcolor{red}{$\truthset{\modults_{\Unc(0)}}{\psi}$ is $\Reflogic$-definable, (we are not sure if it is also propositionally definable; if not, we can redefine bisimulations; from here the proof assumes it is the case) and thus propositionally definable}. \raul{creo que como la modalidad dinamica es global, esto deberia valer de todos modos, pero en el modelo adecuado}
+% Moreover, there are $\plans \in \Unc(0)$ and $T \subseteq \W$ such that $\truthset{\modults_{\Unc(0)}}{\psi} \ultsExecStrat{\plans}_{\Unc(0)} T$, so $\truthset{\modults_{\Unc(0)}}{\psi} \ultsExec_{\Unc(0)} T$.
+% Then, from the latter and clause $\kh$-Zig, there is $T' \subseteq \W'$ such that
+%
+% \begin{enumerate}
+% \item $Z(\truthset{\modults_{\Unc(0)}}{\psi},\Unc(0),\Unc(0)') \ultsExec_{\Unc(0)'} T'$ (so $\truthset{\modults_{\Unc(0)'}'}{\psi} \ultsExec_{\Unc(0)'} T'$, by the result above), and
+% \item\label{itm:ii} $T' \subseteq Z(T,\Unc(0),\Unc(0)')$.
+% \end{enumerate}
+%
+% Now, we know that $T \subseteq \truthset{\modults_{\Unc(0)}}{\varphi}$, that is, $v \in T$ implies $v \in \truthset{\modults_{\Unc(0)}}{\varphi}$.
+% But then, by IH, $v \in T$ and $(v,\Unc(0))Z(v',\Unc(0)')$ implies $v' \in \truthset{\modults_{\Unc(0)'}'}{\varphi}$.
+% Thus, $Z(T,\Unc(0),\Unc(0)') \subseteq \truthset{\modults_{\Unc(0)'}'}{\varphi}$.
+% This, together with \itm{\ref{itm:ii}} from the previous paragraph, yields $T' \subseteq \truthset{\modults_{\Unc(0)'}'}{\varphi}$.
+% Thus, we have both $\truthset{\modults_{\Unc(0)'}'}{\psi} \ultsExec_{\Unc(0)'} T'$ (there is an strongly executable strategy which, from $\psi$-worlds, reaches only $T'$-worlds) and $T' \subseteq \truthset{\modults_{\Unc(0)'}'}{\varphi}$ (every $T'$-world satisfies $\varphi$); hence, $u' \in \truthset{\modults_{\Unc(0)}'}{\kh(\psi,\varphi)}$.
+%
+% The direction from $u' \in \truthset{\modults_{\Unc(0)'}'}{\kh(\psi,\varphi)}$ to $u \in \truthset{\modults_{\Unc(0)}}{\kh(\psi,\varphi)}$ follows a similar argument, using $\A$-Zig and $\kh$-Zag instead.
+%
+% For the case $\refdiam{\plan_1}{\plan_2}\varphi$, suppose $\modults_{\Unc(0)},u \models \refdiam{\plan_1}{\plan_2}\varphi$.
+% Then, there is $\overline{\Unc}(0) \in \REACH{\Unc}$ s.t. $\splitstr{\Unc(0)}{\overline{\Unc}(0)}{\plan_1}{\plan_2}$ and $\modults^{\Unc(0)}_{\overline{\Unc}(0)} = \modults_{\overline{\Unc}(0)},u \models \varphi$.
+% Then, by $\refdiam{\plan_1}{\plan_2}$-Zig, there is a
+% $\overline{\Unc}(0)' \in \REACH{\Unc'}$ such that $\splitstr{\Unc(0)'}{\overline{\Unc}(0)'}{\plan_1}{\plan_2}$ and $(u,\overline{\Unc}(0))Z(u',\overline{\Unc}(0)')$.
+% By IH, $\modults'_{\overline{\Unc}(0)'} = (\modults')^{\Unc(0)'}_{\overline{\Unc}(0)'},u' \models \varphi$.
+% And by the definition of $\refdiam{\plan_1}{\plan_2}$,
+% $\modults',u' \models \refdiam{\plan_1}{\plan_2}\varphi$.
+%
+% The direction from $\modults'_{\Unc(0)'},u' \models \refdiam{\plan_1}{\plan_2}\varphi$ to $\modults_{\Unc(0)},u \models \refdiam{\plan_1}{\plan_2}\varphi$ follows a similar argument, using $\refdiam{\plan_1}{\plan_2}$-Zag instead.
+% \end{proof}
+%
+% \begin{proposition}
+% Let $\Unc \in 2^{\ACT}$. If $\Unc$ is finite and every $\plans \in \Unc$, $\plans$ is finite, then the set $\REACH{\Unc}$ is finite.
+% \end{proposition}
+% \begin{proof}
+% $\REACH{\Unc}$ is at most $\pow(\bigcup_{\plans \in \Unc} \plans)$.
+% Since $\bigcup_{\plans \in \Unc} \plans$ is finite, then $\REACH{\Unc}$ it is also finite.
+% \end{proof}
+%
+% \begin{theorem}\label{th:refequiv-to-refbisim}
+% Let $\modults, w$ and $\modults', w'$ be pointed \ultss. If $\modults$ and $\modults'$ are finite then $\modults,w \modequiv_\Reflogic \modults', w'$ implies
+% $\modults,w \bisim_\Reflogic \modults', w'$.
+% \end{theorem}
+%
+% \begin{proof}
+% Take $\modults=\tup{\W,\R,\Unc,\V}$ and $\modults'=\tup{\W',\R',\Unc',\V'}$.
+% The strategy is to show that the relation $\modequiv_\Reflogic$ is already a bisimulation.
+% Thus, define $Z := \csetc{(v,\Unc(0),v',\Unc(0)')}{(\W \times \REACH{\Unc}) \times (\W' \times \REACH{\Unc'})}{\modults_{\Unc(0)}, v \modequiv \modults'_{\Unc(0)'}, v'}$; in order to show that $Z$ satisfies the requirements, take any $(w,\Unc(0),w'\Unc(0)') \in Z$.
+% \begin{itemize}
+% \item \textbf{Atom}. States $w$ and $w'$ coincide in all $\Reflogic$-formulas, and in particular, in all atoms.
+%
+% \item \textbf{$\A$-Zig}. Take $v \in \W$ and suppose, for the sake of a contradiction, that there is no $v' \in \W'$ such that $(v,\Unc(0))Z(v',\Unc(0)')$.
+% Then, from $Z$'s definition, for each $v_i'\in \W' = \set{v'_1,\ldots,v'_n}$ (recall: $\modults'_{\Unc(0)'}$ is finite) there is a $\Reflogic$-formula $\theta_i$ s.t. $\modults_{\Unc(0)},v \models \theta_i$ but $\modults'_{\Unc(0)'},v'_i \not\models \theta_i$.
+% Now take $\theta := \theta_1 \land \cdots \land \theta_n$.
+% Clearly, $\modults_{\Unc(0)'},v \models \theta$; however, $\modults'_{\Unc(0)'},v_i' \not\models \theta$ for each $v_i'\in \W'$, as each one of them makes `its' conjunct $\theta_i$ false.
+% Then, by taking $\E \varphi := \lnot \A \lnot \varphi$ we have $\modults_{\Unc(0)},w \models \E \theta$ but $\modults'_{\Unc(0)'},w' \not\models \E \theta$, contradicting $(w,\Unc(0))Z(w',\Unc(0)')$.
+%
+% \item \textbf{$\A$-Zag}. Analogous to the $\A$-Zig case.
+%
+% \item \textbf{$\kh$-Zig}. Take \textcolor{red}{any propositionally definable set} $\truthset{\modults_{\Unc(0)}}{\psi} \subseteq \W$ (thus, $\psi$ is propositional), and suppose $\truthset{\modults_{\Unc(0)}}{\psi} \ultsExec_{\Unc(0)} T$ for some $T \subseteq \W$.
+% We need to find a $T' \subseteq \W'$ s.t.
+%
+% \begin{enumerate}
+% \item $Z(\truthset{\modults_{\Unc(0)}}{\psi}) \ultsExec_{\Unc(0)'} T'$ and
+% \item $T' \subseteq Z(T)$.
+% \end{enumerate}
+%
+% First, note that $\truthset{\modults'_{\Unc(0)'}}{\psi} = Z(\truthset{\modults_{\Unc(0)}}{\psi})$. For $\boldsymbol{(\supseteq)}$, suppose $u' \in Z(\truthset{\modults_{\Unc(0)}}{\psi})$.
+% Then, there is $u \in \truthset{\modults_{\Unc(0)}}{\psi}$ such that $(u,\Unc(0))Z(u',\Unc(0)')$, and therefore, from $Z$'s definition, $u' \in \truthset{\modults'_{\Unc(0)'}}{\psi}$.
+% For $\boldsymbol{(\subseteq)}$, suppose $u' \in \truthset{\modults'_{\Unc(0)'}}{\psi}$.
+% From $\A$-Zag, there is $u \in \W$ such that $(u,\Unc(0))Z(u',\Unc(0)')$; then, from $Z$'s definition, $u \in \truthset{\modults_{\Unc(0)}}{\psi}$ so $u' \in Z(\truthset{\modults_{\Unc(0)}}{\psi})$.
+%
+% Thus, we are actually looking for a $T' \subseteq \W'$ such that
+%
+% \begin{enumerate}
+% \item $\truthset{\modults'_{\Unc(0)'}}{\psi} \ultsExec_{\Unc(0)'} T'$ and
+% \item $T' \subseteq Z(T)$
+% \end{enumerate}
+%
+% Consider the two alternatives.
+% \begin{enumerate}
+% \item If $\truthset{\modults_{\Unc(0)}}{\psi} = \emptyset$, then $\truthset{\modults'_{\Unc(0)'}}{\psi} = Z(\truthset{\modults_{\Unc(0)}}{\psi}) = \emptyset$ and hence taking $T' = \emptyset$ does the job: clearly,
+% \begin{enumerate}
+% \item $\emptyset \ultsExec_{\Unc(0)'} \emptyset$ (as $\Unc(0)' \neq \emptyset$) and
+% \item $\emptyset \subseteq Z(T)$.
+% \end{enumerate}
+%
+% \item Otherwise, $\truthset{\modults_{\Unc(0)}}{\psi} \neq \emptyset$ and $T \neq \emptyset$.
+% Then, from $\A$-Zag it follows that $Z(\truthset{\modults_{\Unc(0)}}{\psi}) = \truthset{\modults'_{\Unc(0)'}}{\psi} \neq \emptyset$.
+% In order to show that there is a $T' \subseteq \W'$ satisfying both {\itshape \bfseries (i)} and {\itshape \bfseries (ii)}, the argument is by contradiction.
+% Thus, suppose there is no $T'$ with the given requirements: each $T' \subseteq \W'$ satisfying $\truthset{\modults'_{\Unc(0)'}}{\psi} \ultsExec_{\Unc(0)'} T'$ is such that $T' \not\subseteq Z(T)$.
+% In other words, for every $T' \subseteq \W'$ satisfying $\truthset{\modults'_{\Unc(0)'}}{\psi} \ultsExec_{\Unc(0)'} T'$ there is a $v'_{T'} \in T'$ such that there is no $v \in T$ with $(v,\Unc(0))Z(v'_{T'},\Unc(0)')$.
+% Due to the definition of $Z$, this means that for each $v \in T$ there is a formula $\theta^v_{T'}$ such that $\modults_{\Unc(0)}, v \models \theta^v_{T'}$ but $\modults'_{\Unc(0)'}, v'_{T'} \not\models\theta^v_{T'}$.
+% Since the models are finite, one can define both
+%
+% \begin{nscenter}
+% \renewcommand{\arraystretch}{1.8}
+% \begin{tabular}{ccc}
+% $\displaystyle \theta_{T'} := \bigvee_{v \in T} \theta^v_{T'}$ & and &
+% $\displaystyle \theta :=
+% \bigwedge_{\csetsc{T' \subseteq \W'}{\truthset{\modults'_{\Unc(0)'}}{\psi} \ultsExec_{\Unc(0)'} T'}} \theta_{T'}$.
+% \end{tabular}
+% \renewcommand{\arraystretch}{1}
+% \end{nscenter}
+%
+% Since $T \neq \emptyset$, $\theta_{T'}$ does not collapse to $\bot$.
+% However, $\theta$ can collapse to $\top$ since $\csetsc{T' \subseteq \W'}{\truthset{\modults'_{\Unc(0)}}{\psi} \ultsExec_{\Unc(0)'} T'}$ might be empty.
+% This is what creates the following two cases.
+%
+% \begin{itemize}
+% \item Suppose $\csetsc{T' \subseteq \W'}{\truthset{\modults'_{\Unc(0)}}{\psi} \ultsExec_{\Unc(0)'} T'} = \emptyset$.
+% Then, consider the formula $\kh(\psi,\top)$.
+% Since $\truthset{\modults_{\Unc(0)}}{\psi} \ultsExec_{\Unc(0)'} T$ and $T \subseteq \W = \truthset{\modults_{\Unc(0)}}{\top}$, it follows that $\modults_{\Unc(0)},w \models \kh(\psi, \top)$.
+% However, $\modults'_{\Unc(0)'},w' \not\models \kh(\psi, \top)$ as, according to this case, there is no $T' \subseteq \W'$ with $\truthset{\modults'_{\Unc(0)'}}{\psi} \ultsExec_{\Unc(0)'} T'$.
+% This contradicts the $\Reflogic$-equivalence of $w$ and $w'$.
+%
+% \item Suppose $\csetsc{T' \subseteq \W'}{\truthset{\modults'_{\Unc(0)}}{\psi} \ultsExec_{\Unc(0)'} T'} \neq \emptyset$.
+% Then, $\theta$ does not collapse to $\top$.
+% Note how $\modults_{\Unc(0)}, v \models \theta$ for all $v \in T$, as every such $v$ satisfies its `own' disjunct $\theta^v_{T'}$ in each conjunct $\theta_{T'}$.
+% Hence, from $\truthset{\modults_{\Unc(0)}}{\psi} \ultsExec_{\Unc(0)} T$ it follows that $\modults_{\Unc(0)},w \models \kh(\psi, \theta)$.
+% However, for every $T'$ satisfying  $\truthset{\modults'_{\Unc(0)'}}{\psi} \ultsExec_{\Unc(0)'} T'$ the state $v'_{T'}$ that cannot be matched with any state $v \in T$ makes all disjuncts $\theta^v_{T'}$ in $\theta_{T'}$ false, thus falsifying $\theta_{T'}$ and therefore falsifying $\theta$ too.
+% In other words, every $T' \subseteq \W'$ with $\truthset{\modults'_{\Unc(0)'}}{\psi} \ultsExec_{\Unc(0)'} T'$ contains a state $t'_{T'}$ with $\modults'_{\Unc(0)'}, t'_{T'} \not\models \theta$, that is, $\truthset{\modults'}{\psi} \ultsExec_{\Unc(0)'} T'$ implies $T' \not\subseteq \truthset{\modults_{\Unc(0)}}{\theta}$.
+% Hence, using again the fact that $\kh$-formulas are global, $\modults'_{\Unc(0)'},w' \not\models \kh(\psi, \theta)$, contradicting the $\Reflogic$-equivalence of $w$ and $w'$.
+% \end{itemize}
+%
+% \end{enumerate}
+%
+% \item \textbf{$\kh$-Zag}. Analogous to the $\kh$-Zig case.
+%
+% \item \textbf{$\refdiam{\plan_1}{\plan_2}$-Zig}.
+% Let $\plan_1$, $\plan_2$ in $\ACT^*$ and $\overline{\Unc}(0)$ in $\REACH{\Unc}$ such that $\splitstr{\Unc(0)}{\overline{\Unc}(0)}{\plan_1}{\plan_2}$.
+% Suppose there is no $\overline{\Unc}'_0$ in $\REACH{\Unc'}$ such that $\splitstr{\Unc'(0)}{\overline{\Unc}'_0}{\plan_1}{\plan_2}$ and $(w,\overline{\Unc}(0))Z(w',\overline{\Unc}'_0)$.
+% That is, for all $\overline{\Unc}'_0 \in \REACH{\Unc'}$ such that $\splitstr{\Unc'(0)}{\overline{\Unc}'_0}{\plan_1}{\plan_2}$, $(w,\overline{\Unc}(0),w',\overline{\Unc}'_0) \not\in Z$.
+% By definition of $Z$, let $\theta_{\overline{\Unc}'_0}$ such that $\modults'_{\overline{\Unc}'_0}, w \models \theta_{\overline{\Unc}'_0}$ but $\modults_{\overline{\Unc}(0)}, w \not\models \theta_{\overline{\Unc}'_0}$. Let $\theta$ the finite disjuction of all $\theta_{\overline{\Unc}'_0}$ (recall: $\REACH{S'}$ is finite), then $\modults'_{\Unc'(0)}, w \models \refbox{\plan_1}{\plan_2} \theta$ but $\modults_{\Unc(0)}, w \not\models \refbox{\plan_1}{\plan_2} \theta$ with $\overline{\Unc}(0)$ as the witness.
+%
+% \item \textbf{$\refdiam{\plan_1}{\plan_2}$-Zag}. Analogous to the $\refdiam{\plan_1}{\plan_2}$-Zig case.
+%
+% \end{itemize}
+% \end{proof}

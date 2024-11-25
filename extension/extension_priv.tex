@@ -1,0 +1,90 @@
+\subsection{Semi-private plan refinement}
+\label{sec:sempriv-planref}
+
+Finally, we can consider a last type of plan refinement. Notice that, so far, the dynamic modalities we introduced produce (according to the dynamic epistemic logic terminology) ``public'' updates. This means, that the information which is revealed is accessible to all the agents, similar to what is done in public annoucements (\cite{Plaza89:lopc}). However, other kinds of communication are possible, as the so-called semi-private and private communications, achieved via e.g. action models (see e.g.~\cite{BR16}). In this section, we will adapt the plan refinement modality from~\Cref{def:ssrefsyntax} in order to produce a semi-private update.
+
+\begin{definition}\label{def:srefgsyntax}
+Formulas of the language $\AgentReflogic$ are given by
+\[
+\varphi ::= p \mid \neg\varphi \mid \varphi\vee\varphi \mid \khi(\varphi,\varphi) \mid \mlbox{a}\varphi \mid \srefbox{\plan,i}\varphi,
+\]
+with $p \in \PROP$, $i\in\AGT$, $a \in \ACT$ and $\plan \in \ACT^*$. The modality $\srefbox{\plan,i}\varphi$ is read as \emph{``after it is announced to agent $i$ that the plan $\plan$ is distinguishable from any other plan, $\varphi$ holds''.}
+\end{definition}
+
+\begin{definition}\label{def:srefgsemantics}
+Let $\modults = \tup{\W, \R, \Unc, \V}$ be an \ults, $\plan \in \ACT^*$ and  be a $\AgentReflogic$-formula, 
+\[
+\modults,w \models \srefbox{\plan,i}\varphi \ \ \iff \ \ \modults^\plan_i,w \models \varphi,
+\]
+where $\modults^\plan_i = \tup{\W,\R,\Unc',\V}$, with:
+\begin{itemize}
+\item $\Unc'(j) = \Unc(j)$ if $j \neq i$,
+\item $\Unc'(i) = (\Unc(i) \setminus \set{\plans}) \cup \set{\set{\plan}}$ if there is $\plans \in \Unc(i)$ such that $\plan \in \plans$,
+\item $\Unc'(i) = \Unc(i) \cup \set{\set{\plan}}$ otherwise.
+\end{itemize}
+\end{definition}
+
+\begin{example}
+Suppose as in~\Cref{ex:cook}, we have an expert chef $i$, but we have two inexpert chefs $j$ and $k$, with $\Unc(j)=\Unc'(k)=\set{\set{\mathit{ebfmsp},\mathit{ebmfsp}}}$. Suppose now, that agent $j$ subscribed for a course taught by agent $i$, while agent $k$ does not. Then, the information of that \textit{ebgmsp} is the correct course of action is only revealed to $j$, obtaining that $\srefbox{ebfmsp,j}\kh_j(h,g)$ while $\srefbox{ebfmsp,j}\neg\kh_k(h,g)$.
+\end{example}
+
+\begin{proposition} The following propositions hold:
+\begin{enumerate}
+\item $\models \srefbox{\plan,i}\varphi \lra \neg\srefbox{\plan,i}\neg\varphi$. 
+\item $\models \srefbox{\plan,i}(\varphi_1 \ra \varphi_2) \ra (\srefbox{\plan,i}\varphi_1 \ra \srefbox{\plan,i}\varphi_2)$
+\item If $\models \varphi$, then $\models \srefbox{\plan,i}\varphi$
+\end{enumerate}
+\end{proposition}
+
+Below we state the correcteness of the reduction axioms of~\Cref{tab:srefgaxiom}, that is similar to the ``public'' cases.
+
+\begin{proposition}\label{pro:srefgaxioms}
+Let $P$ be defined as in~\Cref{pro:srefaxioms}. Then, the reduction axioms from~\Cref{tab:srefgaxiom} are valid.
+\end{proposition}
+% \begin{enumerate}
+% \item $\models \srefbox{\plan,i}p \lra p$
+% \item $\models \srefbox{\plan,i} \neg \varphi_1 \lra \neg \srefbox{\plan,i} \varphi_1$
+% \item $\models \srefbox{\plan,i} (\varphi_1 \vee \varphi_2) \lra (\srefbox{\plan,i} \varphi_1 \vee \srefbox{\plan,i} \varphi_2)$
+% \item $\models \srefbox{\plan,i}\mlbox{a}\varphi_1 \lra \mlbox{a}\srefbox{\plan,i}\varphi_1$
+% \item $\models \srefbox{\plan,i} \khi(\varphi_1,\varphi_2) \lra (\khi(\srefbox{\plan,i} \varphi_1,\srefbox{\plan,i} \varphi_2) \vee \A(\srefbox{\plan,i} \varphi_1 \ra P(\plan,\srefbox{\plan,i}\varphi_2)))$
+% \item $\models \srefbox{\plan,i} \kh_j(\varphi_1,\varphi_2) \lra \kh_j(\srefbox{\plan,i} \varphi_1,\srefbox{\plan,i} \varphi_2)$
+% \end{enumerate}
+% with $P(\alpha,\psi) = (\bigwedge_{k=0}^{\card{\alpha}-1}(\mlbox{\alpha_k}\mldiam{\alpha[k+1]}\top) \wedge \mlbox{\alpha} \psi)$, $\mlbox{\beta} = \mlbox{\beta[1]}...\mlbox{\beta[\card{\beta}]}$ and $P(\epsilon,\psi) = \psi$.
+% \end{proposition}
+% \begin{proof}
+% The proofs ideas for the first five items are similar to the ones in \Cref{pro:ssrefaxioms} and \Cref{pro:srefaxioms}.
+% Let $\modults = \tup{\W, \R, \Unc, \V}$ be an \ults.
+% \begin{enumerate}
+% \item[6.] $\modults \models \srefbox{\plan,i} \kh_j(\varphi_1,\varphi_2)$ iff $\modults^\plan_i \models \kh_j(\varphi_1,\varphi_2)$ iff there is $\plans \in \Unc'(j)$ s.t. $\truthset{\modults^\plan_i}{\varphi_1} \subseteq \stexec^{\modults^\plan_i}(\plans)$ and $\R_\plans(\truthset{\modults^\plan_i}{\varphi_1}) \subseteq \truthset{\modults^\plan_i}{\varphi_2}$.
+% Using $\Unc'(j) = \Unc(j)$, $\truthset{\modults^\plan_i}{\psi} = \truthset{\modults}{\srefbox{\plan,i} \psi}$ and $\stexec^{\modults^\plan_i}(\plans) = \stexec^\modults(\plans)$ (since the relations remain unchanged), this is equivalent to that there is $\plans \in \Unc(j)$ s.t. $\truthset{\modults}{\srefbox{\plan,i} \varphi_1} \subseteq \stexec^\modults(\plans)$ and $\R_\plans(\truthset{\modults}{\srefbox{\plan,i} \varphi_1}) \subseteq \truthset{\modults}{\srefbox{\plan,i} \varphi_2}$.
+% Hence, equivalent to $\kh_j(\srefbox{\plan,i} \varphi_1,\srefbox{\plan,i} \varphi_2)$.
+% \end{enumerate}
+% \end{proof}
+
+\begin{table}[t]
+\begin{tabular}{l@{\quad}l}
+\toprule
+\axm{RAtom} & $\vdash \srefbox{\plan,i}p \lra p$ \\
+\axm{R$\neg$} & $\vdash \srefbox{\plan,i} \neg \varphi_1 \lra \neg \srefbox{\plan,i} \varphi_1$ \\
+\axm{R$\vee$} & $\vdash \srefbox{\plan,i} (\varphi_1 \vee \varphi_2) \lra (\srefbox{\plan,i} \varphi_1 \vee \srefbox{\plan,i} \varphi_2)$ \\
+\axm{R$\square$} & $\vdash \srefbox{\plan,i}\mlbox{a}\varphi_1 \lra \mlbox{a}\srefbox{\plan,i}\varphi_1$ \\
+\axm{RKh$_i$} & $\vdash \srefbox{\plan,i} \khi(\varphi_1,\varphi_2) \lra (\khi(\srefbox{\plan,i} \varphi_1,\srefbox{\plan,i} \varphi_2) \vee \A(\srefbox{\plan,i} \varphi_1 \ra P(\plan,\srefbox{\plan,i}\varphi_2)))$ \\
+\axm{RKh$_j$} & $\vdash \srefbox{\plan,i} \kh_j(\varphi_1,\varphi_2) \lra \khi(\srefbox{\plan,i} \varphi_1,\srefbox{\plan,i} \varphi_2)$ \\
+\axm{RE$_{\srefbox{}}$} & $\text{From } \vdash \varphi \leftrightarrow \psi \text{ derive } \vdash \srefbox{\plan,i}\varphi \leftrightarrow \srefbox{\plan,i}\psi$ \\
+\bottomrule
+\end{tabular}
+\caption{Reduction axioms $\axset_{\AgentReflogic}$.}\label{tab:srefgaxiom}
+\end{table}
+
+Again, we can obtain the following results: 
+
+\begin{corollary}
+The axiom system $\axset_{\AgentReflogic}+\axset_{\khi,\square}$ for $\AgentReflogic$ is sound and strongly complete w.r.t. the class of all models.
+\end{corollary}
+
+\begin{corollary}
+$\AgentReflogic$ is decidable.
+\end{corollary}
+ 
+ 
+ 

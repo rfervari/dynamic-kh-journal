@@ -1,0 +1,329 @@
+% lists
+\newlist{inlineenum}{enumerate*}{1}
+\setlist[inlineenum,1]{label=\textbf{\textit{(\roman*)}}}
+
+\newlist{compactitemize}{itemize}{1}
+\setlist[compactitemize,1]{label=$\bullet$, leftmargin=1em, itemsep=0em}
+
+
+% Environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{acknowledgements}[theorem]{Acknowledgements}
+\newtheorem{claim}[theorem]{Claim}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+% \newtheorem{observation}[theorem]{Observation}
+
+\theoremstyle{remark}
+% \newtheorem{fact}[theorem]{Fact}
+% \newtheorem{question}[theorem]{Question}
+\newtheorem{example}[theorem]{Example}
+%\newtheorem{remark}[theorem]{Remark}
+% \newtheorem{sketch}[theorem]{Sketch}
+% \newenvironment{nscenter}
+%  {\parskip=2pt\par\nopagebreak\centering}
+%  {\par\noindent\ignorespacesafterend}
+
+\newenvironment{ctabular}[1]
+{\begin{center}\begin{tabular}{#1}}
+{\end{tabular} \end{center}}
+
+\newenvironment{ltabular}[1]
+{\begin{flushleft}\begin{tabular}{#1}}
+{\end{tabular} \end{flushleft}}
+
+\newenvironment{lttabular}[1]
+{\begin{flushleft}\begin{tabular}[t]{#1}}
+{\end{tabular} \end{flushleft}}
+
+\newcommand{\nsparagraph}[1]{\noindent\textbf{#1}\,}
+\newcommand{\ssparagraph}[1]{\bigskip\noindent\textbf{#1}\,}
+
+\newcommand{\ti}[1]{\textit{#1}}
+% \newcommand{\bs}[1]{\boldsymbol{#1}}
+\newcommand{\ITM}[1]{{\bfseries \itshape (#1)}}
+
+%Class of models
+\newcommand{\classults}{\mathbf{M}}
+\newcommand{\cultsfnu}{\mathbf{M}^{\mathbf{F}}_{\mathbf{NU}}}
+\newcommand{\cultsfd}{\mathbf{M}_{\mathbf{FD}}}
+\newcommand{\cultsnu}{\mathbf{M}_{\mathbf{NU}}}
+\newcommand{\cultsac}{\mathbf{M}_{\mathbf{AC}}}
+\newcommand{\cultsba}{\mathbf{M}_{\mathbf{BA}}}
+
+\newcommand{\sults}{\mathbf{M}^1}
+
+%Models
+\newcommand{\modlts}{\mathcal{S}}
+\newcommand{\modults}{\mathcal{M}}
+\newcommand{\cmodel}{\modults^\Gamma}
+\newcommand{\annsemantics}[2]{#1_{!#2}}
+\newcommand{\annmodel}[1]{\modults_{!#1}}
+\newcommand{\annmodelchi}{\annmodel{\chi}}
+\newcommand{\arrowsemantics}[2]{#1_{{#2}}}
+\newcommand{\arrowmodel}[1]{\modults_{{#1}}}
+\newcommand{\arrowmodelU}{\arrowmodel{U}}
+
+\newcommand{\clts}{\lts^\Gamma}
+\newcommand{\D}[1]{\operatorname{D}_{#1}}
+\newcommand{\DS}[1]{\operatorname{P}_{#1}}
+
+\newcommand{\W}{\operatorname{W}}
+\newcommand{\R}{\operatorname{R}}
+\newcommand{\N}{\operatorname{N}}
+\renewcommand{\S}{\operatorname{\asda}}
+\newcommand{\Unc}{\operatorname{U}}
+\newcommand{\Sother}{\operatorname{\mathbb{T}}}
+\newcommand{\Ster}{\operatorname{\mathbb{U}}}
+\newcommand{\V}{\operatorname{V}}
+\newcommand{\compose}{{;}}
+\newcommand{\REACH}[1]{(\leadsto_{#1}^*)}
+
+\newcommand{\lts}{\textup{LTS}\xspace}
+\newcommand{\ltss}{{\lts}s\xspace}
+\newcommand{\ults}{\textup{LTS$^\text{\textup{U}}$}\xspace}
+\newcommand{\ultss}{{\ults}s\xspace}
+
+% Logical and proof symbols
+\newcommand{\mldiam}[1]{\tup{#1}}
+\newcommand{\mlbox}[1]{[#1]}
+\newcommand{\kh}{{\sf Kh}}
+\newcommand{\khi}{{\sf Kh}_i}
+\newcommand{\lh}[2]{\tup{#1,#2}}
+\newcommand{\blh}[2]{[#1,#2]}
+\newcommand{\dialhepis}[1]{\tup{#1}}
+\newcommand{\boxlhepis}[1]{[#1]}
+\newcommand{\learn}{{\sf L}}
+\newcommand{\arefdiam}{\tup{\not\sim}}
+\newcommand{\arefbox}{[\not\sim]}
+\newcommand{\gann}[1]{[!#1]}
+\newcommand{\dgann}[1]{\tup{!#1}}
+\newcommand{\refdiam}[2]{\tup{#1{\,\not\sim\,}#2}}
+\newcommand{\refbox}[2]{[{#1{\,\not\sim\,}#2}]}
+% \newcommand{\sarrowdiam}[2]{\tup{\tup{#1,#2}}}
+% \newcommand{\sarrowbox}[2]{[\tup{#1,#2}]}
+\newcommand{\arrowdiam}[1]{\tup{#1}}
+\newcommand{\arrowbox}[1]{[#1]}
+\newcommand{\srefdiam}[1]{\tup{!#1}}
+\newcommand{\srefbox}[1]{[!#1]}
+\newcommand{\E}{{\sf E}}
+\newcommand{\A}{{\sf A}}
+\newcommand{\past}{\lozenge^{-1}}
+\newcommand{\bpast}{\Box^{-1}}
+\newcommand{\arbitrary}{{\mathsf{X}}}
+
+\newcommand{\card}[1]{|{#1}|}
+\newcommand{\subs}[1]{[#1]}
+\newcommand{\natnum}{\mathbb{N}}
+\newcommand{\intint}[2]{[#1 \mathop{...} #2]}
+
+\newcommand\utimes{\mathbin{\ooalign{$\cup$\cr%
+   \hfil\raise0.42ex\hbox{$\scriptscriptstyle\times$}\hfil\cr}}}
+% \newcommand\utimes{\mathop{\ooalign{$\bigcup$\cr%
+%    \hfil\raise0.36ex\hbox{$\scriptscriptstyle\boldsymbol{\times}$}\hfil\cr}}}
+
+\newcommand{\PAL}{\textsf{PAL}\xspace}
+\newcommand{\KHlogic}{\mathsf{L}_\kh}
+\newcommand{\KHilogic}{\mathsf{L}_{\khi}}
+\newcommand{\KHiMLlogic}{\mathsf{L}_{\khi,\square}}
+\newcommand{\PAKHilogic}{\mathsf{PAL}_{\khi}}
+\newcommand{\LHlogic}{\mathsf{L_{Lh}}}
+\newcommand{\Reflogic}{\mathsf{L_{Ref}}}
+\newcommand{\AReflogic}{\mathsf{L_{ARef}}}
+\newcommand{\PlanReflogic}{\mathsf{L}_{\khi,\square,\srefbox{\plan}}}
+\newcommand{\AtomReflogic}{\mathsf{L}_{\khi,\square,\srefbox{a}}}
+\newcommand{\AgentReflogic}{\mathsf{L}_{\khi,\square,\srefbox{\plan,i}}}
+% \newcommand{\SArrowlogic}{\mathsf{L_{SAU}}}
+\newcommand{\AUL}{\mathsf{AUL}}
+\newcommand{\AUKHilogic}{\AUL_{\khi}}
+\newcommand{\KHaxiom}{\mathcal{L}_{\kh}}
+\newcommand{\KHiaxiom}{\mathcal{L}_{\khi}\xspace}
+\newcommand{\axset}{\mathcal{L}}
+\newcommand{\axm}[1]{\textsf{#1}}
+
+% completeness proof
+\newcommand{\smcs}{\Upphi}
+\newcommand{\restkh}[1]{#1\vert_{\kh}}
+\newcommand{\restnkh}[1]{#1\vert_{\lnot\kh}}
+\newcommand{\restkhi}[1]{#1\vert_{\khi}}
+\newcommand{\restnkhi}[1]{#1\vert_{\lnot\khi}}
+\newcommand{\resta}[1]{#1\vert_{\A}}
+\newcommand{\restna}[1]{#1\vert_{\lnot\A}}
+\newcommand{\restarbitrary}[1]{#1|_{\arbitrary}}
+\newcommand{\restnarbitrary}[1]{#1|_{\lnot\arbitrary}}
+
+% Tuples \tup{x,y} = <x,y>
+\newcommand{\tup}[1]{\langle #1 \rangle}
+% Tuples \ttup{x,y} = <<x,y>>
+\newcommand{\ttup}[1]{\langle\!\langle \mathrm{#1} \rangle\!\rangle}
+
+% Sets \set{x,y} = {x,y}
+\newcommand{\set}[1]{\{ #1 \}}
+% Sets with condition \setof{y}{xRy} = {y | xRy}
+\newcommand{\setof}[2]{\{ #1  \mid #2 \}}
+
+\newcommand{\ddiam}[1]{\ttup{#1}}
+\newcommand{\pow}[1]{\mathcal P #1}
+\newcommand{\setpaths}[1]{\mathcal P^{#1}}
+\newcommand{\seqprop}{\bar{p}}
+\newcommand{\seq}[1]{{\sf Seq}(#1)}
+\newcommand{\lmodel}[3]{{#1}^{#2}_{#3}}
+
+% Arrows
+\renewcommand{\iff}{\mbox{\it iff}}
+\newcommand{\siffs}{\;\iff\;}
+\newcommand{\iffdef}{\ensuremath{\mbox{\it iff}_{\mbox{\tiny\it  def}}}}
+\newcommand{\siffdefs}{\iffdef}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\To}{\Rightarrow}
+\newcommand{\lra}{\leftrightarrow}
+\renewcommand{\implies}{\ra}
+\newcommand{\inter}{\overset{int}{\longrightarrow}}
+\newcommand{\rewtr}{\overset{\Tr}{\longrightarrow}}
+\newcommand{\darrow}{\leftrightarrow}
+
+% Definitions
+\newcommand{\PROP}{{\rm \sf Prop}\xspace}
+\newcommand{\FORM}{{\rm \sf Form}\xspace}
+\newcommand{\AGT}{{\rm \sf Agt}\xspace}
+\newcommand{\ACT}{{\rm \sf Act}\xspace}
+\newcommand{\plans}{\uppi}
+\newcommand{\plan}{\sigma}
+
+% bisimulation
+\newcommand{\bisim}{\xspace\mathrel{\raisebox{.5ex}{\small\ensuremath{\underline{\!\leftrightarrow\!}}}}\xspace}
+
+% modal equivalence
+\newcommand{\modequiv}{\leftrightsquigarrow}
+\newcommand{\planequiv}{\mathrel{\leftrightarrows}}
+
+% truth-set
+\newcommand{\truthset}[2]{\llbracket #2 \rrbracket^{#1}}
+\newcommand{\truthsetsyn}[2]{\mathopen{\{\!\vert} #2 \mathopen{\vert\!\}^{#1}}}
+
+% format
+\newcommand{\itm}[1]{{\bfseries \itshape (#1)}}
+
+
+
+\newcommand{\exec}{\operatorname{E}}
+\newcommand{\stexec}{\operatorname{SE}}
+
+
+% arrows for executability
+\newcommand{\ultsExec}{\Rightarrow}
+\newcommand{\ultsExecStrat}[1]{\stackrel{#1}{\ultsExec}}
+\newcommand{\ultsExecAgi}{\stackrel{i}{\ultsExec}}
+
+
+\newcommand{\learnset}[3]{\operatorname{learn}(#1, #2, #3)}
+\newcommand{\splitstr}[4]{#1 \leadsto^{#3}_{#4} #2}
+
+
+%Partition
+% To write notes in the text
+\newcommand{\raul}[1]{\todo[color=red!30]{{\bf Raul:} {\footnotesize #1}}\xspace}
+\newcommand{\bigraul}[1]{\todo[inline,color=red!30]{{\bf Raul:} {\footnotesize #1}}}
+
+\newcommand{\fer}[1]{\todo[color=blue!20]{{\bf Fer:} {\footnotesize #1}}\xspace}
+\newcommand{\bigfer}[1]{\todo[inline,color=blue!20]{{\bf Fer:} {\footnotesize #1}}}
+
+\newcommand{\carlos}[1]{\todo[color=green!20]{{\bf Carlos:} {\footnotesize #1}}\xspace}
+\newcommand{\bigcarlos}[1]{\todo[inline,color=green!20]{{\bf Carlos:} {\footnotesize #1}}}
+
+\newcommand{\andres}[1]{\todo[color=cyan!20]{{\bf ARS:} {\footnotesize #1}}\xspace}
+\newcommand{\bigandres}[1]{\todo[inline,color=cyan!20]{{\bf ARS:} {\footnotesize #1}}}
+
+\newenvironment{comfer}
+{ \color{blue} }
+{ \normalcolor }
+
+
+\newenvironment{comraul}
+{ \color{red} }
+{ \normalcolor }
+
+\newcommand{\colornuevo}{orange}
+\newcommand{\nuevo}[1]{\textcolor{\colornuevo}{#1}}
+
+\newenvironment{textonuevo}
+{\color{\colornuevo}}
+{\normalcolor}
+
+\newcommand{\hlight}[1]{{\setlength{\fboxsep}{2pt}\colorbox{yellow!75!red}{#1}}}
+%{\sethlcolor{yellow!25!red}\hl{#1}}
+
+\newcommand{\nota}[1]{\textcolor{red}{#1}}
+\newcommand{\notabis}[1]{\textcolor{blue}{#1}}
+
+
+%Abbreviated Cref
+\Crefname{definition}{Def.}{Defs.}
+\Crefname{equation}{Eq.}{Eqs.}
+\Crefname{figure}{Fig.}{Figs.}
+\Crefname{proposition}{Prop.}{Props.}
+\Crefname{theorem}{Thm.}{Thms.}
+\Crefname{example}{Ex.}{Exs.}
+\Crefname{corollary}{Cor.}{Cors.}
+\Crefname{inlineenumi}{Item}{Items}
+\Crefname{enumi}{Item}{Items}
+\Crefname{section}{Sec.}{Secs.}
+\Crefname{appendix}{App.}{Apps.}
+
+\newcommand{\Crefitem}[1]{\Cref{#1}}
+
+
+
+\usepackage{tikz}
+%\usetikzlibrary{automata,arrows,backgrounds,positioning,fit,calc,matrix,decorations.pathmorphing}
+\usetikzlibrary{arrows,decorations,shapes,automata,positioning,decorations.pathmorphing}
+
+\tikzset{
+  every picture/.style = {
+    thick,
+    >=stealth',
+    node distance = 1.5em and 3em,
+  }
+  ,
+  cross line/.style = {
+    preaction = {
+      draw=white,
+      -,
+      line width=4pt
+    }
+  }
+  ,
+  state/.style = {
+    rectangle,
+    rounded corners = 5pt,
+    font = \footnotesize,
+    draw,
+    minimum width = 1em,
+    minimum height = 1em
+  }
+  , % labels of states
+  label-state/.style = {
+    sloped,
+    font = \scriptsize,
+    label distance = -2pt
+  }
+  , % labels of edges
+  label-edge/.style = {
+    font = \scriptsize,    
+    label distance = -2pt
+  }
+}
+
+% Complexity
+\newcommand{\NP}{{\rm\textsf{NP}}\xspace}
+\newcommand{\Poly}{{\rm\textsf{P}}\xspace}
+\newcommand{\PSPACE}{{\rm\textsf{PSpace}}\xspace}
+\newcommand{\EXPSPACE}{{\rm\textsf{ExpSpace}}\xspace}
+\newcommand {\EXPTIME} {\rm\textsf{ExpTime}\xspace}
+\newcommand {\NEXPTIME} {\rm\textsf{NExpTime}\xspace}
+\newcommand{\PH}{{\rm\textsf{PH}}\xspace}

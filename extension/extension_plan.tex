@@ -1,0 +1,133 @@
+\subsection{Plan refinement}
+\label{sec:planref}
+
+The idea introduced in the previous section has the novelty of admitting a sound and complete axiom system, a property that was missing in other approaches. However, one can argue that allowing action refinement only, is a bit limited. But, is this a real limitation of the framework? Or these ideas can actually be generalized to arbitrary plans? In this section we show that the latter is the case. Moreover, we show that all the results presented for $\AtomReflogic$ naturally extend to this case.
+We start by presenting the syntax and semantics of the new logic. 
+
+\begin{definition}\label{def:srefsyntax}
+Formulas of the language $\PlanReflogic$ are given by
+\[
+\varphi ::= p \mid \neg\varphi \mid \varphi\vee\varphi \mid \khi(\varphi,\varphi) \mid \mlbox{a}\varphi \mid \srefbox{\plan}\varphi,
+\]
+with $p \in \PROP$, $i\in\AGT$, $a \in \ACT$ and $\plan \in \ACT^*$.  Formulas of the form $\srefbox{\plan}\varphi$ are read as: \emph{``after announcing that $\plan$ is distinguishable from any other plan, $\varphi$ holds''.} 
+\end{definition}
+
+\begin{definition}\label{def:srefsemantics}
+Let $\modults = \tup{\W, \R, \Unc, \V}$ be an \ults, $\plan \in \ACT^*$ and  be a $\PlanReflogic$-formula,
+\[
+\modults,w \models \srefbox{\plan}\varphi \ \ \iff \ \ \modults^\plan,w \models \varphi,
+\]
+where $\modults^\plan = \tup{\W,\R,\Unc',\V}$, with:
+\begin{itemize}
+\item $\Unc'(i) = (\Unc(i) \setminus \set{\plans}) \cup \set{\set{\plan}}$ if there is $\plans \in \Unc(i)$ such that $\plan \in \plans$,
+\item $\Unc'(i) = \Unc(i) \cup \set{\set{\plan}}$ otherwise.
+\end{itemize}
+\end{definition}
+
+The refinement in $\modults^\plan$ is essentially as in~\Cref{def:ssrefsemantics} except that now we allow arbitrary plans. This generalization enables us e.g. to handle the example we have been using along the paper.
+
+\begin{example}\label{ex:sref}
+Recall the model $\modults$ from \Cref{ex:cook}.
+Now, suppose that a cooking professor teaches (announces) to both agents about the plan $\mathit{ebmfsp}$.
+Now every agent is able to distinguish the plan $\mathit{ebmfsp}$ from all others.
+Moreover, after the announcement, agent $j$ knows how to make a good cake.
+Thus, $\modults \models \srefbox{\mathit{ebmfsp}} \kh_j(h,g)$.
+\end{example}
+
+Again, we can state the following properties:
+\begin{proposition}
+The following hold:
+\begin{enumerate}
+\item $\models \srefbox{\plan}\varphi \lra \neg\srefbox{\plan}\neg\varphi$. 
+\item $\models \srefbox{\plan}(\varphi_1 \ra \varphi_2) \ra (\srefbox{\plan}\varphi_1 \ra \srefbox{\plan}\varphi_2)$
+\item If $\models \varphi$, then $\models \srefbox{\plan}\varphi$
+\end{enumerate}
+\end{proposition}
+% \begin{proof}
+% Let $\modults = \tup{\W, \R, \Unc, \V}$ be an \ults.
+% \begin{enumerate}
+% \item Suppose $\modults,w \models \srefbox{\plan}(\varphi_1 \ra \varphi_2) \wedge \srefbox{\plan}\varphi_1$
+% \end{enumerate}
+% \end{proof}
+
+\subsubsection{Axiom System}
+
+Now it is time to investigate a complete axiomatization for $\PlanReflogic$, one of the main goals of introducing this framework over an extended basic language. As shown in what follows, the elimination of the dynamic modality $\srefbox{\plan}$ in presence of the modality $\khi$ requires a little bit more of work than the single action case we presented already.  The case in which the announcement does not affect the knowledge, is straightforward. For the other case, we need to make sure than for every state in which after the announcement of $\plan$ guarantees that if the precondition holds ($\srefbox{\plan}\varphi_1$), then $\plan$ is SE and after its execution, the postcondition holds ($\srefbox{\plan}\varphi_2$). The latter, is expressed by the predicate $P(\plan,\srefbox{\plan}\varphi_2)$, described below. Notice that $P$ can be defined as we extended the expressivity of the underlying language, by allowing basic action modalities.
+\begin{table}[t]
+\begin{tabular}{l@{\quad}l}
+\toprule
+\axm{RAtom} & $\vdash \srefbox{\plan}p \lra p$ \\
+\axm{R$\neg$} & $\vdash \srefbox{\plan} \neg \varphi_1 \lra \neg \srefbox{\plan} \varphi_1$ \\
+\axm{R$\vee$} & $\vdash \srefbox{\plan} (\varphi_1 \vee \varphi_2) \lra (\srefbox{\plan} \varphi_1 \vee \srefbox{\plan} \varphi_2)$ \\
+\axm{R$\square$} & $\vdash \srefbox{\plan}\mlbox{a}\varphi_1 \lra \mlbox{a}\srefbox{\plan}\varphi_1$ \\
+\axm{RKh} & $\vdash \srefbox{\plan} \khi(\varphi_1,\varphi_2) \lra (\khi(\srefbox{\plan} \varphi_1,\srefbox{\plan} \varphi_2) \vee \A(\srefbox{\plan} \varphi_1 \ra P(\plan,\srefbox{\plan}\varphi_2)))$ \\
+\axm{RE$_{\srefbox{}}$} & $\text{From } \vdash \varphi \leftrightarrow \psi \text{ derive } \vdash \srefbox{\plan}\varphi \leftrightarrow \srefbox{\plan}\psi$ \\
+\bottomrule
+\end{tabular}
+\caption{Reduction axioms $\axset_{\PlanReflogic}$.}\label{tab:srefaxiom}
+\end{table}
+
+\begin{proposition}\label{pro:srefaxioms}
+Let $\beta \in \ACT^*$, we define the extension of $\mlbox{a}$ for plan, $\mlbox{\beta}$ as
+\[
+\mlbox{\beta} \psi = 
+\begin{cases}
+\psi &\quad \beta = \epsilon\\
+\mlbox{\beta[1]} \dots \mlbox{\beta[\card{\beta}]} \psi &\quad \beta \neq \epsilon \\
+\end{cases}
+\]
+With this, let $P$ be defined inductively as: 
+\[
+    \begin{array}{lcl}
+        P(\epsilon,\psi) & = & \psi \\
+        P(\alpha,\psi)  &= &(\bigwedge_{k=0}^{\card{\alpha}-1}(\mlbox{\alpha_k}\mldiam{\alpha[k+1]}\top) \wedge \mlbox{\alpha} \psi), \mbox{ with } \mlbox{\beta} = \mlbox{\beta[1]} \dots \mlbox{\beta[\card{\beta}]}. 
+    \end{array}
+\]
+Then, the reduction axioms from~\Cref{tab:srefaxiom} are valid.
+% \begin{enumerate}
+% \item $\models \srefbox{\plan}p \lra p$
+% \item $\models \srefbox{\plan} \neg \varphi_1 \lra \neg \srefbox{\plan} \varphi_1$
+% \item $\models \srefbox{\plan} (\varphi_1 \vee \varphi_2) \lra (\srefbox{\plan} \varphi_1 \vee \srefbox{\plan} \varphi_2)$
+% \item $\models \srefbox{\plan}\mlbox{a}\varphi_1 \lra \mlbox{a}\srefbox{\plan}\varphi_1$
+% \item $\models \srefbox{\plan} \khi(\varphi_1,\varphi_2) \lra (\khi(\srefbox{\plan} \varphi_1,\srefbox{\plan} \varphi_2) \vee \A(\srefbox{\plan} \varphi_1 \ra P(\plan,\srefbox{\plan}\varphi_2)))$
+% \end{enumerate}
+% with $P(\alpha,\psi) = (\bigwedge_{k=0}^{\card{\alpha}-1}(\mlbox{\alpha_k}\mldiam{\alpha[k+1]}\top) \wedge \mlbox{\alpha} \psi)$, $\mlbox{\beta} = \mlbox{\beta[1]}...\mlbox{\beta[\card{\beta}]}$ and $P(\epsilon,\psi) = \psi$.
+\end{proposition}
+\begin{proof}
+The proofs ideas for the first four items are similar to the ones in \Cref{pro:ssrefaxioms}. Let us focus again in the case of $\axm{RKh}$.  
+Let $\modults = \tup{\W, \R, \Unc, \V}$ be an \ults, then we prove below the two directions of the double implication.
+
+$\Rightarrow):$ Assume $\modults \models \srefbox{\plan} \khi(\varphi_1,\varphi_2)$, i.e.,  $\modults^\plan \models \khi(\varphi_1,\varphi_2)$ iff there is $\plans' \in \Unc'(i)$ s.t. $\truthset{\modults^\plan}{\varphi_1} \subseteq \stexec^{\modults^\plan}(\plans')$ and $\R_{\plans'}(\truthset{\modults^\plan}{\varphi_1}) \subseteq \truthset{\modults^\plan}{\varphi_2}$.
+Using $\truthset{\modults^\plan}{\psi} = \truthset{\modults}{\srefbox{\plan} \psi}$ and $\stexec^{\modults^\plan}(\plans') = \stexec^\modults(\plans')$ (since the relations remain unchanged), this is equivalent to say that there is $\plans' \in \Unc'(i)$ s.t. $\truthset{\modults}{\srefbox{\plan} \varphi_1} \subseteq \stexec^\modults(\plans')$ and $\R_{\plans'}(\truthset{\modults}{\srefbox{\plan} \varphi_1}) \subseteq \truthset{\modults}{\srefbox{\plan} \varphi_2}$. We need to consider two cases:
+\begin{itemize}
+\item If $\plans' \neq \set{\plan}$, then $\plans \in \Unc(i)$ and we get $\modults \models \khi(\srefbox{\plan}\varphi_1,\srefbox{\plan}\varphi_2)$.
+\item If $\plans' = \set{\plan}$, then $\truthset{\modults}{\srefbox{\plan}\varphi_1} \subseteq \stexec^\modults(\plan)$ and $\R_\plan(\truthset{\modults}{\srefbox{\plan}\varphi_1}) \subseteq \truthset{\modults}{\srefbox{\plan}\varphi_2}$.
+From the first part, using the definition of SE, we can derive that for all $w \in \truthset{\modults}{\srefbox{\plan}\varphi_1}$, $k \in \intint{0}{\card{\plan}-1}$ we have $\modults,w \models \mlbox{\plan_l}\mldiam{\plan[l+1]}\top$.
+From the second one, we can reach that for all $w \in \truthset{\modults}{\srefbox{\plan}\varphi_1}$, $\modults,w \models \mlbox{\plan} \srefbox{\plan}\varphi_2$.
+Thus, for all $w \in \W$, $\modults,w \models \srefbox{\plan} \varphi_1 \ra P(\plan,\srefbox{\plan}\varphi_2)$.
+\end{itemize}
+
+$\Leftarrow):$ Conversely, suppose $\modults \models \khi(\srefbox{\plan} \varphi_1,\srefbox{\plan} \varphi_2) \vee \A(\srefbox{\plan} \varphi_1 \ra P(\plan,\srefbox{\plan}\varphi_2))$, then the disjunction is satified by either one of the following situations:
+\begin{itemize}
+\item  $\modults \models \khi(\srefbox{\plan} \varphi_1,\srefbox{\plan} \varphi_2)$: Let $\plans \in \Unc(i)$ be s.t. $\truthset{\modults}{\srefbox{\plan}\varphi_1} \subseteq \stexec^\modults(\plans)$ and $\R_\plans(\truthset{\modults}{\srefbox{\plan}\varphi_1}) \subseteq \truthset{\modults}{\srefbox{\plan}\varphi_2}$.
+As we already stated, this is equivalent to say that $\truthset{\modults^\plan}{\varphi_1} \subseteq \stexec^{\modults^\plan}(\plans)$ and $\R_\plans(\truthset{\modults^\plan}{\varphi_1}) \subseteq \truthset{\modults^\plan}{\varphi_2}$.
+If $\plan \notin \plans$, then $\plans \in \Unc'(i)$.
+If $\plan \in \plans$, then $\set{\plan} \in \Unc'(i)$, $\stexec^{\modults^\plan}(\plans) \subseteq \stexec^{\modults^\plan}(\set{\plan})$ and $\R_{\set{\plan}}(\truthset{\modults^\plan}{\varphi_1}) \subseteq \R_\plans(\truthset{\modults^\plan}{\varphi_1})$. In any case, we get $\modults \models \srefbox{\plan}\khi(\varphi_1,\varphi_2)$.
+
+\item $\modults \models \A(\srefbox{\plan} \varphi_1 \ra P(\plan,\srefbox{\plan}\varphi_2))$: Notice that $\plan$ meets the strong executability and reachability conditions.
+The only thing left to prove is that $\set{\plan} \in \Unc'(i)$. But that is direct since wheter $\plan \in \plans$ for some $\plans \in \Unc(i)$ or not, in the end $\set{\plan} \in \Unc'(i)$. Hence $\modults \models \srefbox{\plan}\khi(\varphi_1,\varphi_2)$.
+\end{itemize}
+\end{proof}
+
+Thus, by again putting all the pieces together (\Cref{pro:srefaxioms,th:cm-ults-khikt-completeness}), we get:
+
+\begin{theorem}
+The axiom system $\axset_{\PlanReflogic}+\axset_{\khi,\square}$ for $\PlanReflogic$ is sound and strongly complete w.r.t. the class of all models.
+\end{theorem}
+
+By using~\Cref{,cor:extended-decidable}, we can conclude:
+
+\begin{corollary}
+$\PlanReflogic$ is decidable.
+\end{corollary} \raul{revisar}
+

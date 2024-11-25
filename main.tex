@@ -1,0 +1,142 @@
+\documentclass[sn-mathphys-num]{sn-jnl}%,authoryear
+
+\usepackage[utf8]{inputenc}
+
+\usepackage{lineno,hyperref}
+\hypersetup{
+  linkcolor  = blue,
+  citecolor  = blue,
+  urlcolor   = blue,
+  colorlinks = true,
+}
+
+\usepackage{soul}
+
+%\usepackage{caption}
+%\captionsetup[table]{skip=0.5pt}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage[textwidth=0.89in,textsize=scriptsize]{todonotes}
+\usepackage{proof}
+\usepackage{verbatim}
+\usepackage{url}
+\usepackage{enumitem}
+\usepackage{xspace}
+\usepackage[draft]{fixme}
+\usepackage[english]{babel}
+\usepackage{stmaryrd}
+\usepackage{upgreek}
+\usepackage{cleveref}
+\usepackage{booktabs}
+%\usepackage[font=scriptsize,skip=0pt]{caption}
+\usepackage[justification=centering]{caption}
+
+% just for fixing font warnings
+\usepackage{lmodern}
+\usepackage{fix-cm}
+\usepackage{stmaryrd}
+\SetSymbolFont{stmry}{bold}{U}{stmry}{m}{n}
+
+\input{macros}
+
+% \journal{Journal of Logical and Algebraic Methods in Programming}
+
+\begin{document}
+
+\title[The Dynamics of Knowing How]{The Dynamics of Knowing How}
+
+\author*[1,2]{\fnm{Carlos} \sur{Areces}}\email{carlos.areces@unc.edu.ar}
+\author*[1,2]{\fnm{Raul} \sur{Fervari}}\email{rfervari@unc.edu.ar}
+\author*[1,2]{\fnm{Andr\'es R.} \sur{Saravia}}\email{andresrsaravia@mi.unc.edu.ar}
+\author*[3]{\fnm{Fernando R.} \sur{Vel\'azquez-Quesada}}\email{fernando.velazquezquesada@uib.no}
+
+\affil[1]{\orgname{Consejo Nacional de Investigaciones Cientificas y Tecnicas ({CONICET})}, \country{Argentina}}
+% \orgdiv{Department}, 
+% \orgaddress{\street{Godoy Cruz}, \city{Ciudad Autónoma de Buenos Aires}, \postcode{C1425FQB}, \state{CABA}}
+
+\affil[2]{\orgname{Universidad Nacional de Córdoba (UNC)}, \orgaddress{\state{Córdoba}, \country{Argentina}}}
+% \orgaddress{\street{Av. Medina Allende}, \city{Córdoba}, \postcode{X5000HUA}, \state{Córdoba}, 
+
+\affil[3]{\orgname{Universitetet i Bergen}, \orgaddress{\state{Bergen}, \country{Norway}}}
+
+\abstract{
+We investigate dynamic operations acting over a \emph{knowing how} logic. Our approach makes use of a recently introduced semantics for the \emph{knowing how} operator, based on an indistinguishability relation between plans. This semantics is arguably closer to the standard presentation of \emph{knowing that} modalities in classic epistemic logic. 
+Here, we discuss how the new indistinguishability-based semantics enables us to define dynamic modalities representing different ways in which an agent can learn how to achieve a goal. In this regard, we study different alternatives for implementing two types of updates: ontic and epistemic.
+For the former, we provide axiomatizations over a restricted class of models. For the latter, we investigate some semantic properties, and discuss what are the difficulties in axiomatizing dynamic modalities. In turn, we introduce a novel dynamic epistemic modality for which we have reduction axioms, over an extended static language of knowing how.
+}
+
+\keywords{Knowing how, updates, axiomatization, decidability}
+
+\maketitle
+
+\section{Introduction}
+\label{sec:intro}
+\input{intro}
+
+\section{Basic Definitions}
+\label{sec:basic}
+\input{basic}
+\input{introdynamic}
+
+%\section{Dynamic Knowing How Logics}
+%\label{sec:dynamic}
+
+\section{Ontic Updates}
+\label{sec:ontic}
+
+We start by introducing modal operations that update the underlying LTS in a model, producing ontic updates in the $\ults$. In this regard, we propose two typical operators from the Dynamic Epistemic Logic literature: a modality based on public announcements, and a modality for arrow updates. For both logics we present axioms sytems over a particular class of models.
+
+\subsection{Public Announcements}
+\label{sec:pal}
+\input{dynamic/dynamic_ann}
+
+\subsection{Arrow Updates}
+\label{sec:aul}
+\input{dynamic/dynamic_arrow}
+
+\section{Epistemic Updates: A First Attempt}
+\label{sec:epistemic-basic} 
+
+In this section we present a first attempt in defining different  
+ways in which interesting \emph{epistemic} updates can be performed over knowing how. No complete axiomatization is
+available yet.  Instead, we will discuss a number of proposals for update
+operators and show that they can be used to express some relevant properties.
+Moreover, we will point out some of the challenges in obtaining axiom systems for these logics, for instance, the lack of uniform substitution. Some of this points are addressed in the next section.
+
+\subsection{Removing uncertainty between two plans.}
+\label{sec:ref}
+\input{dynamic/dynamic_ref}
+
+\subsection{Arbitrary refinement over plans.}
+\label{sec:aref}
+\input{dynamic/dynamic_aref}
+
+\subsection{Goal directed learning how.}
+\label{sec:learning}
+\input{dynamic/dynamic_lh}
+
+\section{Epistemic Updates: Extending the Basic Language}
+\label{sec:extension}
+\input{extension/extension_intro}
+\input{extension/extension_axiom}
+\input{extension/extension_decid}
+\input{extension/extension_atom}
+\input{extension/extension_plan}
+\input{extension/extension_priv}
+
+\section{Conclusions}
+\label{sec:final}
+\input{final}
+
+% \bibliographystyle{sn-bibliography} 
+\bibliography{references}
+
+\raul{I would put the proofs into the text (or part of them), or remove the appendix anyway.}
+\appendix
+\input{appendix}
+\end{document}

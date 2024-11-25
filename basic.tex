@@ -1,0 +1,382 @@
+%\nsparagraph{Syntax and semantics.}
+We introduce the syntax and semantics of the basic logic of knowing how, as presented in~\cite{AFSVQ21}. We will also introduce a complete axiomatization, a suitable notion of bisimulation (first introduced in~\cite{AFSVQ23report}) and a complexity property, that will be useful later in our results.  
+Throughout the text, let $\PROP$ be a countable set of propositional symbols, $\ACT$ a denumerable set of action symbols, and $\AGT$ a non-empty finite set of agents.
+
+\medskip
+
+\begin{definition}\label{def:khsyntax}
+Formulas of the language $\KHilogic$ are given by
+\[
+    \varphi ::= p \mid \neg\varphi \mid \varphi\vee\varphi \mid
+\khi(\varphi,\varphi),
+\]
+with $p \in \PROP$ and $i\in\AGT$. Other Boolean connectives are defined as
+usual. The formula $\khi(\psi,\varphi)$ is read as
+\emph{``when $\psi$ is the case, the agent $i$ knows how to make
+$\varphi$ true''}.
+Define also $\A\varphi:=\bigvee_{i\in\AGT} \khi(\neg\varphi,\bot)$ and $\E\varphi:=\neg\A\neg\varphi$; as established in~\cite{AFSVQ21}, they behave exactly as the universal and existential modalities (see, e.g.~\cite{GorankoP92}), respectively.
+\end{definition}
+\medskip
+
+In~\cite{Wang15lori,Wang2016}, formulas are interpreted
+over \emph{labeled transition systems} (\ltss): relational
+models in which each (basic) relation indicates the source and target
+of a particular type of action the agent can perform.
+In the setting introduced in~\cite{AFSVQ21}, \lts{s} are extended with a notion of \emph{uncertainty} between plans.
+
+% \begin{definition}[Labeled Transition Systems]\label{def:abmap}
+%   A \emph{labeled transition system (LTS)} is a tuple
+%   $\modlts=\tup{\W,\R,\V}$ where $\W$ is a non-empty set of states (called the domain and
+%   denoted by $\D{\lts}$),
+%   $\R = \setof{\R_a \subseteq \W \times \W}{a \in \ACT}$ is a
+%   collection of binary relations on $\W$, and $\V:\W \to 2^\PROP$ is a
+%   labeling function. For $w\in\W$, the pair $(\modlts,w)$ is a
+%   \emph{pointed LTS}, with parentheses usually dropped.
+% \end{definition}
+\medskip
+
+\begin{definition}[Actions and plans]
+Let $\ACT^*$ be the set of finite sequences over $\ACT$. Elements of
+$\ACT^*$ are called \emph{plans}, with $\epsilon$ being the
+\emph{empty plan}. %Let $\ACT^+ := \ACT^* \setminus  \set{\epsilon}$.
+Given $\plan \in \ACT^*$, we denote $\card{\plan}$ 
+the length of $\plan$ (note: $\card{\epsilon} = 0$). For
+$0 \le k \le \card{\plan}$, the plan $\plan_k$ is $\plan$'s initial
+segment up to (and including) the $k$th position (with
+$\plan_0 := \epsilon$). For $0 < k \le \card{\plan}$, the action
+$\plan[k]$ is the one in $\plan$'s $k$th position.
+\end{definition}
+
+\medskip
+
+\begin{definition}[Uncertainty-based \lts]\label{def:ults}
+%Let \AGT be a finite non-empty set of agents.
+An \emph{uncertainty-based \lts (\ults)} for $\PROP$, $\ACT$ and $\AGT$ is a tuple $\modults = \tup{\W,\R,\Unc,\V}$ where: $\W$ is a non-empty set of states (called the domain, and
+denoted also by $\D{\modults}$);
+$\R = \setof{\R_a \subseteq \W \times \W}{a \in \ACT}$ is a
+collection of binary relations on $\W$;
+$\Unc = \setof{\Unc(i) \subseteq 2^{\ACT^*}\setminus \set{\emptyset}}{i \in \AGT}$ assigns to every agent a non-empty collection of pairwise disjoint non-empty sets of plans, i.e.: \begin{inlineenum} \item $\Unc(i) \neq \emptyset$, \item $\plans_1, \plans_2 \in \Unc(i)$ with $\plans_1 \neq \plans_2$ implies $\plans_1 \cap \plans_2 = \emptyset$, and \item $\emptyset \notin \Unc(i)$\end{inlineenum};
+and $\V:\W \to 2^\PROP$ is a labeling function. The tuple $\tup{\W,\R,\V}$ is called an LTS. 
+Given an \ults $\modults$ and $w \in \D{\modults}$, the pair $(\modults,w)$ (parenthesis usually dropped) is called a \emph{pointed \ults}.
+\end{definition}
+\medskip
+
+
+Intuitively, $\DS{i} = \bigcup_{\plans \in \Unc(i)} \plans$ is the set of plans that agent $i$ is aware she has at her disposal, and each $\plans \in \Unc(i)$ is an indistinguishability class. Note that, as discussed in~\cite{AFSVQ21}, there is a one-to-one correspondence between each $\Unc(i)$ and an `indistinguishability relation' ${\sim_i} \subseteq \DS{i} \times \DS{i}$ describing the agent's \emph{uncertainty} over her available plans ($\plan_1 \sim_i \plan_2$ iff there is $\plans \in \Unc(i)$ such that $\set{\plan_1, \plan_2} \subseteq \plans$). The presentation used here simplifies the definitions that will follow.
+
+Given her uncertainty over $\ACT^*$, the abilities of an agent $i$ depend not on what a single plan can achieve, but rather on what a set of them can guarantee.
+
+\medskip
+
+\begin{definition}
+Given $\R=\setof{\R_a \subseteq \W \times \W}{a\in\ACT}$ and $\plan \in \ACT^*$, define $\R_\plan \subseteq \W \times \W$ in the standard way. Then, for $\plans \subseteq \ACT^*$ and $U \cup \{u \} \subseteq \W$, define $\R_\plans := \bigcup_{\plan \in \plans} \R_{\plan}$, $\R_{\plans}(u) := \bigcup_{\plan \in \plans} \R_\plan(u)$, and $\R_{\plans}(U) := \bigcup_{u \in U} \R_{\plans}(u)$.
+\end{definition}
+
+\medskip
+
+In what follows, we introduce the notion of strong executability of plans (see e.g.,~\cite{Wang15lori,AFSVQ23report}), a condition which determines that a given plan or a set of them, is appopriate in order to achieve a certain goal.
+
+\medskip
+
+
+\begin{definition}[Strong executability of plans]\label{def:plans-exec}
+Let $\modults=\tup{\W, \R, \Unc, \V}$ be an $\ults$, with $\R=\setof{\R_a\subseteq \W \times \W}{a\in\ACT}$. A \emph{plan} $\plan \in \ACT^*$ is \emph{strongly executable} (SE) at $u \in \W$ if and only if $v \in \R_{\plan_k}(u)$ implies $\R_{\plan[k+1]}(v) \neq \emptyset$ for every $k \in \intint{0}{\card{\plan}-1}$.
+We define the set $\stexec^\modults(\plan):= \set{w\in\W \mid \plan \mbox{ is SE at }w}$.
+Then, a \emph{set of plans} $\plans \subseteq \ACT^*$ is \emph{strongly executable} at $u \in \W$ if and only if \emph{every} plan $\plan \in \plans$ is \emph{strongly executable} at~$u$.
+Hence, $\stexec^\modults(\plans) = \bigcap_{\plan \in \plans} \stexec^\modults(\plan)$ is the set of the states in $\W$ where $\plans$ is SE.
+\end{definition}
+\medskip
+
+
+Thus, a plan is strongly executable (at a state) when \emph{all} its partial executions %(including~$\epsilon$) 
+can be completed. Then, a set of plans is strongly executable when \emph{all} its plans are strongly executable. When the model is clear from the context, we will drop the superscript $\modults$ and write simply $\stexec(\plan)$ and $\stexec(\plans)$.
+
+% \smallskip
+
+Now, we have all the ingredients to define the semantics of the logic.
+\medskip
+
+\begin{definition}\label{def:sem-esm}
+Let $\modults=\tup{\W,\R,\{\Unc(i)\}_{i\in\AGT},\V}$ be an \ults; take $w \in \W$.
+The satisfiability relation $\models$ for $\KHilogic$ is inductively defined as:
+\[
+\begin{array}{l@{\ \ \ }c@{\ \ \  }l}
+\modults, w \models p & \iffdef & p \in \V(w) \\
+\modults, w \models \neg\varphi & \iffdef & \modults, w \not\models \varphi \\
+\modults, w \models \psi\vee\varphi & \iffdef & \modults, w \models \psi \mbox{ or }\modults, w \models \varphi \\
+\modults, w \models \khi(\psi,\varphi) & \iffdef & \text{there is } \plans \in \Unc(i) \;\text{such that:} \\
+& & \ \ \text{\bfseries \itshape (i)} \; \truthset{\modults}{\psi} \subseteq \stexec(\plans),\; \text{and} \\
+& & \ \ \text{\bfseries \itshape (ii)} \; \R_\plans(\truthset{\modults}{\psi}) \subseteq \truthset{\modults}{\varphi},
+\end{array}
+\]
+where: $\truthset{\modults}{\chi} := \setof{w\in\W}{\modults,w\models\chi}$. 
+A class $\plans$ satisfying the conditions that make $\khi(\psi,\varphi)$ true is called a \emph{witness} for $\khi(\psi,\varphi)$. 
+Define: $\modults\models\varphi$ iff  $\truthset{\modults}{\varphi}=\W$, and $\models\varphi$ iff $\modults\models\varphi$, for all \ults $\modults$. These notions will be extended as expected, for all the logics in the rest of the paper.
+\end{definition}
+
+Note: the above-defined modalities $\A$ and $\E$ are indeed the global modalities from~\cite{GorankoP92}. Indeed, for every model $\modults$ and every state $w$, $\modults,w\models\A\varphi$ holds if and only if $\varphi$ is true in all states in $\modults$~\cite{AFSVQ21}. %This will be of use in the rest of the paper.
+
+% \begin{example}\label{ex:aircraft}
+%     An unmanned aircraft (the agent $i$) needs to fly from safe zones (states
+%     labeled by the propositional symbol $s$) to safe zones while avoiding
+%     turbulent     areas ($t$-states). There are two actions: fly to
+%     the west ($w$) or fly to the east ($e$). Order of the actions
+%     matters: from the leftmost state in the \ults $\modults$ below (states
+%     showing only atoms true at them), a plan $we$ (first west then east)
+%     leads to safe zones, but $ew$ does not. In order to reach a safe
+%     zone from a turbulent one, the aircraft needs to pass through a
+%     non-turbulent zone first. This is achieved flying east again, and
+%     finally west.
+
+%       \begin{nscenter}
+%       \begin{tikzpicture}[->]
+%         \node [state] (w1) {$s$};
+%         \node [state, below right = of w1] (w2) {};
+%         \node [state, right = of w2] (w3) {$s$};
+%         \node [state, above = of w3] (w4) {};
+%         \node [state, above right = of w1] (w5) {$t$};
+%         \node [state, right = of w5] (w6) {};
+
+%         \path (w1) edge[bend right] node [label-edge, below] {$w$} (w2)
+%               (w2) edge[bend right] node [label-edge, above] {$e$} (w1)
+%               (w1) edge node [label-edge, above] {$e$} (w5)
+%               (w2) edge[bend right] node [label-edge, below] {$e$} (w3)
+%               (w3) edge[bend right] node [label-edge, above] {$w$} (w2)
+%               (w4) edge node [label-edge, right] {$w$} (w3)
+%               (w5) edge node [label-edge, below] {$e$} (w4)
+%                    edge node [label-edge, above] {$w$} (w6);
+%       \end{tikzpicture}
+%       \begin{picture}(90,0)
+%       \put(10,40){$\Unc(i) = \left\{
+%         \begin{array}{c}
+%         \{ew\},\\
+%         \{we, eew\}
+%         \end{array}
+%       \right\}$}
+%       \end{picture}\vspace*{-3mm}
+%     \end{nscenter}
+%     The diagram shows, on the right, the set of indistinguishable actions in $\Unc(i)$, containing two sets: $\plans_1=\set{ew}$ and
+%     $\plans_2=\set{we,eew}$. Notice that $\modults\models\khi(s,s)$,
+%     i.e., the aircraft knows how to reach a safe zone, given it is at a
+%     safe zone: for each $s$-state, there is a plan in $\plans_2$
+%     which leads the aircraft only to $s$-states. This is due to the fact
+%     that the agent \emph{distinguishes} $ew$ from the other plans.
+%   \end{example}
+
+\begin{example}\label{ex:cook}
+Let us consider a simplified scenario for baking a cake, with two agents $i$ and $j$. The two agents attempt to produce a good cake (represented by the propositional symbol~$g$). Suppose that they are following a similar recipe, and that they have all the ingredientes ($h$). The recipe states that $g$ is achieved via the following steps: adding eggs ($e$), beating the eggs ($b$), adding flour ($f$), adding milk ($m$), stir these ingredients ($s$) and finally, bake the preparation ($p$). Thus, the plan needed to achieve $g$ is $\mathit{ebfmsp}$, whenever the agents have all the ingredients ($h$). 
+Agent $i$, who is an experienced chef, is aware that this is the way to get a good cake. On the other hand, agent $j$  has no cooking experience, so she considers that the order in the instructions do not matter (for instance, that she can add milk before adding the flour).
+
+\medskip 
+
+\begin{center}
+\begin{tikzpicture}[->]
+    \node [state] (w1) {$h$};
+    \node [left  = 0.35cm of w1] (m) {$\modults$};
+    \node [state, right = of w1] (w2) {\phantom{$h$}};
+    \node [state, right = of w2] (w3) {\phantom{$h$}};
+    \node [state,  right = of w3] (w4) {\phantom{$h$}};
+    \node [state, right = of w4] (w5) {$g$};
+
+    \path (w1) edge[right] node [label-edge, above] {$e$} (w2)
+        %(w2) edge[bend right] node [label-edge, above] {$e$} (w1)
+        (w2) edge[->,loop above] node {\small$b$} (w2)
+        (w2) edge[right] node [label-edge, above] {$f$} (w3)
+        (w3) edge[right] node [label-edge, above] {$m$} (w4)
+        (w4) edge[->,loop above] node {\small$s$} (w4)
+        (w4) edge node [label-edge, above] {$p$} (w5);
+        %(w5) edge node [label-edge, below] {$e$} (w4)
+            %    edge node [label-edge, above] {$w$} (w6);
+\end{tikzpicture}
+\begin{picture}(90,0)
+    \small
+\put(15,20){$\Unc(i) = \left\{
+    \begin{array}{c}
+    \{\mathit{ebfmsp}\}
+    \end{array}
+\right\}$}
+\put(15,5){$\Unc(j) = \left\{
+    \begin{array}{c}
+    \{\mathit{ebfmsp},\mathit{ebmfsp}\}
+    \end{array}
+\right\}$}
+\end{picture}
+\end{center}
+
+\medskip
+
+The diagram shows, on the right, the set of indistinguishable plans in $\Unc(i)$ and in~$\Unc(j)$. %, containing two sets: $\plans_1=\set{ew}$ and   $\plans_2=\set{we,eew}$.
+Notice that agent $i$ knows how to get a good cake, provided that she has all the ingredients (i.e., $\modults\models\khi(h,g)$). This is due to the fact
+that agent $i$ \emph{distinguishes} $\mathit{ebfmsp}$ as the ``good plan''. On the other hand, as $j$ considers that adding milk and adding flour can be done in any order (i.e., $\mathit{ebfmsp}$ and $\mathit{ebmfsp}$ are indistinguishable), we have $\modults\not\models\kh_j(h,g)$.
+\end{example}
+
+\ssparagraph{Bisimulations.} Bisimulation is a crucial tool for understanding the expressive power of a formal language. Here we review the notion of bisimulation for $\KHilogic$ over \ultss, first introduced in~\cite{AFSVQ23report}. We start by providing some useful abbreviations.
+
+\medskip
+
+\begin{definition}\label{def:notation}
+Let $\modults=\tup{\W,\R,\set{\Unc(i)}_{i\in\AGT},\V}$ be an \ults over \PROP, \ACT and \AGT. Take $\plans \in 2^{(\ACT^*)}$, $U, T \subseteq \W$ and $i \in \AGT$.
+\begin{itemize} \itemsep 0pt
+    \item Write $U \ultsExecStrat{\plans} T$ $\siffdefs$ $U \subseteq \stexec(\plans)$ and $\R_{\plans}(U) \subseteq T$.
+
+    \item Write $U \ultsExecAgi T$ $\siffdefs$ there is $\plans \in \Unc(i)$ such that $U \ultsExecStrat{\plans} T$.
+\end{itemize}
+Additionally, $U \subseteq \W$ is propositionally definable in $\modults$ if and only if there is a propositional formula $\varphi$ such that $U = \truthset{\modults}{\varphi}$.
+\end{definition}
+
+\medskip
+
+\begin{definition}[$\KHilogic$-bisimulation]\label{def:bisim-khi}
+Let $\modults{=}\tup{\W,\R,\set{\Unc(i)}_{i\in\AGT},\V}$ and $\modults'{=}\tup{\W',\R',\set{\Unc'_i}_{i\in\AGT},\V'}$ be $\ultss$.
+%Take $Z \subseteq \W \times \W'$, $u \in \W$, $U \subseteq \W$, $u' \in \W'$, and $U' \subseteq \W'$.
+%\begin{itemize}\itemsep 0cm
+%  \item Let %$Z(u)$, $Z(U) \subseteq \W'$ as
+%      \begin{nscenter}
+%        \begin{tabular}{@{}c@{}}
+%          $Z(u) := \setof{u' \in \W'}{uZu'}$, $Z(U) := \bigcup_{u \in U} Z(u)$.
+%        \end{tabular}
+%      \end{nscenter}
+%
+%  \item Let % $Z^{-1}(u)$, $Z^{-1}(U) \subseteq \W$ as
+%      \begin{nscenter}
+%        \begin{tabular}{@{}c@{}}
+%          $Z^{-1}(u') := \setof{u \in \W}{uZu'}$; $Z^{-1}(U') := \bigcup_{u' \in U'} Z(u')$.
+%        \end{tabular}
+%      \end{nscenter}
+%    \end{itemize}
+A non-empty $Z \subseteq \W \times \W'$ is called an $\KHilogic$-bisimulation between $\modults$ and $\modults'$ if and only if $wZw'$ implies all of the following.
+\begin{itemize} 
+    \item \textbf{Atom}: $\V(w)=\V'(w')$.
+
+    \item \textbf{$\khi$-Zig}: for any \emph{propositionally} definable $U \subseteq \W$, if $U \ultsExecAgi T$ for some $T \subseteq \W$, then there is $T' \subseteq \W'$ such that: 
+%      \begin{nscenter}
+%      \begin{multicols}{2}
+%        \begin{enumerate}
+        1) $Z(U) \ultsExecAgi T'$, and
+        2) $T' \subseteq Z(T)$.
+%        \end{enumerate}
+%      \end{multicols}
+%    \end{nscenter}
+
+    \item \textbf{$\khi$-Zag}: % analogous to \textbf{$\khi$-Zig}.
+    for any \emph{propositionally} definable $U' \subseteq \W'$, if $U' \ultsExecAgi T'$ for some $T' \subseteq \W'$, then there is $T \subseteq \W$ such that: 
+%      \begin{nscenter}
+%      \begin{multicols}{2}
+%        \begin{enumerate}
+        1) $Z^{-1}(U') \ultsExecAgi T$, and
+        2) $T \subseteq Z^{-1}(T')$.
+%        \end{enumerate}
+%      \end{multicols}
+%    \end{nscenter}
+
+    \item \textbf{$\A$-Zig}: for all $u\in\W$ there is a $u'\in\W'$ such that $uZu'$.
+
+    \item \textbf{$\A$-Zag}: for all $u'\in\W'$ there is a $u\in\W$ such that $uZu'$.
+\end{itemize}
+We write $\modults,w \bisim \modults',w'$ when there is an
+$\KHilogic$-bisimulation $Z$ between $\modults$ and $\modults'$ such that
+$wZw'$.
+\end{definition}
+
+\medskip
+
+The following theorem establishes a classical adequacy result.
+
+\medskip
+
+\begin{theorem}[\cite{AFSVQ23report}]
+Let $\modults,w$ and $\modults',w'$ be two \ultss. $\modults,w\bisim\modults',w'$ implies $\modults,w\models\varphi$ iff $\modults',w'\models\varphi$, for all $\KHilogic$-formula $\varphi$. %Moreover, if $\modults$ and $\modults'$ are finite, the converse also holds.
+\end{theorem}
+
+\ssparagraph{Axiomatization.} Another important element to consider in this paper is the axiom system for $\KHilogic$ \cite{AFSVQ21,AFSVQ23report}. 
+
+\begin{table}[t]
+
+\begin{tabular}{l@{\quad \quad  }l@{\quad}l}
+\toprule
+$\mbox{Axioms}$
+& \axm{Taut}  & $\vdash \varphi \mbox{ for $\varphi$ a propositional tautology}$ \\
+& \axm{DistA} & $\vdash \A(\varphi\ra\psi) \ra (\A\varphi \ra \A\psi)$ \\
+
+& \axm{TA}    & $\vdash \A\varphi \ra \varphi$ \\
+& \axm{4KhA}  & $\vdash \khi(\psi,\varphi) \ra \A\khi(\psi,\varphi)$ \\
+& \axm{5KhA}  & $\vdash \neg\khi(\psi,\varphi) \ra \A\neg\khi(\psi,\varphi)$ \\
+& \axm{KhA}   & $\vdash \left(\A(\chi \rightarrow \psi) \land \khi(\psi,\varphi) \land \A(\varphi \rightarrow \theta)\right) \rightarrow \khi(\chi, \theta)$ \\
+\midrule
+\mbox{Rules}
+&  \axm{MP}   & $\mbox{From $\vdash \varphi$ and $\vdash \varphi \rightarrow \psi$ infer $\vdash \psi$ }$ \\
+&  \axm{NecA} & $\mbox{From $\vdash \varphi$ infer $\vdash \A\varphi$}$ \\
+\bottomrule
+\end{tabular}
+\caption{Axiomatization $\axset_{\khi}$ for $\KHilogic$ w.r.t.\ $\ultss$.}\label{tab:khiaxiom}
+\end{table}
+
+\medskip
+
+\begin{theorem}[\cite{AFSVQ21}]\label{th:khi-completeness}
+The axiom system from~\Cref{tab:khiaxiom} is sound and strongly complete with respect to the class of all \ultss.
+\end{theorem}
+
+\medskip
+
+It is worth noticing that the axiom \axm{KhE}, $\left(\E\psi \land \khi(\psi,\varphi)\right) \rightarrow \E\varphi$, in omitted here. This is due to the fact that it is derivable in the system.
+This is achieved by proving an equivalent expression
+% , $\left(\E\psi \land \khi(\psi,\varphi) \land \A \neg\varphi \right) \rightarrow \bot$, using \axm{KhA}. %\raul{To write down the syntactic proof in detail here.}
+
+% By \axm{TAUT}, it is equivalent to prove that
+
+\begin{equation}\label{eq:khe0}
+\vdash (\E\psi \wedge \khi(\psi,\varphi) \wedge \A\neg\varphi) \ra \bot.
+\end{equation}
+
+For this, we establish a series of implication and, using transitivity, we get \axm{KhE}. By applying \axm{TAUT}, we have that
+
+\begin{equation*}
+\vdash (\E\psi \wedge \khi(\psi,\varphi) \wedge \A\neg\varphi) \ra (\E\psi \wedge \khi(\psi,\varphi) \wedge \A\neg\varphi).
+\end{equation*}
+
+Taking \axm{TAUT} ($\vdash \neg\varphi \lra (\varphi \ra \bot)$, $\vdash \psi \ra \psi$) and \axm{NECA}, we replace $\A\neg\varphi$ by $\A(\varphi \ra \bot)$ and add $\A(\psi \ra \psi)$, which is a tautology. Thus,
+
+\begin{equation}\label{eq:khe1}
+\vdash (\E\psi \wedge \khi(\psi,\varphi) \wedge \A\neg\varphi) \ra (\E\psi \wedge \A(\psi \ra \psi) \wedge \khi(\psi,\varphi) \wedge \A(\varphi \ra \bot)).
+\end{equation}
+
+On the other hand, by using an instance of \axm{KhA}, we have that
+
+\begin{equation*}
+\vdash (\A(\psi \ra \psi) \wedge \khi(\psi,\varphi) \wedge \A(\varphi \ra \bot)) \ra (\khi(\psi,\bot)).
+\end{equation*}
+
+Adding $\E\psi$ to both sides (by using an instance of \axm{TAUT}),
+
+\begin{equation*}
+\vdash (\E\psi \wedge \A(\psi \ra \psi) \wedge \khi(\psi,\varphi) \wedge \A(\varphi \ra \bot)) \ra (\E\psi \wedge \khi(\psi,\bot)).
+\end{equation*}
+
+By definition of $\E$ y $\A$,
+
+\begin{equation*}
+\vdash (\E\psi \wedge \A(\psi \ra \psi) \wedge \khi(\psi,\varphi) \wedge \A(\varphi \ra \bot)) \ra (\neg\A\neg\psi \wedge \A\neg\psi).
+\end{equation*}
+
+And by definition of $\bot$,
+
+\begin{equation}\label{eq:khe2}
+\vdash (\E\psi \wedge \A(\psi \ra \psi) \wedge \khi(\psi,\varphi) \wedge \A(\varphi \ra \bot)) \ra \bot.
+\end{equation}
+
+Given the implications in \Cref{eq:khe1} and \Cref{eq:khe2}, by transitivity we get \Cref{eq:khe0}.
+
+\ssparagraph{Complexity.} Moreover, thanks to the previous axiomatization, the canonical models we defined were useful enough to prove that $\KHilogic$ the satisfiability and model checking problems are \NP-complete and \Poly respectively using a selection function \cite{AFSVQ21,AFSVQ23report}. As a consequence, we have the following corollary.
+
+\medskip
+
+\begin{corollary}\label{cor:satcultsker}
+Let $\cultsfnu $ be the class of all finite \ultss such that the agents consider only basic actions distinguishable from each other (\textbf{FNU}): \raul{there are two notations, \textbf{NU} and \textbf{FNU}. Are both necessary? or are they always used together?}
+\[
+\cultsfnu := \setof{\modults}{\modults \text{ is a finite \ults and for all } i \in \AGT,\ \Unc(i) \subseteq  \setof{\set{a}}{a \in \ACT}}.
+\]
+Then, $\varphi$ is satisfiable if and only if $\varphi$ is satisfiable in $\cultsfnu$, i.e., there is $\modults \in \cultsfnu$ and $w \in \D{\modults}$ such that $\modults,w \models \varphi$.
+\end{corollary}
+
+\medskip
