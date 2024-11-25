@@ -1,6 +1,8 @@
 \subsubsection{Decidability via Filtrations}
-\raul{we should mention that this filtration also fixes the one in the previous paper, as here it is easier to show there is indeed one filtration.}
-Now we proceed to define the preliminaries for decidability. The strategy to be followed is a filtration technique that produces as a result a finite model (see e.g.,~\cite{mlbook}). 
+
+Now we proceed to define the preliminaries for proving decidability of the satisfiability problem of $\KHiMLlogic$. In order to do so, we will use a \emph{filtration} technique (see e.g.,~\cite{mlbook}). This method enables us, from a given model and a set of formulas, to construct another model (the `filtration') which satisfies the same formulas from the input set. Interestingly, if we depart from a finite set of formulas, the filtration is a finite model, which is a crucial property to obtain decidability. 
+Notice that, the filtration we will provide, generalizes the one introduced in~\cite{AFSVQ23report} for $\KHilogic$, by also handling the basic modal logic modality $[a]$. Moreover, in~\cite{AFSVQ23report} it is not shown that a filtration always exists for a model and a set of formulas, which is a missing ingredient in the proof. This aspect is fixed here too.
+
 We start by introducing two relations that, given a set of formulas $\Sigma$ and a model $\modults$, will be crucial to define a proper notion of filtration.
 
 \medskip
@@ -70,11 +72,11 @@ Let $\modults = \tup{\W,\R, \{\Unc(i)\}_{i\in \AGT}, \V}$ be an \ults defined ov
 The filtration is defined similarly as for the basic modal logic (see, e.g.,~\cite{mlbook}).
 The most significant difference is the addition of a denumerable set of actions and relations (\Cref{item:khiml-fil}) since we use the set $\ACT^\Sigma$ as the set of action names.
 As a consequence, the actions an agent $i$ considered in $\Unc^f_i$ are separated from the actions defined in $\ACT$.
-Moreover, if $\Sigma$ is finite, the relation $\planequiv_\Sigma$ enables us to obtain a finite set of witnesses for the formulas $\khi(\psi,\varphi)\in\Sigma$, from which we also get that $\ACT^\Sigma$ and (together with $\modequiv_\Sigma$) $\W^f$ are finite.
-The function $\Unc^f(i)$ is well-defined since is made only of singletons. Specially, if there is no $\plans \in \Unc(i)$ such that is a witness for some $\khi(\varphi,\psi) \in \Sigma$, $\Unc^f(i)\neq \emptyset$ still holds.
+Moreover, if $\Sigma$ is finite, the relation $\planequiv_\Sigma$ enables us to obtain a finite set of witnesses for the formulas $\khi(\psi,\varphi)\in\Sigma$, from which (together with $\modequiv_\Sigma$) we also get that $\ACT^\Sigma$ and $\W^f$ are finite.
+The function $\Unc^f(i)$ is well-defined since is made only of singletons. Specially, if there is no $\plans \in \Unc(i)$ such that $\plan$ is a witness for some $\khi(\varphi,\psi) \in \Sigma$, $\Unc^f(i)\neq \emptyset$ still holds.
 This is due to the addition of a vacuous action, $a_\emptyset$, which is not strongly executable in any state.
 The conditions~\ref{item:khiml-fil-a1} and~\ref{item:khiml-fil-a2} are the usual ones for the basic modal logic.
-In fact, notice that they are not in conflict with the new conditions, as the actions used to talk about the $\kh$ dimension are disjoint from those to talk about the action execution dimension.
+In fact, notice that they are not in conflict with the new conditions, as the actions used to talk about formulas with $\kh$ are disjoint from those to talk about formulas with $[a]$ modalities.
 So, new actions $a_{[\plans]_\Sigma}$ are introduced as a result of the witness for a knowing how, but as they are fresh actions, they do not impact on any formula from $\Sigma$.
 Finally, \Cref{item:khiml-fil} can be rewritten as $([w]_\Sigma,[v]_\Sigma) \in \R^f_{a_{[\plans]_\Sigma}}$ if and only if the following conditions hold:
 
@@ -153,8 +155,8 @@ Hence, $\modults,w \models \mlbox{a}\varphi$.
 
 It remains to show that if $\Sigma$ is finite, then $\modults^f$ is finite.
 First, note that the number of elements in $\W^f$ is at most exponential in the size in the number of formulas in $\Sigma$.
-Thus, $\W^f$ and $\V^f$ are finite. Similarly, but with the number of $\khi(\psi,\varphi) \in \Sigma$ and $\mlbox{a} \varphi$ in each case, $\ACT^{\Sigma}$ is finite.
-Thus, $\R^f$ and $\Unc^f$ are both finite. Thus, $\modults^f$ is a finite model.
+Thus, $\W^f$ and $\V^f$ are finite. Similarly, as the number of $\khi(\psi,\varphi)$ and $\mlbox{a} \varphi$ in $\Sigma$ are finite, $\ACT^{\Sigma}$ is also finite.
+Thus, $\R^f$ and $\Unc^f$ are both finite, and therefore $\modults^f$ is a finite model.
 \end{proof}
 
 Considering the last theorem, it remains to prove that, given a model $\modults$ and a set of formulas $\Sigma$ closed under subformulas, the set of filtrations of $\modults$ via $\Sigma$ is non empty.
@@ -164,7 +166,8 @@ This can be achieved by defining $G_{[\plans]_\Sigma} = [\plans]_\Sigma \neq \em
 \item $([w]_\Sigma,[v]_\Sigma) \in \R^f_a$ iff there exists $w' \in [w]_\Sigma$, $v' \in [v]_\Sigma$ such that $(w',v') \in \R_a$; or
 \item $([w]_\Sigma,[v]_\Sigma) \in \R^f_a$ iff for all $\mlbox{a}\varphi \in \Sigma$, $\modults,w \models \mlbox{a}\varphi$ then $\modults,v \models \varphi$.
 \end{itemize}
-
+ 
+\medskip
 
 The last theorem states that every satisfiable formula of $\KHiMLlogic$, is satisfiable in a finite model.
 As a consequence, the satisfiability problem for $\KHiMLlogic$ is decidable.
