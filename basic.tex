@@ -1,18 +1,18 @@
 %\nsparagraph{Syntax and semantics.}
-We introduce the syntax and semantics of the basic logic of knowing how, as presented in~\cite{AFSVQ21}. We will also introduce a complete axiomatization, a suitable notion of bisimulation (first introduced in~\cite{AFSVQ23report}) and a complexity property, that will be useful later in our results.  
+We introduce the syntax and semantics of the basic logic of knowing how, as presented in~\cite{AFSVQ21}. We will also introduce a complete axiomatization, a suitable notion of bisimulation (first introduced in~\cite{AFSVQ23report}), and discuss complexity results.  
 Throughout the text, let $\PROP$ be a countable set of propositional symbols, $\ACT$ a denumerable set of action symbols, and $\AGT$ a non-empty finite set of agents.
 
 \medskip
 
 \begin{definition}\label{def:khsyntax}
-Formulas of the language $\KHilogic$ are given by
+Formulas of the language $\KHilogic$ are defined by the following grammar
 \[
     \varphi ::= p \mid \neg\varphi \mid \varphi\vee\varphi \mid
 \khi(\varphi,\varphi),
 \]
 with $p \in \PROP$ and $i\in\AGT$. Other Boolean connectives are defined as
 usual. The formula $\khi(\psi,\varphi)$ is read as
-\emph{``when $\psi$ is the case, the agent $i$ knows how to make
+\emph{``when $\psi$ is the case, agent $i$ knows how to make
 $\varphi$ true''}.
 Define also $\A\varphi:=\bigvee_{i\in\AGT} \khi(\neg\varphi,\bot)$ and $\E\varphi:=\neg\A\neg\varphi$; as established in~\cite{AFSVQ21}, they behave exactly as the universal and existential modalities (see, e.g.~\cite{GorankoP92}), respectively.
 \end{definition}
@@ -74,7 +74,7 @@ Given $\R=\setof{\R_a \subseteq \W \times \W}{a\in\ACT}$ and $\plan \in \ACT^*$,
 
 \medskip
 
-In what follows, we introduce the notion of strong executability of plans (see e.g.,~\cite{Wang15lori,AFSVQ23report}), a condition which determines that a given plan or a set of them, is appopriate in order to achieve a certain goal.
+In what follows, we introduce the notion of strong executability of plans (see, e.g.,~\cite{Wang15lori,AFSVQ23report}), a condition which determines that a given plan or a set of them, is appropriate in order to achieve a certain goal.
 
 \medskip
 
@@ -83,13 +83,13 @@ In what follows, we introduce the notion of strong executability of plans (see e
 Let $\modults=\tup{\W, \R, \Unc, \V}$ be an $\ults$, with $\R=\setof{\R_a\subseteq \W \times \W}{a\in\ACT}$. A \emph{plan} $\plan \in \ACT^*$ is \emph{strongly executable} (SE) at $u \in \W$ if and only if $v \in \R_{\plan_k}(u)$ implies $\R_{\plan[k+1]}(v) \neq \emptyset$ for every $k \in \intint{0}{\card{\plan}-1}$.
 We define the set $\stexec^\modults(\plan):= \set{w\in\W \mid \plan \mbox{ is SE at }w}$.
 Then, a \emph{set of plans} $\plans \subseteq \ACT^*$ is \emph{strongly executable} at $u \in \W$ if and only if \emph{every} plan $\plan \in \plans$ is \emph{strongly executable} at~$u$.
-Hence, $\stexec^\modults(\plans) = \bigcap_{\plan \in \plans} \stexec^\modults(\plan)$ is the set of the states in $\W$ where $\plans$ is SE.
+$\stexec^\modults(\plans) = \bigcap_{\plan \in \plans} \stexec^\modults(\plan)$ is the set of the states in $\W$ where $\plans$ is SE.
 \end{definition}
 \medskip
 
 
 Thus, a plan is strongly executable (at a state) when \emph{all} its partial executions %(including~$\epsilon$) 
-can be completed. Then, a set of plans is strongly executable when \emph{all} its plans are strongly executable. When the model is clear from the context, we will drop the superscript $\modults$ and write simply $\stexec(\plan)$ and $\stexec(\plans)$.
+can be completed; while a set of plans is strongly executable when \emph{all} its plans are strongly executable. When the model is clear from the context, we will drop the superscript $\modults$ and write simply $\stexec(\plan)$ and $\stexec(\plans)$.
 
 % \smallskip
 
@@ -97,7 +97,7 @@ Now, we have all the ingredients to define the semantics of the logic.
 \medskip
 
 \begin{definition}\label{def:sem-esm}
-Let $\modults=\tup{\W,\R,\{\Unc(i)\}_{i\in\AGT},\V}$ be an \ults; take $w \in \W$.
+Let $\modults=\tup{\W,\R,\{\Unc(i)\}_{i\in\AGT},\V}$ be an \ults and $w \in \W$.
 The satisfiability relation $\models$ for $\KHilogic$ is inductively defined as:
 \[
 \begin{array}{l@{\ \ \ }c@{\ \ \  }l}
@@ -114,7 +114,7 @@ A class $\plans$ satisfying the conditions that make $\khi(\psi,\varphi)$ true i
 Define: $\modults\models\varphi$ iff  $\truthset{\modults}{\varphi}=\W$, and $\models\varphi$ iff $\modults\models\varphi$, for all \ults $\modults$. These notions will be extended as expected, for all the logics in the rest of the paper.
 \end{definition}
 
-Note: the above-defined modalities $\A$ and $\E$ are indeed the global modalities from~\cite{GorankoP92}. Indeed, for every model $\modults$ and every state $w$, $\modults,w\models\A\varphi$ holds if and only if $\varphi$ is true in all states in $\modults$~\cite{AFSVQ21}. %This will be of use in the rest of the paper.
+Note: the above-defined modalities $\A$ and $\E$ are indeed the global modalities from~\cite{GorankoP92}. For every model $\modults$ and every state $w$, $\modults,w\models\A\varphi$ holds if and only if $\varphi$ is true in all states in $\modults$~\cite{AFSVQ21}. %This will be of use in the rest of the paper.
 
 % \begin{example}\label{ex:aircraft}
 %     An unmanned aircraft (the agent $i$) needs to fly from safe zones (states
@@ -170,7 +170,7 @@ Agent $i$, who is an experienced chef, is aware that this is the way to get a go
 \medskip 
 
 \begin{center}
-\begin{tikzpicture}[->]
+\hspace*{-1cm}\begin{tikzpicture}[->]
     \node [state] (w1) {$h$};
     \node [left  = 0.35cm of w1] (m) {$\modults$};
     \node [state, right = of w1] (w2) {\phantom{$h$}};
