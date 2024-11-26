@@ -207,7 +207,7 @@ Agent $i$, who is an experienced chef, is aware that this is the way to get a go
 
 The diagram shows, on the right, the set of indistinguishable plans in $\Unc(i)$ and in~$\Unc(j)$. %, containing two sets: $\plans_1=\set{ew}$ and   $\plans_2=\set{we,eew}$.
 Notice that agent $i$ knows how to get a good cake, provided that she has all the ingredients (i.e., $\modults\models\khi(h,g)$). This is due to the fact
-that agent $i$ \emph{distinguishes} $\mathit{ebfmsp}$ as the ``good plan''. On the other hand, as $j$ considers that adding milk and adding flour can be done in any order (i.e., $\mathit{ebfmsp}$ and $\mathit{ebmfsp}$ are indistinguishable), we have $\modults\not\models\kh_j(h,g)$.
+that agent $i$ \emph{distinguishes} $\mathit{ebfmsp}$ as the ``good plan''. On the other hand, as $j$ considers that adding milk and adding flour can be done in any order (i.e., $\mathit{ebfmsp}$ and $\mathit{ebmfsp}$ are indistinguishable), and we have $\modults\not\models\kh_j(h,g)$.
 \end{example}
 
 \ssparagraph{Bisimulations.} Bisimulation is a crucial tool for understanding the expressive power of a formal language. Here we review the notion of bisimulation for $\KHilogic$ over \ultss, first introduced in~\cite{AFSVQ23report}. We start by providing some useful abbreviations.
@@ -285,7 +285,7 @@ The following theorem establishes a classical adequacy result.
 \medskip
 
 \begin{theorem}[\cite{AFSVQ23report}]
-Let $\modults,w$ and $\modults',w'$ be two \ultss. $\modults,w\bisim\modults',w'$ implies $\modults,w\models\varphi$ iff $\modults',w'\models\varphi$, for all $\KHilogic$-formula $\varphi$. %Moreover, if $\modults$ and $\modults'$ are finite, the converse also holds.
+Let $\modults,w$ and $\modults',w'$ be two \ultss. $\modults,w\bisim\modults',w'$ implies $\modults,w\models\varphi$ iff $\modults',w'\models\varphi$, for all $\KHilogic$-formulas $\varphi$. %Moreover, if $\modults$ and $\modults'$ are finite, the converse also holds.
 \end{theorem}
 
 \ssparagraph{Axiomatization.} Another important element to consider in this paper is the axiom system for $\KHilogic$ \cite{AFSVQ21,AFSVQ23report}. 
@@ -367,11 +367,11 @@ And by definition of $\bot$,
 
 Given the implications in \Cref{eq:khe1} and \Cref{eq:khe2}, by transitivity we get \Cref{eq:khe0}.
 
-\ssparagraph{Complexity.} Moreover, thanks to the previous axiomatization, the canonical models we defined were useful enough to prove that $\KHilogic$ the satisfiability and model checking problems are \NP-complete and \Poly respectively using a selection function \cite{AFSVQ21,AFSVQ23report}. As a consequence, we have the following corollary.
+\ssparagraph{Complexity.} Strong completeness of the axiomatization above is established in~\cite{AFSVQ21} via a canonical model construction. Moreover, a small (polynomial) model property can be proved using selection functions and, as a corollary, the satisfiability and model checking problems of $\KHilogic$ are \NP-complete and \Poly, respectively~\cite{AFSVQ21,AFSVQ23report}. As a consequence, we have the following corollary.
 
 \medskip
 
-\begin{corollary}\label{cor:satcultsker}
+\begin{corollary}\label{cor:satcultsker} \carlos{Este resultado esta fuera de lugar acá. No se estiende su relación con complejidad ni su utilidad.}
 Let $\cultsfnu $ be the class of all finite \ultss such that the agents consider only basic actions distinguishable from each other (\textbf{FNU}): \raul{there are two notations, \textbf{NU} and \textbf{FNU}. Are both necessary? or are they always used together?}
 \[
 \cultsfnu := \setof{\modults}{\modults \text{ is a finite \ults and for all } i \in \AGT,\ \Unc(i) \subseteq  \setof{\set{a}}{a \in \ACT}}.
