@@ -81,6 +81,57 @@ Again, the reduction axioms from~\Cref{tab:aulaxiom} are valid in the class of m
 
 \medskip 
 
+\begin{lemma}\label{lemma:arrow-kh-valid}
+	The reduction axioms from \Cref{tab:aulaxiom} are valid.
+\end{lemma}
+	
+\begin{proof} The proof proceeds by cases, and again we focus only in $axm{RKh}$.
+	\begin{itemize}
+	% \item For \axm{RBase}, let $U' = (\bigwedge_{i=1}^n \theta_i,\bigwedge_{i=1}^n \theta'_i) = (\alpha_1,\theta'_1)$, note that $\arrowsemantics{\W}{U} = \arrowsemantics{\W}{U'} = \W$, $\arrowsemantics{\Unc}{U} = \arrowsemantics{\Unc}{U'} = \Unc$ and $\arrowsemantics{\V}{U}(p) = \arrowsemantics{\V}{U'}(p) = \V(p)$ for every $p$. Let $a \in \ACT$, $(w,v) \in (\arrowsemantics{\R}{U})_a$ iff $w \in \truthset{\modults}{\bigwedge_{i=1}^n \theta_i}$, $\R_a(w) \subseteq \truthset{\modults}{\bigwedge_{i=1}^n \theta'_i}$.
+	% Since $\truthset{\modults}{\bigwedge_{i=1}^n \theta_i} = \truthset{\modults}{\alpha_1} = \truthset{\modults}{\bigwedge_{i=1}^1 \alpha_i}$ and $\truthset{\modults}{\bigwedge_{i=1}^n \theta'_i} = \truthset{\modults}{\theta'_1} = \truthset{\modults}{\bigwedge_{i=1}^1 \theta'_i}$, $(w,v) \in (\arrowsemantics{\R}{U})_a$ iff $(w,v) \in (\arrowsemantics{\R}{U'})_a$.
+	% With this, $(\arrowsemantics{\R}{U})_a = (\arrowsemantics{\R}{U'})_a$ for all $a \in \ACT$, $\arrowmodelU = \arrowmodel{U'}$ and satisfy the same formulas.
+	% Thus, $\modults,w \models \arrowdiam{U}\varphi$ iff $\modults,w \models \arrowdiam{U'}\varphi$.
+	
+	% \item For \axm{RAtom}, let $U = (\theta,\theta')$, $\modults,w \models \arrowdiam{U}p$ iff $\arrowmodelU,w \models p$. Since $\arrowsemantics{\V}{U}(w) = \V(w)$, $p \in \arrowsemantics{\V}{U}(w)$ iff $w \in \V(p)$. Thus, $\modults,w \models \arrowdiam{U}p$ iff $\modults,w \models p$.
+	
+	% \item For \axm{R$\neg$}, let $U = (\theta,\theta')$, $\modults,w \models \arrowdiam{U}\neg\varphi$ iff $\arrowmodelU,w \models \neg\varphi$ iff $\arrowmodelU,w \not\models \varphi$ iff $\modults,w \not\models \arrowdiam{U}\varphi$ iff $\modults,w \models \neg\arrowdiam{U}\varphi$.
+	
+	% \item For \axm{R$\vee$}, let $U = (\theta,\theta')$,
+	% $\modults,w \models \arrowdiam{U}(\varphi \vee \psi)$ iff $\arrowmodelU,w \models \varphi \vee \psi$ iff $\arrowmodelU,w \models \varphi$ or $\arrowmodelU,w \models \psi$ iff $\modults,w \models \arrowdiam{U}\varphi$ or $\modults,w \models \arrowdiam{U}\psi$ iff $\modults,w \models \arrowdiam{U}\varphi \vee \arrowdiam{U}\psi$.
+	
+	\item For \axm{RKh}, let $U = (\theta,\theta')$, by the definition of $\arrowdiam{U}$, $\modults,w \models \arrowdiam{U}\khi(\varphi,\psi)$ iff $\arrowmodelU,w \models \khi(\varphi,\psi)$.
+	Using the definition of $\khi$, $\arrowmodelU,w \models \khi(\varphi,\psi)$ iff there is $\plans \in (\arrowsemantics{\Unc}{U})_i$ with $\plans \subseteq \ACT$ s.t. $\truthset{\arrowmodelU}{\varphi} \subseteq \stexec^{\arrowmodelU}(\plans)$ and $\R'_\plans(\truthset{\arrowmodelU}{\varphi}) \subseteq \truthset{\arrowmodelU}{\psi}$.
+	By the definition of $\arrowmodelU$, $(\arrowsemantics{\Unc}{\chi})_i=\Unc(i)$. Using the definition of $\arrowdiam{U}$, $\truthset{\arrowmodelU}{\varphi} = \truthset{\modults}{\arrowdiam{U}\varphi}$ and $\truthset{\arrowmodelU}{\psi} = \truthset{\modults}{\arrowdiam{U}\psi}$.
+	Thus, $\arrowmodelU,w \models \khi(\varphi,\psi)$ iff there is $\plans \in \Unc(i)$ with $\plans \subseteq \ACT$ s.t. $\truthset{\modults}{\arrowdiam{U}\varphi} \subseteq \stexec^{\arrowmodelU}(\plans)$ and $\R'_\plans(\truthset{\modults}{\arrowdiam{U}\varphi}) \subseteq \truthset{\modults}{\arrowdiam{U}\psi}$.
+	Let $a \in \plans$ and $w \in \arrowsemantics{\W}{U}$. If $w \in \truthset{\modults}{\arrowdiam{U}\varphi}$, then:
+	\begin{itemize}
+	\item $(\arrowsemantics{\R}{U})_a(w) \neq \emptyset$ (since $w \in \stexec^{\arrowmodelU}(a)$) and
+	\item $(\arrowsemantics{\R}{U})_a(w) \subseteq \truthset{\modults}{\arrowdiam{U}\psi}$.
+	\end{itemize}
+	Using \Cref{def:arrowupdate}, the first item is equivalent to $w \in \truthset{\modults}{\theta}$, $\R_a(w) \subseteq \truthset{\modults}{\theta'}$ and $\R_a(w) \neq \emptyset$ and with this information, $(\arrowsemantics{\R}{U})_a(w) = \R_a(w)$ that is useful for the second item.
+	Hence, if $w \in \truthset{\modults}{\arrowdiam{U}\varphi}$, then:
+	\begin{itemize}
+	\item $w \in \truthset{\modults}{\theta}$,
+	\item $\R_a(w) \neq \emptyset$ (thus, $w \in \stexec^\modults(a)$),
+	\item $\R_a(w) \subseteq \truthset{\modults}{\theta'}$ and $\R_a(w) \subseteq \truthset{\modults}{\arrowdiam{U}\psi}$.
+	\end{itemize}
+	Since the first item is independent from $\plans$, we can put it outside of the expression.
+	With some minor adjustments we have that $\modults,w \models \A(\arrowdiam{U}\varphi \implies \theta)$ and if $w \in \truthset{\modults}{\arrowdiam{U}\varphi}$, then:
+	\begin{itemize}
+	\item $\R_a(w) \neq \emptyset$ (thus, $w \in \stexec^\modults(a)$),
+	\item $\R_a(w) \subseteq \truthset{\modults}{\theta' \wedge \arrowdiam{U}\psi}$.
+	\end{itemize}
+	
+	Since we prove for arbitrary $a \in \plans$ and $w \in \arrowsemantics{\W}{U} = \W$, the result yields for all $a \in \plans$ and $w \in \arrowsemantics{\W}{U} = \W$.
+	Now $\arrowmodelU,w \models \khi(\varphi,\psi)$ iff $\modults,w \models \A(\arrowdiam{U}\varphi \implies \theta)$ and there is $\plans \in \Unc(i)$ with $\plans \subseteq \ACT$ s.t. $\truthset{\modults}{\arrowdiam{U}\varphi} \subseteq \stexec(\plans)$ and $\R_\plans(\arrowdiam{U}\varphi) \subseteq \truthset{\modults}{\theta' \wedge \arrowdiam{U}\psi}$.
+	This happens iff $\modults,w \models (\A(\arrowdiam{U}\varphi \implies \theta) \wedge \khi(\arrowdiam{U}\varphi,\theta' \wedge \arrowdiam{U}\psi))$ with $U = (\theta,\theta')$.
+	\end{itemize}
+\end{proof}
+
+As a consequence, we again obtain the intended result.
+
+\medskip 
+
 \begin{theorem}\label{th:aulcomplete}
 $\axset_{\khi}$ together with the reduction axioms for $[U]$ in~\Cref{tab:aulaxiom} are a sound and strongly complete axiomatization for $\AUKHilogic$ w.r.t. $\cultsba$.
 \end{theorem}
@@ -97,5 +148,5 @@ To finish this section, we show that the satisfiability problem for $\AUKHilogic
 The satisfiability problem for $\AUKHilogic$ over $\cultsba$ is decidable.
 \end{corollary}
 \begin{proof}
-Similar to~\Cref{cor:palsat}.
+Similar to~\Cref{cor:palsat} (using~\Cref{lemma:arrow-kh-valid}).
 \end{proof}
