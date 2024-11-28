@@ -148,121 +148,128 @@ Note that this definition exploits the fact that the knowing how modality cannot
 As a corollary for the truth lemma (stated in \Cref{tlm:cm-ults-lkhi}), given a formula, we can construct a model where the actions the agent is considering do not appear in the formula at all.
 % This will become useful for proving decidability.
 
-Let $\Gamma \in \smcs$, the following properties about the canonical model $\modults^\Gamma$ are useful in what follows (proofs are similar to the ones in~\cite{Wang2016}). \raul{O sacamos las pruebas o sacamos el comentario acerca de que son similares.} Below, we refer to actions $\tup{\psi,\varphi}$ to be those in $\ACT^\Gamma\setminus\ACT$.
+Let $\Gamma \in \smcs$, the following properties about the canonical model $\modults^\Gamma$ are useful in what follows (cf.~\cite{Wang2016,AFSVQ23report} for proofs of these properties). Below, we refer to actions $\tup{\psi,\varphi}$ to be those in $\ACT^\Gamma\setminus\ACT$.
 
 \medskip
-\raul{I didn't check the rest of the proofs for axiom, I'll do it if we keep proofs.}
 
 \begin{proposition}\label{pro:cm-ults-khiml-allsame}
 For any $\Delta_1, \Delta_2 \in \W^\Gamma$ we have $\restarbitrary{\Delta_1} = \restarbitrary{\Delta_2}$, $\restnarbitrary{\Delta_1} = \restnarbitrary{\Delta_2}$ for $\arbitrary \in \set{\khi,\kh,\A}$.
 \end{proposition}
-\begin{proof}
-$\resta{\Delta_1} = \resta{\Delta_2}$ is straightforward from the definition of $\W^\Gamma$.
-Using \axm{4KhA} and \axm{TA}, we can get $\vdash \khi(\psi,\varphi) \lra \A\khi(\psi,\varphi)$.
-Since we are working with MCSs and using \axm{MP}, $\khi(\psi,\varphi) \in \restkhi{\Delta_1}$ iff $\A\khi(\psi,\varphi) \in \resta{\Delta_1} = \resta{\Delta_2}$.
-This is equivalent to $\khi(\psi,\varphi) \in \restkhi{\Delta_2}$ and thus, $\restkhi{\Delta_1} = \restkhi{\Delta_2}$.
-As a consequence, $\restkh{\Delta_1} = \restkh{\Delta_2}$.
-For $\restnarbitrary{\Delta_1} = \restnarbitrary{\Delta_2}$, the following equivalences hold true:
-$\neg\chi \in \restnarbitrary{\Delta_1}$ iff $\chi \not\in \restarbitrary{\Delta_1}$ iff $\chi \not\in \restarbitrary{\Delta_2}$ iff $\neg\chi \in \restnarbitrary{\Delta_2}$.
-\end{proof}
+% \begin{proof}
+% $\resta{\Delta_1} = \resta{\Delta_2}$ is straightforward from the definition of $\W^\Gamma$.
+% Using \axm{4KhA} and \axm{TA}, we can get $\vdash \khi(\psi,\varphi) \lra \A\khi(\psi,\varphi)$.
+% Since we are working with MCSs and using \axm{MP}, $\khi(\psi,\varphi) \in \restkhi{\Delta_1}$ iff $\A\khi(\psi,\varphi) \in \resta{\Delta_1} = \resta{\Delta_2}$.
+% This is equivalent to $\khi(\psi,\varphi) \in \restkhi{\Delta_2}$ and thus, $\restkhi{\Delta_1} = \restkhi{\Delta_2}$.
+% As a consequence, $\restkh{\Delta_1} = \restkh{\Delta_2}$.
+% For $\restnarbitrary{\Delta_1} = \restnarbitrary{\Delta_2}$, the following equivalences hold true:
+% $\neg\chi \in \restnarbitrary{\Delta_1}$ iff $\chi \not\in \restarbitrary{\Delta_1}$ iff $\chi \not\in \restarbitrary{\Delta_2}$ iff $\neg\chi \in \restnarbitrary{\Delta_2}$.
+% \end{proof}
+
+\medskip
 
 \begin{proposition}\label{pro:cm-ults-khiml-oneall}
 Take $\Delta \in \W^\Gamma$. If $\Delta$ has a $\R^\Gamma_{\tup{\psi,\varphi}}$-successor, then every $\Delta' \in \W^\Gamma$ with $\varphi \in \Delta'$ can be $\R^\Gamma_{\tup{\psi,\varphi}}$-reached from $\Delta$.
 \end{proposition}
-\begin{proof}
-If $\Delta$ has a $\R^\Gamma_{\tup{\psi,\varphi}}$-successor, then it has a $\R^\Gamma_{\tup{\psi,\varphi}^i}$-successor for some $i \in \AGT$; thus, $\psi \in \Delta$ and $\khi(\psi,\varphi) \in \Gamma$.
-Hence, every $\Delta' \in \W^\Gamma$ with $\varphi \in \Delta'$ is such that $(\Delta, \Delta') \in \R^\Gamma_{\tup{\psi,\varphi}^i}$, and thus such that $(\Delta, \Delta') \in \R^\Gamma_{\tup{\psi,\varphi}}$.
-\end{proof}
+% \begin{proof}
+% If $\Delta$ has a $\R^\Gamma_{\tup{\psi,\varphi}}$-successor, then it has a $\R^\Gamma_{\tup{\psi,\varphi}^i}$-successor for some $i \in \AGT$; thus, $\psi \in \Delta$ and $\khi(\psi,\varphi) \in \Gamma$.
+% Hence, every $\Delta' \in \W^\Gamma$ with $\varphi \in \Delta'$ is such that $(\Delta, \Delta') \in \R^\Gamma_{\tup{\psi,\varphi}^i}$, and thus such that $(\Delta, \Delta') \in \R^\Gamma_{\tup{\psi,\varphi}}$.
+% \end{proof}
+
+\medskip
 
 \begin{proposition}\label{pro:cm-ults-khiml-allall}
 Let $\varphi$ be an $\KHiMLlogic$-formula. If $\varphi \in \Delta$ for every $\Delta \in \W^\Gamma$, then $\A\varphi \in \Delta$ for every $\Delta \in \W^\Gamma$.
 \end{proposition}
 
-\begin{proof}
-Let $\Delta$ in $\W^\Gamma \subseteq \smcs$. By definition, $(\resta{\Delta} \cup \restna{\Delta}) \subseteq \Delta$, and therefore it is consistent.
-Moreover: any of its maximally consistent extensions, say $\Delta'$, should satisfy $\resta{\Delta} = \resta{\Delta'}$.
-Since it is an extension, $\resta{\Delta} \subseteq \resta{\Delta'}$.
-If $\A\chi \notin \resta{\Delta}$, then $\A\chi \notin \Delta$.
-Thus, $\neg\A\chi \in \restna{\Delta} \subseteq \restna{\Delta'} \subseteq \Delta'$ and with this $\A\chi \notin \resta{\Delta'}$.
+% \begin{proof}
+% Let $\Delta$ in $\W^\Gamma \subseteq \smcs$. By definition, $(\resta{\Delta} \cup \restna{\Delta}) \subseteq \Delta$, and therefore it is consistent.
+% Moreover: any of its maximally consistent extensions, say $\Delta'$, should satisfy $\resta{\Delta} = \resta{\Delta'}$.
+% Since it is an extension, $\resta{\Delta} \subseteq \resta{\Delta'}$.
+% If $\A\chi \notin \resta{\Delta}$, then $\A\chi \notin \Delta$.
+% Thus, $\neg\A\chi \in \restna{\Delta} \subseteq \restna{\Delta'} \subseteq \Delta'$ and with this $\A\chi \notin \resta{\Delta'}$.
 
-For the proof of the proposition, suppose $\varphi \in \Delta$ for every $\Delta \in \W^\Gamma$.
-Take any $\Delta \in \W^\Gamma$, and note how $\resta{\Delta} = \resta{\Gamma}$.
-Then, the set $\resta{\Delta} \cup \restna{\Delta} \cup \set{\lnot \varphi}$ is inconsistent. Otherwise it could be extended into a MCS $\Delta' \in \smcs$.
-By the result in the previous paragraph, this would imply $\resta{\Delta'} = \resta{\Delta}$, so $\resta{\Delta'} = \resta{\Gamma}$ and therefore $\Delta' \in \W^\Gamma$. But then, by the assumption, $\varphi \in \Delta'$, and by construction, $\lnot \varphi \in \Delta'$.
-This would make $\Delta'$ inconsistent, a contradiction.
+% For the proof of the proposition, suppose $\varphi \in \Delta$ for every $\Delta \in \W^\Gamma$.
+% Take any $\Delta \in \W^\Gamma$, and note how $\resta{\Delta} = \resta{\Gamma}$.
+% Then, the set $\resta{\Delta} \cup \restna{\Delta} \cup \set{\lnot \varphi}$ is inconsistent. Otherwise it could be extended into a MCS $\Delta' \in \smcs$.
+% By the result in the previous paragraph, this would imply $\resta{\Delta'} = \resta{\Delta}$, so $\resta{\Delta'} = \resta{\Gamma}$ and therefore $\Delta' \in \W^\Gamma$. But then, by the assumption, $\varphi \in \Delta'$, and by construction, $\lnot \varphi \in \Delta'$.
+% This would make $\Delta'$ inconsistent, a contradiction.
 
-Hence, there should be sets $\set{\A\psi_1, \ldots, \A\psi_n} \subseteq \resta{\Delta}$ and $\set{\lnot \A\psi'_1, \ldots, \lnot \A\psi'_m} \subseteq \restna{\Delta}$ such that
+% Hence, there should be sets $\set{\A\psi_1, \ldots, \A\psi_n} \subseteq \resta{\Delta}$ and $\set{\lnot \A\psi'_1, \ldots, \lnot \A\psi'_m} \subseteq \restna{\Delta}$ such that
 
-\begin{ctabular}{c}
-$\vdash
-\displaystyle
-\left( \bigwedge_{k=1}^{n} \A\psi_k \land \bigwedge_{k=1}^{m} \lnot \A\psi'_k \right)
-\ra \varphi$.
-\end{ctabular}
+% \begin{ctabular}{c}
+% $\vdash
+% \displaystyle
+% \left( \bigwedge_{k=1}^{n} \A\psi_k \land \bigwedge_{k=1}^{m} \lnot \A\psi'_k \right)
+% \ra \varphi$.
+% \end{ctabular}
 
-Hence, by \axm{NECA},
+% Hence, by \axm{NECA},
 
-\begin{ctabular}{@{}c@{}}
-$\vdash
-\displaystyle
-\A
-\left(
-\left( \bigwedge_{k=1}^{n} \A\psi_k \land \bigwedge_{k=1}^{m} \lnot \A\psi'_k \right)
-\ra \varphi
-\right)$
-\end{ctabular}
+% \begin{ctabular}{@{}c@{}}
+% $\vdash
+% \displaystyle
+% \A
+% \left(
+% \left( \bigwedge_{k=1}^{n} \A\psi_k \land \bigwedge_{k=1}^{m} \lnot \A\psi'_k \right)
+% \ra \varphi
+% \right)$
+% \end{ctabular}
 
-and then, by \axm{DISTA} and \axm{MP},
+% and then, by \axm{DISTA} and \axm{MP},
 
-\begin{ctabular}{@{}c@{}}
-$\vdash
-\displaystyle
-\A\left( \bigwedge_{k=1}^{n} \A\psi_k \land \bigwedge_{k=1}^{m} \lnot \A\psi'_k \right)
-\ra \A\varphi$.
-\end{ctabular}
+% \begin{ctabular}{@{}c@{}}
+% $\vdash
+% \displaystyle
+% \A\left( \bigwedge_{k=1}^{n} \A\psi_k \land \bigwedge_{k=1}^{m} \lnot \A\psi'_k \right)
+% \ra \A\varphi$.
+% \end{ctabular}
 
-Now, $\A\psi_k \in \resta{\Delta}$ implies (\axm{4KhA} and \axm{MP}) that $\A\A\psi_k \in \Delta$ (for each $k \in \intint{1}{n}$).
-Similarly, $\lnot \A\psi'_k \in \restna{\Delta}$ implies (\axm{5KhA} and \axm{MP}) that $\A \lnot \A\psi'_k \in \Delta$ (for each $k \in \intint{1}{m}$). Thus,
+% Now, $\A\psi_k \in \resta{\Delta}$ implies (\axm{4KhA} and \axm{MP}) that $\A\A\psi_k \in \Delta$ (for each $k \in \intint{1}{n}$).
+% Similarly, $\lnot \A\psi'_k \in \restna{\Delta}$ implies (\axm{5KhA} and \axm{MP}) that $\A \lnot \A\psi'_k \in \Delta$ (for each $k \in \intint{1}{m}$). Thus,
 
-\begin{ctabular}{c}
-$\displaystyle
-\bigwedge_{k=1}^{n} \A\A\psi_k \in \Delta \qquad\text{and}\qquad
-\bigwedge_{k=1}^{m} \A\lnot\A\psi'_k \in \Delta$
-\end{ctabular}
+% \begin{ctabular}{c}
+% $\displaystyle
+% \bigwedge_{k=1}^{n} \A\A\psi_k \in \Delta \qquad\text{and}\qquad
+% \bigwedge_{k=1}^{m} \A\lnot\A\psi'_k \in \Delta$
+% \end{ctabular}
 
-and hence
+% and hence
 
-\begin{ctabular}{c}
-$\displaystyle
-\bigwedge_{k=1}^{n} \A\A\psi_k \land
-\bigwedge_{k=1}^{m} \A\lnot\A\psi'_k \in \Delta,
-\quad \text{so} \quad
-\A
-\left(
-\bigwedge_{k=1}^{n} \A\psi_k \land
-\bigwedge_{k=1}^{m} \lnot\A\psi'_k
-\right)
-\in \Delta$
-\end{ctabular}
+% \begin{ctabular}{c}
+% $\displaystyle
+% \bigwedge_{k=1}^{n} \A\A\psi_k \land
+% \bigwedge_{k=1}^{m} \A\lnot\A\psi'_k \in \Delta,
+% \quad \text{so} \quad
+% \A
+% \left(
+% \bigwedge_{k=1}^{n} \A\psi_k \land
+% \bigwedge_{k=1}^{m} \lnot\A\psi'_k
+% \right)
+% \in \Delta$
+% \end{ctabular}
 
-and therefore $\A\varphi \in \Delta$.
-\end{proof}
+% and therefore $\A\varphi \in \Delta$.
+% \end{proof}
+
+\medskip
 
 \begin{proposition}\label{pro:cm-ults-khiml-succpre}
 Take $\psi, \psi', \varphi'$ in $\KHiMLlogic$. Suppose that every $\Delta \in \W^\Gamma$ with $\psi \in \Delta$ has a $\R^{\Gamma}_{\tup{\psi',\varphi'}}$-successor. Then, $\A(\psi \ra \psi') \in \Delta$ for all $\Delta \in \W^\Gamma$.
 \end{proposition}
-\begin{proof}
-Take any $\Delta \in \W^\Gamma$. On one hand, if $\psi \in \Delta$ then, by the hypothesis, $(\Delta, \Delta') \in \R^{\Gamma}_{\tup{\psi',\varphi'}}$ for some $\Delta'$.
-From $\R^{\Gamma}_{\tup{\psi',\varphi'}}$'s definition, $\psi' \in \Delta$ and by maximal consistency $\psi \ra \psi' \in \Delta$.
-On the other hand, if $\psi \not\in \Delta$, then by maximal consistency, $\lnot \psi \in \Delta$ and $\psi \ra \psi' \in \Delta$.
-Thus, $\psi \ra \psi' \in \Delta$ for every $\Delta \in \W^\Gamma$; then, by \Cref{pro:cm-ults-khiml-allall}, $\A(\psi \ra \psi') \in \Delta$ for every $\Delta \in \W^\Gamma$.
-\end{proof}
+% \begin{proof}
+% Take any $\Delta \in \W^\Gamma$. On one hand, if $\psi \in \Delta$ then, by the hypothesis, $(\Delta, \Delta') \in \R^{\Gamma}_{\tup{\psi',\varphi'}}$ for some $\Delta'$.
+% From $\R^{\Gamma}_{\tup{\psi',\varphi'}}$'s definition, $\psi' \in \Delta$ and by maximal consistency $\psi \ra \psi' \in \Delta$.
+% On the other hand, if $\psi \not\in \Delta$, then by maximal consistency, $\lnot \psi \in \Delta$ and $\psi \ra \psi' \in \Delta$.
+% Thus, $\psi \ra \psi' \in \Delta$ for every $\Delta \in \W^\Gamma$; then, by \Cref{pro:cm-ults-khiml-allall}, $\A(\psi \ra \psi') \in \Delta$ for every $\Delta \in \W^\Gamma$.
+% \end{proof}
+
+\medskip
 
 With these properties at hand, we can prove the truth lemma for $\modults^\Gamma$.
 
 \medskip
 
-\begin{lemma}[Truth lemma for $\modults^\Gamma$]\label{tlm:cm-ults-lkhi}
+\begin{lemma}[Truth lemma]\label{tlm:cm-ults-lkhi}
 Given $\Gamma \!\in\! \smcs$, take $\modults^\Gamma = \tup{\W^\Gamma, \R^\Gamma, \set{\Unc^\Gamma_i}_{i \in \AGT}, \V^\Gamma}$. Then, for every $\Theta \in \W^\Gamma$ and every $\varphi \in \KHiMLlogic$,  % $\modults^\Gamma, \Theta \models \varphi$ if and only if $\varphi \in \Theta$. 
 \[
 \modults^\Gamma, \Theta \models \varphi \mbox{ if and only if } \varphi \in \Theta.
@@ -270,7 +277,7 @@ Given $\Gamma \!\in\! \smcs$, take $\modults^\Gamma = \tup{\W^\Gamma, \R^\Gamma,
 \end{lemma}
 \begin{proof}
 The proof is by induction on $\varphi$.
-The atom and Boolean cases behave as usual, so we focus on the $\khi$ and $\square$ cases.
+The atomic and Boolean cases behave as usual, so we focus on the $\khi$ and $[a]$ cases.
 
 \begin{itemize}
 \item \textbf{Case $\mlbox{a}\chi$}: $(\Rightarrow)$ Suppose $\modults^\Gamma,\Theta \models \mlbox{a}\chi$. Then, by the definition of $\models$ and IH, for all $\Delta \in \R^\Gamma_a(\Theta)$, $\chi \in \Delta$.
