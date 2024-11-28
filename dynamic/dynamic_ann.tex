@@ -287,14 +287,14 @@ To finish this section, we prove that the satisfiability problem for $\PAKHilogi
 The satisfiability problem for $\PAKHilogic$ over $\cultsba$ is decidable.
 \end{corollary}
 \begin{proof}
-Given a $\varphi$ from $\PAKHilogic$, it can be translated to an equivalent formula $\varphi'$ from $\KHilogic$ in $\cultsba$ (\Cref{tab:palaxiom}) in a finite amount of steps.
+Let $\varphi$ be a formula of $\PAKHilogic$. By using the reduction axioms from~\Cref{tab:palaxiom} repeatedly, $\varphi$ can be translated (in a finite amount of steps) into a formula $\varphi'$, such that $\varphi$ and $\varphi'$ are equivalent in the class $\cultsba$ (\Cref{lemma:palkh-valid}). 
 Since the satisfiability problem for $\KHilogic$ is decidable (\cite{AFSVQ21,AFSVQ23report}), there is a procedure, although non-deterministic, such that in a finite amount of steps determines whether $\varphi'$ is satisfiable or not.
-After that, there are two possible results:
+As a result, there are two possible outcomes:
 \begin{inlineenum}
-\item If $\varphi'$ is satisfiable, then it is in $\cultsfnu$ (\Cref{cor:satcultsker}).
-As $\cultsfnu \subseteq \cultsba$, since each $\Unc(i)$ has singleton sets of actions, then $\varphi$ is satisfiable in $\cultsba$.
-\item If $\varphi'$ is not satisfiable, then neither it is in $\cultsba$. Then, $\varphi$ is not in $\cultsba$.
+\item If $\varphi'$ is satisfiable, then it is satisfiable in the class $\cultsba$, since as established in~\cite{AFSVQ21,AFSVQ23report}, every formula is satisfiable if it satisfiable in a finite model where each $\Unc(i)\subseteq\set{\set{a} \mid a\in\ACT}$, a subclass of models strictly contained in $\cultsba$.  
+% As $\cultsfnu \subseteq \cultsba$, since each $\Unc(i)$ has singleton sets of actions, then $\varphi$ is satisfiable in $\cultsba$.
+\item If $\varphi'$ is not satisfiable, then clearly neither it is satisfiable in $\cultsba$. %Then, $\varphi$ is not in $\cultsba$.
 \end{inlineenum}
-Thus, there is a procedure that computes satisfiability $\PAKHilogic$ over $\cultsba$. \raul{I do not understant the proof, a formula is not in a class of models}
+Thus, there is a procedure that decides satisfiability of $\PAKHilogic$ over $\cultsba$. 
 \end{proof}
 

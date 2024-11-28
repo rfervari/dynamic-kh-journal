@@ -210,7 +210,10 @@ Notice that agent $i$ knows how to get a good cake, provided that she has all th
 that agent $i$ \emph{distinguishes} $\mathit{ebfmsp}$ as the ``good plan''. On the other hand, as $j$ considers that adding milk and adding flour can be done in any order (i.e., $\mathit{ebfmsp}$ and $\mathit{ebmfsp}$ are indistinguishable), and we have $\modults\not\models\kh_j(h,g)$.
 \end{example}
 
-\ssparagraph{Bisimulations.} Bisimulation is a crucial tool for understanding the expressive power of a formal language. Here we review the notion of bisimulation for $\KHilogic$ over \ultss, first introduced in~\cite{AFSVQ23report}. We start by providing some useful abbreviations.
+\medskip 
+
+%\ssparagraph{Bisimulations.} 
+In order to understand the expressive power of a formal language, \emph{bisimulation} is a crucial tool. Here we review the notion of bisimulation for $\KHilogic$ over \ultss, first introduced in~\cite{AFSVQ23report}. We start by providing some useful abbreviations.
 
 \medskip
 
@@ -226,8 +229,12 @@ Additionally, $U \subseteq \W$ is propositionally definable in $\modults$ if and
 
 \medskip
 
+Now we are in position to introduce the notion of bisimulation for $\KHilogic$. 
+
+\medskip 
+
 \begin{definition}[$\KHilogic$-bisimulation]\label{def:bisim-khi}
-Let $\modults{=}\tup{\W,\R,\set{\Unc(i)}_{i\in\AGT},\V}$ and $\modults'{=}\tup{\W',\R',\set{\Unc'_i}_{i\in\AGT},\V'}$ be $\ultss$.
+Let $\modults = \tup{\W,\R,\set{\Unc(i)}_{i\in\AGT},\V}$ and $\modults' = \tup{\W',\R',\set{\Unc'(i)}_{i\in\AGT},\V'}$ be $\ultss$.
 %Take $Z \subseteq \W \times \W'$, $u \in \W$, $U \subseteq \W$, $u' \in \W'$, and $U' \subseteq \W'$.
 %\begin{itemize}\itemsep 0cm
 %  \item Let %$Z(u)$, $Z(U) \subseteq \W'$ as
@@ -288,10 +295,13 @@ The following theorem establishes a classical adequacy result.
 Let $\modults,w$ and $\modults',w'$ be two \ultss. $\modults,w\bisim\modults',w'$ implies $\modults,w\models\varphi$ iff $\modults',w'\models\varphi$, for all $\KHilogic$-formulas $\varphi$. %Moreover, if $\modults$ and $\modults'$ are finite, the converse also holds.
 \end{theorem}
 
-\ssparagraph{Axiomatization.} Another important element to consider in this paper is the axiom system for $\KHilogic$ \cite{AFSVQ21,AFSVQ23report}. 
+\medskip 
+
+% \ssparagraph{Axiomatization.} 
+
+Another important element to consider in this paper is the axiom system for $\KHilogic$~\cite{AFSVQ21,AFSVQ23report}. 
 
 \begin{table}[t]
-
 \begin{tabular}{l@{\quad \quad  }l@{\quad}l}
 \toprule
 $\mbox{Axioms}$
@@ -313,13 +323,13 @@ $\mbox{Axioms}$
 
 \medskip
 
-\begin{theorem}[\cite{AFSVQ21}]\label{th:khi-completeness}
+\begin{theorem}[\cite{AFSVQ21,AFSVQ23report}]\label{th:khi-completeness}
 The axiom system from~\Cref{tab:khiaxiom} is sound and strongly complete with respect to the class of all \ultss.
 \end{theorem}
 
 \medskip
 
-It is worth noticing that the axiom \axm{KhE}, $\left(\E\psi \land \khi(\psi,\varphi)\right) \rightarrow \E\varphi$, in omitted here. This is due to the fact that it is derivable in the system.
+It is worth noticing that the axiom \axm{KhE}, $\left(\E\psi \land \khi(\psi,\varphi)\right) \rightarrow \E\varphi$, is omitted here. This is due to the fact that it is derivable in the system.
 This is achieved by proving an equivalent expression
 % , $\left(\E\psi \land \khi(\psi,\varphi) \land \A \neg\varphi \right) \rightarrow \bot$, using \axm{KhA}. %\raul{To write down the syntactic proof in detail here.}
 
@@ -367,16 +377,29 @@ And by definition of $\bot$,
 
 Given the implications in \Cref{eq:khe1} and \Cref{eq:khe2}, by transitivity we get \Cref{eq:khe0}.
 
-\ssparagraph{Complexity.} Strong completeness of the axiomatization above is established in~\cite{AFSVQ21} via a canonical model construction. Moreover, a small (polynomial) model property can be proved using selection functions and, as a corollary, the satisfiability and model checking problems of $\KHilogic$ are \NP-complete and \Poly, respectively~\cite{AFSVQ21,AFSVQ23report}. As a consequence, we have the following corollary.
+\medskip 
 
-\medskip
+% \ssparagraph{Complexity.} 
 
-\begin{corollary}\label{cor:satcultsker} \carlos{Este resultado esta fuera de lugar acá. No se estiende su relación con complejidad ni su utilidad.}
-Let $\cultsfnu $ be the class of all finite \ultss such that the agents consider only basic actions distinguishable from each other (\textbf{FNU}): \raul{there are two notations, \textbf{NU} and \textbf{FNU}. Are both necessary? or are they always used together?}
-\[
-\cultsfnu := \setof{\modults}{\modults \text{ is a finite \ults and for all } i \in \AGT,\ \Unc(i) \subseteq  \setof{\set{a}}{a \in \ACT}}.
-\]
-Then, $\varphi$ is satisfiable if and only if $\varphi$ is satisfiable in $\cultsfnu$, i.e., there is $\modults \in \cultsfnu$ and $w \in \D{\modults}$ such that $\modults,w \models \varphi$.
-\end{corollary}
+Strong completeness of the axiomatization above is established in~\cite{AFSVQ21,AFSVQ23report} via a canonical model construction. By taking such a model, and selecting relevant pieces of it, we can prove a small (polynomial) model property. This property is important in establishing complexity results.
+
+\medskip 
+
+\begin{theorem}[\cite{AFSVQ21,AFSVQ23report}]
+    The model-checking problem for $\KHiMLlogic$ is in \Poly, while the satisfiability problem for $\KHiMLlogic$ is \NP-complete.
+\end{theorem}
+
+
+% Moreover, a small (polynomial) model property can be proved using selection functions and, as a corollary, the satisfiability and model checking problems of $\KHilogic$ are \NP-complete and \Poly, respectively~\cite{AFSVQ21,AFSVQ23report}. As a consequence, we have the following corollary.
+
+% \medskip
+
+% \begin{corollary}\label{cor:satcultsker} \carlos{Este resultado esta fuera de lugar acá. No se estiende su relación con complejidad ni su utilidad.}
+% Let $\cultsfnu $ be the class of all finite \ultss such that the agents consider only basic actions distinguishable from each other (\textbf{FNU}): \raul{there are two notations, \textbf{NU} and \textbf{FNU}. Are both necessary? or are they always used together?}
+% \[
+% \cultsfnu := \setof{\modults}{\modults \text{ is a finite \ults and for all } i \in \AGT,\ \Unc(i) \subseteq  \setof{\set{a}}{a \in \ACT}}.
+% \]
+% Then, $\varphi$ is satisfiable if and only if $\varphi$ is satisfiable in $\cultsfnu$, i.e., there is $\modults \in \cultsfnu$ and $w \in \D{\modults}$ such that $\modults,w \models \varphi$.
+% \end{corollary}
 
 \medskip
