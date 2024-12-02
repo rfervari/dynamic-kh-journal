@@ -86,37 +86,42 @@ Finally, \Cref{item:khiml-fil} can be rewritten as $([w]_\Sigma,[v]_\Sigma) \in 
 \end{itemize}
 
 Moreover, $[w]_\Sigma \in \stexec(a_{[\plans]_\Sigma})$ iff $[w]_\Sigma \subseteq \bigcap_{\plans' \in G_{[\plans]_\Sigma}} \stexec(\plans')$.
-To illustrate a filtration we present the following example.
+The following example illustrates how filtrations preserve relevant information for evaluating formulas from the input set of formulas $\Sigma$.
 
-\begin{example}
-Let $\modults = \tup{\W,\R, \set{\Unc(i)}_{i\in \AGT}, \V}$ be an \ults defined over $\ACT = \setof{a_i,b_i}{i \in \mathbb{N}}$ s.t.
+\medskip
+
+\begin{example}\label{ex:afiltration}
+Let $\modults = \tup{\W,\R, \set{\Unc(i)}_{i\in \AGT}, \V}$ be an \ults defined over $\AGT=\set{k,j}$ and $\ACT = \setof{a_i,b_i}{i \in \natnum}$ as: 
 \begin{enumerate}
 \item $\W =
-\setof{w^i_1}{i \in \mathbb{N}} \cup
-\setof{w^i_2}{i \in \mathbb{N}} \cup
-\setof{v^i}{i \in \mathbb{N}}$;
+\setof{w^i_1}{i \in \natnum} \cup
+\setof{w^i_2}{i \in \natnum} \cup
+\setof{v^i}{i \in \natnum}$;
 \item
-$\R_{a_i} = \setof{(w^i_1,w^j_2)}{j \in \mathbb{N}}$,
+$\R_{a_i} = \setof{(w^i_1,w^j_2)}{j \in \natnum}$,
 $\R_{b_i} = \set{(w^i_2,v^i)}$;
 \item
-$\Unc(i) = \setof{\set{a_i b_i}}{i \in \mathbb{N}} \cup \set{\set{a_1}}$,
-$\Unc(j) = \setof{\set{a_i}}{i \in \mathbb{N}} \setminus \set{\set{a_1}}$,
-$\Unc(k) = \set{\set{a_1 b_1}}$;
-\item $\V(w^i_1) = \set{p}$, $\V(w^i_2) = \set{r}$, $\V(v^i) = \set{q,s^i}$.
+$\Unc(k) = \set{\plans_1,\plans_2,\plans_3}$, where  $\plans_1=\set{a_1b_1}$, $\plans_2=\set{a_1}$, and $\plans_3= \setof{a_i b_i}{i \in \natnum\setminus\set{1}}$; and 
+$\Unc(j) = \setof{\set{a_i}}{i \in \natnum}$, 
+% $\Unc(k) = \set{\set{a_1 b_1}}$;
+\item $\V(w^i_1) = \set{p}$, $\V(w^i_2) = \set{r}$, $\V(v^i) = \set{q,s^i}$, for all $i\in\natnum$.
 \end{enumerate}
 
-\vspace{.25cm}
+\medskip
+
+The model just defined is depicted below:
+
 \begin{center}
 \begin{tikzpicture}[->]
-\node [state, label=left:\small$w^1_1$] (w11) {$p$};
-\node [state, label=above:\small$w^1_2$, right = 1cm of w11] (w12) {$r$};
-\node [state, label=right:\small$v^1$, right = 1cm of w12] (v1) {$q,s^1$};
-\node [state, label=left:\small$w^2_1$, below = 1.5cm of w11] (w21) {$p$};
-\node [state, label=above:\small$w^2_2$, right = 1cm of w21] (w22) {$r$};
-\node [state, label=right:\small$v^2$, right = 1cm of w22] (v2) {$q,s^2$};
-\node [below = 0.1cm of w21] (w31) {$\vdots$};
-\node [right = 1cm of w31] (w32) {$\vdots$};
-\node [right = 1.25cm of w32] (v3) {$\vdots$};
+\node [state, label=above:\small$w^1_1$] (w11) {$p$};
+\node [state, label=above:$w^1_2$, right = 1.8cm of w11] (w12) {$r$};
+\node [state, label=above:\small$v^1$, right = 1.8cm of w12] (v1) {$q,s^1$};
+\node [state, label=below:\small$w^2_1$, below = 1.5cm of w11] (w21) {$p$};
+\node [state, label=below:\small$w^2_2$, right = 1.8cm of w21] (w22) {$r$};
+\node [state, label=below:\small$v^2$, right = 1.8cm of w22] (v2) {$q,s^2$};
+\node [below = 0.35cm of w21] (w31) {$\vdots$};
+\node [right = 1.85cm of w31] (w32) {$\vdots$};
+\node [right = 2cm of w32] (v3) {$\vdots$};
 
 \path (w11) edge[right] node [label-edge, above] {$a_1$} (w12);
 \path (w11) edge[right] node [label-edge, right] {$a_2$} (w22);
@@ -127,45 +132,62 @@ $\Unc(k) = \set{\set{a_1 b_1}}$;
 \path (w22) edge[right] node [label-edge, above] {$b_2$} (v2);
 \end{tikzpicture}
 \end{center}
-\vspace{.25cm}
 
-Given $\Sigma = \set{\khi(p,q),\khi(p,r),\kh_j(p,q),p,q,r,\mlbox{b_1} q}$, with $[\plans_1]_\Sigma = [\set{a_1 b_1}]_\Sigma$ and $[\plans_2]_\Sigma = [\set{a_1}]_\Sigma$ being the equivalence classes for the plans. A possible filtration would be $\modults^f = \tup{\W^f,\R^f, \set{\Unc^f(i)}_{i\in \AGT}, \V^f}$ s.t.
-\begin{enumerate}
-\item $\W^f := \set{[w^1_1]_\Sigma,[w^1_2]_\Sigma} \cup \setof{[v^i]_\Sigma}{i \in \mathbb{N}}$;
-\item $\V^f([w^1_1]_\Sigma) = \set{p}$, $\V([w^1_2]_\Sigma) = \set{r}$, $\V([v^i]_\Sigma) = \set{q,s^i}$;
-\item
-$\Unc^f(i) = \set{\set{a_{[\plans_1]_\Sigma}}, \set{a_{[\plans_2]_\Sigma}}, \set{a_\emptyset}}$,
-$\Unc^f(j) = \set{\set{a_{[\plans_2]_\Sigma}}, \set{a_\emptyset}}$;
-$\Unc^f(k) = \set{\set{a_\emptyset}}$;
-\item $\R^f$ is defined as follows
+Let $\Sigma = \set{\kh_k(p,q),\kh_k(p,r),\neg\kh_j(p,q),\kh_j(p,q),p,q,r,\mlbox{b_1} q,s^1}$ a set of formulas closed by subformulas, and let 
 \begin{itemize}
-\item $\R^f_{a_\emptyset} = \emptyset$
-\item $\R^f_{a_{[\plans_1]_\Sigma}} = \setof{([w^1_1]_\Sigma,[v^i]_\Sigma)}{i \in \mathbb{N}}$ (if $G_{[\plans_1]_\Sigma} = [\plans_1]_\Sigma$)
-\item $\R^f_{a_{[\plans_2]_\Sigma}} = \set{([w^1_1]_\Sigma,[w^1_2]_\Sigma)}$ (if $G_{[\plans_2]_\Sigma} = [\plans_2]_\Sigma$)
-\item $\R^f_a = \set{([w^1_2]_\Sigma,[v^1]_\Sigma)}$ (given $\ACT^\Sigma_\square = \set{b_1}$)
+    \item $[\plans_1]_\Sigma = [\plans_3]_\Sigma = \set{\plans_1,\plans_3}$ and 
+    \item $[\plans_2]_\Sigma = [\set{a_1}]_\Sigma= \set{a_1}$,
+\end{itemize}
+be the respective equivalence classes for the plans in $\Unc_\AGT$. Notice that $[\plans_1]_\Sigma$ encompasses the set of plans that are witnesses for $\kh_k(p,q)$, while $[\plans_2]_\Sigma$ encompasses the witneess for $\kh_k(p,r)$. For the case of $\kh_j(p,q)$ there is no witness under consideration, as the formula does not hold ath $\modults$.   
+
+A possible filtration would be $\modults^f = \tup{\W^f,\R^f, \set{\Unc^f(i)}_{i\in \AGT}, \V^f}$, with: 
+\begin{enumerate}
+\item $\W^f := \set{[w^1_1]_\Sigma,[w^1_2]_\Sigma,[v^1]_\Sigma,[v^2]_\Sigma}$, where:
+    \begin{itemize}
+        \item $[w^1_1]_\Sigma=\setof{w^i_1}{i\in\natnum}$,
+        \item $[w^1_2]_\Sigma=\setof{w^i_2}{i\in\natnum}$, 
+        \item $[v^1]_\Sigma=\set{v^1}$, 
+        and 
+        \item $[v^2]_\Sigma=\setof{v^i}{i\in\natnum\setminus\set{1}}$.
+    \end{itemize}
+\item $\V^f([w^1_1]_\Sigma) = \set{p}$, $\V([w^1_2]_\Sigma) = \set{r}$, $\V([v^1]_\Sigma) = \set{q,s^i}$ and $\V([v^2]_\Sigma) = \set{q}$.
+\item
+$\Unc^f(k) = \set{\set{a_{[\plans_1]_\Sigma}}, \set{a_{[\plans_2]_\Sigma}}, \set{a_\emptyset}}$,
+$\Unc^f(j) = \set{\set{a_\emptyset}}$;
+% $\Unc^f(k) = \set{\set{a_\emptyset}}$;
+\item $\R^f$ is defined as follows for each $a\in\ACT^\Sigma$:
+\begin{itemize}
+\item $\R^f_{a_\emptyset} = \emptyset$,
+\item $\R^f_{a_{[\plans_1]_\Sigma}} = \setof{([w^1_1]_\Sigma,[v^i]_\Sigma)}{i \in \natnum}$ (if $G_{[\plans_1]_\Sigma} = [\plans_1]_\Sigma$),
+\item $\R^f_{a_{[\plans_2]_\Sigma}} = \set{([w^1_1]_\Sigma,[w^1_2]_\Sigma)}$ (if $G_{[\plans_2]_\Sigma} = [\plans_2]_\Sigma$), and 
+\item $\R^f_{b_1} = \set{([w^1_2]_\Sigma,[v^1]_\Sigma)}$. % (given $\ACT^\Sigma_\square = \set{b_1}$)
 \end{itemize}
 \end{enumerate}
 
-\vspace{.25cm}
+\medskip
+
+The filtration $\modults^f$ is depicted below:
+
 \begin{center}
 \begin{tikzpicture}[->]
-\node [state, label=left:\small{$[w^1_1]_\Sigma$}] (w11) {$p$};
-\node [state, label=above:\small{$[w^1_2]_\Sigma$}, right = 1cm of w11] (w12) {$r$};
-\node [state, label=right:\small{$[v^1]_\Sigma$}, right = 1cm of w12] (v1) {$q,s^1$};
-\node [state, label=right:\small{$[v^2]_\Sigma$}, below = 1.5cm of v1] (v2) {$q,s^2$};
-\node [below = 0.1cm of v2] (v3) {$\vdots$};
-\node [below = 1.8cm of w12] (w32) {$\vdots$};
+\node [state, label=above:\small{$[w^1_1]_\Sigma$}] (w11) {$p$};
+\node [state, label=above:\small{$[w^1_2]_\Sigma$}, right = 1.8cm of w11] (w12) {$r$};
+\node [state, label=above:\small{$[v^1]_\Sigma$}, right = 1.8cm of w12] (v1) {$q,s^1$};
+\node [state, label=above:\small{$[v^2]_\Sigma$}, below = 1.5cm of v1] (v2) {$q$};
+% \node [below = 0.1cm of v2] (v3) {$\vdots$};
+% \node [below = 1.8cm of w12] (w32) {$\vdots$};
 
 \path (w11) edge[right] node [label-edge, above] {$a_{[\plans_2]_\Sigma}$} (w12);
-\path (w11) edge[below, bend left=-50] node [label-edge, above] {$a_{[\plans_1]_\Sigma}$} (v1);
-\path (w11) edge[right, bend left=-50] node [label-edge, right] {$a_{[\plans_1]_\Sigma}$} (v2);
+\path (w11) edge[below, bend right=40] node [label-edge, above] {$a_{[\plans_1]_\Sigma}$} (v1);
+\path (w11) edge[right, bend right=40] node [label-edge, right] {$a_{[\plans_1]_\Sigma}$} (v2);
 \path (w12) edge[right] node [label-edge, above] {$b_1$} (v1);
 \end{tikzpicture}
 \end{center}
-\vspace{.25cm}
 
 If, however, we consider $G_{[\plans_1]_\Sigma} = \set{\plans_1}$, then $\R^f_{a_{[\plans_1]_\Sigma}} = \set{([w^1_1]_\Sigma,[v^1]_\Sigma)}$ as $(w^1_1,v^1)$ is the only edge that holds the two conditions.
 \end{example}
+
+\medskip
 
 We then proceed to prove that, given a model and its filtration via $\Sigma$, they both satisfy the same formulas in $\Sigma$.
 
@@ -240,7 +262,15 @@ Thus, $\W^f$ and $\V^f$ are finite. Similarly, as the number of $\khi(\psi,\varp
 Thus, $\R^f$ and $\Unc^f$ are both finite, and therefore $\modults^f$ is a finite model.
 \end{proof}
 
-Considering the last theorem, it remains to prove that, given a model $\modults$ and a set of formulas $\Sigma$ closed under subformulas, the set of filtrations of $\modults$ via $\Sigma$ is non empty.
+\medskip 
+
+\begin{example}\label{ex:filtration-preserves}
+ Consider again~\Cref{ex:afiltration}. Notice that the filtration preserves the satisfiability of formulas in $\Sigma$. For instance, $\modults\models\kh_k(p,q)$ with $\plans_1$ as witness, while $\modults^f\models\kh_k(p,q)$ with $[\plans_1]_\Sigma$ as witness. Also, it is clear that both $\modults\not\models\kh_j(p,q)$ and $\modults^f\not\models\kh_j(p,q)$.
+\end{example}
+
+\medskip
+
+Considering~\Cref{th:filtration}, it remains to prove that, given a model $\modults$ and a set of formulas $\Sigma$ closed under subformulas, the set of filtrations of $\modults$ via $\Sigma$ is non empty.
 This can be achieved by defining $G_{[\plans]_\Sigma} = [\plans]_\Sigma \neq \emptyset$ for each $a_{[\plans]_\Sigma} \in \ACT^\Sigma_i$, and considering at least one of the two alternatives to define $\R_a$ for each $a \in \ACT^\Sigma_\square$ given in \cite{HML,mlbook}:
 
 \begin{itemize}
