@@ -65,7 +65,7 @@ the set $\Unc(i)$ shown on the right.
 \begin{picture}(90,0)
 \put(20,0){$\Unc(i) = \left\{
     \begin{array}{c}
-        \{ab, a\}, \{\epsilon\}
+        \set{ab, a}, \set{\epsilon}
     \end{array}
     \right\}$}
 \end{picture} 
@@ -258,7 +258,7 @@ For \Cref{itm:lhref} consider the two \ultss below:
 \end{tabular}
 \end{tabular} 
 \end{center}
-For each model, consider respective sets $\Unc(i)=\set{\set{a,b}}$ and $\Unc(i)'=\set{\set{c,d}}$.
+For each model, consider respective sets $\Unc(i)=\set{\set{a,b}}$ and $\Unc'(i)=\set{\set{c,d}}$.
 Since $\LHlogic$ cannot explicitely talk about plans, $\modults,w$ and $\modults',w'$ are indistinguishable for it.
 In $\Reflogic$, $\modults,w\models \dialhepis{a{\not\sim}b}\khi(r,p)$ and $\modults',w'\not\models\dialhepis{a{\not\sim}b}\khi(r,p)$.
 \end{proof}
@@ -275,7 +275,7 @@ In $\Reflogic$, $\modults,w\models \dialhepis{a{\not\sim}b}\khi(r,p)$ and $\modu
 % \begin{definition}[Reachability]\label{def:reachability}
 % Let $\modults = \tup{\W,\R,\Unc,\V}$ be \ultss. We write  $\splitstr{\Unc}{\Unc'}{}{}$ if there are $\plan_1,\plan_2$ such that  $\splitstr{\Unc}{\Unc'}{\plan_1}{\plan_2}$.
 % We say that $\Unc'$ is finitely reachable from $\Unc$ if $\Unc\leadsto^* \Unc'$ (i.e., $\Unc'$ is reached via the reflexive-transitive closure of $\leadsto$). For $\Unc(i),\Unc'_i$,
-% $\Unc(i)\leadsto\Unc(i)'$ (resp. $\Unc(i)\leadsto^*\Unc(i)'$) whenever $\Unc\leadsto\Unc'$  (resp., $\Unc\leadsto^*\Unc'$), $\Unc(i)\in\Unc$ and $\Unc(i)'\in\Unc'$.
+% $\Unc(i)\leadsto\Unc'(i)$ (resp. $\Unc(i)\leadsto^*\Unc'(i)$) whenever $\Unc\leadsto\Unc'$  (resp., $\Unc\leadsto^*\Unc'$), $\Unc(i)\in\Unc$ and $\Unc'(i)\in\Unc'$.
 % \end{definition}
 
 % Note that we always have $\Unc\leadsto\Unc$, by taking since $\plan_1 = \plan_2$.

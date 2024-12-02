@@ -8,7 +8,7 @@ We start by introducing two relations that, given a set of formulas $\Sigma$ and
 \medskip
 
 \begin{definition}[$\Sigma$-equivalence]
-Let $\modults=\tup{\W,\R, \{\Unc(i)\}_{i\in \AGT}, \V}$ be an \ults and let $\Sigma$ be a set of $\KHiMLlogic$-formulas closed under subformulas.
+Let $\modults=\tup{\W,\R, \set{\Unc(i)}_{i\in \AGT}, \V}$ be an \ults and let $\Sigma$ be a set of $\KHiMLlogic$-formulas closed under subformulas.
 Define the equivalence relations ${\modequiv_\Sigma} \subseteq \W\times\W$ and ${\planequiv_\Sigma} \subseteq \Unc_\AGT \times \Unc_\AGT$ (with $\Unc_\AGT := \bigcup_{i\in\AGT}\Unc(i)$) as:
 \begin{center}
 \begin{tabular}{lcl}
@@ -33,7 +33,7 @@ Although the notation $[\_]_\Sigma$ is overloaded, its argument will always disa
 \medskip
 
 \begin{definition}\label{def:filtration-actions}
-Let $\modults = \tup{\W,\R, \{\Unc(i)\}_{i\in \AGT}, \V}$ be an \ults defined over a denumerable set of actions $\ACT$, and let $\Sigma$ be a set of $\KHiMLlogic$-formulas that is closed under subformulas.
+Let $\modults = \tup{\W,\R, \set{\Unc(i)}_{i\in \AGT}, \V}$ be an \ults defined over a denumerable set of actions $\ACT$, and let $\Sigma$ be a set of $\KHiMLlogic$-formulas that is closed under subformulas.
 Define
 \begin{itemize}
 \item $\ACT^{\Sigma}_i := \setof{a_{[\plans]_\Sigma}}{\plans\in\Unc(i) \text{ is a witness of some } \khi(\psi,\varphi)\in\Sigma \text{ in } \modults}$,
@@ -50,7 +50,7 @@ Now, we are in position of defining the notion of filtration.
 \medskip
 
 \begin{definition}[Filtration of $\modults$ through $\Sigma$] \label{def:filtrations}
-Let $\modults = \tup{\W,\R, \{\Unc(i)\}_{i\in \AGT}, \V}$ be an \ults defined over $\ACT$; let $\Sigma$ be a set of $\KHiMLlogic$-formulas that is closed under subformulas. An \ults defined over $\ACT^\Sigma$, $\modults^f = \tup{\W^f,\R^f, \{\Unc^f_i\}_{i\in \AGT}, \V^f}$, is \emph{a filtration of $\modults$ through~$\Sigma$} if and only if it satisfies the following conditions:
+Let $\modults = \tup{\W,\R, \set{\Unc(i)}_{i\in \AGT}, \V}$ be an \ults defined over $\ACT$; let $\Sigma$ be a set of $\KHiMLlogic$-formulas that is closed under subformulas. An \ults defined over $\ACT^\Sigma$, $\modults^f = \tup{\W^f,\R^f, \set{\Unc^f(i)}_{i\in \AGT}, \V^f}$, is \emph{a filtration of $\modults$ through~$\Sigma$} if and only if it satisfies the following conditions:
 
 \begin{enumerate}
 \item $\W^f := \setof{[w]_\Sigma}{w \in \W}$;
@@ -71,7 +71,7 @@ Let $\modults = \tup{\W,\R, \{\Unc(i)\}_{i\in \AGT}, \V}$ be an \ults defined ov
 \Cref{def:filtrations} deserves further comments.
 The filtration is defined similarly as for the basic modal logic (see, e.g.,~\cite{mlbook}).
 The most significant difference is the addition of a denumerable set of actions and relations (\Cref{item:khiml-fil}) since we use the set $\ACT^\Sigma$ as the set of action names.
-As a consequence, the actions an agent $i$ considered in $\Unc^f_i$ are separated from the actions defined in $\ACT$.
+As a consequence, the actions an agent $i$ considered in $\Unc^f(i)$ are separated from the actions defined in $\ACT$.
 Moreover, if $\Sigma$ is finite, the relation $\planequiv_\Sigma$ enables us to obtain a finite set of witnesses for the formulas $\khi(\psi,\varphi)\in\Sigma$, from which (together with $\modequiv_\Sigma$) we also get that $\ACT^\Sigma$ and $\W^f$ are finite.
 The function $\Unc^f(i)$ is well-defined since is made only of singletons. Specially, if there is no $\plans \in \Unc(i)$ such that $\plan$ is a witness for some $\khi(\varphi,\psi) \in \Sigma$, $\Unc^f(i)\neq \emptyset$ still holds.
 This is due to the addition of a vacuous action, $a_\emptyset$, which is not strongly executable in any state.
@@ -91,7 +91,7 @@ We then proceed to prove that, given a model and its filtration via $\Sigma$, th
 \medskip
 
 \begin{theorem}\label{th:filtration}
-Let $\modults = \tup{\W,\R, \{\Unc(i)\}_{i\in \AGT}, \V}$ be an \ults and
+Let $\modults = \tup{\W,\R, \set{\Unc(i)}_{i\in \AGT}, \V}$ be an \ults and
 let $\Sigma$ be a set of $\KHiMLlogic$-formulas that is closed under subformulas.
 Then, for all $\psi\in\Sigma$ and $w\in\W$, 
 \[

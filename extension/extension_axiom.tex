@@ -113,7 +113,7 @@ With this property at hand, using a slightly variation of what is done in~\cite{
 \medskip
 
 \begin{definition}\label{def:cm-ults-khiml}
-Let $\Gamma \in \smcs$. The structure $\modults^\Gamma=\tup{\W^\Gamma, \R^\Gamma, \set{\Unc^\Gamma_i}_{i \in \AGT}, \V^\Gamma}$ over $\ACT^\Gamma \cup \ACT$, $\AGT$ and $\PROP$ is defined as follows.
+Let $\Gamma \in \smcs$. The structure $\modults^\Gamma=\tup{\W^\Gamma, \R^\Gamma, \set{\Unc^\Gamma(i)}_{i \in \AGT}, \V^\Gamma}$ over $\ACT^\Gamma \cup \ACT$, $\AGT$ and $\PROP$ is defined as follows.
 \begin{itemize}
 \item $\W^\Gamma := \setof{\Delta \in \smcs}{\resta{\Delta} = \resta{\Gamma}}$.
 
@@ -124,7 +124,7 @@ $\R^{\Gamma}_{\tup{\psi,\varphi}^i} = \setof{(\Delta_1, \Delta_2) \in (\W^\Gamma
 
 \item $\R^{\Gamma}_a := \setof{(\Delta_1, \Delta_2) \in (\W^\Gamma)^2}{\text{for all } \mlbox{a}\varphi \in \Delta_1 \text{ implies } \varphi \in \Delta_2}$,
 
-\item $\Unc^\Gamma_i := \left\{ \set{\tup{\psi,\varphi}} \mid \tup{\psi,\varphi} \in \ACT^\Gamma_i \right\}$,
+\item $\Unc^\Gamma(i) := \left\{ \set{\tup{\psi,\varphi}} \mid \tup{\psi,\varphi} \in \ACT^\Gamma_i \right\}$,
 
 \item $\V^\Gamma(\Delta) := \setof{p \in \PROP}{p \in \Delta}$.
 \end{itemize}
@@ -133,15 +133,15 @@ $\R^{\Gamma}_{\tup{\psi,\varphi}^i} = \setof{(\Delta_1, \Delta_2) \in (\W^\Gamma
 \medskip
 
 \begin{proposition}\label{pro:cm-ults-khiml}
-The structure $\modults^\Gamma = \tup{\W^\Gamma, \R^\Gamma, \set{\Unc^\Gamma_i}_{i \in \AGT}, \V^\Gamma}$ is an $\ults$.
+The structure $\modults^\Gamma = \tup{\W^\Gamma, \R^\Gamma, \set{\Unc^\Gamma(i)}_{i \in \AGT}, \V^\Gamma}$ is an $\ults$.
 \end{proposition}
 \begin{proof}
 The set of actions $\ACT^\Gamma$ is denumerable, Thus $\ACT^\Gamma\cup\ACT$ is also denumerable.
 Since $\Gamma \in \W^\Gamma$, $\W^\Gamma \neq \emptyset$.
-It is enough to show that each $\Unc^\Gamma_i$ defines a partition over a non-empty subset of $2^{((\ACT^\Gamma)^*)}$.
-We have that $\khi(\bot,\bot) \in \Gamma$ so $\tup{\bot, \bot} \in \ACT^\Gamma_i$ and hence $\set{\tup{\bot, \bot}} \in \Unc^\Gamma_i$; thus, $\Unc(i) \neq \emptyset$.
+It is enough to show that each $\Unc^\Gamma(i)$ defines a partition over a non-empty subset of $2^{((\ACT^\Gamma)^*)}$.
+We have that $\khi(\bot,\bot) \in \Gamma$ so $\tup{\bot, \bot} \in \ACT^\Gamma_i$ and hence $\set{\tup{\bot, \bot}} \in \Unc^\Gamma(i)$; thus, $\Unc(i) \neq \emptyset$.
 Moreover, $\Unc(i)$ indeed defines a partition over $\bigcup_{\plans \in \Unc(i)} \plans$ since its elements are mutually disjoint.
-It is direct to show that $\emptyset \notin \Unc^\Gamma_i$.
+It is direct to show that $\emptyset \notin \Unc^\Gamma(i)$.
 \end{proof}
 
 Note that this definition exploits the fact that the knowing how modality cannot express explicitly the plan that serves as a witness.
@@ -270,7 +270,7 @@ With these properties at hand, we can prove the truth lemma for $\modults^\Gamma
 \medskip
 
 \begin{lemma}[Truth lemma]\label{tlm:cm-ults-lkhi}
-Given $\Gamma \!\in\! \smcs$, take $\modults^\Gamma = \tup{\W^\Gamma, \R^\Gamma, \set{\Unc^\Gamma_i}_{i \in \AGT}, \V^\Gamma}$. Then, for every $\Theta \in \W^\Gamma$ and every $\varphi \in \KHiMLlogic$,  % $\modults^\Gamma, \Theta \models \varphi$ if and only if $\varphi \in \Theta$. 
+Given $\Gamma \!\in\! \smcs$, take $\modults^\Gamma = \tup{\W^\Gamma, \R^\Gamma, \set{\Unc^\Gamma(i)}_{i \in \AGT}, \V^\Gamma}$. Then, for every $\Theta \in \W^\Gamma$ and every $\varphi \in \KHiMLlogic$,  % $\modults^\Gamma, \Theta \models \varphi$ if and only if $\varphi \in \Theta$. 
 \[
 \modults^\Gamma, \Theta \models \varphi \mbox{ if and only if } \varphi \in \Theta.
 \]
@@ -325,7 +325,7 @@ Thus, $\modults^\Gamma, \Theta \models \mlbox{a}\chi$.
 \item ${\truthset{\modults^\Gamma}{\psi} = \emptyset}$: Then, each $\Delta \in \W^\Gamma$ is such that $\Delta \not\in \truthset{\modults^\Gamma}{\psi}$, which implies $\psi \not\in \Delta$ (by IH) and thus $\lnot\psi \in \Delta$ (by maximal consistency).
 Hence, by \Cref{pro:cm-ults-khiml-allall}, $\A\lnot\psi \in \Delta$ for every $\Delta \in \W^\Gamma$. In particular, $\A\lnot\psi \in \Theta$ and thus, by \axm{KhA} and \axm{MP} ($\A(\psi \ra \psi),\kh(\psi,\bot),\A(\bot \ra \varphi) \in \Theta$), $\khi(\psi, \varphi) \in \Theta$.
 \item ${\truthset{\modults^\Gamma}{\psi} \neq \emptyset}$.
-From $\modults^\Gamma, \Theta \models \khi(\psi,\varphi)$, there is $\set{\tup{\psi',\varphi'}} \in \Unc^\Gamma_i$ such that
+From $\modults^\Gamma, \Theta \models \khi(\psi,\varphi)$, there is $\set{\tup{\psi',\varphi'}} \in \Unc^\Gamma(i)$ such that
 \begin{enumerate}
 \item $\truthset{\modults^\Gamma}{\psi} \subseteq \stexec(\set{\tup{\psi',\varphi'}})$ and
 \item $\R^\Gamma_{\set{\tup{\psi',\varphi'}}}(\truthset{\modults^\Gamma}{\psi}) \subseteq \truthset{\modults^\Gamma}{\varphi}$.
@@ -359,14 +359,14 @@ Therefore, by \axm{KhA} and \axm{MP}, $\khi(\psi, \varphi) \in \Theta$.
 \end{itemize}
 
 $(\Leftarrow)$ Suppose $\khi(\psi, \varphi) \in \Theta$.
-Thus (\Cref{pro:cm-ults-khiml-allsame}), $\khi(\psi, \varphi) \in \Gamma$, so $\tup{\psi, \varphi} \in \ACT^\Gamma_i$ and therefore $\set{\tup{\psi, \varphi}} \in \Unc^\Gamma_i$.
+Thus (\Cref{pro:cm-ults-khiml-allsame}), $\khi(\psi, \varphi) \in \Gamma$, so $\tup{\psi, \varphi} \in \ACT^\Gamma_i$ and therefore $\set{\tup{\psi, \varphi}} \in \Unc^\Gamma(i)$.
 The rest of the proof is split in two cases.
 \begin{itemize}
 \item Suppose there is no $\Delta_\psi \in \W^\Gamma$ with $\psi \in \Delta$.
 Then, by IH, there is no $\Delta_\psi \in \W^\Gamma$ with $\Delta_\psi \in \truthset{\modults^\Gamma}{\psi}$, that is, $\truthset{\modults^\Gamma}{\lnot\psi} = \W^\Gamma$.
 Since $\modults^\Gamma$ is an $\ults$ (\Cref{pro:cm-ults-khiml}), the latter yields $\modults^\Gamma, \Delta \models \khi(\psi, \chi)$ for any $i \in \AGT$, $\chi \in \KHiMLlogic$ and $\Delta \in \W^\Gamma$; hence, $\modults^\Gamma, \Theta \models \khi(\psi, \varphi)$.
 
-\item Suppose there is $\Delta_\psi \in \W^\Gamma$ with $\psi \in \Delta_\psi$. It will be shown that the set of plans $\set{\tup{\psi, \varphi}} \in \Unc^\Gamma_i$ satisfies the requirements.
+\item Suppose there is $\Delta_\psi \in \W^\Gamma$ with $\psi \in \Delta_\psi$. It will be shown that the set of plans $\set{\tup{\psi, \varphi}} \in \Unc^\Gamma(i)$ satisfies the requirements.
 \begin{enumerate}
 \item Take any $\Delta \in \truthset{\modults^\Gamma}{\psi}$. By IH, $\psi \in \Delta$.
 Moreover, from $\khi(\psi, \varphi) \in \Theta$ and \Cref{pro:cm-ults-khiml-allsame} it follows that $\khi(\psi, \varphi) \in \Delta$.

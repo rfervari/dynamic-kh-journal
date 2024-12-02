@@ -116,7 +116,7 @@ Notice that the relation $\splitstr{}{}{\plan_1}{\plan_2}$ is serial. Moreover, 
 
 \begin{definition}
 Let $\modults=\tup{\W,\R,\Unc,\V}$ be an \ults, and let $\Unc'=\set{\Unc'(i)}_{i\in\AGT}$ with ${\Unc'(i)\subseteq 2^{(\ACT^*)}}$.
-Let $\plan_1,\plan_2 \in \ACT^*$. We write $\splitstr{\Unc}{\Unc'}{\plan_1}{\plan_2}$ iff for each $i\in\AGT$, $\splitstr{\Unc(i)}{\Unc(i)'}{\plan_1}{\plan_2}$.
+Let $\plan_1,\plan_2 \in \ACT^*$. We write $\splitstr{\Unc}{\Unc'}{\plan_1}{\plan_2}$ iff for each $i\in\AGT$, $\splitstr{\Unc(i)}{\Unc'(i)}{\plan_1}{\plan_2}$.
 We denote by $\modults^{\Unc}_{\Unc'}$ the \ults obtained by replacing $\Unc$ by $\Unc'$.
 %, and $\card{\Unc}=\card{\Unc'}$.
 \end{definition}
@@ -183,7 +183,7 @@ For \Cref{itm:preservesknowledge}, suppose $\modults, w \models \khi(\varphi,\ps
 Then there is $\plans \in \Unc(i)$ s.t. $\truthset{\modults}{\varphi} \subseteq \stexec(\plans)$ and $\R_\plans(\truthset{\modults}{\varphi}) \subseteq \truthset{\modults}{\psi}$.
 Let $\plan_1$, $\plan_2$ $\in \ACT^*$.
 If $\plan_1 \not\in \plans$ or $\plan_2 \not\in \plans$, then $\plans$ does not change and is still the witness for $\khi(\varphi,\psi)$.
-If, however, $\plan_1,\plan_2 \in \plans$, there will be a partition of $\plans$, $\{\plans_1,\plans_2\}$ s.t. $\splitstr{\Unc(i)}{\lmodel{\Unc(i)}{\plans}{\set{\plans_1,\plans_2}}}{\plan_1}{\plan_2}$.
+If, however, $\plan_1,\plan_2 \in \plans$, there will be a partition of $\plans$, $\set{\plans_1,\plans_2}$ s.t. $\splitstr{\Unc(i)}{\lmodel{\Unc(i)}{\plans}{\set{\plans_1,\plans_2}}}{\plan_1}{\plan_2}$.
 But this does not cause any problem since $\truthset{\modults}{\varphi} \subseteq \stexec(\plans) \subseteq \stexec(\plans_k)$ and $\R_{\plans_k}(\truthset{\modults}{\varphi}) \subseteq \R_\plans(\truthset{\modults}{\varphi}) \subseteq \truthset{\modults}{\psi}$, for $k\in\set{1,2}$.
 Here agent $i$ knew how to %do a certain task under a restricted condition from the
 go from $\varphi$-states to $\psi$-states via $\plans$.
@@ -237,7 +237,7 @@ Let $\modults$ and $\modults'$ be the single agent models depicted below, with $
 \end{center}
 
 The models are $\KHilogic$-bisimilar, thus they satisfy the same formulas in $\KHilogic$ (in particular $\neg\khi(p,q)$). But, $\modults,w \not\models \refdiam{a}{b}\khi(p,q)$ since $\splitstr{\Unc(i)}{\Unc(i)}{a}{b}$, % then $\Unc=\overline{\Unc}$,
-whereas $\modults',w' \models \refdiam{a}{b}\khi(p,q)$, since there is $\Unc(i)''=\set{\set{a},\set{b}}$ such that $\splitstr{\Unc(i)'}{\Unc(i)''}{a}{b}$.
+whereas $\modults',w' \models \refdiam{a}{b}\khi(p,q)$, since there is $\Unc'(i)'=\set{\set{a},\set{b}}$ such that $\splitstr{\Unc'(i)}{\Unc''(i)}{a}{b}$.
 
 
 % \begin{nscenter}
