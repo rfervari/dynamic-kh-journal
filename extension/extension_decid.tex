@@ -9,13 +9,13 @@ We start by introducing two relations that, given a set of formulas $\Sigma$ and
 
 \begin{definition}[$\Sigma$-equivalence]
 Let $\modults=\tup{\W,\R, \set{\Unc(i)}_{i\in \AGT}, \V}$ be an \ults and let $\Sigma$ be a set of $\KHiMLlogic$-formulas closed under subformulas.
-Define the equivalence relations ${\modequiv_\Sigma} \subseteq \W\times\W$ and ${\planequiv_\Sigma} \subseteq \Unc_\AGT \times \Unc_\AGT$ (with $\Unc_\AGT := \bigcup_{i\in\AGT}\Unc(i)$) as:
+Define the equivalence relations ${\modequiv_\Sigma} \subseteq \W\times\W$ and ${\planequiv_\Sigma} \subseteq \Unc_\AGT \times \Unc_\AGT$ (with $\Unc_\AGT := \bigcup_{i \in \AGT}\Unc(i)$) as:
 \begin{center}
 \begin{tabular}{lcl}
 $w \modequiv_\Sigma v$ &  \iffdef &
-for all $\psi\in\Sigma$, $\modults,w\models \psi$ iff $\modults,v\models \psi$,\\
+for all $\psi \in \Sigma$, $\modults,w\models \psi$ iff $\modults,v\models \psi$,\\
 $\plans \planequiv_\Sigma \plans'$ & \iffdef &
-for all $i\in\AGT$ and $\khi(\psi,\varphi)\in\Sigma$,  $\plans$ is a witness \\ 
+for all $i \in \AGT$ and $\khi(\psi,\varphi) \in \Sigma$,  $\plans$ is a witness \\ 
 & & for $\khi(\psi,\varphi)$ in $\modults$ iff $\plans'$ is a witness for $\khi(\psi,\varphi)$ in $\modults$.
 \end{tabular}
 \end{center}
@@ -36,15 +36,15 @@ Although the notation $[\_]_\Sigma$ is overloaded, its argument will always disa
 Let $\modults = \tup{\W,\R, \set{\Unc(i)}_{i\in \AGT}, \V}$ be an \ults defined over a denumerable set of actions $\ACT$, and let $\Sigma$ be a set of $\KHiMLlogic$-formulas that is closed under subformulas.
 Define
 \begin{itemize}
-\item $\ACT^{\Sigma}_i := \setof{a_{[\plans]_\Sigma}}{\plans\in\Unc(i) \text{ is a witness of some } \khi(\psi,\varphi)\in\Sigma \text{ in } \modults}$,
+\item $\ACT^{\Sigma}_i := \setof{a_{[\plans]_\Sigma}}{\plans \in \Unc(i) \text{ is a witness of some } \khi(\psi,\varphi) \in \Sigma \text{ in } \modults}$,
 \item $\ACT^\Sigma_{\square} := \setof{a \in \ACT}{\mlbox{a}\varphi \in \Sigma}$, and
-\item $\ACT^\Sigma := \bigcup_{i\in\AGT} \ACT^\Sigma_i \cup \ACT^\Sigma_{\square}\cup \set{a_\emptyset}$.
+\item $\ACT^\Sigma := \bigcup_{i \in \AGT} \ACT^\Sigma_i \cup \ACT^\Sigma_{\square}\cup \set{a_\emptyset}$.
 \end{itemize} 
 \end{definition}
 
 \medskip
 
-The idea behind the definition of $\ACT^{\Sigma}_i$ is that, for each $\khi(\psi,\varphi)\in\Sigma$ that is true at $\modults$, we consider an action mimicking the behaviour of those sets of plans $\plans$ that witness the satisfiability of $\khi(\psi,\varphi)$ in $\modults$. In turn, $\ACT^\Sigma_{\square}$ takes into account those action symbols that are explicitely used in formulas of $\Sigma$. Finally, $a_\emptyset$ will be used to guarantee the existence of an action in the set $\ACT^\Sigma$, as we will see without provoking any side effect. 
+The idea behind the definition of $\ACT^{\Sigma}_i$ is that, for each $\khi(\psi,\varphi) \in \Sigma$ that is true at $\modults$, we consider an action mimicking the behaviour of those sets of plans $\plans$ that witness the satisfiability of $\khi(\psi,\varphi)$ in $\modults$. In turn, $\ACT^\Sigma_{\square}$ takes into account those action symbols that are explicitely used in formulas of $\Sigma$. Finally, $a_\emptyset$ will be used to guarantee the existence of an action in the set $\ACT^\Sigma$, as we will see without provoking any side effect. 
 Now, we are in position of defining the notion of filtration. 
 
 \medskip
@@ -61,7 +61,7 @@ Let $\modults = \tup{\W,\R, \set{\Unc(i)}_{i\in \AGT}, \V}$ be an \ults defined 
 \item for all $w' \in [w]_\Sigma$ and $\plans' \in G_{[\plans]_\Sigma}$, we have $w' \in \stexec(\plans')$, and
 \item there are $w'' \in [w]_\Sigma$, $v'' \in [v]_\Sigma$ and $\plans'' \in G_{[\plans]_\Sigma}$ such that $(w',v') \in \R_{\plans''}$;
 \end{itemize}
-\item \label{item:khiml-fil-a1} for all $a \in \ACT^\Sigma_\square$, if $(w,v)\in\R_a$, then $([w]_\Sigma,[v]_\Sigma) \in \R^f_a$; and
+\item \label{item:khiml-fil-a1} for all $a \in \ACT^\Sigma_\square$, if $(w,v) \in \R_a$, then $([w]_\Sigma,[v]_\Sigma) \in \R^f_a$; and
 \item \label{item:khiml-fil-a2} for all $a \in \ACT^\Sigma_\square$, if $([w]_\Sigma,[v]_\Sigma) \in \R^f_a$ then for all $\mlbox{a} \varphi \in \Sigma$, if $\modults,w \models \mlbox{a}\varphi$ then $\modults,v \models \varphi$.
 \end{enumerate}
 \end{definition}
@@ -72,7 +72,7 @@ Let $\modults = \tup{\W,\R, \set{\Unc(i)}_{i\in \AGT}, \V}$ be an \ults defined 
 The filtration is defined similarly as for the basic modal logic (see, e.g.,~\cite{mlbook}).
 The most significant difference is the addition of a denumerable set of actions and relations (\Cref{item:khiml-fil}) since we use the set $\ACT^\Sigma$ as the set of action names.
 As a consequence, the actions an agent $i$ considered in $\Unc^f(i)$ are separated from the actions defined in $\ACT$.
-Moreover, if $\Sigma$ is finite, the relation $\planequiv_\Sigma$ enables us to obtain a finite set of witnesses for the formulas $\khi(\psi,\varphi)\in\Sigma$, from which (together with $\modequiv_\Sigma$) we also get that $\ACT^\Sigma$ and $\W^f$ are finite.
+Moreover, if $\Sigma$ is finite, the relation $\planequiv_\Sigma$ enables us to obtain a finite set of witnesses for the formulas $\khi(\psi,\varphi) \in \Sigma$, from which (together with $\modequiv_\Sigma$) we also get that $\ACT^\Sigma$ and $\W^f$ are finite.
 The function $\Unc^f(i)$ is well-defined since is made only of singletons. Specially, if there is no $\plans \in \Unc(i)$ such that $\plan$ is a witness for some $\khi(\varphi,\psi) \in \Sigma$, $\Unc^f(i)\neq \emptyset$ still holds.
 This is due to the addition of a vacuous action, $a_\emptyset$, which is not strongly executable in any state.
 The conditions~\ref{item:khiml-fil-a1} and~\ref{item:khiml-fil-a2} are the usual ones for the basic modal logic.
@@ -101,10 +101,9 @@ Let $\modults = \tup{\W,\R, \set{\Unc(i)}_{i\in \AGT}, \V}$ be an \ults defined 
 $\R_{a_i} = \setof{(w^i_1,w^j_2)}{j \in \natnum}$,
 $\R_{b_i} = \set{(w^i_2,v^i)}$;
 \item
-$\Unc(k) = \set{\plans_1,\plans_2,\plans_3}$, where  $\plans_1=\set{a_1b_1}$, $\plans_2=\set{a_1}$, and $\plans_3= \setof{a_i b_i}{i \in \natnum\setminus\set{1}}$; and 
-$\Unc(j) = \setof{\set{a_i}}{i \in \natnum}$, 
-% $\Unc(k) = \set{\set{a_1 b_1}}$;
-\item $\V(w^i_1) = \set{p}$, $\V(w^i_2) = \set{r}$, $\V(v^i) = \set{q,s^i}$, for all $i\in\natnum$.
+$\Unc(k) = \set{\plans_1,\plans_2,\plans_3}$, where  $\plans_1=\set{a_1b_1}$, $\plans_2=\set{a_1}$, and $\plans_3= \setof{a_i b_i}{i \in \natnum}$, and
+$\Unc(j) = \setof{\set{a_i}}{i \in \natnum \setminus \set{1}}$;
+\item $\V(w^i_1) = \set{p}$, $\V(w^i_2) = \set{r}$, $\V(v^i) = \set{q,s^i}$, for all $i \in \natnum$.
 \end{enumerate}
 
 \medskip
@@ -133,33 +132,37 @@ The model just defined is depicted below:
 \end{tikzpicture}
 \end{center}
 
-Let $\Sigma = \set{\kh_k(p,q),\kh_k(p,r),\neg\kh_j(p,q),\kh_j(p,q),p,q,r,\mlbox{b_1} q,s^1}$ a set of formulas closed by subformulas, and let 
-\begin{itemize}
-    \item $[\plans_1]_\Sigma = [\plans_3]_\Sigma = \set{\plans_1,\plans_3}$ and 
-    \item $[\plans_2]_\Sigma = [\set{a_1}]_\Sigma= \set{a_1}$,
-\end{itemize}
-be the respective equivalence classes for the plans in $\Unc_\AGT$. Notice that $[\plans_1]_\Sigma$ encompasses the set of plans that are witnesses for $\kh_k(p,q)$, while $[\plans_2]_\Sigma$ encompasses the witneess for $\kh_k(p,r)$. For the case of $\kh_j(p,q)$ there is no witness under consideration, as the formula does not hold ath $\modults$.   
+Let $\Sigma = \set{\kh_k(p,q),\kh_k(p,r),\neg\kh_j(p,q),\kh_j(p,r),p,q,r,\mlbox{b_1} q,s^1}$ a set of formulas closed by subformulas.
+The equivalence classes for the plans in $\Unc_\AGT$ are,
+\begin{inlineenum}
+\item $[\plans_1]_\Sigma = [\plans_3]_\Sigma = \set{\plans_1,\plans_3}$ and
+\item $[\plans_2]_\Sigma = [\set{a_1}]_\Sigma= \set{a_1}$,
+\end{inlineenum}
+for agent $k$, and $[\set{a_2}] = [\plans_4] = \setof{\set{a_i}}{i \in \natnum}$ for agent $j$.
+Notice that $[\plans_1]_\Sigma$ encompasses the set of plans that are witnesses for $\kh_k(p,q)$, while $[\plans_2]_\Sigma$ encompasses the witneess for $\kh_k(p,r)$. For the case of $\kh_j(p,q)$ there is no witness under consideration, as the formula does not hold at $\modults$.   
+And for $\kh_j(p,r)$, we have $[\set{a_2}]$.
 
 A possible filtration would be $\modults^f = \tup{\W^f,\R^f, \set{\Unc^f(i)}_{i\in \AGT}, \V^f}$, with: 
 \begin{enumerate}
 \item $\W^f := \set{[w^1_1]_\Sigma,[w^1_2]_\Sigma,[v^1]_\Sigma,[v^2]_\Sigma}$, where:
     \begin{itemize}
-        \item $[w^1_1]_\Sigma=\setof{w^i_1}{i\in\natnum}$,
-        \item $[w^1_2]_\Sigma=\setof{w^i_2}{i\in\natnum}$, 
+        \item $[w^1_1]_\Sigma=\setof{w^i_1}{i \in \natnum}$,
+        \item $[w^1_2]_\Sigma=\setof{w^i_2}{i \in \natnum}$, 
         \item $[v^1]_\Sigma=\set{v^1}$, 
         and 
-        \item $[v^2]_\Sigma=\setof{v^i}{i\in\natnum\setminus\set{1}}$.
+        \item $[v^2]_\Sigma=\setof{v^i}{i \in \natnum \setminus \set{1}}$.
     \end{itemize}
-\item $\V^f([w^1_1]_\Sigma) = \set{p}$, $\V([w^1_2]_\Sigma) = \set{r}$, $\V([v^1]_\Sigma) = \set{q,s^i}$ and $\V([v^2]_\Sigma) = \set{q}$.
+\item $\V^f([w^1_1]_\Sigma) = \set{p}$, $\V([w^1_2]_\Sigma) = \set{r}$, $\V([v^1]_\Sigma) = \set{q,s^1}$ and $\V([v^2]_\Sigma) = \set{q}$.
 \item
 $\Unc^f(k) = \set{\set{a_{[\plans_1]_\Sigma}}, \set{a_{[\plans_2]_\Sigma}}, \set{a_\emptyset}}$,
-$\Unc^f(j) = \set{\set{a_\emptyset}}$;
+$\Unc^f(j) = \set{\set{a_{[\plans_4]_\Sigma}}, \set{a_\emptyset}}$;
 % $\Unc^f(k) = \set{\set{a_\emptyset}}$;
-\item $\R^f$ is defined as follows for each $a\in\ACT^\Sigma$:
+\item $\R^f$ is defined as follows for each $a \in \ACT^\Sigma$:
 \begin{itemize}
 \item $\R^f_{a_\emptyset} = \emptyset$,
 \item $\R^f_{a_{[\plans_1]_\Sigma}} = \setof{([w^1_1]_\Sigma,[v^i]_\Sigma)}{i \in \natnum}$ (if $G_{[\plans_1]_\Sigma} = [\plans_1]_\Sigma$),
-\item $\R^f_{a_{[\plans_2]_\Sigma}} = \set{([w^1_1]_\Sigma,[w^1_2]_\Sigma)}$ (if $G_{[\plans_2]_\Sigma} = [\plans_2]_\Sigma$), and 
+\item $\R^f_{a_{[\plans_2]_\Sigma}} = \set{([w^1_1]_\Sigma,[w^1_2]_\Sigma)}$ (if $G_{[\plans_2]_\Sigma} = [\plans_2]_\Sigma$),
+\item $\R^f_{a_{[\plans_2]_\Sigma}} = \set{([w^1_1]_\Sigma,[w^1_2]_\Sigma)}$ (if $G_{[\plans_4]_\Sigma} = [\plans_4]_\Sigma$), and 
 \item $\R^f_{b_1} = \set{([w^1_2]_\Sigma,[v^1]_\Sigma)}$. % (given $\ACT^\Sigma_\square = \set{b_1}$)
 \end{itemize}
 \end{enumerate}
@@ -178,6 +181,7 @@ The filtration $\modults^f$ is depicted below:
 % \node [below = 1.8cm of w12] (w32) {$\vdots$};
 
 \path (w11) edge[right] node [label-edge, above] {$a_{[\plans_2]_\Sigma}$} (w12);
+\path (w11) edge[right] node [label-edge, below] {$a_{[\plans_4]_\Sigma}$} (w12);
 \path (w11) edge[below, bend right=40] node [label-edge, above] {$a_{[\plans_1]_\Sigma}$} (v1);
 \path (w11) edge[right, bend right=40] node [label-edge, right] {$a_{[\plans_1]_\Sigma}$} (v2);
 \path (w12) edge[right] node [label-edge, above] {$b_1$} (v1);
@@ -196,7 +200,7 @@ We then proceed to prove that, given a model and its filtration via $\Sigma$, th
 \begin{theorem}\label{th:filtration}
 Let $\modults = \tup{\W,\R, \set{\Unc(i)}_{i\in \AGT}, \V}$ be an \ults and
 let $\Sigma$ be a set of $\KHiMLlogic$-formulas that is closed under subformulas.
-Then, for all $\psi\in\Sigma$ and $w\in\W$, 
+Then, for all $\psi \in \Sigma$ and $w \in \W$, 
 \[
     \modults,w\models \psi \ \mbox{  iff  } \ \modults^f,[w]_\Sigma\models \psi.
 \] 
