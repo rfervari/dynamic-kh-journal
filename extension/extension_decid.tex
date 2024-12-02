@@ -86,6 +86,87 @@ Finally, \Cref{item:khiml-fil} can be rewritten as $([w]_\Sigma,[v]_\Sigma) \in 
 \end{itemize}
 
 Moreover, $[w]_\Sigma \in \stexec(a_{[\plans]_\Sigma})$ iff $[w]_\Sigma \subseteq \bigcap_{\plans' \in G_{[\plans]_\Sigma}} \stexec(\plans')$.
+To illustrate a filtration we present the following example.
+
+\begin{example}
+Let $\modults = \tup{\W,\R, \set{\Unc(i)}_{i\in \AGT}, \V}$ be an \ults defined over $\ACT = \setof{a_i,b_i}{i \in \mathbb{N}}$ s.t.
+\begin{enumerate}
+\item $\W =
+\setof{w^i_1}{i \in \mathbb{N}} \cup
+\setof{w^i_2}{i \in \mathbb{N}} \cup
+\setof{v^i}{i \in \mathbb{N}}$;
+\item
+$\R_{a_i} = \setof{(w^i_1,w^j_2)}{j \in \mathbb{N}}$,
+$\R_{b_i} = \set{(w^i_2,v^i)}$;
+\item
+$\Unc(i) = \setof{\set{a_i b_i}}{i \in \mathbb{N}} \cup \set{\set{a_1}}$,
+$\Unc(j) = \setof{\set{a_i}}{i \in \mathbb{N}} \setminus \set{\set{a_1}}$,
+$\Unc(k) = \set{\set{a_1 b_1}}$;
+\item $\V(w^i_1) = \set{p}$, $\V(w^i_2) = \set{r}$, $\V(v^i) = \set{q,s^i}$.
+\end{enumerate}
+
+\vspace{.25cm}
+\begin{center}
+\begin{tikzpicture}[->]
+\node [state, label=left:\small$w^1_1$] (w11) {$p$};
+\node [state, label=above:\small$w^1_2$, right = 1cm of w11] (w12) {$r$};
+\node [state, label=right:\small$v^1$, right = 1cm of w12] (v1) {$q,s^1$};
+\node [state, label=left:\small$w^2_1$, below = 1.5cm of w11] (w21) {$p$};
+\node [state, label=above:\small$w^2_2$, right = 1cm of w21] (w22) {$r$};
+\node [state, label=right:\small$v^2$, right = 1cm of w22] (v2) {$q,s^2$};
+\node [below = 0.1cm of w21] (w31) {$\vdots$};
+\node [right = 1cm of w31] (w32) {$\vdots$};
+\node [right = 1.25cm of w32] (v3) {$\vdots$};
+
+\path (w11) edge[right] node [label-edge, above] {$a_1$} (w12);
+\path (w11) edge[right] node [label-edge, right] {$a_2$} (w22);
+\path (w12) edge[right] node [label-edge, above] {$b_1$} (v1);
+
+\path (w21) edge[right] node [label-edge, above] {$a_2$} (w22);
+\path (w21) edge[right] node [label-edge, left] {$a_1$} (w12);
+\path (w22) edge[right] node [label-edge, above] {$b_2$} (v2);
+\end{tikzpicture}
+\end{center}
+\vspace{.25cm}
+
+Given $\Sigma = \set{\khi(p,q),\khi(p,r),\kh_j(p,q),p,q,r,\mlbox{b_1} q}$, with $[\plans_1]_\Sigma = [\set{a_1 b_1}]_\Sigma$ and $[\plans_2]_\Sigma = [\set{a_1}]_\Sigma$ being the equivalence classes for the plans. A possible filtration would be $\modults^f = \tup{\W^f,\R^f, \set{\Unc^f(i)}_{i\in \AGT}, \V^f}$ s.t.
+\begin{enumerate}
+\item $\W^f := \set{[w^1_1]_\Sigma,[w^1_2]_\Sigma} \cup \setof{[v^i]_\Sigma}{i \in \mathbb{N}}$;
+\item $\V^f([w^1_1]_\Sigma) = \set{p}$, $\V([w^1_2]_\Sigma) = \set{r}$, $\V([v^i]_\Sigma) = \set{q,s^i}$;
+\item
+$\Unc^f(i) = \set{\set{a_{[\plans_1]_\Sigma}}, \set{a_{[\plans_2]_\Sigma}}, \set{a_\emptyset}}$,
+$\Unc^f(j) = \set{\set{a_{[\plans_2]_\Sigma}}, \set{a_\emptyset}}$;
+$\Unc^f(k) = \set{\set{a_\emptyset}}$;
+\item $\R^f$ is defined as follows
+\begin{itemize}
+\item $\R^f_{a_\emptyset} = \emptyset$
+\item $\R^f_{a_{[\plans_1]_\Sigma}} = \setof{([w^1_1]_\Sigma,[v^i]_\Sigma)}{i \in \mathbb{N}}$ (if $G_{[\plans_1]_\Sigma} = [\plans_1]_\Sigma$)
+\item $\R^f_{a_{[\plans_2]_\Sigma}} = \set{([w^1_1]_\Sigma,[w^1_2]_\Sigma)}$ (if $G_{[\plans_2]_\Sigma} = [\plans_2]_\Sigma$)
+\item $\R^f_a = \set{([w^1_2]_\Sigma,[v^1]_\Sigma)}$ (given $\ACT^\Sigma_\square = \set{b_1}$)
+\end{itemize}
+\end{enumerate}
+
+\vspace{.25cm}
+\begin{center}
+\begin{tikzpicture}[->]
+\node [state, label=left:\small{$[w^1_1]_\Sigma$}] (w11) {$p$};
+\node [state, label=above:\small{$[w^1_2]_\Sigma$}, right = 1cm of w11] (w12) {$r$};
+\node [state, label=right:\small{$[v^1]_\Sigma$}, right = 1cm of w12] (v1) {$q,s^1$};
+\node [state, label=right:\small{$[v^2]_\Sigma$}, below = 1.5cm of v1] (v2) {$q,s^2$};
+\node [below = 0.1cm of v2] (v3) {$\vdots$};
+\node [below = 1.8cm of w12] (w32) {$\vdots$};
+
+\path (w11) edge[right] node [label-edge, above] {$a_{[\plans_2]_\Sigma}$} (w12);
+\path (w11) edge[below, bend left=-50] node [label-edge, above] {$a_{[\plans_1]_\Sigma}$} (v1);
+\path (w11) edge[right, bend left=-50] node [label-edge, right] {$a_{[\plans_1]_\Sigma}$} (v2);
+\path (w12) edge[right] node [label-edge, above] {$b_1$} (v1);
+\end{tikzpicture}
+\end{center}
+\vspace{.25cm}
+
+If, however, we consider $G_{[\plans_1]_\Sigma} = \set{\plans_1}$, then $\R^f_{a_{[\plans_1]_\Sigma}} = \set{([w^1_1]_\Sigma,[v^1]_\Sigma)}$ as $(w^1_1,v^1)$ is the only edge that holds the two conditions.
+\end{example}
+
 We then proceed to prove that, given a model and its filtration via $\Sigma$, they both satisfy the same formulas in $\Sigma$.
 
 \medskip
