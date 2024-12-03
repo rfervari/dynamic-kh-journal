@@ -133,14 +133,17 @@ The model just defined is depicted below:
 \end{center}
 
 Let $\Sigma = \set{\kh_k(p,q),\kh_k(p,r),\neg\kh_j(p,q),\kh_j(p,r),p,q,r,\mlbox{b_1} s^1,s^1}$ a set of formulas closed by subformulas.
-The equivalence classes for the plans in $\Unc_\AGT$ are,
-\begin{inlineenum}
-\item $[\plans_1]_\Sigma = [\plans_3]_\Sigma = \set{\plans_1,\plans_3}$ and
-\item $[\plans_2]_\Sigma = [\set{a_1}]_\Sigma= \set{a_1}$,
-\end{inlineenum}
-for agent $k$, and $[\set{a_2}] = [\plans_4] = \setof{\set{a_i}}{i \in \natnum}$ for agent $j$.
-Notice that $[\plans_1]_\Sigma$ encompasses the set of plans that are witnesses for $\kh_k(p,q)$, while $[\plans_2]_\Sigma$ encompasses the witneess for $\kh_k(p,r)$. For the case of $\kh_j(p,q)$ there is no witness under consideration, as the formula does not hold at $\modults$.   
-And for $\kh_j(p,r)$, we have $[\set{a_2}]$.
+The respective equivalence classes for the plans in $\Unc_\AGT$ are defined as:
+
+\begin{itemize}
+    \item $[\plans_1]_\Sigma = [\plans_3]_\Sigma = \set{\plans_1,\plans_3}$,
+    \item $[\plans_2]_\Sigma = [\set{a_1}]_\Sigma= \set{a_1}$, and 
+    \item $[\set{a_2}]_\Sigma = [\plans_4]_\Sigma = \setof{\set{a_i}}{i \in \natnum\setminus\set{1}}$.
+\end{itemize}
+
+From now on, $\set{a_2}$ will be denote as $\plans_4$ as used above. 
+Notice that $[\plans_1]_\Sigma$ encompasses the set of plans that are witnesses for $\kh_k(p,q)$, while $[\plans_2]_\Sigma$ encompasses the witnesses for $\kh_k(p,r)$. For the case of $\kh_j(p,q)$ there is no witness under consideration, as the formula does not hold at $\modults$.   
+Finally, $[\plans_4]_\Sigma$ is the witness for $\kh_j(p,r)$. Thus, we have $\ACT^\Sigma =\set{a_\emptyset,a_{[\plans_1]_\Sigma},a_{[\plans_2]_\Sigma},a_{[\plans_4]_\Sigma},b_1}$.
 
 A possible filtration would be $\modults^f = \tup{\W^f,\R^f, \set{\Unc^f(i)}_{i\in \AGT}, \V^f}$, with: 
 \begin{enumerate}
@@ -154,7 +157,7 @@ A possible filtration would be $\modults^f = \tup{\W^f,\R^f, \set{\Unc^f(i)}_{i\
     \end{itemize}
 \item $\V^f([w^1_1]_\Sigma) = \set{p}$, $\V([w^1_2]_\Sigma) = \set{r}$, $\V([v^1]_\Sigma) = \set{q,s^1}$ and $\V([v^2]_\Sigma) = \set{q}$.
 \item
-$\Unc^f(k) = \set{\set{a_{[\plans_1]_\Sigma}}, \set{a_{[\plans_2]_\Sigma}}, \set{a_\emptyset}}$,
+$\Unc^f(k) = \set{\set{a_{[\plans_1]_\Sigma}}, \set{a_{[\plans_2]_\Sigma}}, \set{a_\emptyset}}$, and 
 $\Unc^f(j) = \set{\set{a_{[\plans_4]_\Sigma}}, \set{a_\emptyset}}$;
 % $\Unc^f(k) = \set{\set{a_\emptyset}}$;
 \item $\R^f$ is defined as follows for each $a \in \ACT^\Sigma$:
@@ -188,7 +191,7 @@ The filtration $\modults^f$ is depicted below:
 \end{tikzpicture}
 \end{center}
 
-If, however, we consider $G_{[\plans_1]_\Sigma} = \set{\plans_1}$, then $\R^f_{a_{[\plans_1]_\Sigma}} = \set{([w^1_1]_\Sigma,[v^1]_\Sigma)}$ as $(w^1_1,v^1)$ is the only edge that holds the two conditions.
+If, however, we consider $G_{[\plans_1]_\Sigma} = \set{\plans_1}$, then $\R^f_{a_{[\plans_1]_\Sigma}} = \set{([w^1_1]_\Sigma,[v^1]_\Sigma)}$, as $(w^1_1,v^1)$ is the only edge that holds the two conditions. Thus, we can observe how there are at least two alternatives for defining a filtration from $\modults$ and $\Sigma$.
 \end{example}
 
 \medskip
@@ -269,7 +272,7 @@ Thus, $\R^f$ and $\Unc^f$ are both finite, and therefore $\modults^f$ is a finit
 \medskip 
 
 \begin{example}\label{ex:filtration-preserves}
- Consider again~\Cref{ex:afiltration}. Notice that the filtration preserves the satisfiability of formulas in $\Sigma$. For instance, $\modults\models\kh_k(p,q)$ with $\plans_1$ as witness, while $\modults^f\models\kh_k(p,q)$ with $[\plans_1]_\Sigma$ as witness. Also, it is clear that both $\modults\not\models\kh_j(p,q)$ and $\modults^f\not\models\kh_j(p,q)$, and that $\modults,w^1_2\models[b_1] s^1$ and $\modults^f,[w^1_2]_\Sigma\models[b_1] s^1$.
+ Consider again~\Cref{ex:afiltration}. Notice that the filtration preserves the satisfiability of formulas in $\Sigma$. For instance, $\modults\models\kh_k(p,q)$ with $\plans_1$ as witness, while $\modults^f\models\kh_k(p,q)$ with $[\plans_1]_\Sigma$ as witness. Also, it is clear that both $\modults\not\models\kh_j(p,q)$ and $\modults^f\not\models\kh_j(p,q)$, and that $\modults,w^1_2\models[b_1] s^1$ and $\modults^f,[w^1_2]_\Sigma\models[b_1] s^1$. One can verify that this is is also the case for other alternative filtrations, as established by~\Cref{th:filtration}.
 \end{example}
 
 \medskip
