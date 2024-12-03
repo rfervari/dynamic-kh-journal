@@ -284,7 +284,9 @@ This can be achieved by defining $G_{[\plans]_\Sigma} = [\plans]_\Sigma \neq \em
 \item $([w]_\Sigma,[v]_\Sigma) \in \R^f_a$ iff there exists $w' \in [w]_\Sigma$, $v' \in [v]_\Sigma$ such that $(w',v') \in \R_a$; or
 \item $([w]_\Sigma,[v]_\Sigma) \in \R^f_a$ iff for all $\mlbox{a}\varphi \in \Sigma$, $\modults,w \models \mlbox{a}\varphi$ then $\modults,v \models \varphi$.
 \end{itemize}
- 
+
+Notice that both the different alternatives of picking $G_{[\plans]_\Sigma}$ and $\R^f_a$ enable us to obtain more than one filtration, all of them satisfying the intended properties.
+
 \medskip
 
 The last theorem states that every satisfiable formula of $\KHiMLlogic$, is satisfiable in a finite model.
@@ -297,7 +299,7 @@ The satisfiability problem for $\KHiMLlogic$ is decidable.
 \end{corollary}
 
 \begin{proof}
-Suppose $\varphi$ is satisfiable, then there exists a model $\modults$ and a state $w$ such that $\modults,w\models\varphi$. Let $\Sigma$ be the set of subformulas of $\varphi$ (including $\varphi$). Then, by~\Cref{th:filtration}, $\modults^\Sigma,[w]_\Sigma\models\varphi$. Since $\Sigma$ is finite, $\modults^\Sigma$ is finite, and of size at most exponential. Consequently, we know there exists a finite model of $\varphi$. Thus, we can list all the models and try one by one, whether they satisfy $\varphi$ or not, by calling a model-checking algorithm. Since model-checking is decidable (by simply combining the algorithm for basic modal logic~\cite{mlbook}, and the one for $\KHilogic$~\cite{AFSVQ21,AFSVQ23report}), the corollary follows. \raul{No tenemos demo especifica de que model-checking es decidible, dejamos asi como esta?}
+Suppose $\varphi$ is satisfiable, then there exists a model $\modults$ and a state $w$ such that $\modults,w\models\varphi$. Let $\Sigma$ be the set of subformulas of $\varphi$ (including $\varphi$). The there exists a filtration $\modults^f$ such that, by~\Cref{th:filtration}, $\modults^f,[w]_\Sigma\models\varphi$. Since $\Sigma$ is finite, $\modults^f$ is finite, and of size at most exponential. Consequently, we know there exists a finite model of $\varphi$. Thus, we can list all the models and try one by one, whether they satisfy $\varphi$ or not, by calling a model-checking algorithm. Since model-checking is decidable (by simply combining the algorithm for basic modal logic~\cite{mlbook}, and the one for $\KHilogic$~\cite{AFSVQ21,AFSVQ23report}), the corollary follows. \raul{No tenemos demo especifica de que model-checking es decidible, dejamos asi como esta?}
 \end{proof}
 
 \medskip
