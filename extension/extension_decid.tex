@@ -101,7 +101,7 @@ Let $\modults = \tup{\W,\R, \set{\Unc(i)}_{i\in \AGT}, \V}$ be an \ults defined 
 $\R_{a_i} = \setof{(w^i_1,w^j_2)}{j \in \natnum}$,
 $\R_{b_i} = \set{(w^i_2,v^i)}$;
 \item
-$\Unc(k) = \set{\plans_1,\plans_2,\plans_3}$, where  $\plans_1=\set{a_1b_1}$, $\plans_2=\set{a_1}$, and $\plans_3= \setof{a_i b_i}{i \in \natnum}$, and
+$\Unc(k) = \set{\plans_1,\plans_2,\plans_3}$, where  $\plans_1=\set{a_1b_1}$, $\plans_2=\set{a_1}$, and $\plans_3= \setof{a_i b_i}{i \in \natnum \setminus \set{1}}$, and
 $\Unc(j) = \setof{\set{a_i}}{i \in \natnum \setminus \set{1}}$;
 \item $\V(w^i_1) = \set{p}$, $\V(w^i_2) = \set{r}$, $\V(v^i) = \set{q,s^i}$, for all $i \in \natnum$.
 \end{enumerate}
@@ -132,7 +132,7 @@ The model just defined is depicted below:
 \end{tikzpicture}
 \end{center}
 
-Let $\Sigma = \set{\kh_k(p,q),\kh_k(p,r),\neg\kh_j(p,q),\kh_j(p,r),p,q,r,\mlbox{b_1} q,s^1}$ a set of formulas closed by subformulas.
+Let $\Sigma = \set{\kh_k(p,q),\kh_k(p,r),\neg\kh_j(p,q),\kh_j(p,r),p,q,r,\mlbox{b_1} s^1,s^1}$ a set of formulas closed by subformulas.
 The equivalence classes for the plans in $\Unc_\AGT$ are,
 \begin{inlineenum}
 \item $[\plans_1]_\Sigma = [\plans_3]_\Sigma = \set{\plans_1,\plans_3}$ and
@@ -162,7 +162,7 @@ $\Unc^f(j) = \set{\set{a_{[\plans_4]_\Sigma}}, \set{a_\emptyset}}$;
 \item $\R^f_{a_\emptyset} = \emptyset$,
 \item $\R^f_{a_{[\plans_1]_\Sigma}} = \setof{([w^1_1]_\Sigma,[v^i]_\Sigma)}{i \in \natnum}$ (if $G_{[\plans_1]_\Sigma} = [\plans_1]_\Sigma$),
 \item $\R^f_{a_{[\plans_2]_\Sigma}} = \set{([w^1_1]_\Sigma,[w^1_2]_\Sigma)}$ (if $G_{[\plans_2]_\Sigma} = [\plans_2]_\Sigma$),
-\item $\R^f_{a_{[\plans_2]_\Sigma}} = \set{([w^1_1]_\Sigma,[w^1_2]_\Sigma)}$ (if $G_{[\plans_4]_\Sigma} = [\plans_4]_\Sigma$), and 
+\item $\R^f_{a_{[\plans_4]_\Sigma}} = \set{([w^1_1]_\Sigma,[w^1_2]_\Sigma)}$ (if $G_{[\plans_4]_\Sigma} = [\plans_4]_\Sigma$), and 
 \item $\R^f_{b_1} = \set{([w^1_2]_\Sigma,[v^1]_\Sigma)}$. % (given $\ACT^\Sigma_\square = \set{b_1}$)
 \end{itemize}
 \end{enumerate}
@@ -269,7 +269,7 @@ Thus, $\R^f$ and $\Unc^f$ are both finite, and therefore $\modults^f$ is a finit
 \medskip 
 
 \begin{example}\label{ex:filtration-preserves}
- Consider again~\Cref{ex:afiltration}. Notice that the filtration preserves the satisfiability of formulas in $\Sigma$. For instance, $\modults\models\kh_k(p,q)$ with $\plans_1$ as witness, while $\modults^f\models\kh_k(p,q)$ with $[\plans_1]_\Sigma$ as witness. Also, it is clear that both $\modults\not\models\kh_j(p,q)$ and $\modults^f\not\models\kh_j(p,q)$, and that $\modults,w^1_2\models[b_1]q$ and $\modults^f,[w^1_2]_\Sigma\models[b_1]q$.
+ Consider again~\Cref{ex:afiltration}. Notice that the filtration preserves the satisfiability of formulas in $\Sigma$. For instance, $\modults\models\kh_k(p,q)$ with $\plans_1$ as witness, while $\modults^f\models\kh_k(p,q)$ with $[\plans_1]_\Sigma$ as witness. Also, it is clear that both $\modults\not\models\kh_j(p,q)$ and $\modults^f\not\models\kh_j(p,q)$, and that $\modults,w^1_2\models[b_1] s^1$ and $\modults^f,[w^1_2]_\Sigma\models[b_1] s^1$.
 \end{example}
 
 \medskip
