@@ -172,7 +172,7 @@ This dynamic modality both preserves knowledge and can generate new one.
 \medskip
 
 \begin{proposition}\label{prop:ref-preserves-gains}
-Let $\varphi,\psi$ be propositional formulas. Then,
+Let $\varphi,\psi$ be propositional formulas and $\plan_1,\plan_2\in\ACT^*$ such that $\plan_1\neq\plan_2$. Then,
 \begin{enumerate}
 \item\label{itm:preservesknowledge} $\models \khi(\varphi,\psi) \ra \refbox{\plan_1}{\plan_2}\khi(\varphi,\psi)$.
 \item\label{itm:gainsknowledge} If $\psi$ and $\varphi$ are satisfiable, then $\neg\khi(\psi,\varphi) \wedge \refdiam{\plan_1}{\plan_2}\khi(\psi,\varphi)$ is satisfiable.
@@ -183,25 +183,25 @@ For \Cref{itm:preservesknowledge}, suppose $\modults, w \models \khi(\varphi,\ps
 Then there is $\plans \in \Unc(i)$ s.t. $\truthset{\modults}{\varphi} \subseteq \stexec(\plans)$ and $\R_\plans(\truthset{\modults}{\varphi}) \subseteq \truthset{\modults}{\psi}$.
 Let $\plan_1$, $\plan_2$ $\in \ACT^*$.
 If $\plan_1 \not\in \plans$ or $\plan_2 \not\in \plans$, then $\plans$ does not change and is still the witness for $\khi(\varphi,\psi)$.
-If, however, $\plan_1,\plan_2 \in \plans$, there will be a partition of $\plans$, $\set{\plans_1,\plans_2}$ s.t. $\splitstr{\Unc(i)}{\lmodel{\Unc(i)}{\plans}{\set{\plans_1,\plans_2}}}{\plan_1}{\plan_2}$.
+If, however, $\plan_1,\plan_2 \in \plans$, there will be a partition of $\plans$, $\set{\plans_1,\plans_2}$ such that $\splitstr{\Unc(i)}{\lmodel{\Unc(i)}{\plans}{\set{\plans_1,\plans_2}}}{\plan_1}{\plan_2}$.
 But this does not cause any problem since $\truthset{\modults}{\varphi} \subseteq \stexec(\plans) \subseteq \stexec(\plans_k)$ and $\R_{\plans_k}(\truthset{\modults}{\varphi}) \subseteq \R_\plans(\truthset{\modults}{\varphi}) \subseteq \truthset{\modults}{\psi}$, for $k\in\set{1,2}$.
 Here agent $i$ knew how to %do a certain task under a restricted condition from the
 go from $\varphi$-states to $\psi$-states via $\plans$.
-Weakening such $\plans$ by making a partition still holds the property, allowing the agent to choose between $\plans_1$ or $\plans_2$ as her next witness.
-Since all the cases for $\plan_1$ and $\plan_2$ are covered, $\modults,w\models \refbox{\plan_1}{\plan_2}\khi(\varphi,\psi)$.
+Weakening such a $\plans$ by splitting it into two pieces still works, allowing the agent to choose between $\plans_1$ or $\plans_2$ as her next witness.
+Since all the cases for $\plan_1$ and $\plan_2$ are covered, we can conclude that $\modults,w\models \refbox{\plan_1}{\plan_2}\khi(\varphi,\psi)$.
 
-For \Cref{itm:gainsknowledge}, we define a model $\modults=\tup{\set{u,v},\R,\set{\Unc(i)},\V}$ such that
+For \Cref{itm:gainsknowledge}, let $\plan_1 \neq \plan_2$, and let $\modults=\tup{\set{u,v},\R,\set{\Unc(i)},\V}$ be a model such that
 \begin{itemize}
-\item $\modults,u \models \psi$ y $\modults,v \models \varphi$;
+\item $\modults,u \models \psi$ and $\modults,v \models \varphi$;
 \item $\R_{\plan_1[1]} = \set{(u,v),(v,v)}$ and $\R_{\plan_1[j]} = \set{(v,v)}$ for all $j = 2, \dots, \card{\plan_1}$;
 \item $\R_{\plan_2[k]} = \emptyset$ for some $k = 1, \dots, \card{\plan_2}$ (since $\plan_1 \neq \plan_2$); and
 \item $\Unc(i) = \set{\set{\plan_1,\plan_2}}$.
 \end{itemize}
 
-Omitting $\plan_2$, the depiction of $\modults$ is the following:
+The model $\modults$ is depicted below (the plan $\plan_2$ is omitted):
 
 \begin{center}
-\begin{tikzpicture}[scale=1.25]
+\begin{tikzpicture}[->, grow' = right, level/.style={sibling distance = 2em/#1}, level distance = 1.5em]
 \node (m) {$\modults$:};
 \node [state, right = 0.4cm of m, label=below:$u$] (u) {$\psi$};
 \node [state, right = of u, label=below:$v$] (v) {$\varphi$};
@@ -211,13 +211,13 @@ Omitting $\plan_2$, the depiction of $\modults$ is the following:
 \end{tikzpicture}
 \end{center}
 
-Since $u \not\in \stexec(\plan_2) = \stexec(\set{\plan_1,\plan_2})$, $\modults \models \neg\khi(\psi,\varphi)$.
-However, $\modults \models \refdiam{\plan_1}{\plan_2}\khi(\psi,\varphi)$ as $\splitstr{\set{\set{\plan_1,\plan_2}}}{\set{\set{\plan_1},\set{\plan_2}}}{\plan_1}{\plan_2}$ and $\set{\plan_1}$ can be chosen as a witness.
+Since $u \not\in \stexec(\plan_2) = \stexec(\set{\plan_1,\plan_2})$, we have that $\modults \models \neg\khi(\psi,\varphi)$.
+However, $\modults \models \refdiam{\plan_1}{\plan_2}\khi(\psi,\varphi)$ as $\splitstr{\set{\set{\plan_1,\plan_2}}}{\set{\set{\plan_1},\set{\plan_2}}}{\plan_1}{\plan_2}$ and $\set{\plan_1}$ acts as a witness.
 \end{proof}
 % \bigfer{In the previous proposition, the standard problem in these cases is that $\truthset{\modults}{\varphi}$ and $\truthset{\modults^{\Unc}_{\Unc'}}{\varphi}$ might be different (because the model changes). Asking for $\varphi$ and $\psi$ to be propositional guarantees that $\truthset{\modults}{\varphi}$ and $\truthset{\modults^{\Unc}_{\Unc'}}{\varphi}$ coincide (as valuations do not change). But arguing whether that holds for arbitrary $\varphi$ (if that is indeed the case) might require more care.}
 
-However, properties as \Cref{itm:preservesknowledge} are not true for arbitrary formulas.
-
+% However, properties as \Cref{itm:preservesknowledge} are not true for arbitrary formulas.
+\raul{sabemos que item 1 no vale para forms arbitrarias, pero no sabemos nada de item 2. Decimos algo?  ver ej. siguiente}
 \medskip
 
 \begin{example}
