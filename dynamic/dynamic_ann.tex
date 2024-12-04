@@ -172,7 +172,10 @@ fails to have reduction axioms as the following proposition shows.
 
 By furthermore restricting the class of models in which we will evaluate formulas, we are able to obtain reasonable reduction axioms.
 
-Note that \ultss contain a set $\Unc(i)$ of sets of plans for each agent $i$, which determines the perception of the agent with respect to her abilities. For instance, it may be the case that two plans $ab$ and $cd$ belong to some $\plans\in\Unc(i)$, i.e., they are indistinguishable for agent $i$. In~\cite{AFSVQ21} it has been shown that the logic cannot distinguish between the class of arbitrary \ultss, and the class of models where each $\plans\in\Unc(i)$ is a singleton with $\plans \subseteq \ACT$. This is no longer the case in the presence of $\gann{\chi}$ (as the proof of~\Cref{prop:exppal} shows).
+Note that \ultss contain a set $\Unc(i)$ of sets of plans for each agent $i$, which determines the perception of the agent with respect to her abilities.
+For instance, it may be the case that two plans $ab$ and $cd$ belong to some $\plans\in\Unc(i)$, i.e., they are indistinguishable for agent $i$.
+In~\cite{AFSVQ21} it has been shown that the logic cannot distinguish between the class of arbitrary \ultss, and the class of models where each $\plans\in\Unc(i)$ is a singleton with $\plans \subseteq \ACT$.
+This is no longer the case in the presence of $\gann{\chi}$ (as the proof of~\Cref{prop:exppal} shows).
 
 \medskip 
 
@@ -248,7 +251,7 @@ In order to establish the validity of the reduction axioms, we first need to pro
 		\item $\R_a(w) \subseteq \truthset{\modults}{\chi \wedge \gann{\chi}\psi}$.
 	\end{itemize}
 	Since we prove for arbitrary $a \in \plans$ and $w \in \annsemantics{\W}{\chi}$, the result yields for all $a \in \plans$ and $w \in \annsemantics{\W}{\chi}$.
-	Moreover, it can be generalized for all $w \in \W$ as if $w \in \truthset{\modults}{\chi \wedge \gann{\chi}\varphi}$, then $w \in \annsemantics{\W}{\chi}$; and if $w \in \annsemantics{\W}{\chi}$, then $w \in \W$.
+	Moreover, it can be generalized for all $w \in \W$ as if $w \in \truthset{\modults}{\chi \wedge \gann{\chi}\varphi}$, then $w \in \annsemantics{\W}{\chi}$.
 	Now $\annmodelchi,w \models \khi(\varphi,\psi)$ iff there is $\plans \in \Unc(i)$ with $\plans \subseteq \ACT$ s.t. $\truthset{\modults}{\chi \wedge \gann{\chi}\varphi} \subseteq \stexec(\plans)$ and $\R_\plans(\truthset{\modults}{\chi \wedge \gann{\chi}\varphi}) \subseteq \truthset{\modults}{\chi \wedge \gann{\chi}\psi}$.
 	This happens iff $\modults,w \models \khi(\chi \wedge \gann{\chi}\varphi,\chi \wedge \gann{\chi}\psi)$. Since for this equivalence we prove assuming $\modults,w \models \chi$, then $\modults,w \models \chi$ implies $\annmodelchi,w \models \khi(\varphi,\psi)$ iff $\modults,w \models \chi$ implies $\modults,w \models \khi(\chi \wedge \gann{\chi}\varphi,\chi \wedge \gann{\chi}\psi)$. Thus, iff $\modults,w \models \chi \implies \khi(\chi \wedge \gann{\chi}\varphi,\chi \wedge \gann{\chi}\psi)$.
 	\end{itemize}
@@ -265,7 +268,7 @@ $\axset_{\khi}$ together with the reduction axioms for $\gann{\chi}$ in~\Cref{ta
 \end{theorem}
 
 \begin{proof}
-The result follows by correctness of the axioms and rule from~\Cref{tab:palaxiom} stated in~\Cref{lemma:palkh-valid} (which enables us to eliminate all the occurences of a $\gann{\chi}$ modality), together with the fact that the system in~\Cref{tab:khiaxiom} is also complete with respect to $\cultsba$ (see the proof in~\cite{AFSVQ21,AFSVQ23report}).
+The result follows by the correctness of the axioms and rule from~\Cref{tab:palaxiom} stated in~\Cref{lemma:palkh-valid} (which enables us to eliminate all the occurences of a $\gann{\chi}$ modality), together with the fact that the system in~\Cref{tab:khiaxiom} is also complete with respect to $\cultsba$ (see the proof in~\cite{AFSVQ21,AFSVQ23report}).
 \end{proof}
 
 
@@ -297,4 +300,3 @@ As a result, there are two possible outcomes:
 \end{inlineenum}
 Thus, there is a procedure that decides satisfiability of $\PAKHilogic$ over $\cultsba$. 
 \end{proof}
-
