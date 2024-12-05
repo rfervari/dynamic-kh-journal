@@ -114,7 +114,11 @@ A class $\plans$ making true the existential statement in the semantic clause of
 Define: $\modults\models\varphi$ iff  $\truthset{\modults}{\varphi}=\W$, and $\models\varphi$ iff $\modults\models\varphi$, for all \ults $\modults$. These notions will be extended as expected, for all the logics in the rest of the paper.
 \end{definition}
 
-Note: the above-defined modalities $\A$ and $\E$ are indeed the global modalities from~\cite{GorankoP92}. For every model $\modults$ and every state $w$, $\modults,w\models\A\varphi$ holds if and only if $\varphi$ is true in all states in $\modults$~\cite{AFSVQ21}. %This will be of use in the rest of the paper.
+\medskip
+
+Given the definition above, we can check that the semantic of the modalities $\A$ and $\E$ introduced in Definition~\ref{def:khsyntax} indeed coincide with the global modalities from~\cite{GorankoP92}. For every model $\modults$ and every state $w$, $\modults,w\models\A\varphi$ holds if and only if $\varphi$ is true in all states in $\modults$. %This will be of use in the rest of the paper.
+
+\medskip
 
 % \begin{example}\label{ex:aircraft}
 %     An unmanned aircraft (the agent $i$) needs to fly from safe zones (states
@@ -381,7 +385,7 @@ Given the implications in \Cref{eq:khe1} and \Cref{eq:khe2}, by transitivity we 
 
 % \ssparagraph{Complexity.} 
 
-Strong completeness of the axiomatization above is established in~\cite{AFSVQ21,AFSVQ23report} via a canonical model construction. By taking such a model, and selecting relevant pieces of it, we can prove a small (polynomial) model property. This property is important in establishing complexity results.
+Strong completeness of the axiomatization above is established in~\cite{AFSVQ21,AFSVQ23report} via a canonical model construction. By taking such a model, and selecting relevant pieces of it, we can prove a small (polynomial) model property. This property is important in establishing the following complexity results.
 
 \medskip 
 
