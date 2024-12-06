@@ -138,9 +138,8 @@ The structure $\modults^\Gamma = \tup{\W^\Gamma, \R^\Gamma, \set{\Unc^\Gamma(i)}
 \begin{proof}
 The set of actions $\ACT^\Gamma$ is denumerable, Thus $\ACT^\Gamma\cup\ACT$ is also denumerable.
 Since $\Gamma \in \W^\Gamma$, $\W^\Gamma \neq \emptyset$.
-It is enough to show that each $\Unc^\Gamma(i)$ defines a partition over a non-empty subset of $2^{((\ACT^\Gamma)^*)}$.
-We have that $\khi(\bot,\bot) \in \Gamma$ so $\tup{\bot, \bot} \in \ACT^\Gamma_i$ and hence $\set{\tup{\bot, \bot}} \in \Unc^\Gamma(i)$; thus, $\Unc(i) \neq \emptyset$.
-Moreover, $\Unc(i)$ indeed defines a partition over $\bigcup_{\plans \in \Unc(i)} \plans$ since its elements are mutually disjoint.
+It is enough to show that each $\Unc^\Gamma(i)$ defines a partition over a non-empty subset of $2^{(\ACT^\Gamma)^*}$ since its elements are singletons (thus, mutually disjoint).
+As we have that $\khi(\bot,\bot) \in \Gamma$, so $\tup{\bot, \bot} \in \ACT^\Gamma_i$ and hence $\set{\tup{\bot, \bot}} \in \Unc^\Gamma(i)$; thus, $\Unc(i) \neq \emptyset$.
 It is direct to show that $\emptyset \notin \Unc^\Gamma(i)$.
 \end{proof}
 
@@ -332,7 +331,7 @@ From $\modults^\Gamma, \Theta \models \khi(\psi,\varphi)$, there is $\set{\tup{\
 \end{enumerate}
 In other words, there is $\tup{\psi',\varphi'} \in \ACT^\Gamma_i$ such that
 \begin{enumerate}
-    \item\label{tlm:cm-esmiv-stexec-lkhi-itm:i} for all $\Delta \in \W^\Gamma$, if $\Delta \in \truthset{\modults^\Gamma}{\psi}$ then $\Delta \in \stexec(\set{\tup{\psi',\varphi'}})$, so $\Delta \in \stexec(\tup{\psi',\varphi'})$ and therefore $\Delta$ has a $\R^\Gamma_{\tup{\psi',\varphi'}}$-successor.
+    \item\label{tlm:cm-esmiv-stexec-lkhi-itm:i} for all $\Delta \in \W^\Gamma$, if $\Delta \in \truthset{\modults^\Gamma}{\psi}$ then $\Delta \in \stexec(\set{\tup{\psi',\varphi'}})$, so $\Delta \in \stexec(\tup{\psi',\varphi'})$ and therefore $\Delta$ has a $\R^\Gamma_{\tup{\psi',\varphi'}}$-successor;
     \item\label{tlm:cm-esmiv-stexec-lkhi-itm:ii} for all $\Delta' \in \W^\Gamma$, if $\Delta' \in \R^\Gamma_{\set{\tup{\psi',\varphi'}}}(\truthset{\modults^\Gamma}{\psi})$ then $\Delta' \in \truthset{\modults^\Gamma}{\varphi}$
 \end{enumerate}
 This case requires three pieces.

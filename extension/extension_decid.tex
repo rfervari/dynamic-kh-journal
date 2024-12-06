@@ -1,7 +1,7 @@
 \subsubsection{Decidability via filtrations}
 
 Now we proceed to define the preliminaries for proving decidability of the satisfiability problem of $\KHiMLlogic$. In order to do so, we will use a \emph{filtration} technique (see e.g.,~\cite{mlbook}). This method enables us, from a given model and a set of formulas, to construct another model (the `filtration') which satisfies the same formulas from the input set. Interestingly, if we depart from a finite set of formulas, the filtration is a finite model, which is a crucial property to obtain decidability. 
-Notice that, the filtration we will provide, generalizes the one introduced in~\cite{AFSVQ23report} for $\KHilogic$, by also handling the basic modal logic modality $[a]$. Moreover, in~\cite{AFSVQ23report} it is not shown that a filtration always exists for a model and a set of formulas, which is a missing ingredient in the proof. This aspect is fixed here too.
+Notice that the filtration we will provide, generalizes the one introduced in~\cite{AFSVQ23report} for $\KHilogic$, by also handling the basic modal logic modality $[a]$. Moreover, in~\cite{AFSVQ23report} it is not shown that a filtration always exists for a model and a set of formulas, which is a missing ingredient in the proof. This aspect is fixed here too.
 
 We start by introducing two relations that, given a set of formulas $\Sigma$ and a model $\modults$, will be crucial to define a proper notion of filtration.
 
@@ -15,14 +15,14 @@ Define the equivalence relations ${\modequiv_\Sigma} \subseteq \W\times\W$ and $
 $w \modequiv_\Sigma v$ &  \iffdef &
 for all $\psi \in \Sigma$, $\modults,w\models \psi$ iff $\modults,v\models \psi$,\\
 $\plans \planequiv_\Sigma \plans'$ & \iffdef &
-for all $i \in \AGT$ and $\khi(\psi,\varphi) \in \Sigma$,  $\plans$ is a witness \\ 
-& & for $\khi(\psi,\varphi)$ in $\modults$ iff $\plans'$ is a witness for $\khi(\psi,\varphi)$ in $\modults$.
+for all $i \in \AGT$ and $\khi(\psi,\varphi) \in \Sigma$,  $\plans$ is a witness for \\ 
+& & $\khi(\psi,\varphi)$ in $\modults$ iff $\plans'$ is a witness for $\khi(\psi,\varphi)$ in $\modults$.
 \end{tabular}
 \end{center}
 
 Given $w \in \W$ and $\plans \in \Unc_\AGT$, we define their $\Sigma$-equivalence class:
 \begin{center}
-$[w]_\Sigma := \setof{v \in \W}{w \modequiv_\Sigma v}$; \qquad  $[\plans]_\Sigma := \setof{\plans' \in 2^{(\ACT^*)}}{\plans \planequiv_\Sigma \plans'}$.
+$[w]_\Sigma := \setof{v \in \W}{w \modequiv_\Sigma v}$; \qquad  $[\plans]_\Sigma := \setof{\plans' \in 2^{\ACT^*}}{\plans \planequiv_\Sigma \plans'}$.
 \end{center}
 \end{definition}
 
@@ -50,7 +50,8 @@ Now, we are in position of defining the notion of filtration.
 \medskip
 
 \begin{definition}[Filtration of $\modults$ through $\Sigma$] \label{def:filtrations}
-Let $\modults = \tup{\W,\R, \set{\Unc(i)}_{i\in \AGT}, \V}$ be an \ults defined over $\ACT$; let $\Sigma$ be a set of $\KHiMLlogic$-formulas that is closed under subformulas. An \ults defined over $\ACT^\Sigma$, $\modults^f = \tup{\W^f,\R^f, \set{\Unc^f(i)}_{i\in \AGT}, \V^f}$, is \emph{a filtration of $\modults$ through~$\Sigma$} if and only if it satisfies the following conditions:
+Let $\modults = \tup{\W,\R, \set{\Unc(i)}_{i\in \AGT}, \V}$ be an \ults defined over $\ACT$; let $\Sigma$ be a set of $\KHiMLlogic$-formulas that is closed under subformulas.
+An \ults defined over $\ACT^\Sigma$, $\modults^f = \tup{\W^f,\R^f, \set{\Unc^f(i)}_{i\in \AGT}, \V^f}$, is \emph{a filtration of $\modults$ through~$\Sigma$} if and only if it satisfies the following conditions:
 
 \begin{enumerate}
 \item $\W^f := \setof{[w]_\Sigma}{w \in \W}$;
@@ -73,7 +74,7 @@ The filtration is defined similarly as for the basic modal logic (see, e.g.,~\ci
 The most significant difference is the addition of a denumerable set of actions and relations (\Cref{item:khiml-fil}) since we use the set $\ACT^\Sigma$ as the set of action names.
 As a consequence, the actions an agent $i$ considered in $\Unc^f(i)$ are separated from the actions defined in $\ACT$.
 Moreover, if $\Sigma$ is finite, the relation $\planequiv_\Sigma$ enables us to obtain a finite set of witnesses for the formulas $\khi(\psi,\varphi) \in \Sigma$, from which (together with $\modequiv_\Sigma$) we also get that $\ACT^\Sigma$ and $\W^f$ are finite.
-The function $\Unc^f(i)$ is well-defined since is made only of singletons. Specially, if there is no $\plans \in \Unc(i)$ such that $\plan$ is a witness for some $\khi(\varphi,\psi) \in \Sigma$, $\Unc^f(i)\neq \emptyset$ still holds.
+The function $\Unc^f(i)$ is well-defined since is made only of singletons. Specially, if there is no $\plans \in \Unc(i)$ such that is a witness for some $\khi(\varphi,\psi) \in \Sigma$, $\Unc^f(i)\neq \emptyset$ still holds.
 This is due to the addition of a vacuous action, $a_\emptyset$, which is not strongly executable in any state.
 The conditions~\ref{item:khiml-fil-a1} and~\ref{item:khiml-fil-a2} are the usual ones for the basic modal logic.
 In fact, notice that they are not in conflict with the new conditions, as the actions used to talk about formulas with $\kh$ are disjoint from those to talk about formulas with $[a]$ modalities.
@@ -143,7 +144,7 @@ The respective equivalence classes for the plans in $\Unc_\AGT$ are defined as:
 
 From now on, $\set{a_2}$ will be denoted as $\plans_4$ as we did above. 
 Notice that $[\plans_1]_\Sigma$ encompasses the set of plans that are witnesses for $\kh_k(p,q)$, while $[\plans_2]_\Sigma$ encompasses the witnesses for $\kh_k(p,r)$. For the case of $\kh_j(p,q)$ there is no witness under consideration, as the formula does not hold at $\modults$.   
-Finally, $[\plans_4]_\Sigma$ is the witness for $\kh_j(p,r)$. Thus, we have $\ACT^\Sigma =\set{a_\emptyset,a_{[\plans_1]_\Sigma},a_{[\plans_2]_\Sigma},a_{[\plans_4]_\Sigma},b_1}$.
+Finally, $[\plans_4]_\Sigma$ encompassess the witnesses for $\kh_j(p,r)$. Thus, we have $\ACT^\Sigma =\set{a_\emptyset,a_{[\plans_1]_\Sigma},a_{[\plans_2]_\Sigma},a_{[\plans_4]_\Sigma},b_1}$.
 
 A possible filtration would be $\modults^f = \tup{\W^f,\R^f, \set{\Unc^f(i)}_{i\in \AGT}, \V^f}$, with: 
 \begin{enumerate}
@@ -170,7 +171,7 @@ $\Unc^f(j) = \set{\set{a_{[\plans_4]_\Sigma}}, \set{a_\emptyset}}$;
 \end{itemize}
 \end{enumerate}
 
-\medskip
+% \medskip
 
 The filtration $\modults^f$ is depicted below:
 
@@ -264,7 +265,7 @@ Hence, $\modults,w \models \mlbox{a}\varphi$.
 \end{itemize}
 
 It remains to show that if $\Sigma$ is finite, then $\modults^f$ is finite.
-First, note that the number of elements in $\W^f$ is at most exponential in the size in the number of formulas in $\Sigma$.
+First, note that the number of elements in $\W^f$ is at most exponential in the number of formulas in $\Sigma$.
 Thus, $\W^f$ and $\V^f$ are finite. Similarly, as the number of $\khi(\psi,\varphi)$ and $\mlbox{a} \varphi$ in $\Sigma$ are finite, $\ACT^{\Sigma}$ is also finite.
 Thus, $\R^f$ and $\Unc^f$ are both finite, and therefore $\modults^f$ is a finite model.
 \end{proof}
@@ -272,7 +273,7 @@ Thus, $\R^f$ and $\Unc^f$ are both finite, and therefore $\modults^f$ is a finit
 \medskip 
 
 \begin{example}\label{ex:filtration-preserves}
- Consider again~\Cref{ex:afiltration}. Notice that the filtration preserves the satisfiability of formulas in $\Sigma$. For instance, $\modults\models\kh_k(p,q)$ with $\plans_1$ as witness, while $\modults^f\models\kh_k(p,q)$ with $[\plans_1]_\Sigma$ as witness. Also, it is clear that both $\modults\not\models\kh_j(p,q)$ and $\modults^f\not\models\kh_j(p,q)$, and that $\modults,w^1_2\models[b_1] s^1$ and $\modults^f,[w^1_2]_\Sigma\models[b_1] s^1$. One can verify that this is also the case for other alternative filtrations, as established by~\Cref{th:filtration}.
+ Consider again~\Cref{ex:afiltration}. Notice that the filtration preserves the satisfiability of formulas in $\Sigma$. For instance, $\modults\models\kh_k(p,q)$ with $\plans_1$ as witness, while $\modults^f\models\kh_k(p,q)$ with $\set{a_{[\plans_1]_\Sigma}}$ as witness. Also, it is clear that both $\modults\not\models\kh_j(p,q)$ and $\modults^f\not\models\kh_j(p,q)$, and that $\modults,w^1_2\models[b_1] s^1$ and $\modults^f,[w^1_2]_\Sigma\models[b_1] s^1$. One can verify that this is also the case for other alternative filtrations, as established by~\Cref{th:filtration}.
 \end{example}
 
 \medskip
@@ -299,11 +300,14 @@ The satisfiability problem for $\KHiMLlogic$ is decidable.
 \end{corollary}
 
 \begin{proof}
-Suppose $\varphi$ is satisfiable, then there exists a model $\modults$ and a state $w$ such that $\modults,w\models\varphi$. Let $\Sigma$ be the set of subformulas of $\varphi$ (including $\varphi$). The there exists a filtration $\modults^f$ such that, by~\Cref{th:filtration}, $\modults^f,[w]_\Sigma\models\varphi$. Since $\Sigma$ is finite, $\modults^f$ is finite, and of size at most exponential. Consequently, we know there exists a finite model of $\varphi$. Thus, we can list all the models and try one by one, whether they satisfy $\varphi$ or not, by calling a model-checking algorithm. Since model-checking is decidable (by simply combining the algorithm for basic modal logic~\cite{mlbook}, and the one for $\KHilogic$~\cite{AFSVQ21,AFSVQ23report}), the corollary follows. \raul{No tenemos demo especifica de que model-checking es decidible, dejamos asi como esta?}
+Suppose $\varphi$ is satisfiable, then there exists a model $\modults$ and a state $w$ such that $\modults,w\models\varphi$. Let $\Sigma$ be the set of subformulas of $\varphi$ (including $\varphi$).
+The there exists a filtration $\modults^f$ such that, by~\Cref{th:filtration}, $\modults^f,[w]_\Sigma\models\varphi$. Since $\Sigma$ is finite, $\modults^f$ is finite, and of size at most exponential.
+Consequently, we know there exists a finite model of $\varphi$. Thus, we can list all the models and try one by one, whether they satisfy $\varphi$ or not, by calling a model-checking algorithm.
+Since model-checking is decidable (by simply combining the algorithm for basic modal logic~\cite{mlbook}, and the one for $\KHilogic$~\cite{AFSVQ21,AFSVQ23report}), the corollary follows. \raul{No tenemos demo especifica de que model-checking es decidible, dejamos asi como esta?}
 \end{proof}
 
 \medskip
 
-It is worth noticing that the conditions regarding the treatment of $\Unc^f(i)$ in~\Cref{def:filtrations} are slightly different from the conditions introduced in~\cite{AFSVQ23report} for the basic logic $\KHilogic$. Therein, the existence of a filtration is not established. Thus, in this work we update the definition of filtrations, making easier to guarantee that always we can obtain a finite model from any set of finite formulas, and consequently~\Cref{cor:extended-decidable}.
+It is worth noticing that the conditions regarding the treatment of $\Unc^f(i)$ in~\Cref{def:filtrations} are slightly different from the conditions introduced in~\cite{AFSVQ23report} for the basic logic $\KHilogic$. Therein, the existence of a filtration is not established. Thus, in this work we update the definition of filtrations, making easier to guarantee that we can always obtain a finite model from any set of finite formulas, and consequently~\Cref{cor:extended-decidable}.
 
 % The rest of the section will be devoted to introduce a new family of dynamic epistemic logics extending $\KHiMLlogic$.
