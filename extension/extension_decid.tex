@@ -74,7 +74,7 @@ The filtration is defined similarly as for the basic modal logic (see, e.g.,~\ci
 The most significant difference is the addition of a denumerable set of actions and relations (\Cref{item:khiml-fil}) since we use the set $\ACT^\Sigma$ as the set of action names.
 As a consequence, the actions an agent $i$ considered in $\Unc^f(i)$ are separated from the actions defined in $\ACT$.
 Moreover, if $\Sigma$ is finite, the relation $\planequiv_\Sigma$ enables us to obtain a finite set of witnesses for the formulas $\khi(\psi,\varphi) \in \Sigma$, from which (together with $\modequiv_\Sigma$) we also get that $\ACT^\Sigma$ and $\W^f$ are finite.
-The function $\Unc^f(i)$ is well-defined since is made only of singletons. Specially, if there is no $\plans \in \Unc(i)$ such that is a witness for some $\khi(\varphi,\psi) \in \Sigma$, $\Unc^f(i)\neq \emptyset$ still holds.
+The function $\Unc^f(i)$ is well-defined since it is made only of singletons. Specially, if there is no $\plans \in \Unc(i)$ such that $\plans$ is a witness for some $\khi(\varphi,\psi) \in \Sigma$, $\Unc^f(i)\neq \emptyset$ still holds.
 This is due to the addition of a vacuous action, $a_\emptyset$, which is not strongly executable in any state.
 The conditions~\ref{item:khiml-fil-a1} and~\ref{item:khiml-fil-a2} are the usual ones for the basic modal logic.
 In fact, notice that they are not in conflict with the new conditions, as the actions used to talk about formulas with $\kh$ are disjoint from those to talk about formulas with $[a]$ modalities.
@@ -301,7 +301,7 @@ The satisfiability problem for $\KHiMLlogic$ is decidable.
 
 \begin{proof}
 Suppose $\varphi$ is satisfiable, then there exists a model $\modults$ and a state $w$ such that $\modults,w\models\varphi$. Let $\Sigma$ be the set of subformulas of $\varphi$ (including $\varphi$).
-The there exists a filtration $\modults^f$ such that, by~\Cref{th:filtration}, $\modults^f,[w]_\Sigma\models\varphi$. Since $\Sigma$ is finite, $\modults^f$ is finite, and of size at most exponential.
+Then, there exists a filtration $\modults^f$ such that, by~\Cref{th:filtration}, $\modults^f,[w]_\Sigma\models\varphi$. Since $\Sigma$ is finite, $\modults^f$ is finite, and of size at most exponential.
 Consequently, we know there exists a finite model of $\varphi$. Thus, we can list all the models and try one by one, whether they satisfy $\varphi$ or not, by calling a model-checking algorithm.
 Since model-checking is decidable (by simply combining the algorithm for basic modal logic~\cite{mlbook}, and the one for $\KHilogic$~\cite{AFSVQ21,AFSVQ23report}), the corollary follows. \raul{No tenemos demo especifica de que model-checking es decidible, dejamos asi como esta?}
 \end{proof}
