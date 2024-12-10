@@ -1,16 +1,15 @@
 One of the advantages of \ults{s} is that they allow a  natural
-representation of actions that affect the abilities of an agent, but also, her epistemic state. In an
-\ults, the crucial epistemic component is the set $\Unc(i)$,
-defining not only the plans agent $i$ is `aware of',
-but also the level at which she can discern among
+representation of both the actions that affect the abilities of an agent, and her epistemic state. In an
+\ults, the crucial epistemic component is the sets $\Unc(i)$,
+defining the plans agent $i$ is `aware of',
+and the level at which she can discern among
 them. Thus we can represent changes in the epistemic state of
-an agent by means of operations that modify $\Unc(i)$. We will focus on alternatives in which the update's intention is to gain new information.
-
+an agent by means of operations that modify $\Unc(i)$. 
 \medskip
 
 \begin{example}\label{ex:ref}
     Let $\modults$ be the \ults from \Cref{ex:cook}.
-    Recall that $\modults\not\models\kh_j(h,g)$. The conflicting plan is $\mathit{ebmfsp}$, which does not lead to a good cake. Thus, if agent $j$ is able to tell apart $\mathit{ebmfsp}$ from $\mathit{ebfmsp}$ (which is the good plan), she would be able to know how to get a good cake, provided she has the ingredients. If agent $j$ \emph{learns} that the
+    Recall that $\modults\not\models\kh_j(h,g)$. The conflicting plan is $\mathit{ebmfsp}$, which does not lead to a good cake. Thus, if agent $j$ is able to tell apart $\mathit{ebmfsp}$ from $\mathit{ebfmsp}$ (which is the good plan), she would be able to know how to bake a good cake, provided she has the ingredients. If agent $j$ \emph{learns} that the
     order of the actions matters (so $\mathit{ebmfsp}$ is distinct from $\mathit{ebfmsp}$), the set $\plans=\set{\mathit{ebfmsp}, \mathit{ebmfsp}}$ is split into two singleton sets (i.e., $\Unc'(j)=\set{\set{\mathit{ebfmsp}},\set{\mathit{ebmfsp}}}$, where $\Unc'(j)$ is the set of indistinguishability classes obtained from the update). After such a splitting, she knows how to achieve $g$ given $h$.
 \end{example}
 
@@ -75,11 +74,13 @@ an agent by means of operations that modify $\Unc(i)$. We will focus on alternat
 % \Cref{def:goallearnsem} looks for a way to split an existing strategy
 % $\plans$ to ensure that an agent knows how to make $\psi$ true when
 % $\chi$ is the case.
-We introduce an operation that eliminates uncertainty between specific
-plans.  In an {\ults}, there might be different ways of
-making distinguishable two previously indistinguishable plans:  the
-different ways one can split a set containing both. First,
-we proceed to introduce some notation.
+We define an operation that eliminates uncertainty between specific
+plans.  
+%In an {\ults}, there might be different ways of
+%making distinguishable two previously indistinguishable plans:  the
+%different ways one can split a set containing both. 
+First,
+we introduce some notation.
 
 %For now, we will talk about the one-agent version of $\KHilogic$ for $\ults$ models, $\KHilogic$.
 
@@ -87,13 +88,12 @@ we proceed to introduce some notation.
 
 \begin{definition}
 Let $\plans, \plans_1, \plans_2 \in 2^{\ACT^*}$, and $S \subseteq 2^{\ACT^*}$.  We write $\plans = \plans_1\uplus\plans_2$ iff $\plans=\plans_1\cup\plans_2$ and $\plans_1\cap\plans_2=\emptyset$.
-
-For $\plans \in S$ and $\plans=\plans_1\uplus\plans_2$, define  $\lmodel{S}{\plans}{\set{\plans_1,\plans_2}} \subseteq 2^{\ACT^*}$ as the result of refining~$\plans$ through $\set{\plans_1,\plans_2}$: $\lmodel{S}{\plans}{\set{\plans_1,\plans_2}} := (S\setminus\set{\plans})\cup\set{\plans_1,\plans_2}$.
+For $\plans \in S$ and $\plans=\plans_1\uplus\plans_2$, define  $\lmodel{S}{\plans}{\set{\plans_1,\plans_2}} \subseteq 2^{\ACT^*}$ as the result of refining~$\plans$ through $\set{\plans_1,\plans_2}$, i.e., $\lmodel{S}{\plans}{\set{\plans_1,\plans_2}} := (S\setminus\set{\plans})\cup\set{\plans_1,\plans_2}$.
 \end{definition}
 
 \medskip
 
-Once we have defined how a set is obtained as a result of a certain update, we define below a relation between sets that links sets before an update, with those sets after the update.
+Now we define a relation between sets that links sets before an update, with those after the update.
 
 \medskip
 
@@ -145,9 +145,9 @@ As usual, we define $\refbox{\plan_1}{\plan_2}\varphi := \lnot \refdiam{\plan_1}
 
 \medskip
 
-Formulas of the form $\refdiam{\plan_1}{\plan_2}\varphi$ can be read as follows: \emph{``after it is stated that plans $\plan_1$ and $\plan_2$ are distinguishable, $\varphi$ holds''}. For instance, taking~\Cref{ex:ref}, $\refdiam{\mathit{ebmfsp}}{\mathit{ebfmsp}}\kh_j(h,g)$ establishes that \emph{``after it is stated that $\mathit{ebmfsp}$ and $\mathit{ebfmsp}$ are distinguishable plans, agent $j$ knows how to produce a good cake, provided she has the ingredientes''}. 
+Formulas of the form $\refdiam{\plan_1}{\plan_2}\varphi$ can be read as follows: \emph{``after it is stated that plans $\plan_1$ and $\plan_2$ are distinguishable, $\varphi$ holds''}. For instance, in~\Cref{ex:ref}, $\refdiam{\mathit{ebmfsp}}{\mathit{ebfmsp}}\kh_j(h,g)$ establishes that \emph{``after it is stated that $\mathit{ebmfsp}$ and $\mathit{ebfmsp}$ are distinguishable plans, agent $j$ knows how to bake a good cake, provided she has the ingredients''}. 
 
-The proposed modality has some natural properties: it is normal and serial.
+The proposed modality has some natural properties, e.g., it is normal and serial.
 
 \medskip
 
@@ -167,7 +167,8 @@ It follows from the semantics (\Cref{def:ref-sem}) that:
 The seriality of $\splitstr{}{}{\plan_1}{\plan_2}$ ensures \Cref{itm:serialityref}.
 \end{proof}
 
-This dynamic modality both preserves knowledge and can generate new one.
+This dynamic modality preserves the previous knowledge of an agent, 
+and it also can generate new knowledge, as shown above.
 
 \medskip
 
@@ -175,7 +176,7 @@ This dynamic modality both preserves knowledge and can generate new one.
 Let $\varphi,\psi$ be propositional formulas and $\plan_1,\plan_2\in\ACT^*$ such that $\plan_1\neq\plan_2$. Then,
 \begin{enumerate}
 \item\label{itm:preservesknowledge} $\models \khi(\varphi,\psi) \ra \refbox{\plan_1}{\plan_2}\khi(\varphi,\psi)$.
-\item\label{itm:gainsknowledge} If $\psi$ and $\varphi$ are satisfiable, then $\neg\khi(\psi,\varphi) \wedge \refdiam{\plan_1}{\plan_2}\khi(\psi,\varphi)$ is satisfiable.
+\item\label{itm:gainsknowledge} If $\varphi$ and $\psi$ are satisfiable, then $\neg\khi(\varphi,\psi) \wedge \refdiam{\plan_1}{\plan_2}\khi(\varphi,\psi)$ is satisfiable.
 \end{enumerate}
 \end{proposition}
 \begin{proof}
@@ -192,7 +193,7 @@ Since all the cases for $\plan_1$ and $\plan_2$ are covered, we can conclude tha
 
 For \Cref{itm:gainsknowledge}, let $\plan_1 \neq \plan_2$, and let $\modults=\tup{\set{u,v},\R,\set{\Unc(i)},\V}$ be a model such that
 \begin{itemize}
-\item $\modults,u \models \psi$ and $\modults,v \models \varphi$;
+\item $\modults,u \models \varphi$ and $\modults,v \models \psi$;
 \item $\R_{\plan_1[1]} = \set{(u,v),(v,v)}$ and $\R_{\plan_1[j]} = \set{(v,v)}$ for all $j = 2, \dots, \card{\plan_1}$;
 \item $\R_{\plan_2[k]} = \emptyset$ for some $k = 1, \dots, \card{\plan_2}$ (since $\plan_1 \neq \plan_2$); and
 \item $\Unc(i) = \set{\set{\plan_1,\plan_2}}$.
@@ -203,16 +204,16 @@ The model $\modults$ is depicted below (the plan $\plan_2$ is omitted):
 \begin{center}
 \begin{tikzpicture}[->, grow' = right, level/.style={sibling distance = 2em/#1}, level distance = 1.5em]
 \node (m) {$\modults$:};
-\node [state, right = 0.4cm of m, label=below:$u$] (u) {$\psi$};
-\node [state, right = of u, label=below:$v$] (v) {$\varphi$};
+\node [state, right = 0.4cm of m, label=below:$u$] (u) {$\varphi$};
+\node [state, right = of u, label=below:$v$] (v) {$\psi$};
 
 \path (u) edge[right] node [label-edge, above] {$\plan_1[1]$} (v);
 \path (v) edge[loop right] node [label-edge] {$\plan_1[k], \ k \geq 1$} (v);
 \end{tikzpicture}
 \end{center}
 
-Since $u \not\in \stexec(\plan_2) = \stexec(\set{\plan_1,\plan_2})$, we have that $\modults \models \neg\khi(\psi,\varphi)$.
-However, $\modults \models \refdiam{\plan_1}{\plan_2}\khi(\psi,\varphi)$ as $\splitstr{\set{\set{\plan_1,\plan_2}}}{\set{\set{\plan_1},\set{\plan_2}}}{\plan_1}{\plan_2}$ and $\set{\plan_1}$ acts as a witness.
+Since $u \not\in \stexec(\plan_2) = \stexec(\set{\plan_1,\plan_2})$, we have that $\modults \models \neg\khi(\varphi,\psi)$.
+However, $\modults \models \refdiam{\plan_1}{\plan_2}\khi(\varphi,\psi)$ as $\splitstr{\set{\set{\plan_1,\plan_2}}}{\set{\set{\plan_1},\set{\plan_2}}}{\plan_1}{\plan_2}$ and $\set{\plan_1}$ acts as a witness.
 \end{proof}
 % \bigfer{In the previous proposition, the standard problem in these cases is that $\truthset{\modults}{\varphi}$ and $\truthset{\modults^{\Unc}_{\Unc'}}{\varphi}$ might be different (because the model changes). Asking for $\varphi$ and $\psi$ to be propositional guarantees that $\truthset{\modults}{\varphi}$ and $\truthset{\modults^{\Unc}_{\Unc'}}{\varphi}$ coincide (as valuations do not change). But arguing whether that holds for arbitrary $\varphi$ (if that is indeed the case) might require more care.}
 
