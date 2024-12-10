@@ -1,8 +1,10 @@
 % Let us start by consider \PAL-like announcements in the context of knowing how logics. For the $\kh$ modality first introduced in~\cite{Wang15lori}, such an announcement would result in updating the labeled transition system in which the formula is interpreted, producing a change in the abilities of the agent. In that setting, these abilities coincide with her knowledge.
 
-As discussed in the previous sections, our goal is to take ideas from standard epistemic logic in order to perform operations that update an agent's knowing how.
-A typical way of updating a model (and thus, the knowledge of an agent) 
-is considering a model operation removing states (and thus updating the relations). Within the DEL literature, this is interpreted as a \emph{public announcement} (\PAL;~\cite{Plaza89:lopc}): an \emph{epistemic} action through which agents get to know publicly that the announced formula is true. Such a \emph{model update} operation is typically described with the operator $[\chi]$, that is (according to, e.g.,~\cite{DELbook}) semantically interpreted as:
+%As discussed in the previous sections, our goal is to take ideas from standard epistemic logic in order to perform operations that update an agent's knowing how.
+
+A typical way of updating a model  
+is by removing states, as is done in \PAL~\cite{Plaza89:lopc,DELbook}.  This \emph{model update} operation is typically realized with the operator $[\chi]$,
+which, over an $\ults$ $\modults=\tup{\W,\R,\set{\Unc(i)}_{i\in\AGT},\V}$, can be defined as:
 \[
 \modults,w\models[\chi]\varphi \ \ \iff \ \  \modults,w\models\chi \mbox{ implies } \modults_{\chi},w\models\varphi,
 \]
@@ -10,7 +12,7 @@ with $\modults_\chi=\tup{\W_\chi,\R_\chi,\Unc_\chi,\V_\chi}$ where:
 \[
 \begin{array}{l@{\quad \quad \quad }l}
 \W_\chi = \set{w \mid \modults,w\models\chi} & (\R_\chi)_a = \R_a \cap \W_\chi^2, \mbox{ for each } a\in\ACT \\
-\V_\chi(w) = \V(w), \mbox{ for all } w\in\W_\chi & \Unc_\chi = \Unc.
+\V_\chi(w) = \V(w), \mbox{ for all } w\in\W_\chi & \Unc_\chi = \set{\Unc(i)}_{i\in\AGT}.
 \end{array}	
 \]
 
