@@ -1,11 +1,12 @@
 % For this section we will use models $\modults = \tup{\W, \R, \Unc, \V}$ such that for all $i \in \AGT$ and all $\strategy \in \Unc(i)$, $\strategy \subseteq \ACT$ i.e. models where the knowledge every agent has are about the basic actions.
 
-Another framework for modifying relational models is \emph{Arrow Update Logic} ($\AUL$; \cite{KooiR11}). It differs from $\PAL$ in that it removes only \emph{edges}, thus keeping the domain intact. In standard epistemic logic, this corresponds to changes in uncertainty (e.g., the epistemic indistinguishability might be reduced, so intuitively the agents gain knowledge). For knowing how logics, the situation is again different: updating edges in an \lts corresponds to updating the abilities of the agents, as arrows represent execution of actions. We introduce now a logic for arrow updates in the context of our knowing how logic.
+Another classical approach to update LTSs is Arrow Update Logic 
+($\AUL$)~\cite{KooiR11}. It differs from $\PAL$ in that it removes only \emph{edges}, thus keeping the domain intact. In standard epistemic logic, this corresponds to changes in uncertainty (e.g., the epistemic indistinguishability might be reduced, so intuitively the agents gain knowledge). For knowing how logics, the situation is again different: updating edges in an \lts corresponds to updating the abilities of the agents, as arrows represent execution of actions. We introduce now a logic for arrow updates in the context of $\kh_i$.
 
 \medskip 
 
 \begin{definition}\label{def:arrowsyntax}
-Formulas of the language $\AUKHilogic$ are given by
+Formulas of the language $\AUKHilogic$ are defined by the following grammar
 \[
 \begin{array}{lcl}
 \varphi & ::= & p \mid \neg\varphi \mid \varphi\vee\varphi \mid
@@ -37,7 +38,7 @@ Let $\modults = \tup{\W, \R, \Unc, \V}$ be an \ults, and $U = (\theta_1,\theta'_
 Note that if $w \in \truthset{\modults}{\bigwedge_{i=1}^n \theta_i}$ and $\R_a(w) \subseteq \truthset{\modults}{\bigwedge_{i=1}^n \theta'_i}$, then $\R'_a(w) = \R_a(w)$.
 Moreover, $\R'_a(w) \neq \emptyset$ iff $w \in \truthset{\modults}{\bigwedge_{i=1}^n \theta_i}$, $\R_a(w) \subseteq \truthset{\modults}{\bigwedge_{i=1}^n \theta'_i}$ and $\R_a(w) \neq \emptyset$.
 
-Once again, the update here differs from the original one in e.g.,~\cite{KooiR11}, in that given a state satisfying the precondition, it takes in consideration all the states that are reachable from it. Thus, the satisfaction of the postcondition at all those states defines whether the arrows are preserved or not.
+Once again, the update here differs from the original one in, e.g.,~\cite{KooiR11}, in that given a state satisfying the precondition, it takes in consideration all the states that are reachable from it. Thus, the satisfaction of the postcondition at all those states defines whether the arrows are preserved or not.
 %\end{remark}
 
 \medskip 
@@ -50,9 +51,9 @@ We extend the satisfaction relation $\models$ from~\Cref{def:sem-esm} with the c
 %Moreover, $\modults,w\models \arrowbox{U}\varphi$ iff $\modults,w\models \arrowbox{U}\varphi$ (i.e., the modality $\arrowbox{U}$ is self-dual).
 \end{definition}
 
-\medskip 
+%\medskip 
 
-As in the $\PAL$ case, $\AUL$ performs ontic updates rather than epistemic updates over $\ults$-based knowing how.
+%As in the $\PAL$ case, $\AUL$ performs ontic updates rather than epistemic %updates over $\ults$-based knowing how.
 
 \medskip 
 
@@ -63,7 +64,7 @@ $\AUKHilogic$ is more expressive than $\KHilogic$ over arbitrary \ultss.
 By using the models from~\Cref{prop:exppal}, we have that $\modults,w \not\models [(r,r)]\khi(p,q)$ and $\modults',w' \models[(r,r)]\khi(p,q)$.
 \end{proof}
 
-Again, the reduction axioms from~\Cref{tab:aulaxiom} are valid in the class of models $\cultsba$, and we can use them to eliminate all the occurrences of the $\arrowbox{U}$ modality. %Thus, we get completeness for $\AUKHilogic$.
+The reduction axioms from~\Cref{tab:aulaxiom} are valid in the class of models $\cultsba$, and we can use them to eliminate all occurrences of the $\arrowbox{U}$ modality. %Thus, we get completeness for $\AUKHilogic$.
 
 \begin{table}[t]
 \begin{tabular}{l@{\quad}l}
@@ -85,7 +86,7 @@ Again, the reduction axioms from~\Cref{tab:aulaxiom} are valid in the class of m
 	The reduction axioms from \Cref{tab:aulaxiom} are valid in $\cultsba$.
 \end{lemma}
 
-\begin{proof} The proof proceeds by cases, and again we focus only in $\axm{RKh}$.
+\begin{proof} The proof proceeds by cases. We only discuss $\axm{RKh}$.
 	\begin{itemize}
 	% \item For \axm{RBase}, let $U' = (\bigwedge_{i=1}^n \theta_i,\bigwedge_{i=1}^n \theta'_i) = (\alpha_1,\theta'_1)$, note that $\arrowsemantics{\W}{U} = \arrowsemantics{\W}{U'} = \W$, $\arrowsemantics{\Unc}{U} = \arrowsemantics{\Unc}{U'} = \Unc$ and $\arrowsemantics{\V}{U}(p) = \arrowsemantics{\V}{U'}(p) = \V(p)$ for every $p$. Let $a \in \ACT$, $(w,v) \in (\arrowsemantics{\R}{U})_a$ iff $w \in \truthset{\modults}{\bigwedge_{i=1}^n \theta_i}$, $\R_a(w) \subseteq \truthset{\modults}{\bigwedge_{i=1}^n \theta'_i}$.
 	% Since $\truthset{\modults}{\bigwedge_{i=1}^n \theta_i} = \truthset{\modults}{\alpha_1} = \truthset{\modults}{\bigwedge_{i=1}^1 \alpha_i}$ and $\truthset{\modults}{\bigwedge_{i=1}^n \theta'_i} = \truthset{\modults}{\theta'_1} = \truthset{\modults}{\bigwedge_{i=1}^1 \theta'_i}$, $(w,v) \in (\arrowsemantics{\R}{U})_a$ iff $(w,v) \in (\arrowsemantics{\R}{U'})_a$.
@@ -128,7 +129,7 @@ Again, the reduction axioms from~\Cref{tab:aulaxiom} are valid in the class of m
 	\end{itemize}
 \end{proof}
 
-As a consequence, we again obtain the intended result.
+As a corollary we obtain the intended result.
 
 \medskip 
 

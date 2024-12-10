@@ -3,7 +3,7 @@
 %As discussed in the previous sections, our goal is to take ideas from standard epistemic logic in order to perform operations that update an agent's knowing how.
 
 A typical way of updating a model  
-is by removing states, as is done in \PAL~\cite{Plaza89:lopc,DELbook}.  This \emph{model update} operation is typically realized with the operator $[\chi]$,
+is by removing states, as is done in \PAL~\cite{Plaza89:lopc,DELbook}.  This model update is typically realized with the public announcement operator $[\chi]$,
 which, over an $\ults$ $\modults=\tup{\W,\R,\set{\Unc(i)}_{i\in\AGT},\V}$, can be defined as:
 \[
 \modults,w\models[\chi]\varphi \ \ \iff \ \  \modults,w\models\chi \mbox{ implies } \modults_{\chi},w\models\varphi,
@@ -16,10 +16,10 @@ with $\modults_\chi=\tup{\W_\chi,\R_\chi,\Unc_\chi,\V_\chi}$ where:
 \end{array}	
 \]
 
-%that arises from taking $\truthset{\modults}{\chi}$ as the new domain, and with the relations and the valuation restricted accordingly .
-In the original \emph{knowing how} setting from~\cite{Wang15lori}, the relations define the agent's abilities. Thus, an update corresponds to both an ontic and an epistemic change (available actions change, and hence so do the agent's abilities). However, in the \ults-based semantics, relations provide only ontic information; thus, an update operation produces an \emph{ontic} change, but not an epistemic one.
+As we can see, $\modults_\chi$ is obtained by taking $\truthset{\modults}{\chi}$ as the new domain, and by restricting relations and the valuation accordingly (the indistinguishability classes $U(i)$ are left unchanged).
+In the original \emph{knowing how} setting from~\cite{Wang15lori}, the relations define the agent's abilities. Thus, under that semantics this kind of update corresponds to both an ontic and an epistemic change (available actions change, and hence so do the agent's abilities). However, in the \ults-based semantics, relations provide only ontic information; thus, this update operation produces an \emph{ontic} change, but not an epistemic one.
 
-The update operator adds expressivity to our $\KHilogic$ (a similar result was established in~\cite{Wang2016} for a $\kh$ modality with intermediate constraints).
+We can prove that this update operator adds expressivity to $\KHilogic$ (a similar result was established in~\cite{Wang2016} for a $\kh$ modality with intermediate constraints).
 
 \medskip 
 
