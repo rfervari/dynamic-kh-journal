@@ -1,4 +1,4 @@
-As mentioned, the operation $\refdiam{\plan_1}{\plan_2}$ can be seen as a particular form of (publicly) removing uncertainty: one indicates precisely the plans that can be distinguished now, and then quantifies over the different ways of doing so. The operation defined below is a more abstract one: in the spirit of other proposals that quantify over epistemic actions (e.g., the arbitrary announcements of \cite{BalbianiBDHHL08}, the arbitrary arrow updates of \cite{DitmarschHKK17}, the group announcements of \cite{GroupAJ}, the coalition announcements of \cite{AgotnesD08} and the arbitrary radical upgrades of \cite{FI24}), it quantifies over all the different ways in which the agent's indistinguishability can be refined. In the context of knowing how, this approach will be shown later to be suitable for definining a notion of ``learnability''.
+The operation $\refdiam{\plan_1}{\plan_2}$ can be seen as a particular form of (publicly) removing uncertainty: one indicates precisely the plans that can be distinguished now, and then quantifies over the different ways of doing so. The operation defined below is a more abstract one: in the spirit of other proposals that quantify over epistemic actions (e.g., the arbitrary announcements of \cite{BalbianiBDHHL08}, the arbitrary arrow updates of \cite{DitmarschHKK17}, the group announcements of \cite{GroupAJ}, the coalition announcements of \cite{AgotnesD08} and the arbitrary radical upgrades of \cite{FI24}), it quantifies over all the different ways in which the agent's indistinguishability can be refined. We will show later how this operator can be used to define a notion of ``learnability'', in the context of knowing how.
 
 \medskip
 
@@ -14,11 +14,10 @@ As usual $\arefbox\varphi = \neg\arefdiam\neg\varphi$. We denote $\AReflogic$ (f
 
 \medskip
 
-Notice that knowing how operators are \emph{goal-directed}: the agent looks for a suitable course of action that makes her achieve a certain state. 
+Knowing how operators are \emph{goal-directed}: the agent looks for a suitable course of action that makes her achieve a certain state. 
 In $\AReflogic$, we can define an operator that, when possible, \emph{guarantees} that the agent \emph{learns how} to achieve a goal.
-This action can be understood as a goal-directed learning how: it looks for a way to split \emph{some} existing set of plans $\plans$ in such a way that the agent knows how to achieve $\varphi$ given $\psi$. 
+This action can be understood as a goal-directed learning how: it looks for a way to split \emph{some} existing set of plans $\plans$ in such a way that the agent knows how to achieve $\varphi$ given $\psi$.  
 
-\medskip 
 
 Let $\LHlogic$ (for ``learning how'') be $\KHilogic$ extended with the dynamic modality
 \[
@@ -28,10 +27,10 @@ Let $\LHlogic$ (for ``learning how'') be $\KHilogic$ extended with the dynamic m
 Moreover, we define $\learn_i(\psi,\varphi) := \lh{\psi}{\varphi}_i\top$ an abbreviation for \emph{``the agent $i$ can learn how to make $\varphi$ true in the presence of $\psi$''}.
 Notice that $\LHlogic$ is a syntactic fragment of $\AReflogic$.
 
-The new dynamic modality is a ternary modality expressing that the agent is able to learn how to achieve $\varphi$ given $\psi$, and that after this learning operation takes place, $\chi$ holds.
+$\lh{\psi}{\varphi}_i\chi$ is a ternary modality expressing that agent $i$ is able to learn how to achieve $\varphi$ given $\psi$, and that after this learning operation takes place, $\chi$ holds.
 %However, as we will see below, it can be seen as a unary modality similarly to public announcements or action models.
-The modality $\learn_i$ is a test of what is learnable by the agent~$i$.
-
+The modality $\learn_i$ is a test of what is learnable by  agent~$i$. 
+We can list some natural properties of these new modalities:
 
 \medskip
 
@@ -89,20 +88,21 @@ Therefore, agent $i$ cannot learn how to make $r$ true when $p$ holds.
 For \Cref{itm:learnboth} consider $\modults'$ as in~\Cref{prop:expref}.
 As said, $\modults',w'\not\models\khi(p,q)$.
 %again $\modults$ above. %As said, $\modults,w\not\models\kh(p,r)$.
-However, there is a way to learn how to achieve $q$ given $p$: it is possible to split the set $\set{a,b}$ into $\set{a}$ and $\set{b}$; hence, $\modults',w'\models \learn_i(p,q)$ (witness $\set{a}$) but also $\modults',w'\models\learn_i(p,\neg q)$ (witness $\set{b}$).
+However, there is a way to learn how to achieve $q$ given $p$ by splitting the set $\set{a,b}$; hence, $\modults',w'\models \learn_i(p,q)$ (witness $\set{a}$) but also $\modults',w'\models\learn_i(p,\neg q)$ (witness $\set{b}$).
 \end{proof}
 
-\Crefitem{itm:nolearnable} shows how, in certain scenarios, there is
+\Crefitem{itm:nolearnable} in the previous proposition shows how, in certain scenarios, there is
 no room for learning. For instance, there might be no way to learn how
-to cure a disease, if there is no doctor
-available or no vaccine has been developed yet. \Crefitem{itm:learnboth} shows how the agent might be able
+to cure a disease if there is no doctor
+available. \Crefitem{itm:learnboth} shows how the agent might be able
 to learn not only how to make a formula true under a given condition,
 but, at the same time, how to make the same formula false under the same condition.
 
-\medskip
 
-Let us go back to analyzing the properties of the logic $\AReflogic$, and their impact in obtaining complete axiomatizations. First, we enumerate some properties that can be expressed in the logic. In particular, the modality $\arefdiam$ is normal and serial, satisfies natural properties 
-of Monotonicity and Weakening, but fails for dynamic versions of axioms 4 and 5 (usually known as \emph{positive} and \emph{negative introspection}). 
+Let us go back to discussing the properties of $\AReflogic$, and their impact in obtaining complete axiomatizations.  $\arefdiam$ is normal and serial modality, that satisfies natural properties 
+of Monotonicity and Weakening, but does not validate Positive nor Negative Introspection. 
+
+%but fails for dynamic versions of axioms 4 and 5 (usually known as \emph{positive} and \emph{negative introspection}). 
 
 \medskip 
 
@@ -139,8 +139,8 @@ It follows from the semantics (\Cref{def:sem:aref}) that:
 %\begin{enumerate}
 \item $\models \arefdiam \varphi \ra \arefdiam (\varphi \vee \psi)$ and $\models \arefbox \varphi \ra \arefbox (\varphi \vee \psi)$ (Monotonicity).
 \item $\models \arefdiam (\varphi \wedge \psi) \ra \arefdiam \varphi$ and $\models \arefbox (\varphi \wedge \psi) \ra \arefbox \varphi$ (Weakening).
-\item $\not\models \arefbox \varphi \ra \arefbox\arefbox \varphi$ (axiom 4). % (Positive Introspection).
-\item $\not\models \neg\arefbox \varphi \ra \arefbox\neg\arefbox \varphi$ (axiom 5). % (Negative Introspection).
+\item $\not\models \arefbox \varphi \ra \arefbox\arefbox \varphi$ (Positive Introspection). % (Positive Introspection).
+\item $\not\models \neg\arefbox \varphi \ra \arefbox\neg\arefbox \varphi$ (Negative Introspection). % (Negative Introspection).
 \end{enumerate}
 \end{proposition}
 
@@ -159,8 +159,8 @@ It follows from the semantics (\Cref{def:sem:aref}) that:
 % Using \Cref{itm:serialityref} from \Cref{prop:ref-normal-serial}, $\modults,w \models \refdiam{\alpha_1}{\alpha_2}\varphi$.
 % Thus, $\modults,w \models \arefdiam\varphi$.
 % \end{enumerate}
-Items 1 to 3 follows as $\arefdiam$ is a generalization of $\refdiam{\plan_1}{\plan_2}$ from the previous section. 
-It is also easy to see that Monotonicity and Weakening are direct. For axiom~4, let us consider the model $\modults = \tup{\W,\R,\Unc,\V}$ depicted below, with $\Unc(i)\in\Unc$ be such that $\Unc(i):=\set{\set{a,b,c}}$.
+Items 1 to 3 follow as properties inherited from $\refdiam{\plan_1}{\plan_2}$. 
+It is also easy to see that Monotonicity and Weakening hold. For Item 6,  consider the model $\modults = \tup{\W,\R,\Unc,\V}$ depicted below, with  $\Unc(i):=\set{\set{a,b,c}}$.
 \begin{center}
 \begin{tikzpicture}[->, grow' = right, level/.style={sibling distance = 3em/#1}, level distance = 3.5em]
 \node[state] at (0,2) (p) [label=left:$w$]{$p$};
@@ -173,24 +173,23 @@ It is also easy to see that Monotonicity and Weakening are direct. For axiom~4, 
 \end{tikzpicture}
 \end{center}
 
-On the one hand, one can easily check that $\modults,w\models\arefbox\neg(\kh(p,q) \wedge \kh(r,s))$. On the other hand, we have that $\modults,w\models\refdiam{a}{b}\refdiam{b}{c} (\kh(p,q) \wedge \kh(r,s))$. Hence, we get $\modults,w\models\arefdiam\arefdiam(\kh(p,q) \wedge \kh(r,s))$.
+One can check that $\modults,w\models\arefbox\neg(\kh(p,q) \wedge \kh(r,s))$. On the other hand, $\modults,w\models\refdiam{a}{b}\refdiam{b}{c} (\kh(p,q) \wedge \kh(r,s))$. Hence, $\modults,w\models\arefdiam\arefdiam(\kh(p,q) \wedge \kh(r,s))$.
 
-For axiom~5, notice that $\modults,w \models \neg\arefbox \kh(p,q)$ but $\modults,w \models \neg\arefbox\neg\arefbox \kh(p,q)$, since $\modults,w \models \refdiam{a}{b}\arefbox \kh(p,q)$.
+For Item 7, notice that $\modults,w \models \neg\arefbox \kh(p,q)$ but $\modults,w \models \neg\arefbox\neg\arefbox \kh(p,q)$, since $\modults,w \models \refdiam{a}{b}\arefbox \kh(p,q)$.
 \end{proof}
 
-Similarly, this modality preserves knowledge and can generate new one for propositional formulas.
-
+Knowing how information on propositional formulas is preserved under $\arefbox$, while new knowledge can still be obtained by a $\arefdiam$ update.
 \medskip
 
 \begin{proposition}\label{prop:aref-preserves-gains}
-Let $\psi,\varphi$ be propositional formulas. Then, 
+Let $\varphi,\psi$ be propositional formulas. Then, 
 \begin{enumerate}
-\item\label{itm:aref:preservesknowledge} $\models \khi(\psi,\varphi) \ra \arefbox\khi(\psi,\varphi)$.
-\item\label{itm:aref:gainsknowledge} If $\psi$ and $\varphi$ are satisfiable, then $\neg\khi(\psi,\varphi) \wedge \arefdiam\khi(\psi,\varphi)$ are satisfiable.
+\item\label{itm:aref:preservesknowledge} $\models \khi(\varphi,\psi) \ra \arefbox\khi(\varphi,\psi)$.
+\item\label{itm:aref:gainsknowledge} If $\varphi$ and $\psi$ are satisfiable, then $\neg\khi(\varphi,\psi) \wedge \arefdiam\khi(\varphi,\psi)$ are satisfiable.
 \end{enumerate}
 \end{proposition}
 \begin{proof}
-Similar to \Cref{prop:ref-preserves-gains}.
+The proofs are similar to those in~\Cref{prop:ref-preserves-gains}.
 \end{proof}
 
 By definition, $\models \refdiam{\plan_1}{\plan_2}\varphi \implies \arefdiam\varphi$, but characterizing the exact expressivity relation between the two resulting logics requires further developments.
@@ -205,7 +204,7 @@ $\AReflogic$ is more expressive than $\KHilogic$.
 
 \medskip
 
-Again, we establish that uniform substitution fails in this logic, which in combination with its high expressivity, makes it difficult to axiomatize.
+Uniform substitution fails for $\AReflogic$ which, in combination with its high expressivity, makes it difficult to axiomatize.
 
 \medskip
 
@@ -218,7 +217,7 @@ Similar to~\Cref{prop:substitution-ref}, and taking $p\to\arefdiam p$ as the ori
 \end{proof}
 
 The problem of defining dynamic operators and corresponding axiomatizations will be addressed in the next section. 
-We finish the section by stating some expressivity connections between the
+We finish this section by stating some expressivity connections between the
 dynamic modalities we just discussed.
 
 \medskip
@@ -258,9 +257,9 @@ For \Cref{itm:lhref} consider the two \ultss below:
 \end{tabular}
 \end{tabular} 
 \end{center}
-For each model, consider respective sets $\Unc(i)=\set{\set{a,b}}$ and $\Unc'(i)=\set{\set{c,d}}$.
-Since $\LHlogic$ cannot explicitely talk about plans, $\modults,w$ and $\modults',w'$ are indistinguishable for it.
-In $\Reflogic$, $\modults,w\models \dialhepis{a{\not\sim}b}\khi(r,p)$ and $\modults',w'\not\models\dialhepis{a{\not\sim}b}\khi(r,p)$.
+For each model, consider the sets $\Unc(i)=\set{\set{a,b}}$ and $\Unc'(i)=\set{\set{c,d}}$.
+Since $\LHlogic$ cannot explicitely talk about plans, $\modults,w$ and $\modults',w'$ are indistinguishable in $\LHlogic$.
+In $\Reflogic$ on the other hand, $\modults,w\models \dialhepis{a{\not\sim}b}\khi(r,p)$ and $\modults',w'\not\models\dialhepis{a{\not\sim}b}\khi(r,p)$.
 \end{proof}
 
 % 
