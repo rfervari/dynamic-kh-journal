@@ -279,14 +279,14 @@ Thus (\Cref{pro:cm-ults-khiml-allsame} in \Cref{pro:canonical}), $\khi(\psi, \va
 The rest of the proof is split in two cases.
 \smallskip
 
-Suppose there is no $\Delta_\psi \in \W^\Gamma$ with $\psi \in \Delta$.
-Then, by IH, there is no $\Delta_\psi \in \W^\Gamma$ with $\Delta_\psi \in \truthset{\modults^\Gamma}{\psi}$, that is, $\truthset{\modults^\Gamma}{\lnot\psi} = \W^\Gamma$.
+Assume there is no $\Delta_\psi \in \W^\Gamma$ with $\psi \in \Delta$.
+Then, by IH, there is no $\Delta_\psi \in \W^\Gamma$ with $\Delta_\psi \in \truthset{\modults^\Gamma}{\psi}$, i.e., $\truthset{\modults^\Gamma}{\lnot\psi} = \W^\Gamma$.
 Since $\modults^\Gamma$ is an $\ults$ (\Cref{pro:cm-ults-khiml}), the latter yields $\modults^\Gamma, \Delta \models \khi(\psi, \chi)$ for any $i \in \AGT$, $\chi \in \KHiMLlogic$ and $\Delta \in \W^\Gamma$; hence, $\modults^\Gamma, \Theta \models \khi(\psi, \varphi)$.
 \smallskip
 
-Suppose there is $\Delta_\psi \in \W^\Gamma$ with $\psi \in \Delta_\psi$. We show that the set of plans $\set{\tup{\psi, \varphi}} \in \Unc^\Gamma(i)$ satisfies the requirements.
-\begin{enumerate}
-\item Take any $\Delta \in \truthset{\modults^\Gamma}{\psi}$. By IH, $\psi \in \Delta$.
+Now, assume there is $\Delta_\psi \in \W^\Gamma$ with $\psi \in \Delta_\psi$. We show that the set of plans $\set{\tup{\psi, \varphi}} \in \Unc^\Gamma(i)$ satisfies the requirements.
+
+Take $\Delta \in \truthset{\modults^\Gamma}{\psi}$. By IH, $\psi \in \Delta$.
 Moreover, from $\khi(\psi, \varphi) \in \Theta$ and \Cref{pro:cm-ults-khiml-allsame} in  in \Cref{pro:canonical} it follows that $\khi(\psi, \varphi) \in \Delta$.
 Then, from $\R^\Gamma_{\tup{\psi,\varphi}^i}$'s definition, every $\Delta' \in \W^\Gamma$ with $\varphi \in \Delta'$ is such that $(\Delta, \Delta') \in \R^\Gamma_{\tup{\psi,\varphi}^i}$, and therefore such that $(\Delta, \Delta') \in \R^\Gamma_{\tup{\psi,\varphi}}$.
 Now note how, since there is $\Delta_\psi \in \W^\Gamma$ with $\psi \in \Delta_\psi$, there should be $\Delta_\varphi \in \W^\Gamma$ with $\varphi \in \Delta_\varphi$.
@@ -294,10 +294,9 @@ Suppose otherwise, i.e., suppose there is no $\Delta'' \in \W^\Gamma$ with $\var
 In particular, $\A\lnot\varphi \in \Delta_\psi$. Moreover, from $\khi(\psi, \varphi) \in \Theta$ and \Cref{pro:cm-ults-khiml-allsame} in \Cref{pro:canonical} it follows that $\khi(\psi, \varphi) \in \Delta_\psi$. Then, \axm{KhE} (written as $\khi(\psi, \varphi) \ra (\A\lnot \varphi \ra \A \lnot \psi)$) and \axm{MP} yield $\A\lnot\psi \in \Delta_\psi$, and thus (axiom \axm{TA}) $\lnot\psi \in \Delta_\psi$.
 Hence, $\set{\psi, \lnot\psi} \subset \Delta_\psi$, contradicting $\Delta_\psi$'s consistency.
 
-Let us continue with the proof of the lemma. The existence of $\Delta_\varphi \in \W^\Gamma$ with $\varphi \in \Delta_\varphi$ implies that $(\Delta, \Delta_\varphi) \in \R^\Gamma_{\tup{\psi,\varphi}}$ and thus, since $\tup{\psi,\varphi}$ is a basic action, $\Delta \in \stexec(\tup{\psi,\varphi})$, and so $\Delta \in \stexec(\set{\tup{\psi,\varphi}})$. Since $\Delta$ is an arbitrary state in $\truthset{\modults^\Gamma}{\psi}$, the required $\truthset{\modults^\Gamma}{\psi} \subseteq \stexec(\set{\tup{\psi,\varphi}})$ follows.
+The existence of $\Delta_\varphi \in \W^\Gamma$ with $\varphi \in \Delta_\varphi$ implies that $(\Delta, \Delta_\varphi) \in \R^\Gamma_{\tup{\psi,\varphi}}$ and thus, since $\tup{\psi,\varphi}$ is a basic action, $\Delta \in \stexec(\tup{\psi,\varphi})$, and so $\Delta \in \stexec(\set{\tup{\psi,\varphi}})$. Since $\Delta$ is an arbitrary state in $\truthset{\modults^\Gamma}{\psi}$, $\truthset{\modults^\Gamma}{\psi} \subseteq \stexec(\set{\tup{\psi,\varphi}})$ as needed.
 
-\item Take any $\Delta' \in \R^\Gamma_{\set{\tup{\psi,\varphi}}}(\truthset{\modults^\Gamma}{\psi})$. Then, there is $\Delta \in \truthset{\modults^\Gamma}{\psi}$ such that $(\Delta, \Delta') \in \R^\Gamma_{\tup{\psi,\varphi}}$. By definition of $\R^\Gamma$, it follows that $\varphi \in \Delta'$ so, by IH, $\Delta' \in \truthset{\modults^\Gamma}{\varphi}$. Since $\Delta'$ is an arbitrary state in $\R^\Gamma_{\set{\tup{\psi,\varphi}}}(\truthset{\modults^\Gamma}{\psi})$, we have $\R^\Gamma_{\set{\tup{\psi,\varphi}}}(\truthset{\modults^\Gamma}{\psi}) \subseteq \truthset{\modults^\Gamma}{\varphi}$.
-\end{enumerate}
+Now, take $\Delta' \in \R^\Gamma_{\set{\tup{\psi,\varphi}}}(\truthset{\modults^\Gamma}{\psi})$. Then, there is $\Delta \in \truthset{\modults^\Gamma}{\psi}$ such that $(\Delta, \Delta') \in \R^\Gamma_{\tup{\psi,\varphi}}$. By definition of $\R^\Gamma$, $\varphi \in \Delta'$ and, by IH, $\Delta' \in \truthset{\modults^\Gamma}{\varphi}$. Since $\Delta'$ is an arbitrary state in $\R^\Gamma_{\set{\tup{\psi,\varphi}}}(\truthset{\modults^\Gamma}{\psi})$, we have $\R^\Gamma_{\set{\tup{\psi,\varphi}}}(\truthset{\modults^\Gamma}{\psi}) \subseteq \truthset{\modults^\Gamma}{\varphi}$ as needed.
 \end{proof}
 
 Completeness now follows from the Truth Lemma in the usual way. 
