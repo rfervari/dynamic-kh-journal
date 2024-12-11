@@ -1,7 +1,12 @@
 \subsection{Atomic action refinement}
 \label{subsec:atom-ref}
 
-The main goal of defining the extended logic $\KHiMLlogic$ is to obtain enough expressivity to axiomatize some dynamic modalities. Here, we define the modality $\srefbox{a}$, inspired by the refinement modality from~\Cref{sec:ref}. A formula $\srefbox{a}\varphi$ publicly establishes (i.e., for all agents) that action $a$ must be distinguished from any other, and in such a context $\varphi$ holds. Unlike the modality $\refbox{\plan_1}{\plan_2}$, this modality takes atomic actions (although it will be generalized later to arbitrary plans), and has a single parameter, instead of two parameters. So, with the new operator we isolate the effect of one action, rather that separating a class according to the effects of two actions. This is useful as for instance, an uninformed agent may receive a concrete information about the actual effect of a particular action, thus this action becomes distinguishable from any other. Moreover, in case the agent is oblivious about the existence of an action, she becomes aware of it as a result of the announcement. We formalize these ideas below.
+The main goal of defining the extended logic $\KHiMLlogic$ is to obtain enough expressivity to axiomatize some dynamic modalities. Here, we define the modality $\srefbox{a}$, inspired by the refinement modality from~\Cref{sec:ref}.
+A formula $\srefbox{a}\varphi$ publicly establishes (i.e., for all agents) that action $a$ must be distinguished from any other, and in such a context $\varphi$ holds.
+Unlike the modality $\refbox{\plan_1}{\plan_2}$, this modality takes atomic actions (although it will be generalized later to arbitrary plans), and has a single parameter, instead of two parameters.
+So, with the new operator we isolate the effect of one action, rather that separating a class according to the effects of two actions.
+This is useful as for instance, an uninformed agent may receive a concrete information about the actual effect of a particular action, thus this action becomes distinguishable from any other.
+Moreover, in case the agent is oblivious about the existence of an action, she becomes aware of it as a result of the announcement. We formalize these ideas below.
 
 \medskip
 
@@ -29,12 +34,13 @@ where $\modults^a = \tup{\W,\R,\Unc',\V}$, with:
 
 \medskip
 
-In a few words, the new dynamic modality is an announcement of that a given, single action, has a behaviour that can be uniquely determined. In case the action is not a part of the actions that are under the consideration of a certain agent, it is added to it, making the agent aware of its existence. 
+In a few words, the new dynamic modality is an announcement of that a given, single action, has a behaviour that can be uniquely determined.
+In case the action is not a part of the actions that are under the consideration of a certain agent, it is added to it, making the agent aware of its existence. 
 The following proposition states that the new modality is self-dual and normal.
 
 \medskip
 
-\begin{proposition} The following propositions hold:
+\begin{proposition}\label{pro:ssrefprop} The following propositions hold:
 \begin{enumerate}
 \item $\models \srefbox{a}\varphi \lra \neg\srefbox{a}\neg\varphi$. 
 \item $\models \srefbox{a}(\varphi_1 \ra \varphi_2) \ra (\srefbox{a}\varphi_1 \ra \srefbox{a}\varphi_2)$.
@@ -49,7 +55,8 @@ The proof of the proposition above is straightforward. Let us introduce now an e
 \medskip
 
 \begin{example}
-Let $\modults$ be the single agent model depicted below, with $\Unc(i):=\set{\set{a}}$. It is clear that $\modults,w\not\models\khi(p,q)$. But we have that $\modults,w\models[!b]\khi(p,q)$, as after announcing $b$, the agent becomes aware of the existence of that plan, and she can use it to guarantee $q$ given~$p$. 
+Let $\modults$ be the single agent model depicted below, with $\Unc(i):=\set{\set{a}}$. It is clear that $\modults,w\not\models\khi(p,q)$.
+But we have that $\modults,w\models[!b]\khi(p,q)$, as after announcing $b$, the agent becomes aware of the existence of that plan, and she can use it to guarantee $q$ given~$p$. 
 \begin{center}
 \begin{tikzpicture}[->, grow' = right, level/.style={sibling distance = 2em/#1}, level distance = 1.5em]
 \node[state] at (0,1) (p) [label=left:$w$]{$p$};
@@ -63,9 +70,18 @@ Let $\modults$ be the single agent model depicted below, with $\Unc(i):=\set{\se
 \end{example}
 
 \ssparagraph{Axiom System.} 
-We proceed now to introduce a complete axiom system for the logic $\AtomReflogic$. As we have previously mentioned, dealing with dynamic modalities is not easy. Fortunately, here the expressive power of the underlying static logic ($\KHiMLlogic$) is sufficient to capture the behaviour of $\srefbox{a}$, hence obtaining an axiomatization via reduction axioms (\Cref{tab:ssrefaxiom}) as a novelty.
+We proceed now to introduce a complete axiom system for the logic $\AtomReflogic$. As we have previously mentioned, dealing with dynamic modalities is not easy.
+Fortunately, here the expressive power of the underlying static logic ($\KHiMLlogic$) is sufficient to capture the behaviour of $\srefbox{a}$, hence obtaining an axiomatization via reduction axioms (\Cref{tab:ssrefaxiom}) as a novelty.
 
-The proof using the reduction axioms consists in translating every formula of $\AtomReflogic$ into a formula of $\KHiMLlogic$. This is achieved by induction on the structure of $\AtomReflogic$ formulas. The challenge is, as usual, to eliminate the occurence of a $\srefbox{a}$ modality in presence of $\khi$. Consider a formula $\srefbox{a}\khi(\psi,\varphi)$. After the ``announcement'' of action $a$ being different to any other plan, there are two possible reasons of why $\khi(\psi,\varphi)$ holds. The first possibility, is that action $a$ plays no role in the truth of $\khi(\psi,\varphi)$. In this case, we can push the dynamic modality into the front of the pre and post-conditions of the $\khi$ modality, i.e., we obtain $\khi(\srefbox{a}\psi,\srefbox{a}\varphi)$. The second possibility is that $a$ is crucial in order to raise new knowledge for the agent. If the singleton $\set{a}$ is the witness for $\khi(\psi,\varphi)$ is because: 1) $a$ is SE at every state satisfying $\psi$ after the annoucement of $a$ (notice that as $a$ is a single action, SE is equivalent to executability); and 2) from every $\psi$-state, after every execution of $a$ we always get that $\varphi$ holds (in the model updated by $\srefbox{a}$). The former is captured in formula by $\srefbox{a}\psi\ra\mldiam{a}\top$ holding everywhere, while the latter is captured by $\mlbox{a}\srefbox{a}\varphi$. Putting all together, this case is reflected by $\A(\srefbox{a}\psi\ra(\mldiam{a}\top\wedge\mlbox{a}\srefbox{a}\varphi))$. The other cases are standard reductions, so we obtain the axioms shown in~\Cref{tab:ssrefaxiom}.
+The proof using the reduction axioms consists in translating every formula of $\AtomReflogic$ into a formula of $\KHiMLlogic$. This is achieved by induction on the structure of $\AtomReflogic$ formulas.
+The challenge is, as usual, to eliminate the occurence of a $\srefbox{a}$ modality in presence of $\khi$. Consider a formula $\srefbox{a}\khi(\psi,\varphi)$. After the ``announcement'' of action $a$ being different to any other plan, there are two possible reasons of why $\khi(\psi,\varphi)$ holds.
+The first possibility, is that action $a$ plays no role in the truth of $\khi(\psi,\varphi)$. In this case, we can push the dynamic modality into the front of the pre and post-conditions of the $\khi$ modality, i.e., we obtain $\khi(\srefbox{a}\psi,\srefbox{a}\varphi)$. The second possibility is that $a$ is crucial in order to raise new knowledge for the agent.
+If the singleton $\set{a}$ is the witness for $\khi(\psi,\varphi)$ is because:
+\begin{inlineenum}
+\item $a$ is SE at every state satisfying $\psi$ after the annoucement of $a$ (notice that as $a$ is a single action, SE is equivalent to executability); and
+\item from every $\psi$-state, after every execution of $a$ we always get that $\varphi$ holds (in the model updated by $\srefbox{a}$).
+\end{inlineenum}
+The former is captured in formula by $\srefbox{a}\psi \ra \mldiam{a}\top$, while the latter is captured by $\srefbox{a}\psi \ra \mlbox{a}\srefbox{a}\varphi$, both of them holding everywhere. Putting all together, this case is reflected by $\A(\srefbox{a}\psi\ra(\mldiam{a}\top\wedge\mlbox{a}\srefbox{a}\varphi))$. The other cases are standard reductions, so we obtain the axioms shown in~\Cref{tab:ssrefaxiom}.
 
 \begin{table}[t]
 \begin{tabular}{l@{\quad}l}
@@ -94,10 +110,11 @@ The proof using the reduction axioms consists in translating every formula of $\
 \end{proposition}
 \begin{proof}
 The first and fourth items are direct since $\V$ and $\R_a$ remain unchanged throughout the evaluation. The second and third items are quite standard and can be easily checked by using the definition of $\srefbox{a}$.
+The sixth item is derived from \Cref{pro:ssrefprop}.
 We will show now that the axiom $\axm{RKh}$ is valid. 
 Let $\modults = \tup{\W, \R, \Unc, \V}$ be an \ults.
 
-$\Rightarrow)$ $\modults \models \srefbox{a} \khi(\varphi_1,\varphi_2)$ iff $\modults^a \models \khi(\varphi_1,\varphi_2)$ iff there is $\plans' \in \Unc'(i)$ s.t. $\truthset{\modults^a}{\varphi_1} \subseteq \stexec^{\modults^a}(\plans')$ and $\R_{\plans'}(\truthset{\modults^a}{\varphi_1}) \subseteq \truthset{\modults^a}{\varphi_2}$.
+$(\Rightarrow)$ $\modults \models \srefbox{a} \khi(\varphi_1,\varphi_2)$ iff $\modults^a \models \khi(\varphi_1,\varphi_2)$ iff there is $\plans' \in \Unc'(i)$ s.t. $\truthset{\modults^a}{\varphi_1} \subseteq \stexec^{\modults^a}(\plans')$ and $\R_{\plans'}(\truthset{\modults^a}{\varphi_1}) \subseteq \truthset{\modults^a}{\varphi_2}$.
 Using $\truthset{\modults^a}{\psi} = \truthset{\modults}{\srefbox{a} \psi}$ and $\stexec^{\modults^a}(\plans') = \stexec^\modults(\plans')$ (since the relations remain unchanged), this is equivalent to that there is $\plans' \in \Unc'(i)$ s.t. $\truthset{\modults}{\srefbox{a} \varphi_1} \subseteq \stexec^\modults(\plans')$ and $\R_{\plans'}(\truthset{\modults}{\srefbox{a} \varphi_1}) \subseteq \truthset{\modults}{\srefbox{a} \varphi_2}$. We need to consider two cases:
 \begin{itemize}
 \item If $\plans' \neq \set{a}$, then $\plans' \in \Unc(i)$ and we get $\modults \models \khi(\srefbox{a}\varphi_1,\srefbox{a}\varphi_2)$.
@@ -107,7 +124,7 @@ From the second one, we can reach that for all $w \in \truthset{\modults}{\srefb
 Thus, for all $w \in \W$, $\modults,w \models \srefbox{a} \varphi_1 \ra (\mldiam{a}\top \wedge \mlbox{a} \srefbox{a}\varphi_2)$.
 \end{itemize}
 
-$\Leftarrow)$ Conversely, suppose $\modults \models \khi(\srefbox{a} \varphi_1,\srefbox{a} \varphi_2) \vee \A(\srefbox{a} \varphi_1 \ra (\mldiam{a}\top \wedge \mlbox{a} \srefbox{a}\varphi_2))$, then the disjunction is satified by either one of the following situations:
+$(\Leftarrow)$ Conversely, suppose $\modults \models \khi(\srefbox{a} \varphi_1,\srefbox{a} \varphi_2) \vee \A(\srefbox{a} \varphi_1 \ra (\mldiam{a}\top \wedge \mlbox{a} \srefbox{a}\varphi_2))$, then the disjunction is satified by either one of the following situations:
 \begin{itemize}
     \item $\modults \models \khi(\srefbox{a} \varphi_1,\srefbox{a} \varphi_2)$: Let $\plans \in \Unc(i)$ be s.t. $\truthset{\modults}{\srefbox{a}\varphi_1} \subseteq \stexec^\modults(\plans)$ and $\R_\plans(\truthset{\modults}{\srefbox{a}\varphi_1}) \subseteq \truthset{\modults}{\srefbox{a}\varphi_2}$.
     As stated before, this is equivalent to $\truthset{\modults^a}{\varphi_1} \subseteq \stexec^{\modults^a}(\plans)$ and $\R_\plans(\truthset{\modults^a}{\varphi_1}) \subseteq \truthset{\modults^a}{\varphi_2}$.
