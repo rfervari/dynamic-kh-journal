@@ -4,7 +4,7 @@
 
 A typical way of updating a model  
 is by removing states, as is done in \PAL~\cite{Plaza89:lopc,DELbook}.  This model update is typically realized with the public announcement operator $[\chi]$,
-which, over an $\ults$ $\modults=\tup{\W,\R,\Unc,\V}$, can be defined as:
+which, over an $\ults$ $\modults=\tup{\W,\R,\set{\Unc(i)}_{i\in\AGT},\V}$, can be defined as:
 \[
 \modults,w\models[\chi]\varphi \ \ \iff \ \  \modults,w\models\chi \mbox{ implies } \modults_{\chi},w\models\varphi,
 \]
@@ -12,7 +12,7 @@ with $\modults_\chi=\tup{\W_\chi,\R_\chi,\Unc_\chi,\V_\chi}$ where:
 \[
 \begin{array}{l@{\quad \quad \quad }l}
 \W_\chi = \set{w \mid \modults,w\models\chi} & (\R_\chi)_a = \R_a \cap \W_\chi^2, \mbox{ for each } a\in\ACT \\
-\V_\chi(w) = \V(w), \mbox{ for all } w\in\W_\chi & \Unc_\chi = \Unc.
+\V_\chi(w) = \V(w), \mbox{ for all } w\in\W_\chi & \Unc_\chi = \set{\Unc(i)}_{i\in\AGT}.
 \end{array}	
 \]
 
@@ -30,10 +30,7 @@ Adding $[\chi]$ to $\KHilogic$ increases its expressive power.
 \begin{proof}
   The two \ultss $\modults$ and $\modults'$ (with
   $\Unc(i)=\Unc'(i)=\set{\set{a}})$ below are bisimilar and hence
-  indistinguishable in $\KHilogic$. However, $\modults,w\models[p]\khi(p,q)$ whereas
-  $\modults',w'\not\models[p]\khi(p,q)$. Dashed lines indicate nodes and edges removed after $[p]$.
-
-  \medskip 
+  indistinguishable in $\KHilogic$. 
 
 \begin{center}
     \begin{tikzpicture}[->]
@@ -60,15 +57,9 @@ Adding $[\chi]$ to $\KHilogic$ increases its expressive power.
             (w4) edge node [label-edge, below] {$a$} (w2);
 
     \end{tikzpicture}
-    % \begin{picture}(90,0)
-    % \put(10,40){$\Unc(i) = \left\{
-    %   \begin{array}{c}
-    %   \set{ew},\\
-    %   \set{we, eew}
-    %   \end{array}
-    % \right\}$}
-    % \end{picture}\vspace*{-3mm}
   \end{center}
+However, $\modults,w\models[p]\khi(p,q)$ whereas
+$\modults',w'\not\models[p]\khi(p,q)$. Dashed lines indicate nodes and edges removed after $[p]$.
 \end{proof}
 
 A consequence of~\Cref{prop:pal-exp} is that the modality for \PAL-like updates is not reducible to the base logic. This makes sense, as the underlying static logic ($\KHilogic$) only expresses properties relative to the existence of a way to achieve certain target states from certain origin states. There is no way to characterize the updates produced by $[\chi]$ with the expressive power provided by the $\khi$ modality. This is in contrast with what happens when these modalities are added to standard epistemic logic, where reduction axioms can be defined (see, e.g.,~\cite{DELbook}).
@@ -105,17 +96,12 @@ We extend the satisfaction relation $\models$ from~\Cref{def:sem-esm} with the c
 \]
 \end{definition}
 
-\medskip 
 
 The only difference between the $\annmodelchi$ introduced above and the standard $\modults_{\chi}$ (which is the restriction of $\modults$ to the states satisfying $\chi$) is in the
-definition of the relations. In the proposal here, a stronger condition is needed for an $a$-edge from a state $w \in \truthset{\modults}{\chi}$ to survive after the update: if $\R_a(w) \not \subseteq \truthset{\modults}{\chi}$ then $(\annsemantics{\R}{\chi})_a(w) = \emptyset$, but if $\R_a(w) \subseteq \truthset{\modults}{\chi}$ then $(\annsemantics{\R}{\chi})_a(w) = \R_a(w)$. Notice that in this context, the elimination of some states indicates that the situations they describe are no longer \emph{reachable}, rather than no longer \emph{possible}.
-
-% Nohe first option (i.e., the standard \PAL approach) follows an `intersection' approach : the states that will be $a$-reachable from a given state $w$ are those that were $a$-reachable from $w$ \emph{and} satisfied $\chi$ at $\modults$. The second option (model $\annmodelchi$) follows a `subset' approach: the states that will be $a$-reachable from a given state $w$ are \emph{all} those that were $a$-reachable from $w$ \emph{if they all satisfied $\chi$ at $\modults$}, and \emph{none} otherwise.
-
-The two forms of model update discussed above bear a resemblance to the two forms of updating neighbourhood models from~\cite{MaS18}. Recall that a neighbourhood model~\cite{Scott1970,Montague1970} is given by: a non-empty domain $\W$, an atomic valuation, and a neighbourhood function $\N:\W \to 2^{2^{\W}}$, assigning a set of sets of states to each possible state. Let $U \subseteq \W$ be a non-empty set of states. On the one hand, the \emph{$U$-intersection} submodel defined in~\cite{MaS18} has $U$ as its domain, with its neighbourhood function built by restricting each set in a neighbourhood to the new domain, analogous to what $\modults_{\chi}$ (a standard announcement) does.
+definition of the relations. In the proposal here, a stronger condition is needed for an $a$-edge from a state $w \in \truthset{\modults}{\chi}$ to survive after the update: if $\R_a(w) \not \subseteq \truthset{\modults}{\chi}$ then $(\annsemantics{\R}{\chi})_a(w) = \emptyset$, but if $\R_a(w) \subseteq \truthset{\modults}{\chi}$ then $(\annsemantics{\R}{\chi})_a(w) = \R_a(w)$. Notice that in this context, the elimination of some states indicates that the situations they describe are no longer \emph{reachable}, rather than no longer \emph{possible}
+\footnote{The two forms of model update discussed here bear a resemblance to the two forms of updating neighbourhood models from~\cite{MaS18}. Recall that a neighbourhood model~\cite{Scott1970,Montague1970} is given by: a non-empty domain $\W$, an atomic valuation, and a neighbourhood function $\N:\W \to 2^{2^{\W}}$, assigning a set of sets of states to each possible state. Let $U \subseteq \W$ be a non-empty set of states. On the one hand, the \emph{$U$-intersection} submodel defined in~\cite{MaS18} has $U$ as its domain, with its neighbourhood function built by restricting each set in a neighbourhood to the new domain, analogous to what $\modults_{\chi}$ (a standard announcement) does.
 %\footnote{Formally, given $U \subseteq W$, define $N^{\cap U}(u) := \set{X \cap U \mid X \in N(u)}$ for each $u \in U$.}
-On the other hand, the \emph{$U$-subset} submodel therein also has $U$ as its domain, but its neighbourhood function is built by keeping only those sets that are already a subset of the new domain, analogous to what $\annsemantics{\modults}{\chi}$ does. We argue that this second approach is more appropriate in the context of knowing how.
-%\footnote{Formally, given $U \subseteq W$, define $N^{\subseteq U}(u) := \set{X \in N(u) \mid X \subseteq U}$ for each $u \in U$.}
+On the other hand, the \emph{$U$-subset} submodel therein also has $U$ as its domain, but its neighbourhood function is built by keeping only those sets that are already a subset of the new domain, analogous to what $\annsemantics{\modults}{\chi}$ does. We argue that this second approach is more appropriate in the context of knowing how.}.
 
 Even with this, more restricted, version of update, the resulting logic
 fails to have reduction axioms as the following proposition shows.
@@ -217,13 +203,12 @@ In order to establish the validity of the reduction axioms, we first need to pro
 	\end{lemma}
 	
 	\begin{proof}
-	We prove below each of the items in the lemma:
-	\begin{enumerate}
-	\item Let $w \in \truthset{\modults}{\gann{\chi}\varphi}$, we have that $\modults,w \models \gann{\chi}\varphi$. Thus, $\modults,w \models \chi$ implies $\annmodelchi,w \models \varphi$, which can be rewritten as $\modults,w \models \neg\chi$ or $\annmodelchi,w \models \varphi$. Hence, $w \in \truthset{\modults}{\neg\chi} \cup \truthset{\annmodelchi}{\varphi}$. The other inclusion behaves the same way.
-	\item Let $w \in \truthset{\annmodelchi}{\varphi}$, we have that $w \in \annsemantics{\W}{\chi} = \truthset{\modults}{\chi}$ and $w \in \truthset{\annmodelchi}{\varphi}$. Thus, $w \in \truthset{\modults}{\chi} \cap \truthset{\annmodelchi}{\varphi}$. The previous set is in the form of $(A \cap B)$. By set reasoning, it is equal to $(A \cap (A^c \cup B))$.
+ For Item 1, let $w \in \truthset{\modults}{\gann{\chi}\varphi}$, we have that $\modults,w \models \gann{\chi}\varphi$. Thus, $\modults,w \models \chi$ implies $\annmodelchi,w \models \varphi$, which can be rewritten as $\modults,w \models \neg\chi$ or $\annmodelchi,w \models \varphi$. Hence, $w \in \truthset{\modults}{\neg\chi} \cup \truthset{\annmodelchi}{\varphi}$. The other inclusion behaves the same way.
+ 
+ 
+For Item 2, let $w \in \truthset{\annmodelchi}{\varphi}$, we have that $w \in \annsemantics{\W}{\chi} = \truthset{\modults}{\chi}$ and $w \in \truthset{\annmodelchi}{\varphi}$. Thus, $w \in \truthset{\modults}{\chi} \cap \truthset{\annmodelchi}{\varphi}$. The previous set is in the form of $(A \cap B)$. By set reasoning, it is equal to $(A \cap (A^c \cup B))$.
 	In other words, the statement above is equivalent to $w \in \truthset{\modults}{\chi} \cap (\truthset{\modults}{\neg\chi} \cup \truthset{\annmodelchi}{\varphi})$. Using the result of the first item, $w \in \truthset{\modults}{\chi} \cap \truthset{\modults}{\gann{\chi}\varphi}$. Hence, $w \in \truthset{\modults}{\chi \wedge \gann{\chi}\varphi}$.
 	The other inclusion behaves the same way.
-	\end{enumerate}
 	\end{proof}
 
 \begin{lemma}\label{lemma:palkh-valid}
@@ -231,8 +216,8 @@ In order to establish the validity of the reduction axioms, we first need to pro
 	\end{lemma}
 	
 	\begin{proof} The proof proceeds by cases for each axiom. We will focus only on the case of $\axm{RKh}$, while the rest follow similarly as for classical $\PAL$.
-	\begin{itemize}	
-	\item For \axm{RKh}, by the definition of $\gann{\chi}$, $\modults,w \models \gann{\chi}\khi(\varphi,\psi)$ iff $\modults,w \models \chi$ implies $\annmodelchi,w \models \khi(\varphi,\psi)$. Using the definition of $\khi$, $\annmodelchi,w \models \khi(\varphi,\psi)$ iff there is $\plans \in (\annsemantics{\Unc}{\chi})(i)$ with $\plans \subseteq \ACT$ s.t. $\truthset{\annmodelchi}{\varphi} \subseteq \stexec^{\annmodelchi}(\plans)$ and $(\annsemantics{\R}{\chi})_\plans(\truthset{\annmodelchi}{\varphi}) \subseteq \truthset{\annmodelchi}{\psi}$.
+
+	By the definition of $\gann{\chi}$, $\modults,w \models \gann{\chi}\khi(\varphi,\psi)$ iff $\modults,w \models \chi$ implies $\annmodelchi,w \models \khi(\varphi,\psi)$. Using the definition of $\khi$, $\annmodelchi,w \models \khi(\varphi,\psi)$ iff there is $\plans \in (\annsemantics{\Unc}{\chi})(i)$ with $\plans \subseteq \ACT$ s.t. $\truthset{\annmodelchi}{\varphi} \subseteq \stexec^{\annmodelchi}(\plans)$ and $(\annsemantics{\R}{\chi})_\plans(\truthset{\annmodelchi}{\varphi}) \subseteq \truthset{\annmodelchi}{\psi}$.
 	By the definition of $\annmodelchi$, $(\annsemantics{\Unc}{\chi})(i)=\Unc(i)$. Using \Cref{lem:palproperties}, $\truthset{\annmodelchi}{\varphi} = \truthset{\modults}{\chi \wedge \gann{\chi}\varphi}$ and $\truthset{\annmodelchi}{\psi} = \truthset{\modults}{\chi \wedge \gann{\chi}\psi}$.
 	Thus, $\annmodelchi,w \models \khi(\varphi,\psi)$ iff there is $\plans \in \Unc(i)$ with $\plans \subseteq \ACT$ s.t. $\truthset{\modults}{\chi \wedge \gann{\chi}\varphi} \subseteq \stexec^{\annmodelchi}(\plans)$ and $(\annsemantics{\R}{\chi})_\plans(\truthset{\modults}{\chi \wedge \gann{\chi}\varphi}) \subseteq \truthset{\modults}{\chi \wedge \gann{\chi}\psi}$.
 	Let $a \in \plans$ and $w \in \annsemantics{\W}{\chi}$. If $w \in \truthset{\modults}{\chi \wedge \gann{\chi}\varphi}$, then:
@@ -256,7 +241,6 @@ In order to establish the validity of the reduction axioms, we first need to pro
 	Moreover, it can be generalized for all $w \in \W$ as if $w \in \truthset{\modults}{\chi \wedge \gann{\chi}\varphi}$, then $w \in \annsemantics{\W}{\chi}$.
 	Now $\annmodelchi,w \models \khi(\varphi,\psi)$ iff there is $\plans \in \Unc(i)$ with $\plans \subseteq \ACT$ s.t. $\truthset{\modults}{\chi \wedge \gann{\chi}\varphi} \subseteq \stexec(\plans)$ and $\R_\plans(\truthset{\modults}{\chi \wedge \gann{\chi}\varphi}) \subseteq \truthset{\modults}{\chi \wedge \gann{\chi}\psi}$.
 	This happens iff $\modults,w \models \khi(\chi \wedge \gann{\chi}\varphi,\chi \wedge \gann{\chi}\psi)$. Since for this equivalence we prove assuming $\modults,w \models \chi$, then $\modults,w \models \chi$ implies $\annmodelchi,w \models \khi(\varphi,\psi)$ iff $\modults,w \models \chi$ implies $\modults,w \models \khi(\chi \wedge \gann{\chi}\varphi,\chi \wedge \gann{\chi}\psi)$. Thus, iff $\modults,w \models \chi \implies \khi(\chi \wedge \gann{\chi}\varphi,\chi \wedge \gann{\chi}\psi)$.
-	\end{itemize}
 	\end{proof}
 	
 	

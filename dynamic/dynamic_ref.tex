@@ -218,7 +218,6 @@ However, $\modults \models \refdiam{\plan_1}{\plan_2}\khi(\varphi,\psi)$ as $\sp
 % \bigfer{In the previous proposition, the standard problem in these cases is that $\truthset{\modults}{\varphi}$ and $\truthset{\modults^{\Unc}_{\Unc'}}{\varphi}$ might be different (because the model changes). Asking for $\varphi$ and $\psi$ to be propositional guarantees that $\truthset{\modults}{\varphi}$ and $\truthset{\modults^{\Unc}_{\Unc'}}{\varphi}$ coincide (as valuations do not change). But arguing whether that holds for arbitrary $\varphi$ (if that is indeed the case) might require more care.}
 
 % However, properties as \Cref{itm:preservesknowledge} are not true for arbitrary formulas.
-\raul{sabemos que item 1 no vale para forms arbitrarias, pero no sabemos nada de item 2. Decimos algo?  ver ej. siguiente}
 \medskip
 
 \begin{example}
@@ -258,9 +257,9 @@ Let $\modults$ and $\modults'$ be the single agent models depicted below, with $
 \end{tikzpicture}
 \end{center}
 
-The models are $\KHilogic$-bisimilar, thus they satisfy the same formulas in $\KHilogic$ (in particular, $\neg\khi(p,q)$). But, $\modults,w \not\models \refdiam{a}{b}\khi(p,q)$ since $\splitstr{\Unc(i)}{\Unc(i)}{a}{b}$, % then $\Unc=\overline{\Unc}$,
+These models are $\KHilogic$-bisimilar, thus they satisfy the same formulas in $\KHilogic$. But, $\modults,w \not\models \refdiam{a}{b}\khi(p,q)$ since $\splitstr{\Unc(i)}{\Unc(i)}{a}{b}$, % then $\Unc=\overline{\Unc}$,
 whereas $\modults',w' \models \refdiam{a}{b}\khi(p,q)$, since there is $\Unc''(i)=\set{\set{a},\set{b}}$ such that $\splitstr{\Unc'(i)}{\Unc''(i)}{a}{b}$.
-
+%
 % \begin{nscenter}
 % \begin{tabular}{@{}l@{}l@{}}
 % \begin{tabular}{@{}c}

@@ -51,11 +51,11 @@ $\plan[k]$ is the one in $\plan$'s $k$th position.
 
 \begin{definition}[Uncertainty-based \lts]\label{def:ults}
 %Let \AGT be a finite non-empty set of agents.
-An \emph{uncertainty-based \lts (\ults)} for $\PROP$, $\ACT$ and $\AGT$ is a tuple $\modults = \tup{\W,\R,\Unc,\V}$ where: $\W$ is a non-empty set of states (called the domain, and
+An \emph{uncertainty-based \lts (\ults)} for $\PROP$, $\ACT$ and $\AGT$ is a tuple $\modults = \tup{\W,\R,\Unc,\V}$ where $\W$ is a non-empty set of states (called the domain, and
 denoted also by $\D{\modults}$);
 $\R = \setof{\R_a \subseteq \W \times \W}{a \in \ACT}$ is a
 collection of binary relations on $\W$;
-$\Unc = \setof{\Unc(i) \subseteq 2^{\ACT^*}\setminus \set{\emptyset}}{i \in \AGT}$ assigns to every agent a non-empty collection of pairwise disjoint non-empty sets of plans, i.e.: \begin{inlineenum} \item $\Unc(i) \neq \emptyset$, \item $\plans_1, \plans_2 \in \Unc(i)$ with $\plans_1 \neq \plans_2$ implies $\plans_1 \cap \plans_2 = \emptyset$, and \item $\emptyset \notin \Unc(i)$\end{inlineenum};
+$\Unc = \setof{\Unc(i) \subseteq 2^{\ACT^*}\setminus \set{\emptyset}}{i \in \AGT}$ assigns to every agent a non-empty collection of pairwise disjoint non-empty sets of plans (i.e., $\Unc(i) \neq \emptyset$, $\plans_1, \plans_2 \in \Unc(i)$ with $\plans_1 \neq \plans_2$ implies $\plans_1 \cap \plans_2 = \emptyset$, and $\emptyset \notin \Unc(i)$);
 and $\V:\W \to 2^\PROP$ is a labeling function. The tuple $\tup{\W,\R,\V}$ is called an LTS. 
 Given an \ults $\modults$ and $w \in \D{\modults}$, the pair $(\modults,w)$ (parenthesis usually dropped) is called a \emph{pointed \ults}.
 \end{definition}
@@ -69,7 +69,7 @@ Given her uncertainty over $\ACT^*$, the abilities of an agent $i$ depend not on
 \medskip
 
 \begin{definition}
-Given $\R=\setof{\R_a \subseteq \W \times \W}{a\in\ACT}$ and $\plan \in \ACT^*$, define $\R_\plan \subseteq \W \times \W$ in the standard way. Then, for $\plans \subseteq \ACT^*$ and $U \cup \set{u} \subseteq \W$, define $\R_\plans := \bigcup_{\plan \in \plans} \R_{\plan}$, $\R_{\plans}(u) := \bigcup_{\plan \in \plans} \R_\plan(u)$, and $\R_{\plans}(U) := \bigcup_{u \in U} \R_{\plans}(u)$.
+Given $\R=\setof{\R_a \subseteq \W \times \W}{a\in\ACT}$ and $\plan \in \ACT^*$, define $\R_\plan \subseteq \W \times \W$ in the standard way. Then, for $\plans \subseteq \ACT^*$ and $U \cup \{u \} \subseteq \W$, define $\R_\plans := \bigcup_{\plan \in \plans} \R_{\plan}$, $\R_{\plans}(u) := \bigcup_{\plan \in \plans} \R_\plan(u)$, and $\R_{\plans}(U) := \bigcup_{u \in U} \R_{\plans}(u)$.
 \end{definition}
 
 \medskip
@@ -97,7 +97,7 @@ Now, we have all the ingredients to define the semantics of the logic.
 \medskip
 
 \begin{definition}\label{def:sem-esm}
-Let $\modults=\tup{\W,\R,\Unc,\V}$ be an \ults and $w \in \W$.
+Let $\modults=\tup{\W,\R,\{\Unc(i)\}_{i\in\AGT},\V}$ be an \ults and $w \in \W$.
 The satisfiability relation $\models$ for $\KHilogic$ is inductively defined as:
 \[
 \begin{array}{l@{\ \ \ }c@{\ \ \  }l}
@@ -153,8 +153,8 @@ Given the definition above, we can check that the semantic of the modalities $\A
 %       \begin{picture}(90,0)
 %       \put(10,40){$\Unc(i) = \left\{
 %         \begin{array}{c}
-%         \set{ew},\\
-%         \set{we, eew}
+%         \{ew\},\\
+%         \{we, eew\}
 %         \end{array}
 %       \right\}$}
 %       \end{picture}\vspace*{-3mm}
@@ -170,8 +170,6 @@ Given the definition above, we can check that the semantic of the modalities $\A
 \begin{example}\label{ex:cook}
 Let us consider a simplified scenario for baking a cake, with two agents $i$ and $j$. The two agents attempt to produce a good cake (represented by the propositional symbol~$g$). Suppose that they are following a similar recipe, and that they have all the ingredientes ($h$). The recipe states that $g$ is achieved via the following steps: adding eggs ($e$), beating the eggs ($b$), adding flour ($f$), adding milk ($m$), stir these ingredients ($s$) and finally, bake the preparation ($p$). Thus, the plan needed to achieve $g$ is $\mathit{ebfmsp}$, whenever the agents have all the ingredients ($h$). 
 Agent $i$, who is an experienced chef, is aware that this is the way to get a good cake. On the other hand, agent $j$  has no cooking experience, so she considers that the order in the instructions do not matter (for instance, that she can add milk before adding the flour).
-
-\medskip 
 
 \begin{center}
 \hspace*{-1cm}\begin{tikzpicture}[->]
@@ -196,12 +194,12 @@ Agent $i$, who is an experienced chef, is aware that this is the way to get a go
     \small
 \put(15,20){$\Unc(i) = \left\{
     \begin{array}{c}
-    \set{\mathit{ebfmsp}}
+    \{\mathit{ebfmsp}\}
     \end{array}
 \right\}$}
 \put(15,5){$\Unc(j) = \left\{
     \begin{array}{c}
-    \set{\mathit{ebfmsp},\mathit{ebmfsp}}
+    \{\mathit{ebfmsp},\mathit{ebmfsp}\}
     \end{array}
 \right\}$}
 \end{picture}
@@ -222,7 +220,7 @@ The notion of \emph{bisimulation} is a crucial tool to understand the expressive
 \medskip
 
 \begin{definition}\label{def:notation}
-Let $\modults=\tup{\W,\R,\Unc,\V}$ be an \ults over \PROP, \ACT and \AGT. Take $\plans \in 2^{(\ACT^*)}$, $U, T \subseteq \W$ and $i \in \AGT$.
+Let $\modults=\tup{\W,\R,\set{\Unc(i)}_{i\in\AGT},\V}$ be an \ults over \PROP, \ACT and \AGT. Take $\plans \in 2^{(\ACT^*)}$, $U, T \subseteq \W$ and $i \in \AGT$.
 \begin{itemize} \itemsep 0pt
     \item Write $U \ultsExecStrat{\plans} T$ $\siffdefs$ $U \subseteq \stexec(\plans)$ and $\R_{\plans}(U) \subseteq T$.
 
@@ -238,7 +236,7 @@ Now we are in position to introduce the notion of bisimulation for $\KHilogic$.
 \medskip 
 
 \begin{definition}[$\KHilogic$-bisimulation]\label{def:bisim-khi}
-Let $\modults = \tup{\W,\R,\Unc(i),\V}$ and $\modults' = \tup{\W',\R',\Unc',\V'}$ be $\ultss$.
+Let $\modults = \tup{\W,\R,\set{\Unc(i)}_{i\in\AGT},\V}$ and $\modults' = \tup{\W',\R',\set{\Unc'(i)}_{i\in\AGT},\V'}$ be $\ultss$.
 %Take $Z \subseteq \W \times \W'$, $u \in \W$, $U \subseteq \W$, $u' \in \W'$, and $U' \subseteq \W'$.
 %\begin{itemize}\itemsep 0cm
 %  \item Let %$Z(u)$, $Z(U) \subseteq \W'$ as
@@ -260,17 +258,25 @@ A non-empty $Z \subseteq \W \times \W'$ is called an $\KHilogic$-bisimulation be
     \item \textbf{Atom}: $\V(w)=\V'(w')$.
 
     \item \textbf{$\khi$-Zig}: for any \emph{propositionally} definable $U \subseteq \W$, if $U \ultsExecAgi T$ for some $T \subseteq \W$, then there is $T' \subseteq \W'$ such that: 
-    \begin{inlineenum}
-    \item $Z(U) \ultsExecAgi T'$, and
-    \item $T' \subseteq Z(T)$.
-    \end{inlineenum}
+%      \begin{nscenter}
+%      \begin{multicols}{2}
+%        \begin{enumerate}
+        1) $Z(U) \ultsExecAgi T'$, and
+        2) $T' \subseteq Z(T)$.
+%        \end{enumerate}
+%      \end{multicols}
+%    \end{nscenter}
 
     \item \textbf{$\khi$-Zag}: % analogous to \textbf{$\khi$-Zig}.
     for any \emph{propositionally} definable $U' \subseteq \W'$, if $U' \ultsExecAgi T'$ for some $T' \subseteq \W'$, then there is $T \subseteq \W$ such that: 
-    \begin{inlineenum}
-    \item $Z^{-1}(U') \ultsExecAgi T$, and
-    \item $T \subseteq Z^{-1}(T')$.
-    \end{inlineenum}
+%      \begin{nscenter}
+%      \begin{multicols}{2}
+%        \begin{enumerate}
+        1) $Z^{-1}(U') \ultsExecAgi T$, and
+        2) $T \subseteq Z^{-1}(T')$.
+%        \end{enumerate}
+%      \end{multicols}
+%    \end{nscenter}
 
     \item \textbf{$\A$-Zig}: for all $u\in\W$ there is a $u'\in\W'$ such that $uZu'$.
 
@@ -295,7 +301,7 @@ Let $\modults,w$ and $\modults',w'$ be two \ultss. $\modults,w\bisim\modults',w'
 
 % \ssparagraph{Axiomatization.} 
 
-Another important element to consider in this paper is the axiom system for $\KHilogic$~\cite{AFSVQ21,AFSVQ23report}. 
+Another important element to consider is the axiom system for $\KHilogic$~\cite{AFSVQ21,AFSVQ23report}. 
 
 \begin{table}[t]
 \begin{tabular}{l@{\quad \quad  }l@{\quad}l}
@@ -328,52 +334,50 @@ The axiom system from~\Cref{tab:khiaxiom} is sound and strongly complete with re
 It is worth noticing that the axiom \axm{KhE}, $\left(\E\psi \land \khi(\psi,\varphi)\right) \rightarrow \E\varphi$, is omitted here. This is due to the fact that it is derivable in the system.
 This is achieved by proving an equivalent expression
 % , $\left(\E\psi \land \khi(\psi,\varphi) \land \A \neg\varphi \right) \rightarrow \bot$, using \axm{KhA}. %\raul{To write down the syntactic proof in detail here.}
-
+%
 % By \axm{TAUT}, it is equivalent to prove that
-
+%
 \begin{equation}\label{eq:khe0}
 \vdash (\E\psi \wedge \khi(\psi,\varphi) \wedge \A\neg\varphi) \ra \bot.
 \end{equation}
-
+%
 For this, we establish a series of implication and, using transitivity, we get \axm{KhE}. By applying \axm{TAUT}, we have that
-
+%
 \begin{equation*}
 \vdash (\E\psi \wedge \khi(\psi,\varphi) \wedge \A\neg\varphi) \ra (\E\psi \wedge \khi(\psi,\varphi) \wedge \A\neg\varphi).
 \end{equation*}
-
+%
 Taking \axm{TAUT} ($\vdash \neg\varphi \lra (\varphi \ra \bot)$, $\vdash \psi \ra \psi$) and \axm{NECA}, we replace $\A\neg\varphi$ by $\A(\varphi \ra \bot)$ and add $\A(\psi \ra \psi)$, which is a tautology. Thus,
-
+%
 \begin{equation}\label{eq:khe1}
 \vdash (\E\psi \wedge \khi(\psi,\varphi) \wedge \A\neg\varphi) \ra (\E\psi \wedge \A(\psi \ra \psi) \wedge \khi(\psi,\varphi) \wedge \A(\varphi \ra \bot)).
 \end{equation}
-
+%
 On the other hand, by using an instance of \axm{KhA}, we have that
-
+%
 \begin{equation*}
 \vdash (\A(\psi \ra \psi) \wedge \khi(\psi,\varphi) \wedge \A(\varphi \ra \bot)) \ra (\khi(\psi,\bot)).
 \end{equation*}
-
+%
 Adding $\E\psi$ to both sides (by using an instance of \axm{TAUT}),
-
+%
 \begin{equation*}
 \vdash (\E\psi \wedge \A(\psi \ra \psi) \wedge \khi(\psi,\varphi) \wedge \A(\varphi \ra \bot)) \ra (\E\psi \wedge \khi(\psi,\bot)).
 \end{equation*}
-
+%
 By definition of $\E$ y $\A$,
-
+%
 \begin{equation*}
 \vdash (\E\psi \wedge \A(\psi \ra \psi) \wedge \khi(\psi,\varphi) \wedge \A(\varphi \ra \bot)) \ra (\neg\A\neg\psi \wedge \A\neg\psi).
 \end{equation*}
-
+%
 And by definition of $\bot$,
-
+%
 \begin{equation}\label{eq:khe2}
 \vdash (\E\psi \wedge \A(\psi \ra \psi) \wedge \khi(\psi,\varphi) \wedge \A(\varphi \ra \bot)) \ra \bot.
 \end{equation}
-
+%
 Given the implications in \Cref{eq:khe1} and \Cref{eq:khe2}, by transitivity we get \Cref{eq:khe0}.
-
-\medskip 
 
 % \ssparagraph{Complexity.} 
 
