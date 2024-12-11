@@ -1,50 +1,45 @@
 %\subsubsection{Decidability via filtrations}
 
-Now we proceed to define the preliminaries for proving decidability of the satisfiability problem of $\KHiMLlogic$. In order to do so, we will use a \emph{filtration} technique (see e.g.,~\cite{mlbook}). This method enables us, from a given model and a set of formulas, to construct another model (the `filtration') which satisfies the same formulas from the input set. Interestingly, if we depart from a finite set of formulas, the filtration is a finite model, which is a crucial property to obtain decidability. 
-Notice that the filtration we will provide, generalizes the one introduced in~\cite{AFSVQ23report} for $\KHilogic$, by also handling the basic modal logic modality $[a]$. Moreover, in~\cite{AFSVQ23report} it is not shown that a filtration always exists for a model and a set of formulas, which is a missing ingredient in the proof. This aspect is fixed here too.
+Now we turn to the decidability of the satisfiability problem of $\KHiMLlogic$. We will use a \emph{filtration} technique (see, e.g.,~\cite{mlbook}). 
+The filtration we will define generalizes the one introduced in~\cite{AFSVQ23report} for $\KHilogic$, by also handling the basic modal logic modality $[a]$. Moreover, in~\cite{AFSVQ23report} it is not shown that a filtration always exists for a model and a set of formulas, which is a missing ingredient in the proof. This aspect is fixed here too.
 
-We start by introducing two relations that, given a set of formulas $\Sigma$ and a model $\modults$, will be crucial to define a proper notion of filtration.
+%We start by introducing two relations that, given a set of formulas $\Sigma$ and a model $\modults$, will be crucial to define a proper notion of filtration.
 
 \medskip
 
 \begin{definition}[$\Sigma$-equivalence]
 Let $\modults=\tup{\W,\R,\Unc,\V}$ be an \ults and let $\Sigma$ be a set of $\KHiMLlogic$-formulas closed under subformulas.
 Define the equivalence relations ${\modequiv_\Sigma} \subseteq \W\times\W$ and ${\planequiv_\Sigma} \subseteq \Unc_\AGT \times \Unc_\AGT$ (with $\Unc_\AGT := \bigcup_{i \in \AGT}\Unc(i)$) as:
-\begin{center}
-\begin{tabular}{lcl}
-$w \modequiv_\Sigma v$ &  \iffdef &
-for all $\psi \in \Sigma$, $\modults,w\models \psi$ iff $\modults,v\models \psi$,\\
-$\plans \planequiv_\Sigma \plans'$ & \iffdef &
-for all $i \in \AGT$ and $\khi(\psi,\varphi) \in \Sigma$,  $\plans$ is a witness for \\ 
-& & $\khi(\psi,\varphi)$ in $\modults$ iff $\plans'$ is a witness for $\khi(\psi,\varphi)$ in $\modults$.
-\end{tabular}
-\end{center}
-
+$$\begin{array}{lcl}
+w \modequiv_\Sigma v &  \iffdef &
+\text{for all } \psi \in \Sigma, \modults,w\models \psi \text{ iff } \modults,v\models \psi,\\
+\plans \planequiv_\Sigma \plans' & \iffdef &
+\text{for all } i \in \AGT \text{ and } \khi(\psi,\varphi) \in \Sigma,  \plans \text{ is a witness for }\\ 
+& & \khi(\psi,\varphi) \text{ in } \modults \text{ iff } \plans' \text{ is a witness for } \khi(\psi,\varphi) \text{ in } \modults.
+\end{array}
+$$
 Given $w \in \W$ and $\plans \in \Unc_\AGT$, we define their $\Sigma$-equivalence class:
-\begin{center}
-$[w]_\Sigma := \setof{v \in \W}{w \modequiv_\Sigma v}$; \qquad  $[\plans]_\Sigma := \setof{\plans' \in 2^{\ACT^*}}{\plans \planequiv_\Sigma \plans'}$.
-\end{center}
+\[
+[w]_\Sigma := \setof{v \in \W}{w \modequiv_\Sigma v}; \qquad  [\plans]_\Sigma := \setof{\plans' \in 2^{\ACT^*}}{\plans \planequiv_\Sigma \plans'}.
+\]
 \end{definition}
 
-\medskip
 
-Although the notation $[\_]_\Sigma$ is overloaded, its argument will always disambiguate its use.
-
-\medskip
+%Although the notation $[\_]_\Sigma$ is overloaded, its argument will always disambiguate its use.
 
 \begin{definition}\label{def:filtration-actions}
-Let $\modults = \tup{\W,\R,\Unc,\V}$ be an \ults defined over a denumerable set of actions $\ACT$, and let $\Sigma$ be a set of $\KHiMLlogic$-formulas that is closed under subformulas.
+Let $\modults = \tup{\W,\R,\Unc,\V}$ be an \ults defined over a denumerable set of actions $\ACT$, and let $\Sigma$ be a set of $\KHiMLlogic$-formulas closed under subformulas.
 Define
-\begin{itemize}
-\item $\ACT^{\Sigma}_i := \setof{a_{[\plans]_\Sigma}}{\plans \in \Unc(i) \text{ is a witness of some } \khi(\psi,\varphi) \in \Sigma \text{ in } \modults}$,
-\item $\ACT^\Sigma_{\square} := \setof{a \in \ACT}{\mlbox{a}\varphi \in \Sigma}$, and
-\item $\ACT^\Sigma := \bigcup_{i \in \AGT} \ACT^\Sigma_i \cup \ACT^\Sigma_{\square}\cup \set{a_\emptyset}$.
-\end{itemize} 
+$$
+\begin{array}{rcl}
+\ACT^{\Sigma}_i & := & \setof{a_{[\plans]_\Sigma}}{\plans \in \Unc(i) \text{ is a witness of some } \khi(\psi,\varphi) \in \Sigma \text{ in } \modults},\\
+\ACT^\Sigma_{\square} & := & \setof{a \in \ACT}{\mlbox{a}\varphi \in \Sigma}, \text{ and }\\
+\ACT^\Sigma & := & \bigcup_{i \in \AGT} \ACT^\Sigma_i \cup \ACT^\Sigma_{\square}\cup \set{a_\emptyset}.
+\end{array}
+$$
 \end{definition}
 
-\medskip
-
-The idea behind the definition of $\ACT^{\Sigma}_i$ is that, for each $\khi(\psi,\varphi) \in \Sigma$ that is true at $\modults$, we consider an action mimicking the behaviour of those sets of plans $\plans$ that witness the satisfiability of $\khi(\psi,\varphi)$ in $\modults$. In turn, $\ACT^\Sigma_{\square}$ takes into account those action symbols that are explicitely used in formulas of $\Sigma$. Finally, $a_\emptyset$ will be used to guarantee the existence of an action in the set $\ACT^\Sigma$, as we will see without provoking any side effect. 
+The idea behind the definition of $\ACT^{\Sigma}_i$ is that, for each $\khi(\psi,\varphi) \in \Sigma$ that is true at $\modults$, we consider an action mimicking the behavior of those sets of plans $\plans$ that witness the satisfiability of $\khi(\psi,\varphi)$ in $\modults$. In turn, $\ACT^\Sigma_{\square}$ takes into account those action symbols that are explicitly used in formulas of $\Sigma$. Finally, $a_\emptyset$ will be used to guarantee the existence of an action in the set $\ACT^\Sigma$, as we will see without provoking any side effect. 
 Now, we are in position of defining the notion of filtration. 
 
 \medskip
@@ -63,7 +58,7 @@ An \ults defined over $\ACT^\Sigma$, $\modults^f = \tup{\W^f,\R^f,\Unc^f,\V^f}$,
 \item there are $w'' \in [w]_\Sigma$, $v'' \in [v]_\Sigma$ and $\plans'' \in G_{[\plans]_\Sigma}$ such that $(w',v') \in \R_{\plans''}$;
 \end{itemize}
 \item \label{item:khiml-fil-a1} for all $a \in \ACT^\Sigma_\square$, if $(w,v) \in \R_a$, then $([w]_\Sigma,[v]_\Sigma) \in \R^f_a$; and
-\item \label{item:khiml-fil-a2} for all $a \in \ACT^\Sigma_\square$, if $([w]_\Sigma,[v]_\Sigma) \in \R^f_a$ then for all $\mlbox{a} \varphi \in \Sigma$, if $\modults,w \models \mlbox{a}\varphi$ then $\modults,v \models \varphi$.
+\item \label{item:khiml-fil-a2} for all $a \in \ACT^\Sigma_\square$, if $([w]_\Sigma,[v]_\Sigma) \in \R^f_a$ then for all $\mlbox{a} \varphi \in \Sigma$,  $\modults,w \models \mlbox{a}\varphi$ implies $\modults,v \models \varphi$.
 \end{enumerate}
 \end{definition}
 
