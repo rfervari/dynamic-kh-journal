@@ -1,7 +1,7 @@
-\subsubsection{Axiom system}
+%\subsubsection{Axiom system}
 
-We introduce in \Cref{tab:khimlaxiom} an axiom system for $\KHiMLlogic$, which is an extension of~\Cref{tab:khiaxiom} with the addition of the axioms \axm{Dist$\square$} and \axm{A$\square$}.
-Note that the rule \axm{Nec$\square$} is not necessary, as it can be derived by using \axm{NecA}, \axm{A$\square$} and \axm{MP}.
+\Cref{tab:khimlaxiom} provides an axiom system for $\KHiMLlogic$, which is an extension of the axioms in~\Cref{tab:khiaxiom} with the addition of the axioms \axm{Dist$\square$} and \axm{A$\square$}.
+A necesitation rule for $\square$ is derivable using \axm{NecA}, \axm{A$\square$} and \axm{MP}.
 % Finally, there is a property, \axm{KhE} ($\vdash \left(\E\psi \land \khi(\psi,\varphi)\right) \rightarrow \E\varphi$) by using \axm{KhA}. This will be useful for the completeness proof.
 
 % \begin{lemma}
@@ -74,8 +74,8 @@ Note that the rule \axm{Nec$\square$} is not necessary, as it can be derived by 
 \caption{Axiomatization $\axset_{\khi,\square}$ for $\KHiMLlogic$ w.r.t.\ $\ultss$.}\label{tab:khimlaxiom}
 \end{table}
 
-It is straightforward that these axioms and rules are sound over arbitrary models.
-Before showing completeness, we introduce some standard preliminar definitions for the canonical model in the context of this logic, similar to what is done in~\cite{AFSVQ21,AFSVQ23report}.
+These axioms and rules are sound over arbitrary \ultss.
+To prove completeness we introduce some standard definitions for the construction of the canonical model, similar to what is done in~\cite{AFSVQ21,AFSVQ23report}.
 
 \medskip
 
@@ -84,13 +84,13 @@ Let $\Gamma\cup\set{\varphi}$ be a set of $\KHiMLlogic$-formulas. The notions of
 %(where ) or there are $\varphi_1,...,\varphi_n \in \Gamma$ s.t. $\vdash (\varphi_1 \wedge ... \wedge \varphi_n) \ra \varphi$.
 are defined as usual. 
 A set $\Gamma$ is $\KHiMLlogic$-consistent if $\Gamma \not \vdash \bot$, and 
-$\Gamma$ is maximally $\KHiMLlogic$-consistent if $\Gamma$ is $\KHiMLlogic$-consistent and for every $\varphi \not\in \Gamma $, $\Gamma \cup \set{\varphi} \vdash \bot$.
+$\Gamma$ is a maximally $\KHiMLlogic$-consistent set (MCS) if $\Gamma$ is $\KHiMLlogic$-consistent and for every $\varphi \not\in \Gamma $, $\Gamma \cup \set{\varphi} \vdash \bot$.
 \end{definition}
 
 \medskip
 
 \begin{definition}
-Let $\smcs$ be the set of all maximally $\axset_{\khi,\square}$-consistent sets (MCS) of formulas in $\KHiMLlogic$.
+Let $\smcs$ be the set of all MCSs in $\KHiMLlogic$.
 For any $\Delta \in \smcs$, define:
 \[
 \begin{array}{l@{\;:=\;}l@{\quad\quad}l@{\;:=\;}l}
@@ -107,8 +107,10 @@ Let $\Gamma$ be a set in $\smcs$.
 Define $\ACT^\Gamma_i := \setof{\tup{\psi,\varphi}}{\khi(\psi,\varphi) \in \Gamma}$ for every agent $i \in \AGT$, and $\ACT^\Gamma := \bigcup_{i \in \AGT} \ACT^\Gamma_i\cup \ACT$.
 \end{definition}
 
-Notice that since $\vdash \top$, we have $\A\top = \khi(\neg\top,\bot) \in \Gamma$, for every $i \in \AGT$. Thus, $\ACT^\Gamma \neq \emptyset$. Moreover, this set is denumerable since $\AGT$ is finite and non-empty, and since $\ACT$ is also denumerable. 
-With this property at hand, using a slightly variation of what is done in~\cite{AFSVQ21,AFSVQ23report}, the definition of the canonical model is as follows.
+\medskip
+
+Notice that since $\vdash \top$, we have $\A\top = \khi(\neg\top,\bot) \in \Gamma$, for every $i \in \AGT$. Thus, $\ACT^\Gamma \neq \emptyset$. Moreover, this set is denumerable since $\AGT$ is finite and non-empty, and $\ACT$ is denumerable. 
+With this property at hand, using a slight variation of what is done in~\cite{AFSVQ21,AFSVQ23report}, the definition of the canonical model is as follows.
 
 \medskip
 
@@ -140,12 +142,12 @@ The set of actions $\ACT^\Gamma$ is denumerable, Thus $\ACT^\Gamma\cup\ACT$ is a
 Since $\Gamma \in \W^\Gamma$, $\W^\Gamma \neq \emptyset$.
 It is enough to show that each $\Unc^\Gamma(i)$ defines a partition over a non-empty subset of $2^{(\ACT^\Gamma)^*}$ since its elements are singletons (thus, mutually disjoint).
 As we have that $\khi(\bot,\bot) \in \Gamma$, so $\tup{\bot, \bot} \in \ACT^\Gamma_i$ and hence $\set{\tup{\bot, \bot}} \in \Unc^\Gamma(i)$; thus, $\Unc(i) \neq \emptyset$.
-It is direct to show that $\emptyset \notin \Unc^\Gamma(i)$.
+It is easy to argue that $\emptyset \notin \Unc^\Gamma(i)$.
 \end{proof}
 
-Note that this definition exploits the fact that the knowing how modality cannot express explicitly the plan that serves as a witness.
-As a corollary for the truth lemma (stated in \Cref{tlm:cm-ults-lkhi}), given a formula, we can construct a model where the actions the agent is considering do not appear in the formula at all.
-% This will become useful for proving decidability.
+Note that this definition exploits the fact that the knowing how modality cannot express explicitly the plan that serves as a witness \carlos{Donde? No lo veo. }.
+
+%As a corollary for the truth lemma (stated in \Cref{tlm:cm-ults-lkhi}), given a formula, we can construct a model where the actions the agent is considering do not appear in the formula at all.
 
 Let $\Gamma \in \smcs$, the following properties about the canonical model $\modults^\Gamma$ are useful in what follows (cf.~\cite{Wang2016,AFSVQ23report} for proofs of these properties). Below, we refer to actions $\tup{\psi,\varphi}$ to be those in $\ACT^\Gamma\setminus\ACT$.
 
@@ -277,9 +279,10 @@ Given $\Gamma \!\in\! \smcs$, take $\modults^\Gamma = \tup{\W^\Gamma, \R^\Gamma,
 \begin{proof}
 The proof is by induction on $\varphi$.
 The atomic and Boolean cases behave as usual, so we focus on the $\khi$ and $[a]$ cases.
+\medskip
 
-\begin{itemize}
-\item \textbf{Case $\mlbox{a}\chi$}: $(\Rightarrow)$ Suppose $\modults^\Gamma,\Theta \models \mlbox{a}\chi$. Then, by the definition of $\models$ and IH, for all $\Delta \in \R^\Gamma_a(\Theta)$, $\chi \in \Delta$.
+\noindent
+\textbf{Case $\mlbox{a}\chi$}: $(\Rightarrow)$ Suppose $\modults^\Gamma,\Theta \models \mlbox{a}\chi$. By the definition of $\models$ and IH, for all $\Delta \in \R^\Gamma_a(\Theta)$, $\chi \in \Delta$.
 Suppose $\mlbox{a}\chi \notin \Theta$. Thus, $\neg\mlbox{a}\chi = \mldiam{a}\neg\chi \in \Theta$.
 Let $\Delta^- := \resta{\Theta} \cup \restna{\Theta} \cup \setof{\psi}{\mlbox{a}\psi \in \Theta} \cup \set{\neg\chi}$. $\Delta^-$ is consistent.
 Otherwise there are sets $\set{\A\psi_1, \ldots, \A\psi_n} \subseteq \resta{\Delta}$, $\set{\lnot \A\psi'_1, \ldots, \lnot \A\psi'_m} \subseteq \restna{\Delta}$ and $\set{\psi''_1, \ldots, \psi''_l} \subseteq \setof{\psi}{\mlbox{a}\psi \in \Theta}$ such that:
@@ -300,7 +303,7 @@ $\vdash
 \ra \mlbox{a} \chi$.
 \end{ctabular}
 
-Having that $\vdash \mlbox{a}(\varphi_1 \wedge \varphi_2) \lra (\mlbox{a} \varphi_1 \wedge \mlbox{a} \varphi_2)$, it is equivalent to:
+But $\vdash \mlbox{a}(\varphi_1 \wedge \varphi_2) \lra (\mlbox{a} \varphi_1 \wedge \mlbox{a} \varphi_2)$ is equivalent to:
 
 \begin{ctabular}{c}
 $\vdash
@@ -312,14 +315,16 @@ $\vdash
 By construction, $\mlbox{a}\psi''_k \in \Theta$. Since $\A\psi_k \in \Theta$, by \axm{4KhA} and \axm{A$\square$}, and $\mlbox{a}\A\psi_k \in \Theta$. With a similar argument with \axm{5KhA}, $\mlbox{a}\neg\A\psi'_k \in \Theta$.
 Hence, $\mlbox{a}\chi \in \Theta$, a contradiction.
 
-Since $\Delta^-$ is consistent, then we have a maximal consistency expansion $\Delta$ s.t. $\resta{\Delta} = \resta{\Theta}$ (hence, $\Delta \in \W^\Gamma$), $\Delta \in \R^\Gamma_a(\Theta)$ and $\chi \notin \Delta$.
-But that is a contradiction. Thus, $\mlbox{a} \in \Theta$.
+Since $\Delta^-$ is consistent, then we have a maximal consistency expansion $\Delta$ s.t. $\resta{\Delta} = \resta{\Theta}$ (hence, $\Delta \in \W^\Gamma$), $\Delta \in \R^\Gamma_a(\Theta)$ and $\chi \notin \Delta$,
+a contradiction. Thus, $\mlbox{a}\chi \in \Theta$.
 
 $(\Leftarrow)$ Suppose $\mlbox{a}\chi \in \Theta$. Let $\Delta \in \R^\Gamma_a(\Theta)$, by the definition of $\R^\Gamma_a$, $\chi \in \Delta$.
 Using IH and the definition of $\models$, for all $\Delta \in \R^\Gamma_a(\Theta)$, we have that $\modults^\Gamma,\Delta \models \chi$.
 Thus, $\modults^\Gamma, \Theta \models \mlbox{a}\chi$.
+\medskip
 
-\item \textbf{Case $\khi(\psi,\varphi)$}: $(\Rightarrow)$ Suppose $\modults^\Gamma, \Theta \models \khi(\psi,\varphi)$, and consider two cases.
+\noindent
+\textbf{Case $\khi(\psi,\varphi)$}: $(\Rightarrow)$ Suppose $\modults^\Gamma, \Theta \models \khi(\psi,\varphi)$, and consider two cases.
 \begin{itemize}
 \item ${\truthset{\modults^\Gamma}{\psi} = \emptyset}$: Then, each $\Delta \in \W^\Gamma$ is such that $\Delta \not\in \truthset{\modults^\Gamma}{\psi}$, which implies $\psi \not\in \Delta$ (by IH) and thus $\lnot\psi \in \Delta$ (by maximal consistency).
 Hence, by \Cref{pro:cm-ults-khiml-allall}, $\A\lnot\psi \in \Delta$ for every $\Delta \in \W^\Gamma$. In particular, $\A\lnot\psi \in \Theta$ and thus, by \axm{KhA} and \axm{MP} ($\A(\psi \ra \psi),\kh(\psi,\bot),\A(\bot \ra \varphi) \in \Theta$), $\khi(\psi, \varphi) \in \Theta$.
@@ -377,16 +382,16 @@ Hence, $\set{\psi, \lnot\psi} \subset \Delta_\psi$, contradicting $\Delta_\psi$'
 
 Let us continue with the proof of the lemma. The existence of $\Delta_\varphi \in \W^\Gamma$ with $\varphi \in \Delta_\varphi$ implies that $(\Delta, \Delta_\varphi) \in \R^\Gamma_{\tup{\psi,\varphi}}$ and thus, since $\tup{\psi,\varphi}$ is a basic action, $\Delta \in \stexec(\tup{\psi,\varphi})$, and so $\Delta \in \stexec(\set{\tup{\psi,\varphi}})$. Since $\Delta$ is an arbitrary state in $\truthset{\modults^\Gamma}{\psi}$, the required $\truthset{\modults^\Gamma}{\psi} \subseteq \stexec(\set{\tup{\psi,\varphi}})$ follows.
 
-\item Take any $\Delta' \in \R^\Gamma_{\set{\tup{\psi,\varphi}}}(\truthset{\modults^\Gamma}{\psi})$. Then, there is $\Delta \in \truthset{\modults^\Gamma}{\psi}$ such that $(\Delta, \Delta') \in \R^\Gamma_{\tup{\psi,\varphi}}$. By definition of $\R^\Gamma$, it follows that $\varphi \in \Delta'$ so, by IH, $\Delta' \in \truthset{\modults^\Gamma}{\varphi}$. Since $\Delta'$ is an arbitrary state in $\R^\Gamma_{\set{\tup{\psi,\varphi}}}(\truthset{\modults^\Gamma}{\psi})$, the required $\R^\Gamma_{\set{\tup{\psi,\varphi}}}(\truthset{\modults^\Gamma}{\psi}) \subseteq \truthset{\modults^\Gamma}{\varphi}$ follows.
+\item Take any $\Delta' \in \R^\Gamma_{\set{\tup{\psi,\varphi}}}(\truthset{\modults^\Gamma}{\psi})$. Then, there is $\Delta \in \truthset{\modults^\Gamma}{\psi}$ such that $(\Delta, \Delta') \in \R^\Gamma_{\tup{\psi,\varphi}}$. By definition of $\R^\Gamma$, it follows that $\varphi \in \Delta'$ so, by IH, $\Delta' \in \truthset{\modults^\Gamma}{\varphi}$. Since $\Delta'$ is an arbitrary state in $\R^\Gamma_{\set{\tup{\psi,\varphi}}}(\truthset{\modults^\Gamma}{\psi})$, we have $\R^\Gamma_{\set{\tup{\psi,\varphi}}}(\truthset{\modults^\Gamma}{\psi}) \subseteq \truthset{\modults^\Gamma}{\varphi}$.
 \end{enumerate}
-\end{itemize}
 \end{itemize}
 \end{proof}
 
-Once the Truth Lemma is obtained, by using the standard arguments we can establish the intended theorem:
+Completeness now follows from the Truth Lemma in the usual way. 
 
 \medskip
 
 \begin{theorem}\label{th:cm-ults-khikt-completeness}
 The axiom system $\axset_{\khi,\square}$ is sound and strongly complete with respect to the class of all models.
 \end{theorem}
+\medskip
