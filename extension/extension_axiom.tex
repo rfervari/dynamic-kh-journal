@@ -113,7 +113,7 @@ With this property at hand, using a slightly variation of what is done in~\cite{
 \medskip
 
 \begin{definition}\label{def:cm-ults-khiml}
-Let $\Gamma \in \smcs$. The structure $\modults^\Gamma=\tup{\W^\Gamma, \R^\Gamma, \set{\Unc^\Gamma(i)}_{i \in \AGT}, \V^\Gamma}$ over $\ACT^\Gamma \cup \ACT$, $\AGT$ and $\PROP$ is defined as follows.
+Let $\Gamma \in \smcs$. The structure $\modults^\Gamma=\tup{\W^\Gamma, \R^\Gamma, \Unc^\Gamma, \V^\Gamma}$ over $\ACT^\Gamma \cup \ACT$, $\AGT$ and $\PROP$ is defined as follows.
 \begin{itemize}
 \item $\W^\Gamma := \setof{\Delta \in \smcs}{\resta{\Delta} = \resta{\Gamma}}$.
 
@@ -133,7 +133,7 @@ $\R^{\Gamma}_{\tup{\psi,\varphi}^i} = \setof{(\Delta_1, \Delta_2) \in (\W^\Gamma
 \medskip
 
 \begin{proposition}\label{pro:cm-ults-khiml}
-The structure $\modults^\Gamma = \tup{\W^\Gamma, \R^\Gamma, \set{\Unc^\Gamma(i)}_{i \in \AGT}, \V^\Gamma}$ is an $\ults$.
+The structure $\modults^\Gamma = \tup{\W^\Gamma, \R^\Gamma, \Unc^\Gamma, \V^\Gamma}$ is an $\ults$.
 \end{proposition}
 \begin{proof}
 The set of actions $\ACT^\Gamma$ is denumerable, Thus $\ACT^\Gamma\cup\ACT$ is also denumerable.
@@ -269,7 +269,7 @@ With these properties at hand, we can prove the truth lemma for $\modults^\Gamma
 \medskip
 
 \begin{lemma}[Truth lemma]\label{tlm:cm-ults-lkhi}
-Given $\Gamma \!\in\! \smcs$, take $\modults^\Gamma = \tup{\W^\Gamma, \R^\Gamma, \set{\Unc^\Gamma(i)}_{i \in \AGT}, \V^\Gamma}$. Then, for every $\Theta \in \W^\Gamma$ and every $\varphi \in \KHiMLlogic$,  % $\modults^\Gamma, \Theta \models \varphi$ if and only if $\varphi \in \Theta$. 
+Given $\Gamma \!\in\! \smcs$, take $\modults^\Gamma = \tup{\W^\Gamma, \R^\Gamma, \Unc^\Gamma, \V^\Gamma}$. Then, for every $\Theta \in \W^\Gamma$ and every $\varphi \in \KHiMLlogic$,  % $\modults^\Gamma, \Theta \models \varphi$ if and only if $\varphi \in \Theta$. 
 \[
 \modults^\Gamma, \Theta \models \varphi \mbox{ if and only if } \varphi \in \Theta.
 \]
