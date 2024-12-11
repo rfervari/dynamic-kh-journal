@@ -69,7 +69,7 @@ Given her uncertainty over $\ACT^*$, the abilities of an agent $i$ depend not on
 \medskip
 
 \begin{definition}
-Given $\R=\setof{\R_a \subseteq \W \times \W}{a\in\ACT}$ and $\plan \in \ACT^*$, define $\R_\plan \subseteq \W \times \W$ in the standard way. Then, for $\plans \subseteq \ACT^*$ and $U \cup \{u \} \subseteq \W$, define $\R_\plans := \bigcup_{\plan \in \plans} \R_{\plan}$, $\R_{\plans}(u) := \bigcup_{\plan \in \plans} \R_\plan(u)$, and $\R_{\plans}(U) := \bigcup_{u \in U} \R_{\plans}(u)$.
+Given $\R=\setof{\R_a \subseteq \W \times \W}{a\in\ACT}$ and $\plan \in \ACT^*$, define $\R_\plan \subseteq \W \times \W$ in the standard way. Then, for $\plans \subseteq \ACT^*$ and $U \cup \set{u} \subseteq \W$, define $\R_\plans := \bigcup_{\plan \in \plans} \R_{\plan}$, $\R_{\plans}(u) := \bigcup_{\plan \in \plans} \R_\plan(u)$, and $\R_{\plans}(U) := \bigcup_{u \in U} \R_{\plans}(u)$.
 \end{definition}
 
 \medskip
@@ -97,7 +97,7 @@ Now, we have all the ingredients to define the semantics of the logic.
 \medskip
 
 \begin{definition}\label{def:sem-esm}
-Let $\modults=\tup{\W,\R,\{\Unc(i)\}_{i\in\AGT},\V}$ be an \ults and $w \in \W$.
+Let $\modults=\tup{\W,\R,\Unc,\V}$ be an \ults and $w \in \W$.
 The satisfiability relation $\models$ for $\KHilogic$ is inductively defined as:
 \[
 \begin{array}{l@{\ \ \ }c@{\ \ \  }l}
@@ -153,8 +153,8 @@ Given the definition above, we can check that the semantic of the modalities $\A
 %       \begin{picture}(90,0)
 %       \put(10,40){$\Unc(i) = \left\{
 %         \begin{array}{c}
-%         \{ew\},\\
-%         \{we, eew\}
+%         \set{ew},\\
+%         \set{we, eew}
 %         \end{array}
 %       \right\}$}
 %       \end{picture}\vspace*{-3mm}
@@ -196,12 +196,12 @@ Agent $i$, who is an experienced chef, is aware that this is the way to get a go
     \small
 \put(15,20){$\Unc(i) = \left\{
     \begin{array}{c}
-    \{\mathit{ebfmsp}\}
+    \set{\mathit{ebfmsp}}
     \end{array}
 \right\}$}
 \put(15,5){$\Unc(j) = \left\{
     \begin{array}{c}
-    \{\mathit{ebfmsp},\mathit{ebmfsp}\}
+    \set{\mathit{ebfmsp},\mathit{ebmfsp}}
     \end{array}
 \right\}$}
 \end{picture}
@@ -222,7 +222,7 @@ The notion of \emph{bisimulation} is a crucial tool to understand the expressive
 \medskip
 
 \begin{definition}\label{def:notation}
-Let $\modults=\tup{\W,\R,\set{\Unc(i)}_{i\in\AGT},\V}$ be an \ults over \PROP, \ACT and \AGT. Take $\plans \in 2^{(\ACT^*)}$, $U, T \subseteq \W$ and $i \in \AGT$.
+Let $\modults=\tup{\W,\R,\Unc,\V}$ be an \ults over \PROP, \ACT and \AGT. Take $\plans \in 2^{(\ACT^*)}$, $U, T \subseteq \W$ and $i \in \AGT$.
 \begin{itemize} \itemsep 0pt
     \item Write $U \ultsExecStrat{\plans} T$ $\siffdefs$ $U \subseteq \stexec(\plans)$ and $\R_{\plans}(U) \subseteq T$.
 
@@ -238,7 +238,7 @@ Now we are in position to introduce the notion of bisimulation for $\KHilogic$.
 \medskip 
 
 \begin{definition}[$\KHilogic$-bisimulation]\label{def:bisim-khi}
-Let $\modults = \tup{\W,\R,\set{\Unc(i)}_{i\in\AGT},\V}$ and $\modults' = \tup{\W',\R',\set{\Unc'(i)}_{i\in\AGT},\V'}$ be $\ultss$.
+Let $\modults = \tup{\W,\R,\Unc(i),\V}$ and $\modults' = \tup{\W',\R',\Unc',\V'}$ be $\ultss$.
 %Take $Z \subseteq \W \times \W'$, $u \in \W$, $U \subseteq \W$, $u' \in \W'$, and $U' \subseteq \W'$.
 %\begin{itemize}\itemsep 0cm
 %  \item Let %$Z(u)$, $Z(U) \subseteq \W'$ as
@@ -260,25 +260,17 @@ A non-empty $Z \subseteq \W \times \W'$ is called an $\KHilogic$-bisimulation be
     \item \textbf{Atom}: $\V(w)=\V'(w')$.
 
     \item \textbf{$\khi$-Zig}: for any \emph{propositionally} definable $U \subseteq \W$, if $U \ultsExecAgi T$ for some $T \subseteq \W$, then there is $T' \subseteq \W'$ such that: 
-%      \begin{nscenter}
-%      \begin{multicols}{2}
-%        \begin{enumerate}
-        1) $Z(U) \ultsExecAgi T'$, and
-        2) $T' \subseteq Z(T)$.
-%        \end{enumerate}
-%      \end{multicols}
-%    \end{nscenter}
+    \begin{inlineenum}
+    \item $Z(U) \ultsExecAgi T'$, and
+    \item $T' \subseteq Z(T)$.
+    \end{inlineenum}
 
     \item \textbf{$\khi$-Zag}: % analogous to \textbf{$\khi$-Zig}.
     for any \emph{propositionally} definable $U' \subseteq \W'$, if $U' \ultsExecAgi T'$ for some $T' \subseteq \W'$, then there is $T \subseteq \W$ such that: 
-%      \begin{nscenter}
-%      \begin{multicols}{2}
-%        \begin{enumerate}
-        1) $Z^{-1}(U') \ultsExecAgi T$, and
-        2) $T \subseteq Z^{-1}(T')$.
-%        \end{enumerate}
-%      \end{multicols}
-%    \end{nscenter}
+    \begin{inlineenum}
+    \item $Z^{-1}(U') \ultsExecAgi T$, and
+    \item $T \subseteq Z^{-1}(T')$.
+    \end{inlineenum}
 
     \item \textbf{$\A$-Zig}: for all $u\in\W$ there is a $u'\in\W'$ such that $uZu'$.
 
