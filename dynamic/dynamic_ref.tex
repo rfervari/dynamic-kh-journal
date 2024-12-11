@@ -321,7 +321,7 @@ whereas $\modults',w' \models \refdiam{a}{b}\khi(p,q)$, since there is $\Unc''(i
 % It is clear that $\modults,w\bisim\modults',w'$, but $\modults,w \not\models \refdiam{a}{b}\khi(p,p)$ whereas $\modults',w' \models \refdiam{a}{b}\khi(p,p)$.
 \end{proof}
 
-We conclude this section by showing that \emph{uniform substitution}, a key form of syntactic transformation (very useful e.g. in axiomatizing a logic) fails in this logic. Uniform substitution establishes that given a valid formula $\varphi$, we can uniformly replace any propositional symbol appearing in $\varphi$ by an arbitrary formula, and obtain a valid formula.
+We conclude by showing that \emph{uniform substitution}, a key form of syntactic transformation, fails in $\Reflogic$. Uniform substitution establishes that given a valid formula $\varphi$, we can uniformly replace any propositional symbol appearing in $\varphi$ by an arbitrary formula, and obtain a valid formula.
 
 \medskip
 
@@ -330,7 +330,7 @@ We conclude this section by showing that \emph{uniform substitution}, a key form
 \end{proposition}
 
 \begin{proof}
-The formula $p\to\refdiam{a}{b}p$ is a valid formula, for every $a,b\in\ACT$, since $\refdiam{a}{b}$ do not affect propositional symbols. Consider the model below, with $\Unc(i):=\set{\set{a,b}}$:
+The formula $p\to\refdiam{a}{b}p$ is valid for $p$ a propositional symbol, since $\refdiam{a}{b}$ does not change the valuation. Consider the model below, with $\Unc(i):=\set{\set{a,b}}$:
 
 \begin{center}
 \begin{tikzpicture}[->, grow' = right, level/.style={sibling distance = 2em/#1}, level distance = 1.5em]
@@ -343,11 +343,11 @@ The formula $p\to\refdiam{a}{b}p$ is a valid formula, for every $a,b\in\ACT$, si
     \end{tikzpicture} 
 \end{center}
 
-Consider now the substitution of $p$ by $\neg\khi(p,q)$ in the formula above. The resulting formula is $\neg\khi(p,q)\to\refdiam{a}{b}\neg\khi(p,q)$. It is clear that $\modults\models\neg\khi(p,q)$, but $\modults\not\models\refdiam{a}{b}\neg\khi(p,q)$. Thus, $\neg\khi(p,q)\to\refdiam{a}{b}\neg\khi(p,q)$ is not a valid formula.
+Consider now the substitution of $p$ by $\neg\khi(p,q)$ in the formula above. The resulting formula is $\neg\khi(p,q)\to\refdiam{a}{b}\neg\khi(p,q)$. It is clear that $\modults\models\neg\khi(p,q)$, but $\modults\not\models\refdiam{a}{b}\neg\khi(p,q)$. Thus, $\neg\khi(p,q)\to\refdiam{a}{b}\neg\khi(p,q)$ is not valid.
 \end{proof}
 
 It is well-known that the lack of uniform substitution in many dynamic logics poses a serious challenge in obtaining complete axiomatizations (see, e.g.,~\cite{HoHoIc11}). This issue has been dealt with in, e.g.,~\cite{BenthemMZ2022,BenthemLSY22}, for sabotage modal logics.
-Therein, basic hybrid logic machinery is used to get axiom systems. This approach seems difficult to apply in our setting, as the language is unable to talk about the actual plans witnessing a formula. Thus, we will use different ideas to tackle this problem in~\Cref{sec:extension}.
+Therein, hybrid logic machinery is used to get axiom systems. This approach seems difficult to apply in our setting, as the language is unable to talk about the actual plans witnessing a formula. Thus, we will use different ideas to tackle this problem in~\Cref{sec:extension}.
 
 % \begin{definition}[Reachability]\label{def:reachability}
 % Let $\modults = \tup{\W,\R,\Unc,\V}$ be \ultss, $\Unc'$ is finitely reachable from $\Unc$ if there is a finite sequence of $\Unc(k)$, $\plan_1^k$ and $\plan_2^k$ for $k=1,...,n$ such that $\splitstr{\Unc(k)}{\Unc(k+1)}{\plan_1^k}{\plan_2^k}$, $\Unc(1)=\Unc$ and $\Unc(n)=\Unc'$.
