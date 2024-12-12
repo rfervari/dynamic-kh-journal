@@ -281,12 +281,9 @@ This can be achieved by defining $G_{[\plans]_\Sigma} = [\plans]_\Sigma \neq \em
 \item $([w]_\Sigma,[v]_\Sigma) \in \R^f_a$ iff for all $\mlbox{a}\varphi \in \Sigma$, $\modults,w \models \mlbox{a}\varphi$ then $\modults,v \models \varphi$.
 \end{itemize}
 
-Notice that both the different alternatives of picking $G_{[\plans]_\Sigma}$ and $\R^f_a$ enable us to obtain more than one filtration, all of them satisfying the intended properties.
+The different alternatives for $G_{[\plans]_\Sigma}$ and $\R^f_a$ enable us to obtain more than one filtration, all of them satisfying the intended properties.
 
-\medskip
-
-The last theorem states that every satisfiable formula of $\KHiMLlogic$, is satisfiable in a finite, bounded model.
-As a consequence, the satisfiability problem for $\KHiMLlogic$ is decidable.
+As we established that every satisfiable formula of $\KHiMLlogic$, is satisfiable in a finite, bounded model, the satisfiability problem for $\KHiMLlogic$ is decidable.
 
 \medskip
 
@@ -294,15 +291,15 @@ As a consequence, the satisfiability problem for $\KHiMLlogic$ is decidable.
 The satisfiability problem for $\KHiMLlogic$ is decidable.
 \end{corollary}
 
-\begin{proof}
-Suppose $\varphi$ is satisfiable, then there exists a model $\modults$ and a state $w$ such that $\modults,w\models\varphi$. Let $\Sigma$ be the set of subformulas of $\varphi$ (including $\varphi$).
-Then, there exists a filtration $\modults^f$ such that, by~\Cref{th:filtration}, $\modults^f,[w]_\Sigma\models\varphi$. Since $\Sigma$ is finite, $\modults^f$ is finite, and of size at most exponential.
-Consequently, we know there exists a finite model of $\varphi$. Thus, we can list all the models and try one by one, whether they satisfy $\varphi$ or not, by calling a model-checking algorithm.
-Since model-checking is decidable (by simply combining the algorithm for basic modal logic~\cite{mlbook}, and the one for $\KHilogic$~\cite{AFSVQ21,AFSVQ23report}), the corollary follows. \raul{No tenemos demo especifica de que model-checking es decidible, dejamos asi como esta?}
-\end{proof}
+%\begin{proof}
+%Suppose $\varphi$ is satisfiable, then there exists a model $\modults$ and a state $w$ such that $\modults,w\models\varphi$. Let $\Sigma$ be the set of subformulas of $\varphi$ (including $\varphi$).
+%Then, there exists a filtration $\modults^f$ such that, by~\Cref{th:filtration}, $\modults^f,[w]_\Sigma\models\varphi$. Since $\Sigma$ is finite, $\modults^f$ is finite, and of size at most exponential.
+%Consequently, we know there exists a finite model of $\varphi$. Thus, we can list all the models and try one by one, whether they satisfy $\varphi$ or not, by calling a model-checking algorithm.
+%Since model-checking is decidable (by simply combining the algorithm for basic modal logic~\cite{mlbook}, and the one for $\KHilogic$~\cite{AFSVQ21,AFSVQ23report}), the corollary follows. \raul{No tenemos demo especifica de que model-checking es decidible, dejamos asi como esta?}
+%\end{proof}
 
-\medskip
+%\medskip
 
-It is worth noticing that the conditions regarding the treatment of $\Unc^f(i)$ in~\Cref{def:filtrations} are slightly different from the conditions introduced in~\cite{AFSVQ23report} for the basic logic $\KHilogic$. Therein, the existence of a filtration is not established. Thus, in this work we update the definition of filtrations, making easier to guarantee that we can always obtain a finite model from any set of finite formulas, and consequently~\Cref{cor:extended-decidable}.
+%It is worth noticing that the conditions regarding the treatment of $\Unc^f(i)$ in~\Cref{def:filtrations} are slightly different from the conditions introduced in~\cite{AFSVQ23report} for the basic logic $\KHilogic$. Therein, the existence of a filtration is not established. Thus, in this work we update the definition of filtrations, making easier to guarantee that we can always obtain a finite model from any set of finite formulas, and consequently~\Cref{cor:extended-decidable}.
 
 % The rest of the section will be devoted to introduce a new family of dynamic epistemic logics extending $\KHiMLlogic$.
