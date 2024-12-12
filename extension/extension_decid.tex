@@ -67,7 +67,7 @@ An \ults defined over $\ACT^\Sigma$, $\modults^f = \tup{\W^f,\R^f,\Unc^f,\V^f}$,
 \Cref{def:filtrations} deserves further comments.
 The filtration is defined similarly as for the basic modal logic (see, e.g.,~\cite{mlbook}).
 The most significant difference is the addition of a denumerable set of actions and relations (\Cref{item:khiml-fil}) since we use the set $\ACT^\Sigma$ as the set of action names.
-As a consequence, the actions an agent $i$ considered in $\Unc^f(i)$ are separated from the actions defined in $\ACT$.
+As a consequence, the actions an agent $i$ considers in $\Unc^f(i)$ are separated from the actions defined in $\ACT$.
 Moreover, if $\Sigma$ is finite, the relation $\planequiv_\Sigma$ enables us to obtain a finite set of witnesses for the formulas $\khi(\psi,\varphi) \in \Sigma$, from which (together with $\modequiv_\Sigma$) we also get that $\ACT^\Sigma$ and $\W^f$ are finite.
 The function $\Unc^f(i)$ is well-defined since it is made only of singletons. Specially, if there is no $\plans \in \Unc(i)$ such that $\plans$ is a witness for some $\khi(\varphi,\psi) \in \Sigma$, $\Unc^f(i)\neq \emptyset$ still holds.
 This is due to the addition of a vacuous action, $a_\emptyset$, which is not strongly executable in any state.
@@ -200,25 +200,23 @@ We then proceed to prove that, given a model and its filtration via $\Sigma$, th
 Let $\modults = \tup{\W,\R,\Unc,\V}$ be an \ults and
 let $\Sigma$ be a set of $\KHiMLlogic$-formulas that is closed under subformulas.
 Then, for all $\psi \in \Sigma$ and $w \in \W$, 
-\[
-    \modults,w\models \psi \ \mbox{  iff  } \ \modults^f,[w]_\Sigma\models \psi.
-\] 
+    $\modults,w\models \psi \ \mbox{  iff  } \ \modults^f,[w]_\Sigma\models \psi$.
 Moreover, if $\Sigma$ is finite then $\modults^f$ is a finite model.
 \end{theorem}
 
 \begin{proof}
 Boolean cases work as expected. We will proceed to prove the cases for the modalities $\khi$ and $\mlbox{a}$.
+\smallskip
 
-\begin{itemize}
-\item \textbf{Case $\khi(\psi,\varphi)$}:
-
+\noindent
+\textbf{Case $\khi(\psi,\varphi)$}:
 $(\Rightarrow)$ Suppose $\modults \models \khi(\psi,\varphi)$, and let $\plans \in \Unc(i)$ be one of its witnesses.
 By~\Cref{def:filtration-actions}, $a_{[\plans]_\Sigma} \in \ACT^\Sigma_i$ and thus, $\set{a_{[\plans]_\Sigma}} \in \Unc^f(i)$. It is enough to prove that this is a witness for $ \khi(\psi,\varphi)$ in $\modults^f$. 
 By \Cref{item:khiml-fil} of~\Cref{def:filtrations}, for all $\plans' \in G_{[\plans]_\Sigma}$, $\plans \planequiv_\Sigma \plans'$.
 Then, for all $\plans' \in G_{[\plans]_\Sigma}$, $\truthset{\modults}{\psi} \subseteq \stexec(\plans')$ and $\R_{\plans'}(\truthset{\modults}{\psi}) \subseteq \truthset{\modults}{\varphi}$.
     \begin{enumerate}
-        \item Let $[w]_\Sigma \in \truthset{\modults^f}{\psi}$. By inductive hypothesis, for all $w' \in [w]_\Sigma = [w']_\Sigma$, $w' \in \truthset{\modults}{\psi}$,  thus $[w]_\Sigma \subseteq \stexec(\plans')$, for all $\plans' \in G_{[\plans]_\Sigma}$.
-        Then, $[w]_\Sigma \in \stexec(a_{[\plans]_\Sigma})$. Therefore, $\truthset{\modults^f}{\psi} \subseteq \stexec(\set{a_{[\plans]_\Sigma}})$.
+        \item Let $[w]_\Sigma \in \truthset{\modults^f}{\psi}$. By IH, for all $w' \in [w]_\Sigma = [w']_\Sigma$, $w' \in \truthset{\modults}{\psi}$,  thus $[w]_\Sigma \subseteq \stexec(\plans')$, for all $\plans' \in G_{[\plans]_\Sigma}$.
+        Then, $[w]_\Sigma \in \stexec(a_{[\plans]_\Sigma})$. Hence, $\truthset{\modults^f}{\psi} \subseteq \stexec(\set{a_{[\plans]_\Sigma}})$.
 
         \item Let $([w]_\Sigma,[v]_\Sigma) \in \R^f_{a_{[\plans]_\Sigma}}$ be such that $[w]_\Sigma \in \truthset{\modults^f}{\psi}$.
         Then, for some $w' \in [w]_\Sigma = [w']_\Sigma$, $v' \in [v]_\Sigma = [v']_\Sigma$ and $\plans' \in G_{[\plans]_\Sigma}$ we have $(w',v') \in \R_{\plans'}$.
@@ -227,13 +225,13 @@ Then, for all $\plans' \in G_{[\plans]_\Sigma}$, $\truthset{\modults}{\psi} \sub
         Then, $\R^f_{\set{a_{[\plans]_\Sigma}}}(\truthset{\modults^f}{\psi}) \subseteq \truthset{\modults^f}{\varphi}$.
     \end{enumerate}
 
-A a consequence, we get $\modults^f \models \khi(\psi,\varphi)$. \\
+As a consequence, we get $\modults^f \models \khi(\psi,\varphi)$.
 
 $(\Leftarrow)$ Suppose $\modults^f \models \khi(\psi,\varphi)$, and let $\plans \in \Unc^f(i)$ be one of its witnesses. 
 If $\plans = \set{a_\emptyset}$, then $\truthset{\modults^f}{\psi} \subseteq \stexec(\set{a_\emptyset}) = \emptyset$.
 By inductive hypothesis, $\truthset{\modults}{\psi} = \emptyset$ and any $\plans \in \Unc(i)$ is a witness in $\modults$ for $\khi(\psi,\varphi)$. 
 If $\plans = \set{a_{[\plans']_{\Sigma}}}$, then $\truthset{\modults^f}{\psi} \subseteq \stexec(\set{a_{[\plans']_\Sigma}})$ and $\R^f_{\set{a_{[\plans']_\Sigma}}}(\truthset{\modults^f}{\psi}) \subseteq \truthset{\modults^f}{\varphi}$.
-It is enough to prove that any $\plans'' \in G_{[\plans']_\Sigma}$ does the job.
+We prove that any $\plans'' \in G_{[\plans']_\Sigma}$ does the job.
 
     \begin{enumerate}
         \item Let $w \in \truthset{\modults}{\psi}$, by inductive hypothesis, $[w]_\Sigma \in \truthset{\modults^f}{\psi}$ and consequently $[w]_\Sigma \in \stexec(\set{a_{[\plans']_\Sigma}})$.
@@ -247,8 +245,10 @@ It is enough to prove that any $\plans'' \in G_{[\plans']_\Sigma}$ does the job.
     \end{enumerate}
 
 Therefore, $\modults \models \khi(\psi,\varphi)$. 
+\smallskip
 
-\item \textbf{Case $\mlbox{a}\varphi$}: $(\Rightarrow)$ Suppose $\modults,w \models \mlbox{a}\varphi$.
+\noindent
+\textbf{Case $\mlbox{a}\varphi$}: $(\Rightarrow)$ Suppose $\modults,w \models \mlbox{a}\varphi$.
 Let $([w]_\Sigma,[v]_\Sigma) \in \R^f_a$, since $\mlbox{a}\varphi \in \Sigma$, then $\modults,v \models \varphi$.
 By IH, $\modults^f,[v]_\Sigma \models \varphi$.
 Hence, $\modults^f,[w]_\Sigma \models \mlbox{a}\varphi$.
@@ -257,18 +257,18 @@ $(\Leftarrow)$ Suppose $\modults^f,[w]_\Sigma \models \mlbox{a}\varphi$.
 Let $(w,v) \in \R_a$, then $([w]_\Sigma,[v]_\Sigma) \in \R^f_a$ and $\modults^f,[v]_\Sigma \models \varphi$.
 By IH, $\modults,v \models \varphi$.
 Hence, $\modults,w \models \mlbox{a}\varphi$.
-\end{itemize}
+\smallskip
 
 It remains to show that if $\Sigma$ is finite, then $\modults^f$ is finite.
 First, note that the number of elements in $\W^f$ is at most exponential in the number of formulas in $\Sigma$.
 Thus, $\W^f$ and $\V^f$ are finite. Similarly, as the number of $\khi(\psi,\varphi)$ and $\mlbox{a} \varphi$ in $\Sigma$ are finite, $\ACT^{\Sigma}$ is also finite.
-Thus, $\R^f$ and $\Unc^f$ are both finite, and therefore $\modults^f$ is a finite model.
+Thus, $\R^f$ and $\Unc^f$ are both finite.
 \end{proof}
 
 \medskip 
 
 \begin{example}\label{ex:filtration-preserves}
- Consider again~\Cref{ex:afiltration}. Notice that the filtration preserves the satisfiability of formulas in $\Sigma$. For instance, $\modults\models\kh_k(p,q)$ with $\plans_1$ as witness, while $\modults^f\models\kh_k(p,q)$ with $\set{a_{[\plans_1]_\Sigma}}$ as witness. Also, it is clear that both $\modults\not\models\kh_j(p,q)$ and $\modults^f\not\models\kh_j(p,q)$, and that $\modults,w^1_2\models[b_1] s^1$ and $\modults^f,[w^1_2]_\Sigma\models[b_1] s^1$. One can verify that this is also the case for other alternative filtrations, as established by~\Cref{th:filtration}.
+ Consider~\Cref{ex:afiltration}. Notice that the filtration preserves the satisfiability of formulas in $\Sigma$. For instance, $\modults\models\kh_k(p,q)$ with $\plans_1$ as witness, while $\modults^f\models\kh_k(p,q)$ with $\set{a_{[\plans_1]_\Sigma}}$ as witness. Also, it is clear that both $\modults\not\models\kh_j(p,q)$ and $\modults^f\not\models\kh_j(p,q)$, and that $\modults,w^1_2\models[b_1] s^1$ and $\modults^f,[w^1_2]_\Sigma\models[b_1] s^1$. One can verify that this is also the case for other alternative filtrations, as established by~\Cref{th:filtration}.
 \end{example}
 
 \medskip
