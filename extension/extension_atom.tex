@@ -7,7 +7,7 @@ The main goal of defining the extended logic $\KHiMLlogic$ is to obtain enough e
 \medskip
 
 \begin{definition}\label{def:ssrefsyntax}
-Formulas of the language $\AtomReflogic$ are given by
+Formulas of the language $\AtomReflogic$ are defined by the following grammar
 \[
 \varphi ::= p \mid \neg\varphi \mid \varphi\vee\varphi \mid \khi(\varphi,\varphi) \mid \mlbox{a}\varphi \mid \srefbox{a}\varphi,
 \]
@@ -30,7 +30,7 @@ where $\modults^a = \tup{\W,\R,\Unc',\V}$, with:
 
 \medskip
 
-In a few words, the new dynamic modality is an announcement of that a given, single action, has a behaviour that can be uniquely determined. In case the action is not a part of the actions that are under the consideration of a certain agent, it is added to it, making the agent aware of its existence. 
+Intuitively, the new dynamic modality is an announcement of the fact that a given action has a behavior that can be uniquely determined. In case the action is not a part of the actions that are under the consideration of a certain agent, it is added to it, making the agent aware of its existence. 
 The following proposition states that the new modality is self-dual and normal.
 
 \medskip
@@ -45,7 +45,7 @@ The following proposition states that the new modality is self-dual and normal.
 
 \medskip
 
-The proof of the proposition above is straightforward. Let us introduce now an example of use of the new modality.
+Let us introduce now an example of use of the new modality.
 
 \medskip
 
@@ -63,10 +63,11 @@ Let $\modults$ be the single agent model depicted below, with $\Unc(i):=\set{\se
 \end{center} 
 \end{example}
 
-\ssparagraph{Axiom System.} 
-We proceed now to introduce a complete axiom system for the logic $\AtomReflogic$. As we have previously mentioned, dealing with dynamic modalities is not easy. Fortunately, here the expressive power of the underlying static logic ($\KHiMLlogic$) is sufficient to capture the behaviour of $\srefbox{a}$, hence obtaining an axiomatization via reduction axioms (\Cref{tab:ssrefaxiom}) as a novelty.
+We proceed now to introduce a complete axiom system for $\AtomReflogic$. In this case, the expressive power of the underlying static logic is sufficient to capture the behavior of $\srefbox{a}$, and we can obtain an axiomatization via reduction axioms.
 
-The proof using the reduction axioms consists in translating every formula of $\AtomReflogic$ into a formula of $\KHiMLlogic$. This is achieved by induction on the structure of $\AtomReflogic$ formulas. The challenge is, as usual, to eliminate the occurence of a $\srefbox{a}$ modality in presence of $\khi$. Consider a formula $\srefbox{a}\khi(\psi,\varphi)$. After the ``announcement'' of action $a$ being different to any other plan, there are two possible reasons of why $\khi(\psi,\varphi)$ holds. The first possibility, is that action $a$ plays no role in the truth of $\khi(\psi,\varphi)$. In this case, we can push the dynamic modality into the front of the pre and post-conditions of the $\khi$ modality, i.e., we obtain $\khi(\srefbox{a}\psi,\srefbox{a}\varphi)$. The second possibility is that $a$ is crucial in order to raise new knowledge for the agent. If the singleton $\set{a}$ is the witness for $\khi(\psi,\varphi)$ is because: 1) $a$ is SE at every state satisfying $\psi$ after the annoucement of $a$ (notice that as $a$ is a single action, SE is equivalent to executability); and 2) from every $\psi$-state, after every execution of $a$ we always get that $\varphi$ holds (in the model updated by $\srefbox{a}$). The former is captured in formula by $\srefbox{a}\psi\ra\mldiam{a}\top$ holding everywhere, while the latter is captured by $\mlbox{a}\srefbox{a}\varphi$. Putting all together, this case is reflected by $\A(\srefbox{a}\psi\ra(\mldiam{a}\top\wedge\mlbox{a}\srefbox{a}\varphi))$. The other cases are standard reductions, so we obtain the axioms shown in~\Cref{tab:ssrefaxiom}.
+Reduction axioms can be used to translate every formula of $\AtomReflogic$ into an equivalent formula of $\KHiMLlogic$. The challenging case is, as usual, to eliminate the occurence of a $\srefbox{a}$ modality in presence of $\khi$. Consider a formula $\srefbox{a}\khi(\psi,\varphi)$. After the ``announcement'' of action $a$ being different to any other plan, there are two possible reasons of why $\khi(\psi,\varphi)$ holds. The first possibility, is that action $a$ plays no role in the truth of $\khi(\psi,\varphi)$. In this case, we can push the dynamic modality into the front of the pre and post-conditions of the $\khi$ modality, i.e., we obtain $\khi(\srefbox{a}\psi,\srefbox{a}\varphi)$. The second possibility is that $a$ is crucial in order to raise new knowledge for the agent. If the singleton $\set{a}$ is the witness for $\khi(\psi,\varphi)$ it is because: 1) $a$ is SE at every state satisfying $\psi$ after the annoucement of $a$ (notice that as $a$ is a single action, SE is equivalent to executability); and 2) from every $\psi$-state, after every execution of $a$ we always get that $\varphi$ holds (in the model updated by $\srefbox{a}$). The former is captured in formula by $\srefbox{a}\psi\ra\mldiam{a}\top$ holding everywhere, while the latter is captured by $\mlbox{a}\srefbox{a}\varphi$. Putting all together, this case is reflected by $\A(\srefbox{a}\psi\ra(\mldiam{a}\top\wedge\mlbox{a}\srefbox{a}\varphi))$. 
+
+%The other cases are standard reductions, so we obtain the axioms shown in~\Cref{tab:ssrefaxiom}.
 
 \begin{table}[t]
 \begin{tabular}{l@{\quad}l}
@@ -94,12 +95,11 @@ The proof using the reduction axioms consists in translating every formula of $\
 % \end{enumerate}
 \end{proposition}
 \begin{proof}
-The first and fourth items are direct since $\V$ and $\R_a$ remain unchanged throughout the evaluation. The second and third items are quite standard and can be easily checked by using the definition of $\srefbox{a}$.
-We will show now that the axiom $\axm{RKh}$ is valid. 
+We only discuss validity of the axiom $\axm{RKh}$. 
 Let $\modults = \tup{\W, \R, \Unc, \V}$ be an \ults.
 
 $\Rightarrow)$ $\modults \models \srefbox{a} \khi(\varphi_1,\varphi_2)$ iff $\modults^a \models \khi(\varphi_1,\varphi_2)$ iff there is $\plans' \in \Unc'(i)$ s.t. $\truthset{\modults^a}{\varphi_1} \subseteq \stexec^{\modults^a}(\plans')$ and $\R_{\plans'}(\truthset{\modults^a}{\varphi_1}) \subseteq \truthset{\modults^a}{\varphi_2}$.
-Using $\truthset{\modults^a}{\psi} = \truthset{\modults}{\srefbox{a} \psi}$ and $\stexec^{\modults^a}(\plans') = \stexec^\modults(\plans')$ (since the relations remain unchanged), this is equivalent to that there is $\plans' \in \Unc'(i)$ s.t. $\truthset{\modults}{\srefbox{a} \varphi_1} \subseteq \stexec^\modults(\plans')$ and $\R_{\plans'}(\truthset{\modults}{\srefbox{a} \varphi_1}) \subseteq \truthset{\modults}{\srefbox{a} \varphi_2}$. We need to consider two cases:
+Using $\truthset{\modults^a}{\psi} = \truthset{\modults}{\srefbox{a} \psi}$ and $\stexec^{\modults^a}(\plans') = \stexec^\modults(\plans')$ (since relations remain unchanged), this is equivalent to the existence of $\plans' \in \Unc'(i)$ s.t. $\truthset{\modults}{\srefbox{a} \varphi_1} \subseteq \stexec^\modults(\plans')$ and $\R_{\plans'}(\truthset{\modults}{\srefbox{a} \varphi_1}) \subseteq \truthset{\modults}{\srefbox{a} \varphi_2}$. We need to consider two cases:
 \begin{itemize}
 \item If $\plans' \neq \set{a}$, then $\plans' \in \Unc(i)$ and we get $\modults \models \khi(\srefbox{a}\varphi_1,\srefbox{a}\varphi_2)$.
 \item If $\plans' = \set{a}$, then $\truthset{\modults}{\srefbox{a}\varphi_1} \subseteq \stexec^\modults(a)$ and $\R_a(\truthset{\modults}{\srefbox{a}\varphi_1}) \subseteq \truthset{\modults}{\srefbox{a}\varphi_2}$.
@@ -108,7 +108,7 @@ From the second one, we can reach that for all $w \in \truthset{\modults}{\srefb
 Thus, for all $w \in \W$, $\modults,w \models \srefbox{a} \varphi_1 \ra (\mldiam{a}\top \wedge \mlbox{a} \srefbox{a}\varphi_2)$.
 \end{itemize}
 
-$\Leftarrow)$ Conversely, suppose $\modults \models \khi(\srefbox{a} \varphi_1,\srefbox{a} \varphi_2) \vee \A(\srefbox{a} \varphi_1 \ra (\mldiam{a}\top \wedge \mlbox{a} \srefbox{a}\varphi_2))$, then the disjunction is satified by either one of the following situations:
+$\Leftarrow)$ Suppose $\modults \models \khi(\srefbox{a} \varphi_1,\srefbox{a} \varphi_2) \vee \A(\srefbox{a} \varphi_1 \ra (\mldiam{a}\top \wedge \mlbox{a} \srefbox{a}\varphi_2))$. We consider two cases:
 \begin{itemize}
     \item $\modults \models \khi(\srefbox{a} \varphi_1,\srefbox{a} \varphi_2)$: Let $\plans \in \Unc(i)$ be s.t. $\truthset{\modults}{\srefbox{a}\varphi_1} \subseteq \stexec^\modults(\plans)$ and $\R_\plans(\truthset{\modults}{\srefbox{a}\varphi_1}) \subseteq \truthset{\modults}{\srefbox{a}\varphi_2}$.
     As stated before, this is equivalent to $\truthset{\modults^a}{\varphi_1} \subseteq \stexec^{\modults^a}(\plans)$ and $\R_\plans(\truthset{\modults^a}{\varphi_1}) \subseteq \truthset{\modults^a}{\varphi_2}$.
@@ -116,11 +116,11 @@ $\Leftarrow)$ Conversely, suppose $\modults \models \khi(\srefbox{a} \varphi_1,\
     If $a \in \plans$, then $\set{a} \in \Unc'(i)$, $\stexec^{\modults^a}(\plans) \subseteq \stexec^{\modults^a}(\set{a})$ and $\R_{\set{a}}(\truthset{\modults^a}{\varphi_1}) \subseteq \R_\plans(\truthset{\modults^a}{\varphi_1})$. In any case, we get $\modults \models \srefbox{a}\khi(\varphi_1,\varphi_2)$.
 
     \item $\modults \models \A(\srefbox{a} \varphi_1 \ra (\mldiam{a}\top \wedge \mlbox{a} \srefbox{a}\varphi_2))$: Notice that $a$ meets the strong executability and reachability conditions.
-    The only left to be proved is that $\set{a} \in \Unc'(i)$. But this is direct since both if $a \in \plans$ for some $\plans \in \Unc(i)$ or not, we have $\set{a} \in \Unc'(i)$. Hence,  $\modults \models \srefbox{a}\khi(\varphi_1,\varphi_2)$.
+    We only need to prove that $\set{a} \in \Unc'(i)$. But this is always the case. Hence,  $\modults \models \srefbox{a}\khi(\varphi_1,\varphi_2)$.
 \end{itemize}
 \end{proof}
 
-With the correctness of the reductions axioms from~\Cref{tab:ssrefaxiom} at hand, and using \Cref{th:cm-ults-khikt-completeness}, the following result easily follows.
+Now, using~\Cref{th:cm-ults-khikt-completeness}, the following result easily follows.
 
 \medskip 
 
@@ -130,10 +130,10 @@ The axiom system $\axset_{\AtomReflogic}+\axset_{\khi,\square}$ for $\AtomReflog
 
 \medskip 
 
-Finally, as the elimination of the dynamic modality takes a finite amount of steps, by using also~\Cref{cor:extended-decidable} we can conclude:
+Finally, as the elimination of the dynamic modality takes a finite number of steps, using~\Cref{cor:extended-decidable} we can conclude:
 
 \medskip 
 
 \begin{corollary}
 The satisfiability problem for $\AtomReflogic$ is decidable.
-\end{corollary} \raul{ver si dejamos este claim}
+\end{corollary} 

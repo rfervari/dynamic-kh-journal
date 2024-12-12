@@ -160,7 +160,7 @@ The following properties about the canonical model $\modults^\Gamma$ are useful 
 \begin{proposition} \label{pro:canonical}\ 
 	\begin{enumerate}
 		\item \label{pro:cm-ults-khiml-allsame}
-For any $\Delta_1, \Delta_2 \in \W^\Gamma$ we have $\restarbitrary{\Delta_1} = \restarbitrary{\Delta_2}$, $\restnarbitrary{\Delta_1} = \restnarbitrary{\Delta_2}$ for $\arbitrary \in \set{\khi,\kh,\A}$.
+For $\Delta_1, \Delta_2 \in \W^\Gamma$ we have $\restarbitrary{\Delta_1} = \restarbitrary{\Delta_2}$, $\restnarbitrary{\Delta_1} = \restnarbitrary{\Delta_2}$, $\arbitrary \in \set{\khi,\kh,\A}$.
 
 \item\label{pro:cm-ults-khiml-oneall}
 Take $\Delta \in \W^\Gamma$. If $\Delta$ has a $\R^\Gamma_{\tup{\psi,\varphi}}$-successor, then every $\Delta' \in \W^\Gamma$ with $\varphi \in \Delta'$ can be $\R^\Gamma_{\tup{\psi,\varphi}}$-reached from $\Delta$.
@@ -281,7 +281,7 @@ The rest of the proof is split in two cases.
 
 Assume there is no $\Delta_\psi \in \W^\Gamma$ with $\psi \in \Delta$.
 Then, by IH, there is no $\Delta_\psi \in \W^\Gamma$ with $\Delta_\psi \in \truthset{\modults^\Gamma}{\psi}$, i.e., $\truthset{\modults^\Gamma}{\lnot\psi} = \W^\Gamma$.
-Since $\modults^\Gamma$ is an $\ults$ (\Cref{pro:cm-ults-khiml}), the latter yields $\modults^\Gamma, \Delta \models \khi(\psi, \chi)$ for any $i \in \AGT$, $\chi \in \KHiMLlogic$ and $\Delta \in \W^\Gamma$; hence, $\modults^\Gamma, \Theta \models \khi(\psi, \varphi)$.
+Since $\modults^\Gamma$ is an $\ults$ (\Cref{pro:cm-ults-khiml}),  $\modults^\Gamma, \Delta \models \khi(\psi, \chi)$ for any $i \in \AGT$, $\chi \in \KHiMLlogic$ and $\Delta \in \W^\Gamma$; hence, $\modults^\Gamma, \Theta \models \khi(\psi, \varphi)$.
 \smallskip
 
 Now, assume there is $\Delta_\psi \in \W^\Gamma$ with $\psi \in \Delta_\psi$. We show that the set of plans $\set{\tup{\psi, \varphi}} \in \Unc^\Gamma(i)$ satisfies the requirements.
