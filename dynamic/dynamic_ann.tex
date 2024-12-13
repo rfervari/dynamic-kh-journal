@@ -81,6 +81,10 @@ with $p \in \PROP$ and $i\in\AGT$.
 
 \medskip 
 
+The interpretation of formulas of the form $\gann{\chi}\varphi$ takes us to evaluate $\varphi$ in the model $\annmodelchi$ defined below. The only difference between $\annmodelchi$ and the standard $\modults_{\chi}$ (which is the restriction of $\modults$ to the states satisfying $\chi$) is in the definition of the relations.
+
+\medskip 
+
 \begin{definition}\label{def:annupdate}
 Let $\modults = \tup{\W, \R, \Unc, \V}$ be an \ults, and let $\chi$ be a $\PAKHilogic$-formula. We define $\annmodelchi = \tup{\annsemantics{\W}{\chi}, \annsemantics{\R}{\chi}, \annsemantics{\Unc}{\chi}, \annsemantics{\V}{\chi}}$, where:
 \begin{itemize}
@@ -97,8 +101,7 @@ We extend the satisfaction relation $\models$ from~\Cref{def:sem-esm} with the c
 \end{definition}
 
 
-The only difference between the $\annmodelchi$ introduced above and the standard $\modults_{\chi}$ (which is the restriction of $\modults$ to the states satisfying $\chi$) is in the
-definition of the relations. In the proposal here, a stronger condition is needed for an $a$-edge from a state $w \in \truthset{\modults}{\chi}$ to survive after the update: if $\R_a(w) \not \subseteq \truthset{\modults}{\chi}$ then $(\annsemantics{\R}{\chi})_a(w) = \emptyset$, but if $\R_a(w) \subseteq \truthset{\modults}{\chi}$ then $(\annsemantics{\R}{\chi})_a(w) = \R_a(w)$. Notice that in this context, the elimination of some states indicates that the situations they describe are no longer \emph{reachable}, rather than no longer \emph{possible}
+In the proposal here, a stronger condition is needed for an $a$-edge from a state $w \in \truthset{\modults}{\chi}$ to survive after the update: if $\R_a(w) \not \subseteq \truthset{\modults}{\chi}$ then $(\annsemantics{\R}{\chi})_a(w) = \emptyset$, but if $\R_a(w) \subseteq \truthset{\modults}{\chi}$ then $(\annsemantics{\R}{\chi})_a(w) = \R_a(w)$. Notice that in this context, the elimination of some states indicates that the situations they describe are no longer \emph{reachable}, rather than no longer \emph{possible}
 \footnote{The two forms of model update discussed here bear a resemblance to the two forms of updating neighbourhood models, see~\cite{MaS18} for details.}
 %Recall that a neighbourhood model~\cite{pacuit17} is given by: a non-empty domain $\W$, an atomic valuation, and a neighbourhood function $\N:\W \to 2^{2^{\W}}$, assigning a set of sets of states to each possible state. Let $U \subseteq \W$ be a non-empty set of states. On the one hand, the \emph{$U$-intersection} submodel defined in~\cite{MaS18} has $U$ as its domain, with its neighbourhood function built by restricting each set in a neighbourhood to the new domain, analogous to what $\modults_{\chi}$ (a standard announcement) does.
 % On the other hand, the \emph{$U$-subset} submodel therein also has $U$ as its domain, but its neighbourhood function is built by keeping only those sets that are already a subset of the new domain, analogous to what $\annsemantics{\modults}{\chi}$ does. We argue that this second approach is more appropriate in the context of knowing how.}.
@@ -158,7 +161,7 @@ fails to have reduction axioms as the following proposition shows.
 	% \end{nscenter}
 \end{proof}
 
-By furthermore restricting the class of models in which we will evaluate formulas, we are able to obtain reasonable reduction axioms.
+By furthermore restricting the class of models in which we will evaluate formulas, we are able to obtain reduction axioms.
 
 Note that \ultss contain a set $\Unc(i)$ of sets of plans for each agent $i$, which determines the perception of the agent with respect to her abilities.
 For instance, it may be the case that two plans $ab$ and $cd$ belong to some $\plans\in\Unc(i)$, i.e., they are indistinguishable for agent $i$.

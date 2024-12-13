@@ -220,7 +220,7 @@ The notion of \emph{bisimulation} is a crucial tool to understand the expressive
 \medskip
 
 \begin{definition}\label{def:notation}
-Let $\modults=\tup{\W,\R,\set{\Unc(i)}_{i\in\AGT},\V}$ be an \ults over \PROP, \ACT and \AGT. Take $\plans \in 2^{(\ACT^*)}$, $U, T \subseteq \W$ and $i \in \AGT$.
+Let $\modults=\tup{\W,\R,\Unc,\V}$ be an \ults over \PROP, \ACT and \AGT. Take $\plans \in 2^{(\ACT^*)}$, $U, T \subseteq \W$ and $i \in \AGT$.
 \begin{itemize} \itemsep 0pt
     \item Write $U \ultsExecStrat{\plans} T$ $\siffdefs$ $U \subseteq \stexec(\plans)$ and $\R_{\plans}(U) \subseteq T$.
 
@@ -236,7 +236,7 @@ Now we are in position to introduce the notion of bisimulation for $\KHilogic$.
 \medskip 
 
 \begin{definition}[$\KHilogic$-bisimulation]\label{def:bisim-khi}
-Let $\modults = \tup{\W,\R,\set{\Unc(i)}_{i\in\AGT},\V}$ and $\modults' = \tup{\W',\R',\set{\Unc'(i)}_{i\in\AGT},\V'}$ be $\ultss$.
+Let $\modults = \tup{\W,\R,\Unc,\V}$ and $\modults' = \tup{\W',\R',\set{\Unc'(i)}_{i\in\AGT},\V'}$ be $\ultss$.
 %Take $Z \subseteq \W \times \W'$, $u \in \W$, $U \subseteq \W$, $u' \in \W'$, and $U' \subseteq \W'$.
 %\begin{itemize}\itemsep 0cm
 %  \item Let %$Z(u)$, $Z(U) \subseteq \W'$ as
