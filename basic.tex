@@ -332,52 +332,65 @@ The axiom system from~\Cref{tab:khiaxiom} is sound and strongly complete with re
 \medskip
 
 It is worth noticing that the axiom \axm{KhE}, $\left(\E\psi \land \khi(\psi,\varphi)\right) \rightarrow \E\varphi$, is omitted here. This is due to the fact that it is derivable in the system.
-This is achieved by proving an equivalent expression
+This is achieved by proving an equivalent expression $(\E\psi \wedge \khi(\psi,\varphi) \wedge \A\neg\varphi) \ra \bot$. 
 % , $\left(\E\psi \land \khi(\psi,\varphi) \land \A \neg\varphi \right) \rightarrow \bot$, using \axm{KhA}. %\raul{To write down the syntactic proof in detail here.}
 %
 % By \axm{TAUT}, it is equivalent to prove that
 %
-\begin{equation}\label{eq:khe0}
-\vdash (\E\psi \wedge \khi(\psi,\varphi) \wedge \A\neg\varphi) \ra \bot.
-\end{equation}
 %
-For this, we establish a series of implication and, using transitivity, we get \axm{KhE}. By applying \axm{TAUT}, we have that
+% \begin{equation}\label{eq:khe0}
+% \vdash (\E\psi \wedge \khi(\psi,\varphi) \wedge \A\neg\varphi) \ra \bot.
+% \end{equation}
 %
-\begin{equation*}
-\vdash (\E\psi \wedge \khi(\psi,\varphi) \wedge \A\neg\varphi) \ra (\E\psi \wedge \khi(\psi,\varphi) \wedge \A\neg\varphi).
-\end{equation*}
+% For this, we establish a series of implications and, using transitivity, we get \axm{KhE}. By applying \axm{TAUT}, we have that
 %
-Taking \axm{TAUT} ($\vdash \neg\varphi \lra (\varphi \ra \bot)$, $\vdash \psi \ra \psi$) and \axm{NECA}, we replace $\A\neg\varphi$ by $\A(\varphi \ra \bot)$ and add $\A(\psi \ra \psi)$, which is a tautology. Thus,
+\begin{align*}
+    & \vdash (\E\psi \wedge \khi(\psi,\varphi) \wedge \A\neg\varphi) \ra (\E\psi \wedge \khi(\psi,\varphi) \wedge \A\neg\varphi)    & \tag{\axm{TAUT}} \\ 
+    \Leftrightarrow & \vdash (\E\psi \wedge \khi(\psi,\varphi) \wedge \A\neg\varphi) \ra (\E\psi \wedge \A(\psi \ra \psi) \wedge \khi(\psi,\varphi) \wedge \A(\varphi \ra \bot)) & \tag{\axm{TAUT},\axm{NECA}}
+\end{align*}
 %
-\begin{equation}\label{eq:khe1}
-\vdash (\E\psi \wedge \khi(\psi,\varphi) \wedge \A\neg\varphi) \ra (\E\psi \wedge \A(\psi \ra \psi) \wedge \khi(\psi,\varphi) \wedge \A(\varphi \ra \bot)).
-\end{equation}
+%
+% \begin{equation*}
+% \vdash (\E\psi \wedge \khi(\psi,\varphi) \wedge \A\neg\varphi) \ra (\E\psi \wedge \khi(\psi,\varphi) \wedge \A\neg\varphi).
+% \end{equation*}
+% %
+% Taking \axm{TAUT} ($\vdash \neg\varphi \lra (\varphi \ra \bot)$, $\vdash \psi \ra \psi$) and \axm{NECA}, we replace $\A\neg\varphi$ by $\A(\varphi \ra \bot)$ and add $\A(\psi \ra \psi)$, which is a tautology. Thus,
+% %
+% \begin{equation}\label{eq:khe1}
+% \vdash (\E\psi \wedge \khi(\psi,\varphi) \wedge \A\neg\varphi) \ra (\E\psi \wedge \A(\psi \ra \psi) \wedge \khi(\psi,\varphi) \wedge \A(\varphi \ra \bot)).
+% \end{equation}
 %
 On the other hand, by using an instance of \axm{KhA}, we have that
+\begin{align*}
+    & \vdash (\A(\psi \ra \psi) \wedge \khi(\psi,\varphi) \wedge \A(\varphi \ra \bot)) \ra (\khi(\psi,\bot)) & \\
+    \Leftrightarrow &  \vdash (\E\psi \wedge \A(\psi \ra \psi) \wedge \khi(\psi,\varphi) \wedge \A(\varphi \ra \bot)) \ra (\E\psi \wedge \khi(\psi,\bot)) & \tag{\axm{TAUT}} \\
+    \Leftrightarrow & \vdash (\E\psi \wedge \A(\psi \ra \psi) \wedge \khi(\psi,\varphi) \wedge \A(\varphi \ra \bot)) \ra (\neg\A\neg\psi \wedge \A\neg\psi) & \tag{\mbox{Def. } \A,\E} \\
+    \Leftrightarrow & \vdash (\E\psi \wedge \A(\psi \ra \psi) \wedge \khi(\psi,\varphi) \wedge \A(\varphi \ra \bot)) \ra \bot & \tag{\mbox{Def. } $\bot$} \\
+\end{align*}
 %
-\begin{equation*}
-\vdash (\A(\psi \ra \psi) \wedge \khi(\psi,\varphi) \wedge \A(\varphi \ra \bot)) \ra (\khi(\psi,\bot)).
-\end{equation*}
+% \begin{equation*}
+% \vdash (\A(\psi \ra \psi) \wedge \khi(\psi,\varphi) \wedge \A(\varphi \ra \bot)) \ra (\khi(\psi,\bot)).
+% \end{equation*}
+% %
+% Adding $\E\psi$ to both sides (by using an instance of \axm{TAUT}),
+% %
+% \begin{equation*}
+% \vdash (\E\psi \wedge \A(\psi \ra \psi) \wedge \khi(\psi,\varphi) \wedge \A(\varphi \ra \bot)) \ra (\E\psi \wedge \khi(\psi,\bot)).
+% \end{equation*}
+% %
+% By definition of $\E$ y $\A$,
+% %
+% \begin{equation*}
+% \vdash (\E\psi \wedge \A(\psi \ra \psi) \wedge \khi(\psi,\varphi) \wedge \A(\varphi \ra \bot)) \ra (\neg\A\neg\psi \wedge \A\neg\psi).
+% \end{equation*}
+% %
+% And by definition of $\bot$,
+% %
+% \begin{equation}\label{eq:khe2}
+% \vdash (\E\psi \wedge \A(\psi \ra \psi) \wedge \khi(\psi,\varphi) \wedge \A(\varphi \ra \bot)) \ra \bot.
+% \end{equation}
 %
-Adding $\E\psi$ to both sides (by using an instance of \axm{TAUT}),
-%
-\begin{equation*}
-\vdash (\E\psi \wedge \A(\psi \ra \psi) \wedge \khi(\psi,\varphi) \wedge \A(\varphi \ra \bot)) \ra (\E\psi \wedge \khi(\psi,\bot)).
-\end{equation*}
-%
-By definition of $\E$ y $\A$,
-%
-\begin{equation*}
-\vdash (\E\psi \wedge \A(\psi \ra \psi) \wedge \khi(\psi,\varphi) \wedge \A(\varphi \ra \bot)) \ra (\neg\A\neg\psi \wedge \A\neg\psi).
-\end{equation*}
-%
-And by definition of $\bot$,
-%
-\begin{equation}\label{eq:khe2}
-\vdash (\E\psi \wedge \A(\psi \ra \psi) \wedge \khi(\psi,\varphi) \wedge \A(\varphi \ra \bot)) \ra \bot.
-\end{equation}
-%
-Given the implications in \Cref{eq:khe1} and \Cref{eq:khe2}, by transitivity we get \Cref{eq:khe0}.
+Given the implications proved above, by transitivity we get \axm{KhE} as wanted.
 
 % \ssparagraph{Complexity.} 
 

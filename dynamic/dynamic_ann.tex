@@ -4,7 +4,7 @@
 
 A typical way of updating a model  
 is by removing states, as is done in \PAL~\cite{Plaza89:lopc,DELbook}.  This model update is typically realized with the public announcement operator $[\chi]$,
-which, over an $\ults$ $\modults=\tup{\W,\R,\set{\Unc(i)}_{i\in\AGT},\V}$, can be defined as:
+which, over an $\ults$ $\modults=\tup{\W,\R,\Unc,\V}$, can be defined as:
 \[
 \modults,w\models[\chi]\varphi \ \ \iff \ \  \modults,w\models\chi \mbox{ implies } \modults_{\chi},w\models\varphi,
 \]
@@ -12,7 +12,7 @@ with $\modults_\chi=\tup{\W_\chi,\R_\chi,\Unc_\chi,\V_\chi}$ where:
 \[
 \begin{array}{l@{\quad \quad \quad }l}
 \W_\chi = \set{w \mid \modults,w\models\chi} & (\R_\chi)_a = \R_a \cap \W_\chi^2, \mbox{ for each } a\in\ACT \\
-\V_\chi(w) = \V(w), \mbox{ for all } w\in\W_\chi & \Unc_\chi = \set{\Unc(i)}_{i\in\AGT}.
+\V_\chi(w) = \V(w), \mbox{ for all } w\in\W_\chi & \Unc_\chi = \Unc.
 \end{array}	
 \]
 

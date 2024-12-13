@@ -37,7 +37,7 @@ Intuitively, the new dynamic modality is an announcement of the fact that a give
 
 \medskip
 
-These new operator would be useful in the situation we discussed in~\Cref{ex:cook}.
+This new operator would be useful in the situation we discussed in~\Cref{ex:cook}.
 
 \medskip 
 
@@ -100,14 +100,14 @@ The latter, is expressed by the predicate $P(\plan,\srefbox{\plan}\varphi_2)$, d
 \medskip 
 
 \begin{proposition}\label{pro:srefaxioms}
-Let $\beta \in \ACT^*$, we define the extension $\mlbox{\beta}\psi$ of $\mlbox{a}\psi$ as
-\[
-\mlbox{\beta} \psi = 
-\begin{cases}
-\psi &\quad \beta = \epsilon\\
-\mlbox{\beta[1]} \dots \mlbox{\beta[\card{\beta}]} \psi &\quad \beta \neq \epsilon \\
-\end{cases}
-\]
+Let $\beta \in \ACT^*$, we define the extension $\mlbox{\beta}\psi$ of $\mlbox{a}\psi$ as: $\mlbox{\beta}\psi = \psi$ if $\beta=\epsilon$, and $\mlbox{\beta[1]} \dots \mlbox{\beta[\card{\beta}]} \psi$, otherwise.
+% \[
+% \mlbox{\beta} \psi = 
+% \begin{cases}
+% \psi &\quad \beta = \epsilon\\
+% \mlbox{\beta[1]} \dots \mlbox{\beta[\card{\beta}]} \psi &\quad \beta \neq \epsilon \\
+% \end{cases}
+% \]
 With this definition at hand, $P$ is defined inductively as: 
 \[
     \begin{array}{lcl}
@@ -189,7 +189,9 @@ where $\modults^\plan_i = \tup{\W,\R,\Unc',\V}$, with:
 \medskip 
 
 \begin{example}
-Suppose as in~\Cref{ex:cook}, we have an expert chef $i$, but we have two inexpert chefs $j$ and $k$, with $\Unc(j)=\Unc(k)=\set{\set{\mathit{ebfmsp},\mathit{ebmfsp}}}$. Suppose now, that agent $j$ subscribed for a course taught by agent $i$, while agent $k$ does not. Then, the information of that \textit{ebgmsp} is the correct course of action is only revealed to $j$, obtaining that $\srefbox{ebfmsp,j}\kh_j(h,g)$ while $\srefbox{ebfmsp,j}\neg\kh_k(h,g)$.
+Suppose as in~\Cref{ex:cook}, we have an expert chef $i$, but we have two inexpert chefs $j$ and $k$, with $\Unc(j)=\Unc(k)=\set{\set{\mathit{ebfmsp},\mathit{ebmfsp}}}$. Suppose now, that agent $j$ subscribed for a course taught by agent $i$, while agent $k$ does not. Then, the information of that \textit{ebgmsp} is the correct course of action is only revealed to $j$, obtaining that $\modults\models\srefbox{ebfmsp,j}\kh_j(h,g)$ while $\modults\models\srefbox{ebfmsp,j}\neg\kh_k(h,g)$.
 \end{example}
+
+\medskip 
 
 Again, this logic can be axiomatized via reduction axioms, where $\srefbox{\plan,i}\khi(\varphi_1,\varphi_2)$ can be eliminated via $\axm{RKh}_i$ in~\Cref{tab:srefaxiom}, while for $i\neq j$ we can simply add the axiom $\vdash \srefbox{\plan,i} \kh_j(\varphi_1,\varphi_2) \lra \khi(\srefbox{\plan,i} \varphi_1,\srefbox{\plan,i} \varphi_2)$. With this at hand, we again obtain completeness and decidability of the logic.
