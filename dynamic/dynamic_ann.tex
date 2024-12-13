@@ -12,12 +12,12 @@ with $\modults_\chi=\tup{\W_\chi,\R_\chi,\Unc_\chi,\V_\chi}$ where:
 \[
 \begin{array}{l@{\quad \quad \quad }l}
 \W_\chi = \set{w \mid \modults,w\models\chi} & (\R_\chi)_a = \R_a \cap \W_\chi^2, \mbox{ for each } a\in\ACT \\
-\V_\chi(w) = \V(w), \mbox{ for all } w\in\W_\chi & \Unc_\chi = \Unc.
+\V_\chi(w) = \V(w), \mbox{ for all } w\in\W_\chi & \Unc_\chi = {\Unc}.
 \end{array}	
 \]
 
 As we can see, $\modults_\chi$ is obtained by taking $\truthset{\modults}{\chi}$ as the new domain, and by restricting relations and the valuation accordingly (the indistinguishability classes $U(i)$ are left unchanged).
-In the original \emph{knowing how} setting from~\cite{Wang15lori}, the relations define the agent's abilities. Thus, under that semantics this kind of update corresponds to both an ontic and an epistemic change (available actions change, and hence so do the agent's abilities). However, in the \ults-based semantics, relations provide only ontic information; thus, this update operation produces an \emph{ontic} change, but not an epistemic one.
+In the original \emph{knowing how} setting from~\cite{Wang15lori}, the relations define the agent's abilities. Thus, under that semantics this kind of update corresponds to both an ontic and an epistemic change (available actions change, and hence so do the agent's abilities). However, in the \ults-based semantics, relations provide only ontic information; thus, this update operation produces an \emph{ontic} change, that may lead indirectly to change in the knowledge of the agent.
 
 We can prove that this update operator adds expressivity to $\KHilogic$ (a similar result was established in~\cite{Wang2016} for a $\kh$ modality with intermediate constraints).
 
@@ -30,7 +30,7 @@ Adding $[\chi]$ to $\KHilogic$ increases its expressive power.
 \begin{proof}
   The two \ultss $\modults$ and $\modults'$ (with
   $\Unc(i)=\Unc'(i)=\set{\set{a}})$ below are bisimilar and hence
-  indistinguishable in $\KHilogic$. 
+  indistinguishable in $\KHilogic$. In what follows, dashed lines indicate nodes and edges removed after an update.
 
 \begin{center}
     \begin{tikzpicture}[->]
@@ -59,7 +59,7 @@ Adding $[\chi]$ to $\KHilogic$ increases its expressive power.
     \end{tikzpicture}
   \end{center}
 However, $\modults,w\models[p]\khi(p,q)$ whereas
-$\modults',w'\not\models[p]\khi(p,q)$. Dashed lines indicate nodes and edges removed after $[p]$.
+$\modults',w'\not\models[p]\khi(p,q)$.
 \end{proof}
 
 A consequence of~\Cref{prop:pal-exp} is that the modality for \PAL-like updates is not reducible to the base logic. This makes sense, as the underlying static logic ($\KHilogic$) only expresses properties relative to the existence of a way to achieve certain target states from certain origin states. There is no way to characterize the updates produced by $[\chi]$ with the expressive power provided by the $\khi$ modality. This is in contrast with what happens when these modalities are added to standard epistemic logic, where reduction axioms can be defined (see, e.g.,~\cite{DELbook}).
@@ -101,8 +101,8 @@ We extend the satisfaction relation $\models$ from~\Cref{def:sem-esm} with the c
 \end{definition}
 
 
-In the proposal here, a stronger condition is needed for an $a$-edge from a state $w \in \truthset{\modults}{\chi}$ to survive after the update: if $\R_a(w) \not \subseteq \truthset{\modults}{\chi}$ then $(\annsemantics{\R}{\chi})_a(w) = \emptyset$, but if $\R_a(w) \subseteq \truthset{\modults}{\chi}$ then $(\annsemantics{\R}{\chi})_a(w) = \R_a(w)$. Notice that in this context, the elimination of some states indicates that the situations they describe are no longer \emph{reachable}, rather than no longer \emph{possible}
-\footnote{The two forms of model update discussed here bear a resemblance to the two forms of updating neighbourhood models, see~\cite{MaS18} for details.}
+In the proposal here, a stronger condition is needed for an $a$-edge from a state $w \in \truthset{\modults}{\chi}$ to survive after the update: if $\R_a(w) \not \subseteq \truthset{\modults}{\chi}$ then $(\annsemantics{\R}{\chi})_a(w) = \emptyset$, but if $\R_a(w) \subseteq \truthset{\modults}{\chi}$ then $(\annsemantics{\R}{\chi})_a(w) = \R_a(w)$. Notice that in this context, the elimination of some states indicates that the situations they describe are no longer \emph{reachable}, rather than no longer \emph{possible}. 
+%\footnote{The two forms of model update discussed here bear a resemblance to the two forms of updating neighbourhood models, see~\cite{MaS18} for details.}
 %Recall that a neighbourhood model~\cite{pacuit17} is given by: a non-empty domain $\W$, an atomic valuation, and a neighbourhood function $\N:\W \to 2^{2^{\W}}$, assigning a set of sets of states to each possible state. Let $U \subseteq \W$ be a non-empty set of states. On the one hand, the \emph{$U$-intersection} submodel defined in~\cite{MaS18} has $U$ as its domain, with its neighbourhood function built by restricting each set in a neighbourhood to the new domain, analogous to what $\modults_{\chi}$ (a standard announcement) does.
 % On the other hand, the \emph{$U$-subset} submodel therein also has $U$ as its domain, but its neighbourhood function is built by keeping only those sets that are already a subset of the new domain, analogous to what $\annsemantics{\modults}{\chi}$ does. We argue that this second approach is more appropriate in the context of knowing how.}.
 
