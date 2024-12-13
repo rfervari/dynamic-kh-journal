@@ -1,9 +1,11 @@
 \subsection{Plan refinement}
 \label{sec:planref}
 
+The main goal of defining the extended logic $\KHiMLlogic$ is to obtain enough expressivity to axiomatize some dynamic modalities. Here, we define the modality $\srefbox{\plan}$, inspired by the refinement modality from~\Cref{sec:ref}. A formula $\srefbox{\plan}\varphi$ publicly establishes that the plan $\plan$ must be distinguished from any other, and in such a context $\varphi$ holds. 
+%Unlike the modality $\refbox{\plan_1}{\plan_2}$, this modality takes atomic actions but we will generalize it later to arbitrary plans. 
 
-In this section we show that the action refinement operator can be generalize to arbitrary plans, and we can still obtain suitable reduction axioms.
-We start by presenting the syntax and semantics of the new logic. 
+% In this section we show that the action refinement operator can be generalize to arbitrary plans, and we can still obtain suitable reduction axioms.
+% We start by presenting the syntax and semantics of the new logic. 
 
 \medskip 
 
@@ -29,7 +31,11 @@ where $\modults^\plan = \tup{\W,\R,\Unc',\V}$, with:
 \end{itemize}
 \end{definition}
 
-\medskip 
+\medskip
+
+Intuitively, the new dynamic modality is an announcement of the fact that a given plan has a behavior that can be uniquely determined. In case the plan is not a part of the plans that are under the consideration of a certain agent, it is added to it, making the agent aware of its existence. 
+
+\medskip
 
 These new operator would be useful in the situation we discussed in~\Cref{ex:cook}.
 
@@ -45,7 +51,8 @@ Thus, $\modults \models \srefbox{\mathit{ebmfsp}} \kh_j(h,g)$.
 
 \medskip
 
-Again, we can state the following properties:
+% Again, we can state the following properties:
+The following proposition states that the new modality is self-dual and normal.
 
 \medskip 
 
@@ -64,7 +71,16 @@ The following propositions hold:
 % \end{enumerate}
 % \end{proof}
 
-Now it is time to investigate a complete axiomatization for $\PlanReflogic$, one of the main goals of introducing this framework over an extended basic language. As shown in what follows, the elimination of the dynamic modality $\srefbox{\plan}$ in presence of the modality $\khi$ requires a little bit more of work than the single action case we presented already.  The case in which the announcement does not affect the knowledge, is as before. For the other case, we need to make sure that if the announcement of $\plan$ guarantees that the precondition holds ($\srefbox{\plan}\varphi_1$), then $\plan$ is SE and after its execution, the postcondition holds ($\srefbox{\plan}\varphi_2$). The latter, is expressed by the predicate $P(\plan,\srefbox{\plan}\varphi_2)$, described below. Notice that $P$ can be defined as we extended the expressivity of the underlying language, by allowing basic action modalities.
+\medskip 
+
+% Now it is time to investigate a complete axiomatization for $\PlanReflogic$, one of the main goals of introducing this framework over an extended basic language. As shown in what follows, the elimination of the dynamic modality $\srefbox{\plan}$ in presence of the modality $\khi$ requires a little bit more of work than the single action case we presented already.  The case in which the announcement does not affect the knowledge, is as before. For the other case, we need to make sure that if the announcement of $\plan$ guarantees that the precondition holds ($\srefbox{\plan}\varphi_1$), then $\plan$ is SE and after its execution, the postcondition holds ($\srefbox{\plan}\varphi_2$). 
+
+We proceed now to introduce a complete axiom system for $\PlanReflogic$. In this case, the expressive power of the underlying static logic is sufficient to capture the behavior of $\srefbox{\plan}$, and we can obtain an axiomatization via reduction axioms.
+
+Reduction axioms can be used to translate every formula of $\PlanReflogic$ into an equivalent formula of $\KHiMLlogic$. The challenging case is, as usual, to eliminate the occurence of a $\srefbox{\plan}$ modality in presence of $\khi$. For simplicity's sake, consider a formula $\srefbox{a}\khi(\psi,\varphi)$, with $a\in\ACT$. After the ``announcement'' of action $a$ being different to any other plan, there are two possible reasons of why $\khi(\psi,\varphi)$ holds. The first possibility, is that action $a$ plays no role in the truth of $\khi(\psi,\varphi)$. In this case, we can push the dynamic modality into the front of the pre and post-conditions of the $\khi$ modality, i.e., we obtain $\khi(\srefbox{a}\psi,\srefbox{a}\varphi)$. The second possibility is that $a$ is crucial in order to raise new knowledge for the agent. If the singleton $\set{a}$ is the witness for $\khi(\psi,\varphi)$ it is because: 1) $a$ is SE at every state satisfying $\psi$ after the annoucement of $a$ (notice that as $a$ is a single action, SE is equivalent to executability); and 2) from every $\psi$-state, after every execution of $a$ we always get that $\varphi$ holds (in the model updated by $\srefbox{a}$). The former is captured in formula by $\srefbox{a}\psi\ra\mldiam{a}\top$ holding everywhere, while the latter is captured by $\mlbox{a}\srefbox{a}\varphi$. Putting all together, this case is reflected by $\A(\srefbox{a}\psi\ra(\mldiam{a}\top\wedge\mlbox{a}\srefbox{a}\varphi))$. 
+
+When we consider an arbitrary plan $\plans$ instead of a single actions, this idea can be generalized. The case in which the announcement does not affect the knowledge, is as before. For the other case, we need to make sure that if the announcement of $\plan$ guarantees that the precondition holds ($\srefbox{\plan}\varphi_1$), then $\plan$ is SE and after its execution, the postcondition holds ($\srefbox{\plan}\varphi_2$). 
+The latter, is expressed by the predicate $P(\plan,\srefbox{\plan}\varphi_2)$, described below. Notice that $P$ can be defined as we extended the expressivity of the underlying language, by allowing basic action modalities. The list of reducion axioms for $\PlanReflogic$ are introduced in~\Cref{tab:srefaxiom}.
 
 \begin{table}[t]
 \begin{tabular}{l@{\quad}l}
@@ -111,7 +127,8 @@ Then, the reduction axioms from~\Cref{tab:srefaxiom} are valid.
 \end{proposition}
 \begin{proof}
 
-The proofs ideas for the first four items are similar to the ones in \Cref{pro:ssrefaxioms}. Let us focus again in the case of $\axm{RKh}$.  
+%The proofs ideas for the first four items are similar to the ones in \Cref{pro:ssrefaxioms}. 
+Let us focus only in the case of $\axm{RKh}$.  
 Let $\modults = \tup{\W, \R, \Unc, \V}$ be an \ults, then we prove below the two directions of the double implication.
 
 $\Rightarrow):$ Assume $\modults \models \srefbox{\plan} \khi(\varphi_1,\varphi_2)$, i.e.,  $\modults^\plan \models \khi(\varphi_1,\varphi_2)$ iff there is $\plans' \in \Unc'(i)$ s.t. $\truthset{\modults^\plan}{\varphi_1} \subseteq \stexec^{\modults^\plan}(\plans')$ and $\R_{\plans'}(\truthset{\modults^\plan}{\varphi_1}) \subseteq \truthset{\modults^\plan}{\varphi_2}$.
@@ -146,11 +163,33 @@ The axiom system $\axset_{\PlanReflogic}+\axset_{\khi,\square}$ for $\PlanReflog
 
 \medskip 
 
-By using again~\Cref{cor:extended-decidable}, we can conclude:
+% By using again~\Cref{cor:extended-decidable}, we can conclude:
+
+Finally, as the elimination of the dynamic modality takes a finite number of steps, using~\Cref{cor:extended-decidable} we can conclude:
 
 \medskip 
 
 \begin{corollary}
 The satisfiability problem for $\PlanReflogic$ is decidable.
-\end{corollary} \raul{revisar}
+\end{corollary} 
 
+\medskip 
+
+Let us conclude this section by discussing how the aforementioned modality can be extended to capture other notions. In particular, it is easy to extend the modality $\srefbox{\plan}$ to handle semi-private announcements, as it is usual in DEL. We can define a modality  $\srefbox{\plan,i}\varphi$ interpreted as \emph{``after it is announced to agent $i$ that the plan $\plan$ is distinguishable from any other plan, $\varphi$ holds''.} Its semantics is given by 
+\[
+    \modults,w \models \srefbox{\plan,i}\varphi \ \ \iff \ \ \modults^\plan_i,w \models \varphi,
+\]
+where $\modults^\plan_i = \tup{\W,\R,\Unc',\V}$, with:
+\begin{itemize}
+\item $\Unc'(j) = \Unc(j)$ if $j \neq i$,
+\item $\Unc'(i) = (\Unc(i) \setminus \set{\plans}) \cup \set{\set{\plan}}$, if there is $\plans \in \Unc(i)$ such that $\plan \in \plans$,
+\item $\Unc'(i) = \Unc(i) \cup \set{\set{\plan}}$ otherwise.
+\end{itemize}   
+
+\medskip 
+
+\begin{example}
+Suppose as in~\Cref{ex:cook}, we have an expert chef $i$, but we have two inexpert chefs $j$ and $k$, with $\Unc(j)=\Unc(k)=\set{\set{\mathit{ebfmsp},\mathit{ebmfsp}}}$. Suppose now, that agent $j$ subscribed for a course taught by agent $i$, while agent $k$ does not. Then, the information of that \textit{ebgmsp} is the correct course of action is only revealed to $j$, obtaining that $\srefbox{ebfmsp,j}\kh_j(h,g)$ while $\srefbox{ebfmsp,j}\neg\kh_k(h,g)$.
+\end{example}
+
+Again, this logic can be axiomatized via reduction axioms, where $\srefbox{\plan,i}\khi(\varphi_1,\varphi_2)$ can be eliminated via $\axm{RKh}_i$ in~\Cref{tab:srefaxiom}, while for $i\neq j$ we can simply add the axiom $\vdash \srefbox{\plan,i} \kh_j(\varphi_1,\varphi_2) \lra \khi(\srefbox{\plan,i} \varphi_1,\srefbox{\plan,i} \varphi_2)$. With this at hand, we again obtain completeness and decidability of the logic.
