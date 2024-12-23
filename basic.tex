@@ -1,6 +1,5 @@
 %\nsparagraph{Syntax and semantics.}
-We introduce the syntax and semantics of the basic logic of knowing how, as presented in~\cite{AFSVQ21}. We will also introduce a complete axiomatization, a suitable notion of bisimulation (first introduced in~\cite{AFSVQ23report}), and discuss complexity results.  
-Throughout the text, let $\PROP$ be a countable set of propositional symbols, $\ACT$ a denumerable set of action symbols, and $\AGT$ a non-empty finite set of agents.
+This section recalls the syntax and semantics of the \emph{knowing how} framework as presented in~\cite{AFSVQ21} as well as a complete axiomatization and a suitable notion of bisimulation (first introduced in~\cite{AFSVQ23report}). It also discusses complexity results. Throughout the text, let $\PROP$ be a countable set of propositional symbols, $\ACT$ a denumerable set of action symbols, and $\AGT$ a non-empty finite set of agents.
 
 \medskip
 
@@ -52,30 +51,24 @@ $\plan[k]$ is the one in $\plan$'s $k$th position.
 
 \begin{definition}[Uncertainty-based \lts]\label{def:ults}
 %Let \AGT be a finite non-empty set of agents.
-An \emph{uncertainty-based \lts (\ults)} for $\PROP$, $\ACT$ and $\AGT$ is a tuple $\modults = \tup{\W,\R,\Unc,\V}$ where $\W$ is a non-empty set of states (called the domain, and
-denoted also by $\D{\modults}$);
-$\R = \setof{\R_a \subseteq \W \times \W}{a \in \ACT}$ is a
-collection of binary relations on $\W$;
-$\Unc = \setof{\Unc(i) \subseteq 2^{\ACT^*}\setminus \set{\emptyset}}{i \in \AGT}$ assigns to every agent a non-empty collection of pairwise disjoint non-empty sets of plans (i.e., $\Unc(i) \neq \emptyset$, $\plans_1, \plans_2 \in \Unc(i)$ with $\plans_1 \neq \plans_2$ implies $\plans_1 \cap \plans_2 = \emptyset$, and $\emptyset \notin \Unc(i)$);
-and $\V:\W \to 2^\PROP$ is a labeling function. The tuple $\tup{\W,\R,\V}$ is called an LTS. 
-Given an \ults $\modults$ and $w \in \D{\modults}$, the pair $(\modults,w)$ (parenthesis usually dropped) is called a \emph{pointed \ults}.
+An \emph{uncertainty-based \lts (\ults)} for $\PROP$, $\ACT$ and $\AGT$ is a tuple $\modults = \tup{\W,\R,\Unc,\V}$ where $\W$ is a non-empty set of states (called the domain, and denoted also by $\D{\modults}$); $\R = \setof{\R_a \subseteq \W \times \W}{a \in \ACT}$ is a collection of binary relations on $\W$; $\Unc = \setof{\Unc(i) \subseteq 2^{\ACT^*}\setminus \set{\emptyset}}{i \in \AGT}$ assigns to every agent a non-empty collection of pairwise disjoint non-empty sets of plans (i.e., $\Unc(i) \neq \emptyset$, $\plans_1, \plans_2 \in \Unc(i)$ with $\plans_1 \neq \plans_2$ implies $\plans_1 \cap \plans_2 = \emptyset$, and $\emptyset \notin \Unc(i)$); and $\V:\W \to 2^\PROP$ is a labelling function. The tuple $\tup{\W,\R,\V}$ is called an LTS. Given an \ults $\modults$ and $w \in \D{\modults}$, the pair $(\modults,w)$ (parenthesis usually dropped) is called a \emph{pointed \ults}.
 \end{definition}
 \medskip
 
 
-Intuitively, $\DS{i} = \bigcup_{\plans \in \Unc(i)} \plans$ is the set of plans that agent $i$ is aware she has at her disposal, and each $\plans \in \Unc(i)$ is an indistinguishability class. Note that, as discussed in~\cite{AFSVQ21}, there is a one-to-one correspondence between each $\Unc(i)$ and an `indistinguishability relation' ${\sim_i} \subseteq \DS{i} \times \DS{i}$ describing the agent's \emph{uncertainty} over her available plans ($\plan_1 \sim_i \plan_2$ iff there is $\plans \in \Unc(i)$ such that $\set{\plan_1, \plan_2} \subseteq \plans$). The presentation used here simplifies the definitions that will follow.
+Intuitively, $\DS{i} = \bigcup_{\plans \in \Unc(i)} \plans$ is the set of plans agent $i$ has at her disposal (alternatively, is aware of), and each $\plans \in \Unc(i)$ is an indistinguishability class. Note that, as discussed in~\cite{AFSVQ21}, there is a one-to-one correspondence between each $\Unc(i)$ and an `indistinguishability relation' ${\sim_i} \subseteq \DS{i} \times \DS{i}$ describing the agent's \emph{uncertainty} over her available plans ($\plan_1 \sim_i \plan_2$ iff there is $\plans \in \Unc(i)$ such that $\set{\plan_1, \plan_2} \subseteq \plans$). The presentation used here simplifies the definitions that will follow.
 
-Given her uncertainty over $\ACT^*$, the abilities of an agent $i$ depend not on what a single plan can achieve, but rather on what a set of them can guarantee.
+Given her uncertainty over (a subset of) $\ACT^*$, the abilities of an agent $i$ depend not on what a single plan can achieve, but rather on what a set of them can guarantee.
 
 \medskip
 
 \begin{definition}
-Given $\R=\setof{\R_a \subseteq \W \times \W}{a\in\ACT}$ and $\plan \in \ACT^*$, define $\R_\plan \subseteq \W \times \W$ in the standard way. Then, for $\plans \subseteq \ACT^*$ and $U \cup \{u \} \subseteq \W$, define $\R_\plans := \bigcup_{\plan \in \plans} \R_{\plan}$, $\R_{\plans}(u) := \bigcup_{\plan \in \plans} \R_\plan(u)$, and $\R_{\plans}(U) := \bigcup_{u \in U} \R_{\plans}(u)$.
+Given $\R=\setof{\R_a \subseteq \W \times \W}{a\in\ACT}$ and $\plan \in \ACT^*$, define $\R_\plan \subseteq \W \times \W$ in the standard way.\footnote{More precisely, $\R_\epsilon := \set{(w,w) \mid w \in W}$ and $\R_{{\plan}a} := \R_\plan \circ \R_a$.} Then, for $\plans \subseteq \ACT^*$ and $U \cup \{u \} \subseteq \W$, define $\R_\plans := \bigcup_{\plan \in \plans} \R_{\plan}$, $\R_{\plans}(u) := \bigcup_{\plan \in \plans} \R_\plan(u)$, and $\R_{\plans}(U) := \bigcup_{u \in U} \R_{\plans}(u)$.
 \end{definition}
 
 \medskip
 
-In what follows, we introduce the notion of strong executability of plans (see, e.g.,~\cite{Wang15lori,AFSVQ23report}), a condition which determines that a given plan or a set of them, is appropriate in order to achieve a certain goal.
+In what follows, we introduce the notion of strong executability of plans (see, e.g.,~\cite{Wang15lori,AFSVQ23report}), a condition which determines that a given plan or a set of them, is appropriate to achieve a certain goal.
 
 \medskip
 
@@ -89,8 +82,8 @@ $\stexec^\modults(\plans) = \bigcap_{\plan \in \plans} \stexec^\modults(\plan)$ 
 \medskip
 
 
-Thus, a plan is strongly executable (at a state) when \emph{all} its partial executions %(including~$\epsilon$) 
-can be completed; while a set of plans is strongly executable when \emph{all} its plans are strongly executable. When the model is clear from the context, we will drop the superscript $\modults$ and write simply $\stexec(\plan)$ and $\stexec(\plans)$.
+Thus, while \emph{a plan} is strongly executable (at a state) when \emph{all its partial executions} %(including~$\epsilon$) 
+can be completed, \emph{a set of plans} is strongly executable when \emph{all its plans} are strongly executable. When the model is clear from the context, we will drop the superscript $\modults$ and write simply $\stexec(\plan)$ and $\stexec(\plans)$.
 
 % \smallskip
 
@@ -98,7 +91,7 @@ Now, we have all the ingredients to define the semantics of the logic.
 \medskip
 
 \begin{definition}\label{def:sem-esm}
-Let $\modults=\tup{\W,\R,\{\Unc(i)\}_{i\in\AGT},\V}$ be an \ults and $w \in \W$.
+Let $\modults=\tup{\W,\R,\Unc,\V}$ be an \ults and $w \in \W$.
 The satisfiability relation $\models$ for $\KHilogic$ is inductively defined as:
 \[
 \begin{array}{l@{\ \ \ }c@{\ \ \  }l}
@@ -117,7 +110,7 @@ Define: $\modults\models\varphi$ iff  $\truthset{\modults}{\varphi}=\W$, and $\m
 
 \medskip
 
-Given the definition above, we can check that the semantic of the modalities $\A$ and $\E$ introduced in Definition~\ref{def:khsyntax} indeed coincide with the global modalities from~\cite{GorankoP92}. For every model $\modults$ and every state $w$, $\modults,w\models\A\varphi$ holds if and only if $\varphi$ is true in all states in $\modults$ (see~\cite{AFSVQ21,AFSVQ23report} for details). %This will be of use in the rest of the paper.
+Given the definition above, we can check that the semantics of the modalities $\A$ and $\E$ introduced in Definition~\ref{def:khsyntax} indeed coincide with the global modalities from~\cite{GorankoP92}. For every model $\modults$ and every state $w$, $\modults,w\models\A\varphi$ holds if and only if $\varphi$ is true in all states in $\modults$ (see~\cite{AFSVQ21,AFSVQ23report} for details). %This will be of use in the rest of the paper.
 
 \medskip
 
@@ -128,9 +121,9 @@ Given the definition above, we can check that the semantic of the modalities $\A
 %     the west ($w$) or fly to the east ($e$). Order of the actions
 %     matters: from the leftmost state in the \ults $\modults$ below (states
 %     showing only atoms true at them), a plan $we$ (first west then east)
-%     leads to safe zones, but $ew$ does not. In order to reach a safe
+%     leads to safe zones, but $ew$ does not. To reach a safe
 %     zone from a turbulent one, the aircraft needs to pass through a
-%     non-turbulent zone first. This is achieved flying east again, and
+%     non-turbulent zone first. This is achieved by flying east again, and
 %     finally west.
 
 %       \begin{nscenter}
@@ -169,8 +162,8 @@ Given the definition above, we can check that the semantic of the modalities $\A
 %   \end{example}
 
 \begin{example}\label{ex:cook}
-Let us consider a simplified scenario for baking a cake, with two agents $i$ and $j$. The two agents attempt to produce a good cake (represented by the propositional symbol~$g$). Suppose that they are following a similar recipe, and that they have all the ingredientes ($h$). The recipe states that $g$ is achieved via the following steps: adding eggs ($e$), beating the eggs ($b$), adding flour ($f$), adding milk ($m$), stir these ingredients ($s$) and finally, bake the preparation ($p$). Thus, the plan needed to achieve $g$ is $\mathit{ebfmsp}$, whenever the agents have all the ingredients ($h$). 
-Agent $i$, who is an experienced chef, is aware that this is the way to get a good cake. On the other hand, agent $j$  has no cooking experience, so she considers that the order in the instructions do not matter (for instance, that she can add milk before adding the flour).
+Let us consider a simplified scenario for baking a cake, with two agents $i$ and $j$. The two agents attempt to produce a good cake (represented by the propositional symbol~$g$). Suppose they are following a similar recipe, and they have all the ingredients ($h$). The recipe states that $g$ is achieved via the following steps: adding eggs ($e$), beating the eggs ($b$), adding flour ($f$), adding milk ($m$), stir these ingredients ($s$) and finally, bake the preparation ($p$). Thus, the plan needed to achieve $g$ is $\mathit{ebfmsp}$, whenever the agents have all the ingredients ($h$). 
+Agent $i$, an experienced chef, is aware that this is the way to get a good cake. On the other hand, agent $j$  has no cooking experience, so she considers that the order in the instructions does not matter (for instance, that she can add milk before adding the flour).
 
 \begin{center}
 \hspace*{-1cm}\begin{tikzpicture}[->]
@@ -209,8 +202,7 @@ Agent $i$, who is an experienced chef, is aware that this is the way to get a go
 \medskip
 
 The diagram shows, on the right, the set of indistinguishable plans in $\Unc(i)$ and in~$\Unc(j)$. %, containing two sets: $\plans_1=\set{ew}$ and   $\plans_2=\set{we,eew}$.
-Notice that agent $i$ knows how to get a good cake, provided that she has all the ingredients (i.e., $\modults\models\khi(h,g)$). This is due to the fact
-that agent $i$ \emph{distinguishes} $\mathit{ebfmsp}$ as the ``good plan''. On the other hand, as $j$ considers that adding milk and adding flour can be done in any order (i.e., $\mathit{ebfmsp}$ and $\mathit{ebmfsp}$ are indistinguishable), and we have $\modults\not\models\kh_j(h,g)$.
+Notice that agent $i$ knows how to get a good cake, provided she has all the ingredients (i.e., $\modults\models\khi(h,g)$). This is because agent $i$ \emph{distinguishes} $\mathit{ebfmsp}$ as the ``good plan''. On the other hand, as $j$ considers that adding milk and adding flour can be done in any order (i.e., $\mathit{ebfmsp}$ and $\mathit{ebmfsp}$ are indistinguishable), and we have $\modults\not\models\kh_j(h,g)$.
 \end{example}
 
 \medskip 
@@ -232,7 +224,7 @@ Additionally, $U \subseteq \W$ is propositionally definable in $\modults$ if and
 
 \medskip
 
-Now we are in position to introduce the notion of bisimulation for $\KHilogic$. 
+Now we are in a position to introduce the notion of bisimulation for $\KHilogic$. 
 
 \medskip 
 
@@ -332,8 +324,7 @@ The axiom system from~\Cref{tab:khiaxiom} is sound and strongly complete with re
 
 \medskip
 
-It is worth noticing that the axiom \axm{KhE}, $\left(\E\psi \land \khi(\psi,\varphi)\right) \rightarrow \E\varphi$, is omitted here. This is due to the fact that it is derivable in the system.
-This is achieved by proving an equivalent expression $(\E\psi \wedge \khi(\psi,\varphi) \wedge \A\neg\varphi) \ra \bot$. 
+It is worth noticing that the validity $\left(\E\psi \land \khi(\psi,\varphi)\right) \rightarrow \E\varphi$, called \axm{KhE} and part of the axiom system as presented in \cite{AFSVQ23report}, is omitted here. This is because it is derivable in the system, as proved by showing the derivability of the equivalent $(\E\psi \wedge \khi(\psi,\varphi) \wedge \A\neg\varphi) \ra \bot$. First,
 % , $\left(\E\psi \land \khi(\psi,\varphi) \land \A \neg\varphi \right) \rightarrow \bot$, using \axm{KhA}. %\raul{To write down the syntactic proof in detail here.}
 %
 % By \axm{TAUT}, it is equivalent to prove that
@@ -361,7 +352,7 @@ This is achieved by proving an equivalent expression $(\E\psi \wedge \khi(\psi,\
 % \vdash (\E\psi \wedge \khi(\psi,\varphi) \wedge \A\neg\varphi) \ra (\E\psi \wedge \A(\psi \ra \psi) \wedge \khi(\psi,\varphi) \wedge \A(\varphi \ra \bot)).
 % \end{equation}
 %
-On the other hand, by using an instance of \axm{KhA}, we have that
+Then, by using an instance of \axm{KhA}, we have that
 \begin{align*}
     & \vdash (\A(\psi \ra \psi) \wedge \khi(\psi,\varphi) \wedge \A(\varphi \ra \bot)) \ra (\khi(\psi,\bot)) & \\
     \Leftrightarrow &  \vdash (\E\psi \wedge \A(\psi \ra \psi) \wedge \khi(\psi,\varphi) \wedge \A(\varphi \ra \bot)) \ra (\E\psi \wedge \khi(\psi,\bot)) & \tag{\axm{TAUT}} \\
@@ -395,7 +386,7 @@ Given the implications proved above, by transitivity we get \axm{KhE} as wanted.
 
 % \ssparagraph{Complexity.} 
 
-Strong completeness of the axiomatization above is established in~\cite{AFSVQ21,AFSVQ23report} via a canonical model construction. By taking such a model, and selecting relevant pieces of it, we can prove a small (polynomial) model property. This property is important in establishing the following complexity results.
+Strong completeness of the axiomatization above is established in~\cite{AFSVQ21,AFSVQ23report} via a canonical model construction. By taking such a model, and selecting its relevant pieces, we can prove a small (polynomial) model property. This property is important in establishing the following complexity results.
 
 \medskip 
 
