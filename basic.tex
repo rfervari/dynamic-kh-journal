@@ -103,14 +103,13 @@ The satisfiability relation $\models$ for $\KHilogic$ is inductively defined as:
 & & \ \ \text{\bfseries \itshape (ii)} \; \R_\plans(\truthset{\modults}{\psi}) \subseteq \truthset{\modults}{\varphi},
 \end{array}
 \]
-where: $\truthset{\modults}{\chi} := \setof{w\in\W}{\modults,w\models\chi}$. 
-A class $\plans$ making true the existential statement in the semantic clause of $\khi(\psi,\varphi)$ is called a \emph{witness} for $\khi(\psi,\varphi)$. 
-Define: $\modults\models\varphi$ iff  $\truthset{\modults}{\varphi}=\W$, and $\models\varphi$ iff $\modults\models\varphi$, for all \ults $\modults$. These notions will be extended as expected, for all the logics in the rest of the paper.
+where: $\truthset{\modults}{\chi} := \setof{w\in\W}{\modults,w\models\chi}$. Any $\plans$ making true the existential statement in the semantic clause of $\khi(\psi,\varphi)$ is called a \emph{witness} for $\khi(\psi,\varphi)$. Define $\modults\models\varphi$ iff  $\truthset{\modults}{\varphi}=\W$, and $\models\varphi$ iff $\modults\models\varphi$, for all \ults $\modults$. These notions will be extended as expected for all the logics in the rest of the paper.
 \end{definition}
 
 \medskip
 
-Given the definition above, we can check that the semantics of the modalities $\A$ and $\E$ introduced in Definition~\ref{def:khsyntax} indeed coincide with the global modalities from~\cite{GorankoP92}. For every model $\modults$ and every state $w$, $\modults,w\models\A\varphi$ holds if and only if $\varphi$ is true in all states in $\modults$ (see~\cite{AFSVQ21,AFSVQ23report} for details). %This will be of use in the rest of the paper.
+Two observations are useful here. First note how the modality $\A$ ($\E$), defined by abbreviation in~\Cref{def:khsyntax}, is actually the universal (existential) \emph{global modality} from~\cite{GorankoP92}. Indeed, for every model $\modults$ and every state $w$, $\modults,w\models\A\varphi$ ($\modults,w\models\E\varphi$) holds if and only if $\varphi$ is true in every (some) state in $\modults$ (see~\cite{AFSVQ21,AFSVQ23report} for details). %This will be of use in the rest of the paper.
+But, despite this, $\KHilogic$ is a `simple' language. In particular, even though the $\khi$ modality has fairly complex requirements for its witness $\plans$, it is `blind' to some of its aspects, e.g., its cardinality or the kind of plans it contains.
 
 \medskip
 
@@ -162,7 +161,7 @@ Given the definition above, we can check that the semantics of the modalities $\
 %   \end{example}
 
 \begin{example}\label{ex:cook}
-Let us consider a simplified scenario for baking a cake, with two agents $i$ and $j$. The two agents attempt to produce a good cake (represented by the propositional symbol~$g$). Suppose they are following a similar recipe, and they have all the ingredients ($h$). The recipe states that $g$ is achieved via the following steps: adding eggs ($e$), beating the eggs ($b$), adding flour ($f$), adding milk ($m$), stir these ingredients ($s$) and finally, bake the preparation ($p$). Thus, the plan needed to achieve $g$ is $\mathit{ebfmsp}$, whenever the agents have all the ingredients ($h$). 
+Let us consider a simplified scenario for baking a cake, with two agents $i$ and $j$. The two agents attempt to produce a good cake (represented by the propositional symbol~$g$). Suppose they follow a similar recipe, and they have all the ingredients ($h$). The recipe states that $g$ is achieved via the following steps: adding eggs ($e$), beating the eggs ($b$), adding flour ($f$), adding milk ($m$), stir these ingredients ($s$) and finally, bake the preparation ($p$). Thus, the plan needed to achieve $g$ is $\mathit{ebfmsp}$, whenever the agents have all the ingredients ($h$). 
 Agent $i$, an experienced chef, is aware that this is the way to get a good cake. On the other hand, agent $j$  has no cooking experience, so she considers that the order in the instructions does not matter (for instance, that she can add milk before adding the flour).
 
 \begin{center}
