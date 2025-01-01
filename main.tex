@@ -66,9 +66,9 @@
 \affil[3]{\orgname{Universitetet i Bergen}, \orgaddress{\state{Bergen}, \country{Norway}}}
 
 \abstract{
-We investigate dynamic operations acting over a \emph{knowing how} logic. Our approach makes use of a recently introduced semantics for the \emph{knowing how} operator, based on an indistinguishability relation between plans. This semantics is arguably closer to the standard presentation of \emph{knowing that} modalities in classic epistemic logic. 
+We investigate dynamic operations acting over a \emph{knowing how} logic. Our approach uses a recently introduced semantics for the \emph{knowing how} operator, based on an indistinguishability relation between plans. This semantics is arguably closer to the standard presentation of \emph{knowing that} modalities in classic epistemic logic. 
 Here, we discuss how the new indistinguishability-based semantics enables us to define dynamic modalities representing different ways in which an agent can learn how to achieve a goal. In this regard, we study different alternatives for implementing two types of updates: ontic and epistemic.
-For the former, we provide axiomatizations over a restricted class of models. For the latter, we investigate some semantic properties, and discuss what are the difficulties in axiomatizing dynamic modalities. In turn, we introduce a novel dynamic epistemic modality for which we have reduction axioms, over an extended static language of knowing how.
+For the former, we provide axiomatizations over a restricted class of models. For the latter, we investigate some semantic properties and discuss what are the difficulties in axiomatizing dynamic modalities. In turn, we introduce a novel dynamic epistemic modality for which we have reduction axioms, over an extended static language of knowing how.
 }
 
 \keywords{Knowing how, updates, axiomatization, decidability}
@@ -95,7 +95,7 @@ For the former, we provide axiomatizations over a restricted class of models. Fo
 \section{Ontic updates}
 \label{sec:ontic}
 
-This section discusses model operations updating the underlying \lts in a \ults. Since the \lts provides the model's \emph{ontic}/\emph{objective} information, its changes can be understood as ontic change. Here, the focus is on operations for removing states (which in turn produce a change in the relations) and operations for pure relational change. Within the EL setting, these two model operations have a natural interpretation: they describe ways in which an agent's uncertainty changes, with the second being a generalisation of the first. Here they are reinterpreted to match what the affected model components (domain and relations) represent in this indistinguishability-based \emph{knowing how} setting. In each case, we present a discussion, a modality for describing the effects of the operation, and a reduction-axioms-based axiom system over a particular class of models.
+This section discusses model operations updating the underlying \lts in a \ults. Since the \lts provides the model's \emph{ontic}/\emph{objective} information, its changes can be understood as ontic change. Here, the focus is on operations for removing states (which in turn produce a change in the relations) and operations for pure relational change. Within the EL setting, these two model operations have a natural interpretation: they describe ways in which an agent's uncertainty changes, (in this sense, the second can be seen as a generalisation of the first). Here, they are reinterpreted to match what the affected model components (domain and relations) represent in this indistinguishability-based \emph{knowing how} setting. In each case, we present a discussion, a modality for describing the effects of the operation, and a reduction-axioms-based derivation system over a particular class of models.
 
 \subsection{Removing states}
 \label{sec:pal}
@@ -110,8 +110,8 @@ This section discusses model operations updating the underlying \lts in a \ults.
 
 In this section we present a first attempt at defining different  
 ways in which  \emph{epistemic} updates can be performed over knowing how. No complete axiomatization is
-available yet for the operators we will introduce.  Instead, we will discuss their expressivity, and some interesting properties.
-Moreover, we will point out some of the challenges in obtaining axiom systems for these logics, e.g., both the lack of uniform substitution and the impossibility to obtain  reduction axioms in the current setting. Some of these challenges are addressed in the next section.
+available yet for the operators we will introduce.  Instead, we will discuss their expressivity and some interesting properties.
+Moreover, we will point out some of the challenges in obtaining axiom systems for these logics, e.g., both the lack of uniform substitution and the impossibility of obtaining reduction axioms in the current setting. Some of these challenges are addressed in the next section.
 
 \subsection{Removing uncertainty between two plans}
 \label{sec:ref}
