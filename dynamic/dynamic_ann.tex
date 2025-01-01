@@ -1,14 +1,12 @@
-% Let us start by consider \PAL-like announcements in the context of knowing how logics. For the $\kh$ modality first introduced in~\cite{Wang15lori}, such an announcement would result in updating the labeled transition system in which the formula is interpreted, producing a change in the abilities of the agent. In that setting, these abilities coincide with her knowledge.
+% Let us start by considering \PAL-like announcements in the context of knowing how logics. For the $\kh$ modality first introduced in~\cite{Wang15lori}, such an announcement would result in updating the labelled transition system in which the formula is interpreted, producing a change in the agent's abilities. In that setting, these abilities coincide with her knowledge.
 
-%As discussed in the previous sections, our goal is to take ideas from standard epistemic logic in order to perform operations that update an agent's knowing how.
+%As discussed in the previous sections, our goal is to take ideas from standard epistemic logic to perform operations that update an agent's know-how.
 
-A typical way of updating a model  
-is by removing states, as is done in \PAL~\cite{Plaza89:lopc,DELbook}.  This model update is typically realized with the public announcement operator $[\chi]$,
-which, over an $\ults$ $\modults=\tup{\W,\R,\Unc,\V}$, can be defined as:
+A typical way of updating a relational model is by removing states~\cite{Plaza89:lopc,DELbook}. This model update, interpreted in the just referred literature as an announcement indicating to all agents that $\chi$ is true (hence the setting's name: \emph{public announcement logic}; \PAL), is typically described with a modal operator $[\chi]$. Given an $\ults$ $\modults=\tup{\W,\R,\Unc,\V}$, its semantic interpretation is defined as:
 \[
 \modults,w\models[\chi]\varphi \ \ \iff \ \  \modults,w\models\chi \mbox{ implies } \modults_{\chi},w\models\varphi,
 \]
-with $\modults_\chi=\tup{\W_\chi,\R_\chi,\Unc_\chi,\V_\chi}$ where:
+with the $\ults$ $\modults_\chi=\tup{\W_\chi,\R_\chi,\Unc_\chi,\V_\chi}$ given by
 \[
 \begin{array}{l@{\quad \quad \quad }l}
 \W_\chi = \set{w \mid \modults,w\models\chi} & (\R_\chi)_a = \R_a \cap \W_\chi^2, \mbox{ for each } a\in\ACT \\
@@ -16,22 +14,24 @@ with $\modults_\chi=\tup{\W_\chi,\R_\chi,\Unc_\chi,\V_\chi}$ where:
 \end{array}	
 \]
 
-As we can see, $\modults_\chi$ is obtained by taking $\truthset{\modults}{\chi}$ as the new domain, and by restricting relations and the valuation accordingly (the indistinguishability classes $U(i)$ are left unchanged).
-In the original \emph{knowing how} setting from~\cite{Wang15lori}, the relations define the agent's abilities. Thus, under that semantics this kind of update corresponds to both an ontic and an epistemic change (available actions change, and hence so do the agent's abilities). However, in the \ults-based semantics, relations provide only ontic information; thus, this update operation produces an \emph{ontic} change, that may lead indirectly to change in the knowledge of the agent.
+Thus, $\modults_\chi$ is obtained by taking $\truthset{\modults}{\chi}$ as the new domain, then restricting relations and valuation accordingly (the indistinguishability classes $U(i)$ are left unchanged). 
 
-We can prove that this update operator adds expressivity to $\KHilogic$ (a similar result was established in~\cite{Wang2016} for a $\kh$ modality with intermediate constraints).
+\smallskip
+
+A couple of remarks might be useful here. First recall that, in the \emph{knowing how} setting, states other than the evaluation point do not represent epistemic possibilities (as they do in EL), but rather situations reachable by actions. Thus, in the \emph{knowing how} setting, the elimination of some states indicates not that they are no longer \emph{possible}, but rather that they are no longer \emph{reachable}. Moreover: in the original \emph{knowing how} setting, the relations define the agents' abilities. Hence, under that semantics, removing states corresponds to both an ontic and an epistemic change: the effect of available actions changes, and hence so do the agents' abilities~\cite{Wang2016}. However, in the \ults-based semantics, relations provide only ontic information; thus, removing states produces an \emph{ontic} change that might affect, indirectly, the agents' abilities.
+
+\smallskip
+
+In the $\ults$ setting, it can be shown that the update operator adds expressivity to $\KHilogic$ (a similar result was established in~\cite{Wang2016} for the original $\lts$ setting).
 
 \medskip 
 
 \begin{proposition}\label{prop:pal-exp}
-Adding $[\chi]$ to $\KHilogic$ increases its expressive power.
+Adding $[\chi]$ to $\KHilogic$ increases the expressive power.
 \end{proposition}
 
 \begin{proof}
-  The two \ultss $\modults$ and $\modults'$ (with
-  $\Unc(i)=\Unc'(i)=\set{\set{a}})$ below are bisimilar and hence
-  indistinguishable in $\KHilogic$. In what follows, dashed lines indicate nodes and edges removed after an update.
-
+  The \ultss $\modults$ and $\modults'$ below (with $\Unc(i)=\Unc'(i)=\set{\set{a}}$, and with dashed lines indicating nodes and edges to be removed after an update with $p$) are $\KHilogic$-bisimilar (\Cref{def:bisim-khi}), and thus indistinguishable in $\KHilogic$. 
 \begin{center}
     \begin{tikzpicture}[->]
       \node [state,label=left:\small$w$] (w1) {$p,q$};
@@ -62,52 +62,37 @@ However, $\modults,w\models[p]\khi(p,q)$ whereas
 $\modults',w'\not\models[p]\khi(p,q)$.
 \end{proof}
 
-A consequence of~\Cref{prop:pal-exp} is that the modality for \PAL-like updates is not reducible to the base logic. This makes sense, as the underlying static logic ($\KHilogic$) only expresses properties relative to the existence of a way to achieve certain target states from certain origin states. There is no way to characterize the updates produced by $[\chi]$ with the expressive power provided by the $\khi$ modality. This is in contrast with what happens when these modalities are added to standard epistemic logic, where reduction axioms can be defined (see, e.g.,~\cite{DELbook}).
+A consequence of~\Cref{prop:pal-exp} is that the modality for \PAL-like updates, $[\chi]$, is not reducible to the underlying language $\KHilogic$. This makes sense: while $\KHilogic$ can express the agents' abilities to achieve certain goals from given situations (the modality $\khi$), it cannot talk about more specific properties of the courses of action on which the abilities rely. This is in contrast with what happens when these modalities are added to standard epistemic logic, where reduction axioms can be defined (see, e.g.,~\cite{DELbook}).
 
+In such situations, the axiomatisation can be approached in different ways. The `extend the basic language' method has already been explored in \cite{Wang2016}. Here, the strategy is to look for a variation of the operation, and then to restrict the setting to a particular class of models.
 
-Is it possible to define an alternative, \PAL-like update operator, for which reduction axioms exists in $\KHilogic$? We will answer this question below.
+\medskip
 
-\medskip 
-
-\begin{definition}\label{def:pakhsyntax}
-Formulas of the language $\PAKHilogic$ are defined by the following grammar
-\[
-	\varphi ::= p \mid \neg\varphi \mid \varphi\vee\varphi \mid
-\khi(\varphi,\varphi)\mid \gann{\varphi}\varphi,
-\]
-with $p \in \PROP$ and $i\in\AGT$.
-%Other Boolean connectives are defined as usual. We define $\tup{!\psi}\varphi := \neg\gann{\psi}\neg\varphi$.
-\end{definition}
-
-\medskip 
-
-The interpretation of formulas of the form $\gann{\chi}\varphi$ takes us to evaluate $\varphi$ in the model $\annmodelchi$ defined below. The only difference between $\annmodelchi$ and the standard $\modults_{\chi}$ (which is the restriction of $\modults$ to the states satisfying $\chi$) is in the definition of the relations.
-
-\medskip 
-
-\begin{definition}\label{def:annupdate}
-Let $\modults = \tup{\W, \R, \Unc, \V}$ be an \ults, and let $\chi$ be a $\PAKHilogic$-formula. We define $\annmodelchi = \tup{\annsemantics{\W}{\chi}, \annsemantics{\R}{\chi}, \annsemantics{\Unc}{\chi}, \annsemantics{\V}{\chi}}$, where:
+\begin{definition}\label{def:annupdate}\label{def:pakhsyntax}
+Let $\modults = \tup{\W, \R, \Unc, \V}$ be an \ults, and let $\chi$ be a formula. The $\ults$ $\annmodelchi = \tup{\annsemantics{\W}{\chi}, \annsemantics{\R}{\chi}, \annsemantics{\Unc}{\chi}, \annsemantics{\V}{\chi}}$ is given by:
 \begin{itemize}
 \item $\annsemantics{\W}{\chi} = \truthset{\modults}{\chi}$,
 \item $(\annsemantics{\R}{\chi})_a = \setof{(w,v) \in \R_a}{w \in \truthset{\modults}{\chi} \text{, } \R_a(w) \subseteq \truthset{\modults}{\chi}}$ for every $a \in \ACT$,
 \item $\annsemantics{\Unc}{\chi} = \Unc$, and 
 \item $\annsemantics{\V}{\chi}(w) = \V(w)$ (for all $w\in\annsemantics{\W}{\chi}$).
 \end{itemize}
-
-We extend the satisfaction relation $\models$ from~\Cref{def:sem-esm} with the case:
+\smallskip
+The language $\PAKHilogic$ extends $\KHilogic$ with formulas of the form $\gann{\chi}\varphi$. The semantic interpretation of the new formulas is given by
 \[
 	\modults,w \models \gann{\chi}\varphi \ \ \iff \ \ \modults,w \models \chi \mbox{ implies } \annmodelchi,w \models \varphi.
 \]
 \end{definition}
 
 
-In the proposal here, a stronger condition is needed for an $a$-edge from a state $w \in \truthset{\modults}{\chi}$ to survive after the update: if $\R_a(w) \not \subseteq \truthset{\modults}{\chi}$ then $(\annsemantics{\R}{\chi})_a(w) = \emptyset$, but if $\R_a(w) \subseteq \truthset{\modults}{\chi}$ then $(\annsemantics{\R}{\chi})_a(w) = \R_a(w)$. Notice that in this context, the elimination of some states indicates that the situations they describe are no longer \emph{reachable}, rather than no longer \emph{possible}. 
-%\footnote{The two forms of model update discussed here bear a resemblance to the two forms of updating neighbourhood models, see~\cite{MaS18} for details.}
+Thus, given a model $\modults$, the only difference between the standard $\modults_{\chi}$ and the just defined $\annmodelchi$ is in their relations' definition. Indeed, in the former, each $(\R_\chi)_a$ restricts the original $\R_a$ to the new domain. However, in the latter, each $(\annsemantics{\R}{\chi})_a$ defined pointwise: it is exactly as $\R_a(w)$ if all the states $\R_a(w)$ can reach will survive the operation ($\R_a(w) \subseteq \truthset{\modults}{\chi}$ implies $(\annsemantics{\R}{\chi})_a(w) = \R_a(w)$), and is empty otherwise ($\R_a(w) \not \subseteq \truthset{\modults}{\chi}$ implies $(\annsemantics{\R}{\chi})_a(w) = \emptyset$).
+
+\medskip
+
+%\footnote{The two forms of model update discussed here resemble to the two forms of updating neighbourhood models, see~\cite{MaS18} for details.}
 %Recall that a neighbourhood model~\cite{pacuit17} is given by: a non-empty domain $\W$, an atomic valuation, and a neighbourhood function $\N:\W \to 2^{2^{\W}}$, assigning a set of sets of states to each possible state. Let $U \subseteq \W$ be a non-empty set of states. On the one hand, the \emph{$U$-intersection} submodel defined in~\cite{MaS18} has $U$ as its domain, with its neighbourhood function built by restricting each set in a neighbourhood to the new domain, analogous to what $\modults_{\chi}$ (a standard announcement) does.
 % On the other hand, the \emph{$U$-subset} submodel therein also has $U$ as its domain, but its neighbourhood function is built by keeping only those sets that are already a subset of the new domain, analogous to what $\annsemantics{\modults}{\chi}$ does. We argue that this second approach is more appropriate in the context of knowing how.}.
 
-Even with this, more restricted, version of update, the resulting logic
-fails to have reduction axioms as the following proposition shows.
+Even with this, more restricted, version of an update, the resulting logic fails to have reduction axioms: adding $\gann{\chi}$ to $\KHilogic$ increases the expressive power.
 
 \medskip 
 
@@ -116,7 +101,7 @@ fails to have reduction axioms as the following proposition shows.
 \end{proposition}
 
 \begin{proof}
-	Let $\modults$ and $\modults'$ be the single agent models depicted below (states and edges depicted with dashed lines are those removed in $\annmodel{r}$ and $\annmodel{r}'$, respectively), with $\Unc(i):=\set{\set{ab}}$ and $\Unc'(i):=\set{\set{a}}$:
+	Let $\modults$ and $\modults'$ be the single agent models depicted below, with $\Unc(i):=\set{\set{ab}}$ and $\Unc'(i):=\set{\set{a}}$:
 
 	%\centerline{DESCOMENTAR IMAGENES ABAJO!!!}
 	\begin{center}
@@ -142,7 +127,7 @@ fails to have reduction axioms as the following proposition shows.
 		\end{tikzpicture}
 \end{center}
 
-	Both models are $\KHilogic$-bisimilar (\Cref{def:bisim-khi}); hence, they satisfy the same formulas in $\KHilogic$. However, $\modults,w \not\models \gann{r}\khi(p,q)$ since $\modults,w \models r$ and $\annmodel{r},w \not\models \khi(p,q)$, whereas $\modults',w' \models \gann{r}\khi(p,q)$ since $\modults',w' \models r$ and $\annmodel{r}',w \models \khi(p,q)$.
+Both models are $\KHilogic$-bisimilar (\Cref{def:bisim-khi}); hence, they satisfy the same formulas in $\KHilogic$. However, $\modults,w \not\models \gann{r}\khi(p,q)$ since $\modults,w \models r$ and $\annmodel{r},w \not\models \khi(p,q)$, whereas $\modults',w' \models \gann{r}\khi(p,q)$ since $\modults',w' \models r$ and $\annmodel{r}',w \models \khi(p,q)$.
 	%
 	% \begin{nscenter}
 	%   \scalebox{.7}{
@@ -161,23 +146,19 @@ fails to have reduction axioms as the following proposition shows.
 	% \end{nscenter}
 \end{proof}
 
-By furthermore restricting the class of models in which we will evaluate formulas, we are able to obtain reduction axioms.
+In models $\modults$ and $\modults'$ from the above proposition, it is useful to notice the following. First, they both make the formula $\khi(p,q)$ true, their respective witnesses being $\set{ab}$ and $\set{a}$. But, as discussed, after eliminating worlds in which $r$ is false this is no longer the case: the formula fails in $\annmodel{r}$ but holds in $\annmodel{r}'$. Part of the reason is that, while the witness for the first contains a two-step plan, the witness for the second contains only one-step plans (i.e., actions). This makes a difference because, by removing intermediate steps, $\PAKHilogic$ can tell these two models apart. 
 
-Note that \ultss contain a set $\Unc(i)$ of sets of plans for each agent $i$, which determines the perception of the agent with respect to her abilities.
-For instance, it may be the case that two plans $ab$ and $cd$ belong to some $\plans\in\Unc(i)$, i.e., they are indistinguishable for agent $i$.
-In~\cite{AFSVQ21} it has been shown that the logic cannot distinguish between the class of arbitrary \ultss, and the class of models where each $\plans\in\Unc(i)$ is a singleton with $\plans \subseteq \ACT$.
-This is no longer the case in the presence of $\gann{\chi}$ (as the proof of~\Cref{prop:exppal} shows).
+But, as mentioned before, the semantic interpretation for $\khi$ is `blind' to certain aspects of its witness. In fact, as the completeness proof shows~\cite{AFSVQ21}, it cannot distinguish between an arbitrary \ults and one in which, for every agent $i$, every plan in $\Unc(i)$ is a singleton containing only one action (i.e., a model in which $\plans \in \Unc(i)$ implies $\plans = \set{a}$ for some $a \in \ACT$). This suggests that, by restricting the class of models, one can still get agents with `the same abilities' while also stopping $\PAKHilogic$ from being able to tell $\KHilogic$-bisimilar models apart.
 
 \medskip 
 
 \begin{definition}\label{def:class-m-one}
-Define $\cultsba$ as the class of models $\modults = \tup{\W, \R, \Unc, \V}$ such that for all $i \in \AGT$ and $\plans \in \Unc(i)$, $\plans \subseteq \ACT$.
+Define $\cultsba$ as the class of models $\modults = \tup{\W, \R, \Unc, \V}$ in which, for all $i \in \AGT$, we have that $\plans \in \Unc(i)$ implies $\plans = \set{a}$ for some $a \in \ACT$.
 \end{definition}
 
 \medskip 
 
-The class $\cultsba$ (denoted as $\sults$ in \cite{AFSVQ21}) constitutes a restricted class of models, which could correspond, for example, to a more abstract representation of the abilities of the agents, in which a course of action is modeled as a single action. 
-The reduction axioms from~\Cref{tab:palaxiom} are valid in the class of models $\cultsba$. Moreover, we can use them to eliminate announcements by iteratively replacing the innermost occurrence of a $\gann{\chi}$ modality. Thus, we get completeness for $\PAKHilogic$.
+The class $\cultsba$ (denoted as $\sults$ in \cite{AFSVQ21}) constitutes a restricted class of models, which could correspond, for example, to a more abstract representation of the abilities of the agents (every plan is modelled as a single action). The reduction axioms from~\Cref{tab:palaxiom} are valid in the class of models $\cultsba$. Moreover, we can use them to eliminate announcements by iteratively replacing the innermost occurrence of a $\gann{\chi}$ modality. Thus, we get completeness for $\PAKHilogic$.
 
 \begin{table}[t]
 \begin{tabular}{l@{\quad}l}
@@ -194,11 +175,11 @@ The reduction axioms from~\Cref{tab:palaxiom} are valid in the class of models $
 
 \medskip 
 
-In order to establish the validity of the reduction axioms, we first need to prove the following semantic properties.
+To establish the validity of the reduction axioms, we first need to prove the following semantic properties.
 
 \medskip 
 
-\begin{lemma}\label{lem:palproperties} Let $\chi$ and $\varphi$ be $\PAKHilogic$-formulas, the following equalities hold:
+\begin{lemma}\label{lem:palproperties} Let $\chi$ and $\varphi$ be $\PAKHilogic$-formulas; let $\modults$ be an arbitrary \ults.\fer{Arbitrary models, correct?} The following equalities hold:
 	\begin{enumerate}
 	\item $\truthset{\modults}{\gann{\chi}\varphi} = \truthset{\modults}{\neg\chi} \cup \truthset{\annmodelchi}{\varphi}$.
 	\item $\truthset{\annmodelchi}{\varphi} = \truthset{\modults}{\chi \wedge \gann{\chi}\varphi}$.
@@ -271,7 +252,7 @@ The result follows by the correctness of the axioms and rule from~\Cref{tab:pala
 % \end{enumerate}
 % \end{definition}
 
-To finish this section, we prove that the satisfiability problem for $\PAKHilogic$ is decidable at least over $\cultsba$.
+To finish this discussion, we prove that the satisfiability problem for $\PAKHilogic$ is decidable at least over $\cultsba$.
 
 \medskip 
 
@@ -289,3 +270,4 @@ As a result, there are two possible outcomes:
 \end{inlineenum}
 Thus, there is a procedure that decides satisfiability of $\PAKHilogic$ over $\cultsba$. 
 \end{proof}
+\bigfer{Just to tie loose ends: if we work in $\cultsba$, do we have reduction axioms for the standard update operation? Or does this `trick' work only for the alternative version of the operation?}
