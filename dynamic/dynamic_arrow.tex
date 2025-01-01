@@ -1,11 +1,32 @@
 % For this section we will use models $\modults = \tup{\W, \R, \Unc, \V}$ such that for all $i \in \AGT$ and all $\strategy \in \Unc(i)$, $\strategy \subseteq \ACT$ i.e. models where the knowledge every agent has are about the basic actions.
 
-Another classical approach to update LTSs is Arrow Update Logic 
-($\AUL$)~\cite{KooiR11}. It differs from $\PAL$ in that it removes only \emph{edges}, thus keeping the domain intact. In standard epistemic logic, this corresponds to changes in uncertainty (e.g., the epistemic indistinguishability might be reduced, so intuitively the agents gain knowledge). For knowing how logics, the situation is again different: updating edges in an \lts corresponds to updating the abilities of the agents, as arrows represent execution of actions. We introduce now a logic for arrow updates in the context of $\kh_i$.
+Another way to update \ltss is by modifying their relations directly while keeping the domain intact. Although there are different ways to do so (see, e.g., \cite{ArecesFH15}), in the EL context the focus has been on operations that remove edges, as this represents actions that remove the agents' uncertainty. The \emph{arrow update logic} ($\AUL$) of~\cite{KooiR11} is a general way to do this. The arrow update operation takes as a parameter a list of arrow specifications (triples of the form formula-action-formula). Then, an edge with label $a$ from state $w$ to state $v$ will survive the operation if and only if there is an arrow specification $(\varphi_1, a, \varphi_2)$ such that $w$ satisfies $\varphi_1$ and $v$ satisfies $\varphi_2$. 
 
 \medskip 
 
-\begin{definition}\label{def:arrowsyntax}
+The version of $\AUL$ framework presented below differs from the original in two aspects. First, an arrow specification is only a pair formula-formula; thus, it works for any basic action. Second, mimicking the variation of an update discussed in the previous subsection (\Cref{def:annupdate}), an edge with label $a$ from state $w$ to state $v$ will survive the operation if and only if there is an arrow specification such that $(\varphi_1, \varphi_2)$ such that $w$ satisfies $\varphi_1$ and \emph{all} states $v$ that can be $a$-reached from $w$ satisfy $\varphi_2$. 
+\bigfer{Some questions. (1) For tying loose ends, what happens with `standard' arrow updates in the class $\cultsba$? Does the modality increase the expressivity too, thus making reduction axioms impossible? (2) Where is this variation of the arrow specification discussed? (3) Is axiom \axm{RJoin} taken from somewhere? If so, we can cite the reference when arguing for its validity; otherwise, some explanation might be useful. (4) Is the above description of the operation correct?}
+
+\medskip 
+
+\begin{definition}
+Let $\modults = \tup{\W, \R, \Unc, \V}$ be an \ults; let $U = (\theta_1,\theta'_1),\dots,(\theta_n,\theta'_n)$ be a finite list of arrow specifications with $\theta_i,\theta'_i$ formulas for every $0\leq i \leq n$. The \ults $\arrowmodelU = \tup{\W, \arrowsemantics{\R}{U}, \Unc,\V}$ is such that, for every $a\in\ACT$,
+%\[
+	$(\arrowsemantics{\R}{U})_a = \setof{(w,v) \in \R_a(w)}{w \in \truthset{\modults}{\bigwedge_{i=1}^n \theta_i} \text{, } \R_a(w) \subseteq \truthset{\modults}{\bigwedge_{i=1}^n \theta'_i}}$.
+%\]
+\end{definition}
+
+%\bigfer{About the definition of the new model. I guess the `standard' version would be with $(\arrowsemantics{\R}{U})_a = \setof{(w,v) \in \R_a(w)}{w \in \truthset{\modults}{\bigwedge_{i=1}^n \theta_i} \text{ and } v \in \truthset{\modults}{\bigwedge_{i=1}^n \theta'_i}}$. Is that correct? If so, it seems different from the standard arrow update, at least in that the existential quantification is not explicit. Are we taking this presentation from some other source? If not, it might be worthwhile to explain it a bit.}
+
+Note that if $w \in \truthset{\modults}{\bigwedge_{i=1}^n \theta_i}$ and $\R_a(w) \subseteq \truthset{\modults}{\bigwedge_{i=1}^n \theta'_i}$, then $(\arrowsemantics{\R}{U})_a(w) = \R_a(w)$. Moreover, $(\arrowsemantics{\R}{U})_a(w) \neq \emptyset$ iff $w \in \truthset{\modults}{\bigwedge_{i=1}^n \theta_i}$, $\R_a(w) \subseteq \truthset{\modults}{\bigwedge_{i=1}^n \theta'_i}$ and $\R_a(w) \neq \emptyset$.
+
+\medskip
+
+Now, the language.
+
+\medskip
+
+\begin{definition}\label{def:arrowsyntax}\label{def:arrowupdate}
 Formulas of the language $\AUKHilogic$ are defined by the following grammar
 \[
 \begin{array}{lcl}
@@ -17,29 +38,7 @@ U & ::= & (\varphi,\varphi) \mid U,(\varphi,\varphi),
 with $p \in \PROP$ and $i\in\AGT$. 
 %Other Boolean connectives are defined as usual. We also define
 %$\arrowbox{U}\varphi := \neg \arrowbox{U} \neg\varphi$.
-\end{definition}
-
-\medskip 
-
-\begin{definition}
-Let $\modults = \tup{\W, \R, \Unc, \V}$ be an \ults, and $U = (\theta_1,\theta'_1),\dots,(\theta_n,\theta'_n)$ be such that $\theta_i,\theta'_i$ are $\AUKHilogic$-formulas, for all $0\leq i \leq n$. We define $\arrowmodelU = \tup{\W, \arrowsemantics{\R}{U}, \Unc,\V}$, where for every $a\in\ACT$,
-%\[
-	$(\arrowsemantics{\R}{U})_a = \setof{(w,v) \in \R_a(w)}{w \in \truthset{\modults}{\bigwedge_{i=1}^n \theta_i} \text{, } \R_a(w) \subseteq \truthset{\modults}{\bigwedge_{i=1}^n \theta'_i}}$.
-%\]
-\end{definition}
-
-\medskip
-
-Note that if $w \in \truthset{\modults}{\bigwedge_{i=1}^n \theta_i}$ and $\R_a(w) \subseteq \truthset{\modults}{\bigwedge_{i=1}^n \theta'_i}$, then $\R'_a(w) = \R_a(w)$.
-Moreover, $\R'_a(w) \neq \emptyset$ iff $w \in \truthset{\modults}{\bigwedge_{i=1}^n \theta_i}$, $\R_a(w) \subseteq \truthset{\modults}{\bigwedge_{i=1}^n \theta'_i}$ and $\R_a(w) \neq \emptyset$.
-
-Once again, the update here differs from the original one in, e.g.,~\cite{KooiR11}, in that given a state satisfying the precondition, it takes in consideration all the states that are reachable from it. Thus, the satisfaction of the postcondition at all those states defines whether the arrows are preserved or not.
-%\end{remark}
-
-\medskip 
-
-\begin{definition}\label{def:arrowupdate}
-We extend the satisfaction relation $\models$ from~\Cref{def:sem-esm} with the case:
+For the semantics, formulas already in $\KHilogic$ are interpreted as before. For the new type of formulas, 
 \[
 	\modults,w \models \arrowbox{U}\varphi \mbox{ iff } \arrowmodelU,w \models \varphi.
 \]
@@ -50,6 +49,10 @@ We extend the satisfaction relation $\models$ from~\Cref{def:sem-esm} with the c
 
 %As in the $\PAL$ case, $\AUL$ performs ontic updates rather than epistemic %updates over $\ults$-based knowing how.
 
+Adding the defined arrow-update modalities increases the language's expressivity.
+
+\medskip
+
 \begin{proposition}\label{prop:expaul}
 $\AUKHilogic$ is more expressive than $\KHilogic$ over arbitrary \ultss.
 \end{proposition}
@@ -57,7 +60,7 @@ $\AUKHilogic$ is more expressive than $\KHilogic$ over arbitrary \ultss.
 By using the models from~\Cref{prop:exppal}, we have that $\modults,w \not\models [(r,r)]\khi(p,q)$ and $\modults',w' \models[(r,r)]\khi(p,q)$.
 \end{proof}
 
-The reduction axioms from~\Cref{tab:aulaxiom} are valid in the class of models $\cultsba$, and we can use them to eliminate all occurrences of the $\arrowbox{U}$ modality. %Thus, we get completeness for $\AUKHilogic$.
+Still, the reduction axioms from~\Cref{tab:aulaxiom} are valid in the class of models $\cultsba$, and we can use them to eliminate all occurrences of the $\arrowbox{U}$ modality. %Thus, we get completeness for $\AUKHilogic$.
 
 \begin{table}[t]
 \begin{tabular}{l@{\quad}l}
@@ -108,7 +111,7 @@ The reduction axioms from~\Cref{tab:aulaxiom} are valid in the class of models $
 	\item $\R_a(w) \neq \emptyset$ (thus, $w \in \stexec^\modults(a)$),
 	\item $\R_a(w) \subseteq \truthset{\modults}{\theta'}$ and $\R_a(w) \subseteq \truthset{\modults}{\arrowbox{U}\psi}$.
 	\end{itemize}
-	Since the first item is independent from $\plans$, we can put it outside of the expression.
+	Since the first item is independent of $\plans$, we can put it outside the expression.
 	It is easy to see now that $\modults,w \models \A(\arrowbox{U}\varphi \implies \theta)$ and if $w \in \truthset{\modults}{\arrowbox{U}\varphi}$, then:
 	\begin{itemize}
 	\item $\R_a(w) \neq \emptyset$ (thus, $w \in \stexec^\modults(a)$),
@@ -120,7 +123,7 @@ The reduction axioms from~\Cref{tab:aulaxiom} are valid in the class of models $
 	This happens iff $\modults,w \models (\A(\arrowbox{U}\varphi \implies \theta) \wedge \khi(\arrowbox{U}\varphi,\theta' \wedge \arrowbox{U}\psi))$ with $U = (\theta,\theta')$.
 \end{proof}
 
-As a corollary we obtain the intended result.
+As a corollary, we obtain the intended result.
 
 \medskip 
 
