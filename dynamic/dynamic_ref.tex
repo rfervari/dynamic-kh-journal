@@ -1,6 +1,4 @@
-One of the advantages of \ults{s} is that they allow a  natural
-representation of both the actions that affect the abilities of an agent, and her epistemic state. In an
-\ults, the crucial epistemic component is the sets $\Unc(i)$,
+As it has been discussed, \ults{s} allow a natural representation of both the actions that affect the abilities of an agent, and her epistemic state. In an \ults, the crucial epistemic component is the sets $\Unc(i)$,
 defining the plans agent $i$ is `aware of',
 and the level at which she can discern among
 them. Thus we can represent changes in the epistemic state of
@@ -88,7 +86,7 @@ we introduce some notation.
 
 \begin{definition}
 Let $\plans, \plans_1, \plans_2 \in 2^{\ACT^*}$, and $S \subseteq 2^{\ACT^*}$.  We write $\plans = \plans_1\uplus\plans_2$ iff $\plans=\plans_1\cup\plans_2$ and $\plans_1\cap\plans_2=\emptyset$.
-For $\plans \in S$ and $\plans=\plans_1\uplus\plans_2$, define  $\lmodel{S}{\plans}{\set{\plans_1,\plans_2}} \subseteq 2^{\ACT^*}$ as the result of refining~$\plans$ through $\set{\plans_1,\plans_2}$, i.e., $\lmodel{S}{\plans}{\set{\plans_1,\plans_2}} := (S\setminus\set{\plans})\cup\set{\plans_1,\plans_2}$.
+For $\plans \in S$ and $\plans=\plans_1\uplus\plans_2$, define  $\lmodel{S}{\plans}{\set{\plans_1,\plans_2}} \subseteq 2^{\ACT^*}$ as the result of splitting, within $S$, the set of plans $\pi$ into $\pi_1$ and $\pi_2$. In other words, $\lmodel{S}{\plans}{\set{\plans_1,\plans_2}} := (S\setminus\set{\plans})\cup\set{\plans_1,\plans_2}$.
 \end{definition}
 
 \medskip
@@ -116,8 +114,8 @@ Notice that the relation $\splitstr{}{}{\plan_1}{\plan_2}$ is serial. Moreover, 
 
 \begin{definition}
 Let $\modults=\tup{\W,\R,\Unc,\V}$ be an \ults, and let $\Unc'=\set{\Unc'(i)}_{i\in\AGT}$ with ${\Unc'(i)\subseteq 2^{\ACT^*}}$.
-Let $\plan_1,\plan_2 \in \ACT^*$. We write $\splitstr{\Unc}{\Unc'}{\plan_1}{\plan_2}$ iff for each $i\in\AGT$, $\splitstr{\Unc(i)}{\Unc'(i)}{\plan_1}{\plan_2}$.
-We denote by $\modults^{\Unc}_{\Unc'}$ the \ults obtained by replacing $\Unc$ by $\Unc'$.
+Let $\plan_1,\plan_2 \in \ACT^*$. We write $\splitstr{\Unc}{\Unc'}{\plan_1}{\plan_2}$ iff $\splitstr{\Unc(i)}{\Unc'(i)}{\plan_1}{\plan_2}$ for every $i\in\AGT$.
+We denote by $\modults^{\Unc}_{\Unc'}$ the \ults obtained by replacing $\Unc$ by $\Unc'$.\fer{Minor thing, but the notation for the new model ($\modults^{\Unc}_{\Unc'}$) does not mention the plans that define the split, namely $\sigma_1, \sigma_2$}
 %, and $\card{\Unc}=\card{\Unc'}$.
 \end{definition}
 
@@ -145,9 +143,10 @@ As usual, we define $\refbox{\plan_1}{\plan_2}\varphi := \lnot \refdiam{\plan_1}
 
 \medskip
 
-Formulas of the form $\refdiam{\plan_1}{\plan_2}\varphi$ can be read as follows: \emph{``after it is stated that plans $\plan_1$ and $\plan_2$ are distinguishable, $\varphi$ holds''}. For instance, in~\Cref{ex:ref}, $\refdiam{\mathit{ebmfsp}}{\mathit{ebfmsp}}\kh_j(h,g)$ establishes that \emph{``after it is stated that $\mathit{ebmfsp}$ and $\mathit{ebfmsp}$ are distinguishable plans, agent $j$ knows how to bake a good cake, provided she has the ingredients''}. 
+Formulas of the form $\refdiam{\plan_1}{\plan_2}\varphi$ can be read as follows: \emph{``after it is stated that plans $\plan_1$ and $\plan_2$ are distinguishable, $\varphi$ holds''}. For instance, in~\Cref{ex:ref}, $\refdiam{\mathit{ebmfsp}}{\mathit{ebfmsp}}\kh_j(h,g)$ establishes that \emph{``after it is established that $\mathit{ebmfsp}$ and $\mathit{ebfmsp}$ are different, agent $j$ knows how to bake a good cake, provided she has the ingredients''}. 
 
-The proposed modality has some natural properties, e.g., it is normal and serial.
+\begin{textonuevo}
+The proposed modality has some natural properties. First, it is normal and serial but not deterministic (\ref{itm:distref} through \ref{itm:nodeterref} below). Moreover, it represents an idempotent action in which order matters and in which two consecutive applications cannot be collapsed into a single one (\ref{itm:idempref} through \ref{itm:nocollapseref} below). 
 
 \medskip
 
@@ -158,22 +157,31 @@ It follows from the semantics (\Cref{def:ref-sem}) that:
 \refbox{\plan_1}{\plan_2}\psi)$.
 \item\label{itm:necessitationref} If $\models \varphi$, then $\models \refbox{\plan_1}{\plan_2}\varphi$.
 \item\label{itm:serialityref}  $\models \refbox{\plan_1}{\plan_2}\varphi \ra \refdiam{\plan_1}{\plan_2}\varphi$.
+
+\item\label{itm:nodeterref}  $\not\models \refdiam{\plan_1}{\plan_2}\varphi \ra \refbox{\plan_1}{\plan_2}\varphi$.
+
+\item\label{itm:idempref} $\models \refbox{\plan_1}{\plan_2}\refbox{\plan_1}{\plan_2}\varphi \leftrightarrow \refbox{\plan_1}{\plan_2}\varphi$.
+\item\label{itm:commref} $\not\models \refdiam{\plan_1}{\plan_2}\refdiam{\plan_3}{\plan_4}\varphi \leftrightarrow \refdiam{\plan_3}{\plan_4}\refdiam{\plan_1}{\plan_2}\varphi$.
+\item\label{itm:nocollapseref} If $\modults,w \models \refdiam{\plan_1}{\plan_2}\refdiam{\plan_3}{\plan_4}\varphi$, in general one cannot find $\sigma_5, \sigma_6$ such that $\modults,w \models \refdiam{\plan_5}{\plan_6}\varphi$.
 \end{enumerate}
 \end{proposition}
 
 \begin{proof}
-\Cref{itm:distref} follows from the standard $\forall$ pattern in the semantics of $\refbox{\plan_1}{\plan_2}$.
+\Cref{itm:distref} follows from the $\forall$-pattern in the semantics of $\refbox{\plan_1}{\plan_2}$.
 \Cref{itm:necessitationref} holds because the structure resulting from the operation is an \ults.
-The seriality of $\splitstr{}{}{\plan_1}{\plan_2}$ ensures \Cref{itm:serialityref}.
+The seriality of $\splitstr{}{}{\plan_1}{\plan_2}$ ensures \Cref{itm:serialityref}, and its non-determinism (there is more than one way to split a set) ensures \Cref{itm:nodeterref}.
+For \Cref{itm:idempref} note that, once the sets including the given plans have been split, the operation does nothing.% Take any pointed model. If there is no agent i with $\plans \in \Unc(i)$ such that $\plan_1, \plan_2 \in \plans$, then the first case of \Cref{def:splitstr} kicks in and the operation does nothing. Otherwise, the first application will split such $\plans$, but then a further application will do nothing, as there would be no such $\plans$ left afterwards.
+For \Cref{itm:commref}, consider cases in which all the involved plans are in the same $\plans$; distinguishing between the first pair of them might affect the indistinguishability between the second pair.% More precisely, consider a single agent with S = { {s1, s2, s3, s4} }. Then it is possible to obtain S' = { {s1, s3}, {s2, s4} } and then S'' = { {s1, s3}, {s2, s4} }, but also to obtain S' = { {s1}, {s2, s3, s4} } and then S'' = { {s1}, {s2, s3}, {s4} }, and also S' = { {s1}, {s2, s3, s4} } and then S'' = { {s1}, {s2, s4}, {s3} }. In the very first, s1 and s3 are indistinguishable, but they are distinguishable in the very last. Then, just adjust what those plans do, to be sure their indistinguishability affects the agent's abilities
+Finally, for \Cref{itm:nocollapseref} it is enough to notice that, if the set of plans containing $\sigma_1, \sigma_2$ is different from that containing $\sigma_3, \sigma_4$, then the two actions refine two indistinguishability clases, something that cannot be replicated by a single application.
 \end{proof}
+\end{textonuevo}
 
-This dynamic modality preserves the previous knowledge of an agent, 
-and it also can generate new knowledge, as shown above.
+This dynamic modality preserves the \emph{propositional} knowledge of an agent, and it also can generate new knowledge, as shown above.
 
 \medskip
 
 \begin{proposition}\label{prop:ref-preserves-gains}
-Let $\varphi,\psi$ be propositional formulas and $\plan_1,\plan_2\in\ACT^*$ such that $\plan_1\neq\plan_2$. Then,
+Let $\varphi,\psi$ be propositional formulas; take $\plan_1,\plan_2\in\ACT^*$ with $\plan_1\neq\plan_2$.
 \begin{enumerate}
 \item\label{itm:preservesknowledge} $\models \khi(\varphi,\psi) \ra \refbox{\plan_1}{\plan_2}\khi(\varphi,\psi)$.
 \item\label{itm:gainsknowledge} If $\varphi$ and $\psi$ are satisfiable, then $\neg\khi(\varphi,\psi) \wedge \refdiam{\plan_1}{\plan_2}\khi(\varphi,\psi)$ is satisfiable.
@@ -217,7 +225,9 @@ However, $\modults \models \refdiam{\plan_1}{\plan_2}\khi(\varphi,\psi)$ as $\sp
 \end{proof}
 % \bigfer{In the previous proposition, the standard problem in these cases is that $\truthset{\modults}{\varphi}$ and $\truthset{\modults^{\Unc}_{\Unc'}}{\varphi}$ might be different (because the model changes). Asking for $\varphi$ and $\psi$ to be propositional guarantees that $\truthset{\modults}{\varphi}$ and $\truthset{\modults^{\Unc}_{\Unc'}}{\varphi}$ coincide (as valuations do not change). But arguing whether that holds for arbitrary $\varphi$ (if that is indeed the case) might require more care.}
 
-% However, properties as \Cref{itm:preservesknowledge} are not true for arbitrary formulas.
+\begin{textonuevo}
+However, \Cref{itm:preservesknowledge} in \Cref{prop:ref-preserves-gains} fails for arbitrary formulas.
+
 \medskip
 
 \begin{example}
@@ -319,6 +329,7 @@ whereas $\modults',w' \models \refdiam{a}{b}\khi(p,q)$, since there is $\Unc''(i
 % The respective sets of sets of plans are $\Unc(i)=\set{\set{a}}$ and $\Unc'(I)=\set{\set{a,b}}$.
 % It is clear that $\modults,w\bisim\modults',w'$, but $\modults,w \not\models \refdiam{a}{b}\khi(p,p)$ whereas $\modults',w' \models \refdiam{a}{b}\khi(p,p)$.
 \end{proof}
+\end{textonuevo}
 
 We conclude by showing that \emph{uniform substitution}, a key form of syntactic transformation, fails in $\Reflogic$. Uniform substitution establishes that given a valid formula $\varphi$, we can uniformly replace any propositional symbol appearing in $\varphi$ by an arbitrary formula, and obtain a valid formula.
 
