@@ -98,9 +98,10 @@ available. \Crefitem{itm:learnboth} shows how the agent might be able
 to learn not only how to make a formula true under a given condition,
 but, at the same time, how to make the same formula false under the same condition.
 
+\begin{textonuevo}
 
-Let us go back to discussing the properties of $\AReflogic$, and their impact in obtaining complete axiomatizations.  $\arefdiam$ is normal and serial modality, that satisfies natural properties 
-of Monotonicity and Weakening, but does not validate Positive nor Negative Introspection. 
+Let us go back to discussing the properties of $\AReflogic$, and their impact in obtaining complete axiomatizations. $\arefdiam$ is normal and serial modality satisfying natural properties 
+of Monotonicity and Weakening. Moreover, it is a non-idempotent action. 
 
 %but fails for dynamic versions of axioms 4 and 5 (usually known as \emph{positive} and \emph{negative introspection}). 
 
@@ -139,8 +140,11 @@ It follows from the semantics (\Cref{def:sem:aref}) that:
 %\begin{enumerate}
 \item $\models \arefdiam \varphi \ra \arefdiam (\varphi \vee \psi)$ and $\models \arefbox \varphi \ra \arefbox (\varphi \vee \psi)$ (Monotonicity).
 \item $\models \arefdiam (\varphi \wedge \psi) \ra \arefdiam \varphi$ and $\models \arefbox (\varphi \wedge \psi) \ra \arefbox \varphi$ (Weakening).
-\item $\not\models \arefbox \varphi \ra \arefbox\arefbox \varphi$ (Positive Introspection). % (Positive Introspection).
-\item $\not\models \neg\arefbox \varphi \ra \arefbox\neg\arefbox \varphi$ (Negative Introspection). % (Negative Introspection).
+
+%\item $\not\models \arefbox \varphi \ra \arefbox\arefbox \varphi$ (Positive Introspection). % (Positive Introspection).
+%\item $\not\models \neg\arefbox \varphi \ra \arefbox\neg\arefbox \varphi$ (Negative Introspection). % (Negative Introspection).
+
+\item\label{itm:idemparef} $\not\models \arefbox\arefbox\varphi \leftrightarrow \arefbox\varphi$.
 \end{enumerate}
 \end{proposition}
 
@@ -160,23 +164,25 @@ It follows from the semantics (\Cref{def:sem:aref}) that:
 % Thus, $\modults,w \models \arefdiam\varphi$.
 % \end{enumerate}
 Items 1 to 3 follow as properties inherited from $\refdiam{\plan_1}{\plan_2}$. 
-It is also easy to see that Monotonicity and Weakening hold. For Item 6,  consider the model $\modults = \tup{\W,\R,\Unc,\V}$ depicted below, with  $\Unc(i):=\set{\set{a,b,c}}$.
-\begin{center}
-\begin{tikzpicture}[->, grow' = right, level/.style={sibling distance = 3em/#1}, level distance = 3.5em]
-\node[state] at (0,2) (p) [label=left:$w$]{$p$};
-\node[state] at (2,2) (q) {$q$};
-\draw[] (p) node at (1,2) [above] {$a$} -- (q);
-
-\node[state] at (0,1) (r) {$r$};
-\node[state] at (2,1) (s) {$s$};
-\draw[] (r) node at (1,1) [above] {$b$} -- (s);
-\end{tikzpicture}
-\end{center}
-
-One can check that $\modults,w\models\arefbox\neg(\kh(p,q) \wedge \kh(r,s))$. On the other hand, $\modults,w\models\refdiam{a}{b}\refdiam{b}{c} (\kh(p,q) \wedge \kh(r,s))$. Hence, $\modults,w\models\arefdiam\arefdiam(\kh(p,q) \wedge \kh(r,s))$.
-
-For Item 7, notice that $\modults,w \models \neg\arefbox \kh(p,q)$ but $\modults,w \models \neg\arefbox\neg\arefbox \kh(p,q)$, since $\modults,w \models \refdiam{a}{b}\arefbox \kh(p,q)$.
+It is also easy to see that Monotonicity and Weakening hold. For \Cref{itm:idemparef}, simply note that a second application might split a further set.%For Item 6,  consider the model $\modults = \tup{\W,\R,\Unc,\V}$ depicted below, with  $\Unc(i):=\set{\set{a,b,c}}$.
+%\begin{center}
+%\begin{tikzpicture}[->, grow' = right, level/.style={sibling distance = 3em/#1}, level distance = 3.5em]
+%\node[state] at (0,2) (p) [label=left:$w$]{$p$};
+%\node[state] at (2,2) (q) {$q$};
+%\draw[] (p) node at (1,2) [above] {$a$} -- (q);
+%
+%\node[state] at (0,1) (r) {$r$};
+%\node[state] at (2,1) (s) {$s$};
+%\draw[] (r) node at (1,1) [above] {$b$} -- (s);
+%\end{tikzpicture}
+%\end{center}
+%
+%One can check that $\modults,w\models\arefbox\neg(\kh(p,q) \wedge \kh(r,s))$. On the other hand, $\modults,w\models\refdiam{a}{b}\refdiam{b}{c} (\kh(p,q) \wedge \kh(r,s))$. Hence, $\modults,w\models\arefdiam\arefdiam(\kh(p,q) \wedge \kh(r,s))$.
+%
+%For Item 7, notice that $\modults,w \models \neg\arefbox \kh(p,q)$ but $\modults,w \models \neg\arefbox\neg\arefbox \kh(p,q)$, since $\modults,w \models \refdiam{a}{b}\arefbox \kh(p,q)$.
 \end{proof}
+
+\end{textonuevo}
 
 Knowing how information on propositional formulas is preserved under $\arefbox$, while new knowledge can still be obtained by a $\arefdiam$ update.
 \medskip
