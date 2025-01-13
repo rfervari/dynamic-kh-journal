@@ -18,7 +18,9 @@ Thus, $\modults_\chi$ is obtained by taking $\truthset{\modults}{\chi}$ as the n
 
 \smallskip
 
+\begin{textonuevo}
 A couple of remarks might be useful here. First recall that, in the \emph{knowing how} setting, states other than the evaluation point do not represent epistemic possibilities (as they do in EL), but rather situations reachable by actions. Thus, in the \emph{knowing how} setting, the elimination of some states indicates not that they are no longer \emph{possible}, but rather that they are no longer \emph{reachable}. Moreover: in the original \emph{knowing how} setting, the relations define the agents' abilities. Hence, under that semantics, removing states corresponds to both an ontic and an epistemic change: the effect of available actions changes, and hence so do the agents' abilities~\cite{Wang2016}. However, in the \ults-based semantics, relations provide only ontic information; thus, removing states produces an \emph{ontic} change that might affect, indirectly, the agents' abilities.
+\end{textonuevo}
 
 \smallskip
 
@@ -62,9 +64,11 @@ However, $\modults,w\models[p]\khi(p,q)$ whereas
 $\modults',w'\not\models[p]\khi(p,q)$.
 \end{proof}
 
+\begin{textonuevo}
 A consequence of~\Cref{prop:pal-exp} is that the modality for \PAL-like updates, $[\chi]$, is not reducible to the underlying language $\KHilogic$. This makes sense: while $\KHilogic$ can express the agents' abilities to achieve certain goals from given situations (the modality $\khi$), it cannot talk about more specific properties of the courses of action on which the abilities rely. This is in contrast with what happens when these modalities are added to standard epistemic logic, where reduction axioms can be defined (see, e.g.,~\cite{DELbook}).
 
 In such situations, the axiomatisation can be approached in different ways. The `extend the basic language' method has already been explored in \cite{Wang2016}. Here, the strategy is to look for a variation of the operation, and then to restrict the setting to a particular class of models.
+\end{textonuevo}
 
 \medskip
 
@@ -72,7 +76,7 @@ In such situations, the axiomatisation can be approached in different ways. The 
 Let $\modults = \tup{\W, \R, \Unc, \V}$ be an \ults, and let $\chi$ be a formula. The $\ults$ $\annmodelchi = \tup{\annsemantics{\W}{\chi}, \annsemantics{\R}{\chi}, \annsemantics{\Unc}{\chi}, \annsemantics{\V}{\chi}}$ is given by:
 \begin{itemize}
 \item $\annsemantics{\W}{\chi} = \truthset{\modults}{\chi}$,
-\item $(\annsemantics{\R}{\chi})_a = \setof{(w,v) \in \R_a}{w \in \truthset{\modults}{\chi} \text{, } \R_a(w) \subseteq \truthset{\modults}{\chi}}$ for every $a \in \ACT$,
+\item $(\annsemantics{\R}{\chi})_a = \setof{(w,v) \in \R_a}{w \in \truthset{\modults}{\chi} \text{ and } \R_a(w) \subseteq \truthset{\modults}{\chi}}$ for every $a \in \ACT$,
 \item $\annsemantics{\Unc}{\chi} = \Unc$, and 
 \item $\annsemantics{\V}{\chi}(w) = \V(w)$ (for all $w\in\annsemantics{\W}{\chi}$).
 \end{itemize}
@@ -83,8 +87,9 @@ The language $\PAKHilogic$ extends $\KHilogic$ with formulas of the form $\gann{
 \]
 \end{definition}
 
-
+\begin{textonuevo}
 Thus, given a model $\modults$, the only difference between the standard $\modults_{\chi}$ and the just defined $\annmodelchi$ is in their relations' definition. Indeed, in the former, each $(\R_\chi)_a$ restricts the original $\R_a$ to the new domain. However, in the latter, each $(\annsemantics{\R}{\chi})_a$ defined pointwise: it is exactly as $\R_a(w)$ if all the states $\R_a(w)$ can reach will survive the operation ($\R_a(w) \subseteq \truthset{\modults}{\chi}$ implies $(\annsemantics{\R}{\chi})_a(w) = \R_a(w)$), and is empty otherwise ($\R_a(w) \not \subseteq \truthset{\modults}{\chi}$ implies $(\annsemantics{\R}{\chi})_a(w) = \emptyset$).
+\end{textonuevo}
 
 \medskip
 
@@ -146,9 +151,11 @@ Both models are $\KHilogic$-bisimilar (\Cref{def:bisim-khi}); hence, they satisf
 	% \end{nscenter}
 \end{proof}
 
+\begin{textonuevo}
 In models $\modults$ and $\modults'$ from the above proposition, it is useful to notice the following. First, they both make the formula $\khi(p,q)$ true, their respective witnesses being $\set{ab}$ and $\set{a}$. But, as discussed, after eliminating worlds in which $r$ is false this is no longer the case: the formula fails in $\annmodel{r}$ but holds in $\annmodel{r}'$. Part of the reason is that, while the witness for the first contains a two-step plan, the witness for the second contains only one-step plans (i.e., actions). This makes a difference because, by removing intermediate steps, $\PAKHilogic$ can tell these two models apart. 
 
 But, as mentioned before, the semantic interpretation for $\khi$ is `blind' to certain aspects of its witness. In fact, as the completeness proof shows~\cite{AFSVQ21}, it cannot distinguish between an arbitrary \ults and one in which, for every agent $i$, every plan in $\Unc(i)$ is a singleton containing only one action (i.e., a model in which $\plans \in \Unc(i)$ implies $\plans = \set{a}$ for some $a \in \ACT$). This suggests that, by restricting the class of models, one can still get agents with `the same abilities' while also stopping $\PAKHilogic$ from being able to tell $\KHilogic$-bisimilar models apart.
+\end{textonuevo}
 
 \medskip 
 
