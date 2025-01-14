@@ -201,7 +201,7 @@ Agent $i$, an experienced chef, is aware that this is the way to get a good cake
 \medskip
 
 The diagram shows, on the right, the set of indistinguishable plans in $\Unc(i)$ and in~$\Unc(j)$. %, containing two sets: $\plans_1=\set{ew}$ and   $\plans_2=\set{we,eew}$.
-Notice that agent $i$ knows how to get a good cake, provided she has all the ingredients (i.e., $\modults\models\khi(h,g)$). This is because agent $i$ \emph{distinguishes} $\mathit{ebfmsp}$ as the ``good plan''. On the other hand, as $j$ considers that adding milk and adding flour can be done in any order (i.e., $\mathit{ebfmsp}$ and $\mathit{ebmfsp}$ are indistinguishable), and we have $\modults\not\models\kh_j(h,g)$.
+Agent $i$ knows how to bake a good cake, provided she has all the ingredients (i.e., $\modults\models\khi(h,g)$). This is because agent $i$ \emph{distinguishes} $\mathit{ebfmsp}$ as the ``good plan''. On the other hand, $j$ considers that adding milk and adding flour can be done in any order (i.e., $\mathit{ebfmsp}$ and $\mathit{ebmfsp}$ are indistinguishable), leading to $\modults\not\models\kh_j(h,g)$.
 \end{example}
 
 \medskip 
@@ -228,7 +228,7 @@ Now we are in a position to introduce the notion of bisimulation for $\KHilogic$
 \medskip 
 
 \begin{definition}[$\KHilogic$-bisimulation]\label{def:bisim-khi}
-Let $\modults = \tup{\W,\R,\Unc,\V}$ and $\modults' = \tup{\W',\R',\set{\Unc'(i)}_{i\in\AGT},\V'}$ be $\ultss$.
+Let $\modults = \tup{\W,\R,\Unc,\V}$ and $\modults' = \tup{\W',\R',\Unc',\V'}$ be $\ultss$.
 %Take $Z \subseteq \W \times \W'$, $u \in \W$, $U \subseteq \W$, $u' \in \W'$, and $U' \subseteq \W'$.
 %\begin{itemize}\itemsep 0cm
 %  \item Let %$Z(u)$, $Z(U) \subseteq \W'$ as

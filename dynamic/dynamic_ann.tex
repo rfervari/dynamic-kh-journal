@@ -16,13 +16,7 @@ with the $\ults$ $\modults_\chi=\tup{\W_\chi,\R_\chi,\Unc_\chi,\V_\chi}$ given b
 
 Thus, $\modults_\chi$ is obtained by taking $\truthset{\modults}{\chi}$ as the new domain, then restricting relations and valuation accordingly (the indistinguishability classes $U(i)$ are left unchanged). 
 
-\smallskip
-
-\begin{textonuevo}
-A couple of remarks might be useful here. First recall that, in the \emph{knowing how} setting, states other than the evaluation point do not represent epistemic possibilities (as they do in EL), but rather situations reachable by actions. Thus, in the \emph{knowing how} setting, the elimination of some states indicates not that they are no longer \emph{possible}, but rather that they are no longer \emph{reachable}. Moreover: in the original \emph{knowing how} setting, the relations define the agents' abilities. Hence, under that semantics, removing states corresponds to both an ontic and an epistemic change: the effect of available actions changes, and hence so do the agents' abilities~\cite{Wang2016}. However, in the \ults-based semantics, relations provide only ontic information; thus, removing states produces an \emph{ontic} change that might affect, indirectly, the agents' abilities.
-\end{textonuevo}
-
-\smallskip
+A couple of remarks might be useful here. First recall that, in the \emph{knowing how} setting, states other than the evaluation point do not represent epistemic possibilities (as they do in EL), but rather situations reachable by actions. Thus, in the \emph{knowing how} setting, the elimination of some states indicates not that they are no longer \emph{possible}, but rather that they are no longer \emph{reachable}. Moreover, in the original \emph{knowing how} setting, the relations define the agents' abilities. Hence, under that semantics, removing states corresponds to both an ontic and an epistemic change: the effect of available actions changes, and hence so do the agents' abilities~\cite{Wang2016}. However, in the \ults-based semantics, relations provide only ontic information; thus, removing states produces an \emph{ontic} change that might affect, indirectly, the agents' abilities.
 
 In the $\ults$ setting, it can be shown that the update operator adds expressivity to $\KHilogic$ (a similar result was established in~\cite{Wang2016} for the original $\lts$ setting).
 
@@ -64,11 +58,9 @@ However, $\modults,w\models[p]\khi(p,q)$ whereas
 $\modults',w'\not\models[p]\khi(p,q)$.
 \end{proof}
 
-\begin{textonuevo}
 A consequence of~\Cref{prop:pal-exp} is that the modality for \PAL-like updates, $[\chi]$, is not reducible to the underlying language $\KHilogic$. This makes sense: while $\KHilogic$ can express the agents' abilities to achieve certain goals from given situations (the modality $\khi$), it cannot talk about more specific properties of the courses of action on which the abilities rely. This is in contrast with what happens when these modalities are added to standard epistemic logic, where reduction axioms can be defined (see, e.g.,~\cite{DELbook}).
 
-In such situations, the axiomatisation can be approached in different ways. The `extend the basic language' method has already been explored in \cite{Wang2016}. Here, the strategy is to look for a variation of the operation, and then to restrict the setting to a particular class of models.
-\end{textonuevo}
+In such situations, the axiomatization can be approached in different ways. The `extend the basic language' method has already been explored in \cite{Wang2016}. Here, the strategy is to look for a variation of the operation, and then to restrict the setting to a particular class of models.
 
 \medskip
 
@@ -87,11 +79,8 @@ The language $\PAKHilogic$ extends $\KHilogic$ with formulas of the form $\gann{
 \]
 \end{definition}
 
-\begin{textonuevo}
-Thus, given a model $\modults$, the only difference between the standard $\modults_{\chi}$ and the just defined $\annmodelchi$ is in their relations' definition. Indeed, in the former, each $(\R_\chi)_a$ restricts the original $\R_a$ to the new domain. However, in the latter, each $(\annsemantics{\R}{\chi})_a$ defined pointwise: it is exactly as $\R_a(w)$ if all the states $\R_a(w)$ can reach will survive the operation ($\R_a(w) \subseteq \truthset{\modults}{\chi}$ implies $(\annsemantics{\R}{\chi})_a(w) = \R_a(w)$), and is empty otherwise ($\R_a(w) \not \subseteq \truthset{\modults}{\chi}$ implies $(\annsemantics{\R}{\chi})_a(w) = \emptyset$).
-\end{textonuevo}
-
-\medskip
+Thus, given a model $\modults$, the only difference between the standard $\modults_{\chi}$ and the just defined $\annmodelchi$ is in the definition of 
+its relations. Indeed, in the former, each $(\R_\chi)_a$ restricts the original $\R_a$ to the new domain. In the latter, however, each $(\annsemantics{\R}{\chi})_a$ is defined point-wise: it is exactly as $\R_a(w)$ if all the states $\R_a(w)$ can reach will survive the operation ($\R_a(w) \subseteq \truthset{\modults}{\chi}$ implies $(\annsemantics{\R}{\chi})_a(w) = \R_a(w)$), and is empty otherwise ($\R_a(w) \not \subseteq \truthset{\modults}{\chi}$ implies $(\annsemantics{\R}{\chi})_a(w) = \emptyset$).
 
 %\footnote{The two forms of model update discussed here resemble to the two forms of updating neighbourhood models, see~\cite{MaS18} for details.}
 %Recall that a neighbourhood model~\cite{pacuit17} is given by: a non-empty domain $\W$, an atomic valuation, and a neighbourhood function $\N:\W \to 2^{2^{\W}}$, assigning a set of sets of states to each possible state. Let $U \subseteq \W$ be a non-empty set of states. On the one hand, the \emph{$U$-intersection} submodel defined in~\cite{MaS18} has $U$ as its domain, with its neighbourhood function built by restricting each set in a neighbourhood to the new domain, analogous to what $\modults_{\chi}$ (a standard announcement) does.
@@ -151,11 +140,9 @@ Both models are $\KHilogic$-bisimilar (\Cref{def:bisim-khi}); hence, they satisf
 	% \end{nscenter}
 \end{proof}
 
-\begin{textonuevo}
 In models $\modults$ and $\modults'$ from the above proposition, it is useful to notice the following. First, they both make the formula $\khi(p,q)$ true, their respective witnesses being $\set{ab}$ and $\set{a}$. But, as discussed, after eliminating worlds in which $r$ is false this is no longer the case: the formula fails in $\annmodel{r}$ but holds in $\annmodel{r}'$. Part of the reason is that, while the witness for the first contains a two-step plan, the witness for the second contains only one-step plans (i.e., actions). This makes a difference because, by removing intermediate steps, $\PAKHilogic$ can tell these two models apart. 
 
 But, as mentioned before, the semantic interpretation for $\khi$ is `blind' to certain aspects of its witness. In fact, as the completeness proof shows~\cite{AFSVQ21}, it cannot distinguish between an arbitrary \ults and one in which, for every agent $i$, every plan in $\Unc(i)$ is a singleton containing only one action (i.e., a model in which $\plans \in \Unc(i)$ implies $\plans = \set{a}$ for some $a \in \ACT$). This suggests that, by restricting the class of models, one can still get agents with `the same abilities' while also stopping $\PAKHilogic$ from being able to tell $\KHilogic$-bisimilar models apart.
-\end{textonuevo}
 
 \medskip 
 
