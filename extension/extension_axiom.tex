@@ -2,6 +2,11 @@
 
 \Cref{tab:khimlaxiom} provides an axiom system for $\KHiMLlogic$, which is an extension of the axioms in~\Cref{tab:khiaxiom} with the addition of the axioms \axm{Dist$\square$} and \axm{A$\square$}.
 A necesitation rule for $\square$ is derivable using \axm{NecA}, \axm{A$\square$} and \axm{MP}.
+These axioms and rules are sound over arbitrary \ultss.
+To prove completeness we introduce some standard definitions for the construction of the canonical model, similar to what is done in~\cite{AFSVQ21,AFSVQ23report}.
+
+\medskip
+
 % Finally, there is a property, \axm{KhE} ($\vdash \left(\E\psi \land \khi(\psi,\varphi)\right) \rightarrow \E\varphi$) by using \axm{KhA}. This will be useful for the completeness proof.
 
 % \begin{lemma}
@@ -74,13 +79,9 @@ A necesitation rule for $\square$ is derivable using \axm{NecA}, \axm{A$\square$
 \caption{Axiomatization $\axset_{\khi,\square}$ for $\KHiMLlogic$ w.r.t.\ $\ultss$.}\label{tab:khimlaxiom}
 \end{table}
 
-These axioms and rules are sound over arbitrary \ultss.
-To prove completeness we introduce some standard definitions for the construction of the canonical model, similar to what is done in~\cite{AFSVQ21,AFSVQ23report}.
-
-\medskip
 
 \begin{definition}\label{def:notation-completeness}
-Let $\Gamma\cup\set{\varphi}$ be a set of $\KHiMLlogic$-formulas. The notions of deduction ($\Gamma \vdash \varphi$) and that of theoremhood ($\vdash \varphi$) 
+Let $\Gamma\cup\set{\varphi}$ be a set of $\KHiMLlogic$-formulas. The notions of deduction ($\Gamma \vdash \varphi$) and theoremhood ($\vdash \varphi$) 
 %(where ) or there are $\varphi_1,...,\varphi_n \in \Gamma$ s.t. $\vdash (\varphi_1 \wedge ... \wedge \varphi_n) \ra \varphi$.
 are defined as usual. 
 A set $\Gamma$ is $\KHiMLlogic$-consistent if $\Gamma \not \vdash \bot$, and 
@@ -93,15 +94,28 @@ $\Gamma$ is a maximally $\KHiMLlogic$-consistent set (MCS) if $\Gamma$ is $\KHiM
 Let $\smcs$ be the set of all MCSs in $\KHiMLlogic$.
 For any $\Delta \in \smcs$, define:
 \[
-\begin{array}{l@{\;:=\;}l@{\quad\quad}l@{\;:=\;}l}
-\resta{\Delta}  & \setof{\chi \in \Delta}{\chi = \A\psi} &
-\restna{\Delta} & \setof{\chi \in \Delta}{\chi = \lnot \A\psi} \\
-\restkhi{\Delta}  & \setof{\chi \in \Delta}{\chi = \khi(\psi,\varphi)} &
-\restnkhi{\Delta} & \setof{\chi \in \Delta}{\chi = \lnot \khi(\psi,\varphi)} \\
-\restkh{\Delta}   & \bigcup_{i \in \AGT} \restkhi{\Delta} &
-\restnkh{\Delta}  & \bigcup_{i \in \AGT} \restnkhi{\Delta}. \\
+\begin{array}{r@{:=}lr@{:=}lr@{:=}l}
+	\resta{\Delta}    & \setof{\chi \in \Delta}{\chi = \A\psi} &
+	\restkhi{\Delta}  & \setof{\chi \in \Delta}{\chi = \khi(\psi,\varphi)} &
+	\restkh{\Delta}   & \bigcup_{i \in \AGT} \restkhi{\Delta} \\
+%
+	\restna{\Delta}   & \setof{\chi \in \Delta}{\chi = \lnot \A\psi} &
+    \restnkhi{\Delta} & \setof{\chi \in \Delta}{\chi = \lnot \khi(\psi,\varphi)} &
+	\restnkh{\Delta}  & \bigcup_{i \in \AGT} \restnkhi{\Delta}.
 \end{array}
 \]
+%
+%
+%\[
+%\begin{array}{l@{\;:=\;}l@{\quad\quad}l@{\;:=\;}l}
+%\resta{\Delta}  & \setof{\chi \in \Delta}{\chi = \A\psi} &
+%\restna{\Delta} & \setof{\chi \in \Delta}{\chi = \lnot \A\psi} \\
+%\restkhi{\Delta}  & \setof{\chi \in \Delta}{\chi = \khi(\psi,\varphi)} &
+%\restnkhi{\Delta} & \setof{\chi \in \Delta}{\chi = \lnot \khi(\psi,\varphi)} \\
+%\restkh{\Delta}   & \bigcup_{i \in \AGT} \restkhi{\Delta} &
+%\restnkh{\Delta}  & \bigcup_{i \in \AGT} \restnkhi{\Delta}. \\
+%\end{array}
+%\]
 
 Let $\Gamma$ be a set in $\smcs$.
 Define $\ACT^\Gamma_i := \setof{\tup{\psi,\varphi}}{\khi(\psi,\varphi) \in \Gamma}$ for every agent $i \in \AGT$, and $\ACT^\Gamma := \bigcup_{i \in \AGT} \ACT^\Gamma_i\cup \ACT$.

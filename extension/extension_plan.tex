@@ -133,24 +133,21 @@ Let $\modults = \tup{\W, \R, \Unc, \V}$ be an \ults, then we prove below the two
 
 $\Rightarrow):$ Assume $\modults \models \srefbox{\plan} \khi(\varphi_1,\varphi_2)$, i.e.,  $\modults^\plan \models \khi(\varphi_1,\varphi_2)$ iff there is $\plans' \in \Unc'(i)$ s.t. $\truthset{\modults^\plan}{\varphi_1} \subseteq \stexec^{\modults^\plan}(\plans')$ and $\R_{\plans'}(\truthset{\modults^\plan}{\varphi_1}) \subseteq \truthset{\modults^\plan}{\varphi_2}$.
 Using $\truthset{\modults^\plan}{\psi} = \truthset{\modults}{\srefbox{\plan} \psi}$ and $\stexec^{\modults^\plan}(\plans') = \stexec^\modults(\plans')$ (since the relations remain unchanged), this is equivalent to say that there is $\plans' \in \Unc'(i)$ s.t. $\truthset{\modults}{\srefbox{\plan} \varphi_1} \subseteq \stexec^\modults(\plans')$ and $\R_{\plans'}(\truthset{\modults}{\srefbox{\plan} \varphi_1}) \subseteq \truthset{\modults}{\srefbox{\plan} \varphi_2}$. We need to consider two cases:
-\begin{itemize}
-\item If $\plans' \neq \set{\plan}$, then $\plans \in \Unc(i)$ and we get $\modults \models \khi(\srefbox{\plan}\varphi_1,\srefbox{\plan}\varphi_2)$.
-\item If $\plans' = \set{\plan}$, then $\truthset{\modults}{\srefbox{\plan}\varphi_1} \subseteq \stexec^\modults(\plan)$ and $\R_\plan(\truthset{\modults}{\srefbox{\plan}\varphi_1}) \subseteq \truthset{\modults}{\srefbox{\plan}\varphi_2}$.
+If $\plans' \neq \set{\plan}$, then $\plans \in \Unc(i)$ and we get $\modults \models \khi(\srefbox{\plan}\varphi_1,\srefbox{\plan}\varphi_2)$.
+If $\plans' = \set{\plan}$, then $\truthset{\modults}{\srefbox{\plan}\varphi_1} \subseteq \stexec^\modults(\plan)$ and $\R_\plan(\truthset{\modults}{\srefbox{\plan}\varphi_1}) \subseteq \truthset{\modults}{\srefbox{\plan}\varphi_2}$.
 From the first part, using the definition of SE, we can derive that for all $w \in \truthset{\modults}{\srefbox{\plan}\varphi_1}$, $k \in \intint{0}{\card{\plan}-1}$ we have $\modults,w \models \mlbox{\plan_l}\mldiam{\plan[l+1]}\top$.
 From the second one, we can reach that for all $w \in \truthset{\modults}{\srefbox{\plan}\varphi_1}$, $\modults,w \models \mlbox{\plan} \srefbox{\plan}\varphi_2$.
 Thus, for all $w \in \W$, $\modults,w \models \srefbox{\plan} \varphi_1 \ra P(\plan,\srefbox{\plan}\varphi_2)$.
-\end{itemize}
 
 $\Leftarrow):$ Conversely, suppose $\modults \models \khi(\srefbox{\plan} \varphi_1,\srefbox{\plan} \varphi_2) \vee \A(\srefbox{\plan} \varphi_1 \ra P(\plan,\srefbox{\plan}\varphi_2))$, then the disjunction is satified by either one of the following situations:
-\begin{itemize}
-\item  $\modults \models \khi(\srefbox{\plan} \varphi_1,\srefbox{\plan} \varphi_2)$: Let $\plans \in \Unc(i)$ be s.t. $\truthset{\modults}{\srefbox{\plan}\varphi_1} \subseteq \stexec^\modults(\plans)$ and $\R_\plans(\truthset{\modults}{\srefbox{\plan}\varphi_1}) \subseteq \truthset{\modults}{\srefbox{\plan}\varphi_2}$.
+
+  $\modults \models \khi(\srefbox{\plan} \varphi_1,\srefbox{\plan} \varphi_2)$: Let $\plans \in \Unc(i)$ be s.t. $\truthset{\modults}{\srefbox{\plan}\varphi_1} \subseteq \stexec^\modults(\plans)$ and $\R_\plans(\truthset{\modults}{\srefbox{\plan}\varphi_1}) \subseteq \truthset{\modults}{\srefbox{\plan}\varphi_2}$.
 As we already stated, this is equivalent to say that $\truthset{\modults^\plan}{\varphi_1} \subseteq \stexec^{\modults^\plan}(\plans)$ and $\R_\plans(\truthset{\modults^\plan}{\varphi_1}) \subseteq \truthset{\modults^\plan}{\varphi_2}$.
 If $\plan \notin \plans$, then $\plans \in \Unc'(i)$.
 If $\plan \in \plans$, then $\set{\plan} \in \Unc'(i)$, $\stexec^{\modults^\plan}(\plans) \subseteq \stexec^{\modults^\plan}(\set{\plan})$ and $\R_{\set{\plan}}(\truthset{\modults^\plan}{\varphi_1}) \subseteq \R_\plans(\truthset{\modults^\plan}{\varphi_1})$. In any case, we get $\modults \models \srefbox{\plan}\khi(\varphi_1,\varphi_2)$.
 
-\item $\modults \models \A(\srefbox{\plan} \varphi_1 \ra P(\plan,\srefbox{\plan}\varphi_2))$: Notice that $\plan$ meets the strong executability and reachability conditions.
-The only thing left to prove is that $\set{\plan} \in \Unc'(i)$. But that is direct since wheter $\plan \in \plans$ for some $\plans \in \Unc(i)$ or not, in the end $\set{\plan} \in \Unc'(i)$. Hence $\modults \models \srefbox{\plan}\khi(\varphi_1,\varphi_2)$.
-\end{itemize}
+$\modults \models \A(\srefbox{\plan} \varphi_1 \ra P(\plan,\srefbox{\plan}\varphi_2))$: Notice that $\plan$ meets the strong executability and reachability conditions.
+The only thing left to prove is that $\set{\plan} \in \Unc'(i)$. But that is direct since whether $\plan \in \plans$ for some $\plans \in \Unc(i)$ or not, in the end $\set{\plan} \in \Unc'(i)$. Hence $\modults \models \srefbox{\plan}\khi(\varphi_1,\varphi_2)$.
 \end{proof}
 
 Thus, by again putting all the pieces together (\Cref{pro:srefaxioms} and \Cref{th:cm-ults-khikt-completeness}), we get:
