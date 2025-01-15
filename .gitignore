@@ -1,4 +1,5 @@
 
+main.pdf
 main.aux
 main.bbl
 main.blg
@@ -6,3 +7,4 @@ main.log
 main.out
 main.synctex.gz
 main.toc
+*.log
