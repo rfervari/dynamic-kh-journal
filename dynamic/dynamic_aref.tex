@@ -1,36 +1,27 @@
-The operation $\refdiam{\plan_1}{\plan_2}$ can be seen as a particular form of (publicly) removing uncertainty: one indicates precisely the plans that can be distinguished now, and then quantifies over the different ways of doing so. The operation defined below is a more abstract one: in the spirit of other proposals that quantify over epistemic actions (e.g., the arbitrary announcements of \cite{BalbianiBDHHL08}, the arbitrary arrow updates of \cite{DitmarschHKK17}, the group announcements of \cite{GroupAJ}, the coalition announcements of \cite{AgotnesD08} and the arbitrary radical upgrades of \cite{FI24}), it quantifies over all the different ways in which the agent's indistinguishability can be refined. We will show later how this operator can be used to define a notion of ``learnability'', in the context of knowing how.
+The operation $\refdiam{\plan_1}{\plan_2}$ can be seen as a particular form of (publicly) removing uncertainty: one indicates precisely the plans that should be distinguished, and then quantifies over the different ways of doing so. The operation defined below is more abstract: following proposals that quantify over epistemic actions (e.g., arbitrary announcements~\cite{BalbianiBDHHL08}, arbitrary arrow updates~\cite{DitmarschHKK17}, group announcements~\cite{GroupAJ}, coalition announcements~\cite{AgotnesD08}, arbitrary radical upgrades~\cite{FI24}), it quantifies over the different ways in which the agent's indistinguishability can be refined. 
 
 \medskip
 
 \begin{definition}\label{def:sem:aref}
 Let $\modults$ be an \ults and $w\in\D{\modults}$.  % a state in $\modults$.
 Then,
-\[
-\modults,w\models\arefdiam\varphi\ \iffdef \ \text{there are } \plan_1,\plan_2 \in \ACT^* \text{ such that } 
-\modults,w \models \refdiam{\plan_1}{\plan_2}\varphi.
-\]
+\begin{spcenter}
+  $\modults,w\models\arefdiam\varphi\ \iffdef \ \text{there are } \plan_1,\plan_2 \in \ACT^* \text{ such that } \modults,w \models \refdiam{\plan_1}{\plan_2}\varphi$.
+\end{spcenter}
 As usual $\arefbox\varphi = \neg\arefdiam\neg\varphi$. We denote $\AReflogic$ (for ``arbitrary refinement'') as the extension of $\KHilogic$ with the modality $\arefdiam$.
 \end{definition}
 
 \medskip
 
-Knowing how operators are \emph{goal-directed}: the agent looks for a suitable course of action that makes her achieve a certain state. 
-In $\AReflogic$, we can define an operator that, when possible, \emph{guarantees} that the agent \emph{learns how} to achieve a goal.
-This action can be understood as a goal-directed learning how: it looks for a way to split \emph{some} existing set of plans $\plans$ in such a way that the agent knows how to achieve $\varphi$ given $\psi$.  
+Here is a first use of this modality. Knowing how operators are \emph{goal-directed}: the agent looks for a suitable course of action that makes her achieve a certain state. 
+In $\AReflogic$ we can define an operator that indicates whether it is possible for the agent to \emph{learn how} to achieve a given goal: it is enough to ask whether there is a way of spliting \emph{some} existing set of plans so that, afterwards, the agent knows how to achieve $\varphi$ given $\psi$. Let $\LHlogic$ (for ``learning how'') be $\KHilogic$ extended with the ternary modality $\lh{\psi}{\varphi}_i\chi$ defined as
+\begin{spcenter}
+$\lh{\psi}{\varphi}_i\chi := \arefdiam(\khi(\psi,\varphi) \wedge\chi)$ \qquad (for its `dual', $[\psi,\varphi]_i\chi := \neg\lh{\psi}{\varphi}_i\neg\chi$).
+\end{spcenter}
 
-
-Let $\LHlogic$ (for ``learning how'') be $\KHilogic$ extended with the dynamic modality
-\[
-\lh{\psi}{\varphi}_i\chi := \arefdiam(\khi(\psi,\varphi) \wedge\chi),
-\]
-(and its `dual' $[\psi,\varphi]_i\chi := \neg\lh{\psi}{\varphi}_i\neg\chi$).
-Moreover, we define $\learn_i(\psi,\varphi) := \lh{\psi}{\varphi}_i\top$ an abbreviation for \emph{``the agent $i$ can learn how to make $\varphi$ true in the presence of $\psi$''}.
-Notice that $\LHlogic$ is a syntactic fragment of $\AReflogic$.
-
-$\lh{\psi}{\varphi}_i\chi$ is a ternary modality expressing that agent $i$ is able to learn how to achieve $\varphi$ given $\psi$, and that after this learning operation takes place, $\chi$ holds.
+Thus, $\lh{\psi}{\varphi}_i\chi$ expresses that agent $i$ is able to learn how to achieve $\varphi$ given $\psi$, and that after this learning operation takes place, $\chi$ holds. One can further define $\learn_i(\psi,\varphi) := \lh{\psi}{\varphi}_i\top$, an abbreviation for \emph{``the agent $i$ can learn how to make $\varphi$ true in the presence of $\psi$''}. 
 %However, as we will see below, it can be seen as a unary modality similarly to public announcements or action models.
-The modality $\learn_i$ is a test of what is learnable by  agent~$i$. 
-We can list some natural properties of these new modalities:
+This modality, which can be seen as defining a notion of ``learnability'' in this \emph{knowing how} context, has the following properties.
 
 \medskip
 
