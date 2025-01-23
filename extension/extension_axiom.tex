@@ -1,9 +1,8 @@
 %\subsubsection{Axiom system}
 
-\Cref{tab:khimlaxiom} provides an axiom system for $\KHiMLlogic$, which is an extension of the axioms in~\Cref{tab:khiaxiom} with the addition of the axioms \axm{Dist$\square$} and \axm{A$\square$}.
-A necesitation rule for $\square$ is derivable using \axm{NecA}, \axm{A$\square$} and \axm{MP}.
-These axioms and rules are sound over arbitrary \ultss.
-To prove completeness we introduce some standard definitions for the construction of the canonical model, similar to what is done in~\cite{AFSVQ21,AFSVQ23report}.
+\begin{textonuevo}
+The axiom system in \Cref{tab:khimlaxiom}, extending that in~\Cref{tab:khiaxiom} with the well-known axioms \axm{Dist$\square$} and \axm{A$\square$}, is sound and complete for $\KHiMLlogic$. For soundness, the new axioms are valid. For completeness, note first how the necesitation rule for $\square$ is derivable using \axm{NecA}, \axm{A$\square$} and \axm{MP}. Moreover, no additional `interaction' axioms are needed: the \emph{knowing how} modality does not make explicit the plan that serves as a witness. Then, the witnesses for formulas of the form $\khi(\psi,\varphi)$ and $\mldiam{a}\varphi$ can be kept independent from each other. This is used in completeness proof below (in particular, in the construction of the canonical model), similar otherwise to that in~\cite{AFSVQ21,AFSVQ23report} for $\KHilogic$.
+\end{textonuevo}
 
 \medskip
 
@@ -83,9 +82,8 @@ To prove completeness we introduce some standard definitions for the constructio
 \begin{definition}\label{def:notation-completeness}
 Let $\Gamma\cup\set{\varphi}$ be a set of $\KHiMLlogic$-formulas. The notions of deduction ($\Gamma \vdash \varphi$) and theoremhood ($\vdash \varphi$) 
 %(where ) or there are $\varphi_1,...,\varphi_n \in \Gamma$ s.t. $\vdash (\varphi_1 \wedge ... \wedge \varphi_n) \ra \varphi$.
-are defined as usual. 
-A set $\Gamma$ is $\KHiMLlogic$-consistent if $\Gamma \not \vdash \bot$, and 
-$\Gamma$ is a maximally $\KHiMLlogic$-consistent set (MCS) if $\Gamma$ is $\KHiMLlogic$-consistent and for every $\varphi \not\in \Gamma $, $\Gamma \cup \set{\varphi} \vdash \bot$.
+are as usual. 
+A set $\Gamma$ is $\KHiMLlogic$-consistent if $\Gamma \not \vdash \bot$, and is maximally $\KHiMLlogic$-consistent (MCS) if it is $\KHiMLlogic$-consistent and for every $\varphi \not\in \Gamma $, $\Gamma \cup \set{\varphi} \vdash \bot$.
 \end{definition}
 
 \medskip
@@ -93,17 +91,19 @@ $\Gamma$ is a maximally $\KHiMLlogic$-consistent set (MCS) if $\Gamma$ is $\KHiM
 \begin{definition}
 Let $\smcs$ be the set of all MCSs in $\KHiMLlogic$.
 For any $\Delta \in \smcs$, define:
-\[
-\begin{array}{r@{:=}lr@{:=}lr@{:=}l}
-	\resta{\Delta}    & \setof{\chi \in \Delta}{\chi = \A\psi} &
-	\restkhi{\Delta}  & \setof{\chi \in \Delta}{\chi = \khi(\psi,\varphi)} &
-	\restkh{\Delta}   & \bigcup_{i \in \AGT} \restkhi{\Delta} \\
+\begin{spcenter}
+\begin{small}
+$\begin{array}{@{}r@{:=}lr@{:=}lr@{:=}l@{}}
+	\resta{\Delta}    & \setof{\chi \in \Delta}{\chi = \A\psi}, &
+	\restkhi{\Delta}  & \setof{\chi \in \Delta}{\chi = \khi(\psi,\varphi)}, &
+	\restkh{\Delta}   & \bigcup_{i \in \AGT} \restkhi{\Delta}, \\
 %
-	\restna{\Delta}   & \setof{\chi \in \Delta}{\chi = \lnot \A\psi} &
-    \restnkhi{\Delta} & \setof{\chi \in \Delta}{\chi = \lnot \khi(\psi,\varphi)} &
+	\restna{\Delta}   & \setof{\chi \in \Delta}{\chi = \lnot \A\psi}, &
+    \restnkhi{\Delta} & \setof{\chi \in \Delta}{\chi = \lnot \khi(\psi,\varphi)}, &
 	\restnkh{\Delta}  & \bigcup_{i \in \AGT} \restnkhi{\Delta}.
-\end{array}
-\]
+\end{array}$
+\end{small}
+\end{spcenter}
 %
 %
 %\[
@@ -147,9 +147,7 @@ $\R^{\Gamma}_{\tup{\psi,\varphi}^i} = \setof{(\Delta_1, \Delta_2) \in (\W^\Gamma
 \end{definition}
 
 \medskip
-In this definition we exploit the fact that the knowing how modality cannot express explicitly the plan that serves as a witness.  For that reason, we can define the 
-interpretation of $\R^{\Gamma}_{\tup{\psi,\varphi}}$ independently from the one of
-$\R^{\Gamma}_a$.
+Since the $\kh$ modality does not mention explicitly the plan that serves as a witness, we can define the interpretation of $\R^{\Gamma}_{\tup{\psi,\varphi}}$ independently from that of $\R^{\Gamma}_a$.
 \medskip
 
 
@@ -198,8 +196,8 @@ Given $\Gamma \!\in\! \smcs$, take $\modults^\Gamma = \tup{\W^\Gamma, \R^\Gamma,
 $\modults^\Gamma, \Theta \models \varphi \mbox{ if and only if } \varphi \in \Theta$.
 \end{lemma}
 \begin{proof}
-The proof is by induction on $\varphi$.
-The atomic and Boolean cases behave as usual, so we focus on the $\khi$ and $[a]$ cases.
+The proof is by induction on $\varphi$. Here are the $\khi$ and $[a]$ cases.
+%The atomic and Boolean cases behave as usual, so we focus on the $\khi$ and $[a]$ cases.
 \medskip
 
 \noindent
@@ -266,8 +264,8 @@ In other words, there is $\tup{\psi',\varphi'} \in \ACT^\Gamma_i$ such that
 \end{enumerate}
 Now we reason as follows:
 \begin{enumerate}
-    \item Take $\Delta \in \W^\Gamma$ with $\psi \in \Delta$. Then, by IH, $\Delta \in \truthset{\modults^\Gamma}{\psi}$ and thus, by \Cref{tlm:cm-esmiv-stexec-lkhi-itm:i}, $\Delta$ has a $\R^\Gamma_{\tup{\psi',\varphi'}}$-successor.
-    Thus, every $\Delta \in \W^\Gamma$ with $\psi \in \Delta$ has such successor; then (\Cref{pro:cm-ults-khiml-succpre}) in~\Cref{pro:canonical}, it follows that $\A(\psi \ra \psi') \in \Delta$ for every $\Delta \in \W^\Gamma$.
+    \item Take $\Delta \in \W^\Gamma$ with $\psi \in \Delta$. By IH, $\Delta \in \truthset{\modults^\Gamma}{\psi}$ and thus, by \Cref{tlm:cm-esmiv-stexec-lkhi-itm:i}, $\Delta$ has a $\R^\Gamma_{\tup{\psi',\varphi'}}$-successor. 
+    Hence, every $\Delta \in \W^\Gamma$ with $\psi \in \Delta$ has such successor; then (\Cref{pro:cm-ults-khiml-succpre} in~\Cref{pro:canonical}), it follows that $\A(\psi \ra \psi') \in \Delta$ for every $\Delta \in \W^\Gamma$.
     In particular, $\A(\psi \ra \psi') \in \Theta$.
 
     \item From $\tup{\psi',\varphi'} \in \ACT^\Gamma_i$ it follows that $\khi(\psi',\varphi') \in \Gamma$.
@@ -299,12 +297,11 @@ Since $\modults^\Gamma$ is an $\ults$ (\Cref{pro:cm-ults-khiml}),  $\modults^\Ga
 \smallskip
 
 Now, assume there is $\Delta_\psi \in \W^\Gamma$ with $\psi \in \Delta_\psi$. We show that the set of plans $\set{\tup{\psi, \varphi}} \in \Unc^\Gamma(i)$ satisfies the requirements.
-
 Take $\Delta \in \truthset{\modults^\Gamma}{\psi}$. By IH, $\psi \in \Delta$.
 Moreover, from $\khi(\psi, \varphi) \in \Theta$ and \Cref{pro:cm-ults-khiml-allsame} in  in \Cref{pro:canonical} it follows that $\khi(\psi, \varphi) \in \Delta$.
 Then, from $\R^\Gamma_{\tup{\psi,\varphi}^i}$'s definition, every $\Delta' \in \W^\Gamma$ with $\varphi \in \Delta'$ is such that $(\Delta, \Delta') \in \R^\Gamma_{\tup{\psi,\varphi}^i}$, and therefore such that $(\Delta, \Delta') \in \R^\Gamma_{\tup{\psi,\varphi}}$.
 Now note how, since there is $\Delta_\psi \in \W^\Gamma$ with $\psi \in \Delta_\psi$, there should be $\Delta_\varphi \in \W^\Gamma$ with $\varphi \in \Delta_\varphi$.
-Suppose otherwise, i.e., suppose there is no $\Delta'' \in \W^\Gamma$ with $\varphi \in \Delta''$. Then, $\lnot \varphi \in \Delta''$ for every $\Delta'' \in \W^\Gamma$, and hence (\Cref{pro:cm-ults-khiml-allall}) in~\Cref{pro:canonical} $\A\lnot\varphi \in \Delta''$ for every $\Delta'' \in \W^\Gamma$.
+Suppose otherwise, i.e., suppose there is no $\Delta'' \in \W^\Gamma$ with $\varphi \in \Delta''$. Then, $\lnot \varphi \in \Delta''$ for every $\Delta'' \in \W^\Gamma$, and hence (\Cref{pro:cm-ults-khiml-allall} in~\Cref{pro:canonical}) $\A\lnot\varphi \in \Delta''$ for every $\Delta'' \in \W^\Gamma$.
 In particular, $\A\lnot\varphi \in \Delta_\psi$. Moreover, from $\khi(\psi, \varphi) \in \Theta$ and \Cref{pro:cm-ults-khiml-allsame} in \Cref{pro:canonical} it follows that $\khi(\psi, \varphi) \in \Delta_\psi$. Then, \axm{KhE} (written as $\khi(\psi, \varphi) \ra (\A\lnot \varphi \ra \A \lnot \psi)$) and \axm{MP} yield $\A\lnot\psi \in \Delta_\psi$, and thus (axiom \axm{TA}) $\lnot\psi \in \Delta_\psi$.
 Hence, $\set{\psi, \lnot\psi} \subset \Delta_\psi$, contradicting $\Delta_\psi$'s consistency.
 
