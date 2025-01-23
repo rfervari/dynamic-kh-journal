@@ -29,6 +29,10 @@
 %  {\parskip=2pt\par\nopagebreak\centering}
 %  {\par\noindent\ignorespacesafterend}
 
+\newenvironment{spcenter}
+{\begin{center}\vspace{1ex}}
+{\vspace{1ex}\end{center}}
+
 \newenvironment{ctabular}[1]
 {\begin{center}\begin{tabular}{#1}}
 {\end{tabular} \end{center}}
@@ -317,6 +321,12 @@
     font = \scriptsize,    
     label distance = -2pt
   }
+  ,
+  within/.style = {
+    fill = white,
+    inner sep = 2pt
+  }
+  ,  
 }
 
 % Complexity
