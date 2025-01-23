@@ -1,7 +1,7 @@
 \subsection{Plan refinement}
 \label{sec:planref}
 
-The main goal of defining the extended logic $\KHiMLlogic$ is to obtain enough expressivity to axiomatize some dynamic modalities. Here, we define the modality $\srefbox{\plan}$, inspired by the refinement modality from~\Cref{sec:ref}. A formula $\srefbox{\plan}\varphi$ publicly establishes that the plan $\plan$ must be distinguished from any other, and in such a context $\varphi$ holds. 
+We defined $\KHiMLlogic$ to obtain enough expressivity to axiomatize some dynamic modalities. Here, we define the modality $\srefbox{\plan}$, inspired by the refinement modality from~\Cref{sec:ref}. A formula $\srefbox{\plan}\varphi$ publicly establishes that the plan $\plan$ must be distinguished from any other, and in such a context $\varphi$ holds. 
 %Unlike the modality $\refbox{\plan_1}{\plan_2}$, this modality takes atomic actions but we will generalize it later to arbitrary plans. 
 
 % In this section we show that the action refinement operator can be generalize to arbitrary plans, and we can still obtain suitable reduction axioms.
@@ -10,24 +10,25 @@ The main goal of defining the extended logic $\KHiMLlogic$ is to obtain enough e
 \medskip 
 
 \begin{definition}\label{def:srefsyntax}
-Formulas of the language $\PlanReflogic$ are defined by the following grammar
-\[
-\varphi ::= p \mid \neg\varphi \mid \varphi\vee\varphi \mid \khi(\varphi,\varphi) \mid \mlbox{a}\varphi \mid \srefbox{\plan}\varphi,
-\]
+Formulas of the language $\PlanReflogic$ are given by
+\begin{spcenter}
+$\varphi ::= p \mid \neg\varphi \mid \varphi\vee\varphi \mid \khi(\varphi,\varphi) \mid \mlbox{a}\varphi \mid \srefbox{\plan}\varphi$,
+\end{spcenter}
 with $p \in \PROP$, $i\in\AGT$, $a \in \ACT$ and $\plan \in \ACT^*$.  Formulas of the form $\srefbox{\plan}\varphi$ are read as: \emph{``after announcing that $\plan$ is distinguishable from any other plan, $\varphi$ holds''.} 
 \end{definition}
 
 \medskip 
 
 \begin{definition}\label{def:srefsemantics}
-Let $\modults = \tup{\W, \R, \Unc, \V}$ be an \ults, $\plan \in \ACT^*$ and let $\varphi$ be a $\PlanReflogic$-formula,
-\[
-\modults,w \models \srefbox{\plan}\varphi \ \ \iff \ \ \modults^\plan,w \models \varphi,
-\]
+Let $\modults = \tup{\W, \R, \Unc, \V}$ be an \ults; take $\plan \in \ACT^*$ and $\varphi \in \PlanReflogic$.
+\begin{spcenter}
+$\modults,w \models \srefbox{\plan}\varphi \ \ \iff \ \ \modults^\plan,w \models \varphi$,
+\end{spcenter}
 where $\modults^\plan = \tup{\W,\R,\Unc',\V}$, with:
 \begin{itemize}
 \item $\Unc'(i) = (\Unc(i) \setminus \set{\plans}) \cup \set{\set{\plan}}$, if there is $\plans \in \Unc(i)$ such that $\plan \in \plans$,
 \item $\Unc'(i) = \Unc(i) \cup \set{\set{\plan}}$ otherwise.
+\bigfer{Just to be sure, if there is $\plans$ with $\plan \in \plans$, then after the operation all plans in $\plans\setminus\set{\plan}$ are erased, right? For an example, if $\Unc = \set{ \set{a,b,c} }$ then, after distinguishing $a$, the result is not $\Unc' = \set{ \set{a}, \set{b,c} }$ but rather $\Unc' = \set{ \set{a} }$, right? I guess there is an argument for that to be reasonable (one could even mention that it does not remove abilities: everything for which $\plans$ was a witness before the action has, after the action, $\set{a}$ as witness). Should this be emphasised?} 
 \end{itemize}
 \end{definition}
 
@@ -77,7 +78,7 @@ The following propositions hold:
 
 We proceed now to introduce a complete axiom system for $\PlanReflogic$. In this case, the expressive power of the underlying static logic is sufficient to capture the behavior of $\srefbox{\plan}$, and we can obtain an axiomatization via reduction axioms.
 
-Reduction axioms can be used to translate every formula of $\PlanReflogic$ into an equivalent formula of $\KHiMLlogic$. The challenging case is, as usual, to eliminate the occurence of a $\srefbox{\plan}$ modality in presence of $\khi$. For simplicity's sake, consider a formula $\srefbox{a}\khi(\psi,\varphi)$, with $a\in\ACT$. After the ``announcement'' of action $a$ being different to any other plan, there are two possible reasons of why $\khi(\psi,\varphi)$ holds. The first possibility, is that action $a$ plays no role in the truth of $\khi(\psi,\varphi)$. In this case, we can push the dynamic modality into the front of the pre and post-conditions of the $\khi$ modality, i.e., we obtain $\khi(\srefbox{a}\psi,\srefbox{a}\varphi)$. The second possibility is that $a$ is crucial in order to raise new knowledge for the agent. If the singleton $\set{a}$ is the witness for $\khi(\psi,\varphi)$ it is because: 1) $a$ is SE at every state satisfying $\psi$ after the annoucement of $a$ (notice that as $a$ is a single action, SE is equivalent to executability); and 2) from every $\psi$-state, after every execution of $a$ we always get that $\varphi$ holds (in the model updated by $\srefbox{a}$). The former is captured in formula by $\srefbox{a}\psi\ra\mldiam{a}\top$ holding everywhere, while the latter is captured by $\mlbox{a}\srefbox{a}\varphi$. Putting all together, this case is reflected by $\A(\srefbox{a}\psi\ra(\mldiam{a}\top\wedge\mlbox{a}\srefbox{a}\varphi))$. 
+Reduction axioms can be used to translate every formula of $\PlanReflogic$ into an equivalent formula of $\KHiMLlogic$. The challenging case is, as usual, to eliminate the occurence of a $\srefbox{\plan}$ with $\khi$ under its scope. For simplicity, consider a formula $\srefbox{a}\khi(\psi,\varphi)$ with $a\in\ACT$. After $a$ is ``announced'' to be different from any other plan, there are two possible reasons of why $\khi(\psi,\varphi)$ holds. The first is that $a$ plays no role in the truth of $\khi(\psi,\varphi)$. In this case, we can push the dynamic modality into the front of the pre and post-conditions of the $\khi$ modality to obtain $\khi(\srefbox{a}\psi,\srefbox{a}\varphi)$. The second possibility is that distinguishing $a$ creates new abilities. If the singleton $\set{a}$ is the witness for $\khi(\psi,\varphi)$ it is because: 1) $a$ is SE at every state satisfying $\psi$ after the annoucement of $a$ (notice that as $a$ is a single action, SE is equivalent to executability); and 2) from every $\psi$-state, after every execution of $a$ we always get that $\varphi$ holds (in the model updated by $\srefbox{a}$). The former is captured in formula by $\srefbox{a}\psi\ra\mldiam{a}\top$ holding everywhere, while the latter is captured by $\mlbox{a}\srefbox{a}\varphi$. Putting all together, this case is reflected by $\A(\srefbox{a}\psi\ra(\mldiam{a}\top\wedge\mlbox{a}\srefbox{a}\varphi))$.
 
 When we consider an arbitrary plan $\plans$ instead of a single actions, this idea can be generalized. The case in which the announcement does not affect the knowledge, is as before. For the other case, we need to make sure that if the announcement of $\plan$ guarantees that the precondition holds ($\srefbox{\plan}\varphi_1$), then $\plan$ is SE and after its execution, the postcondition holds ($\srefbox{\plan}\varphi_2$). 
 The latter, is expressed by the predicate $P(\plan,\srefbox{\plan}\varphi_2)$, described below. Notice that $P$ can be defined as we extended the expressivity of the underlying language, by allowing basic action modalities. The list of reducion axioms for $\PlanReflogic$ are introduced in~\Cref{tab:srefaxiom}.
@@ -109,12 +110,12 @@ Let $\beta \in \ACT^*$, we define the extension $\mlbox{\beta}\psi$ of $\mlbox{a
 % \end{cases}
 % \]
 With this definition at hand, $P$ is defined inductively as: 
-\[
-    \begin{array}{lcl}
+\begin{spcenter}
+$\begin{array}{lcl}
         P(\epsilon,\psi) & = & \psi \\
         P(\alpha,\psi)  &= &(\bigwedge_{k=0}^{\card{\alpha}-1}(\mlbox{\alpha_k}\mldiam{\alpha[k+1]}\top) \wedge \mlbox{\alpha} \psi), \mbox{ with } \mlbox{\beta} = \mlbox{\beta[1]} \dots \mlbox{\beta[\card{\beta}]}. 
-    \end{array}
-\]
+    \end{array}$
+\end{spcenter}
 Then, the reduction axioms from~\Cref{tab:srefaxiom} are valid.
 % \begin{enumerate}
 % \item $\models \srefbox{\plan}p \lra p$
