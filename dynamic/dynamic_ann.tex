@@ -3,17 +3,16 @@
 %As discussed in the previous sections, our goal is to take ideas from standard epistemic logic to perform operations that update an agent's know-how.
 
 A typical way of updating a relational model is by removing states~\cite{Plaza89:lopc,DELbook}. This model update, interpreted in the just referred literature as an announcement indicating to all agents that $\chi$ is true (hence the setting's name: \emph{public announcement logic}; \PAL), is typically described with a modal operator $[\chi]$. Given an $\ults$ $\modults=\tup{\W,\R,\Unc,\V}$, its semantic interpretation is defined as:
-\[
-\modults,w\models[\chi]\varphi \ \ \iff \ \  \modults,w\models\chi \mbox{ implies } \modults_{\chi},w\models\varphi,
-\]
-with the $\ults$ $\modults_\chi=\tup{\W_\chi,\R_\chi,\Unc_\chi,\V_\chi}$ given by
-\[
-\begin{array}{l@{\quad \quad \quad }l}
-\W_\chi = \set{w \mid \modults,w\models\chi} & (\R_\chi)_a = \R_a \cap \W_\chi^2, \mbox{ for each } a\in\ACT \\
-\V_\chi(w) = \V(w), \mbox{ for all } w\in\W_\chi & \Unc_\chi = {\Unc}.
-\end{array}	
-\]
-
+\begin{spcenter}
+  $\modults,w\models[\chi]\varphi \ \ \iff \ \  \modults,w\models\chi \mbox{ implies } \modults_{\chi},w\models\varphi$,
+\end{spcenter}
+with the $\ults$ $\modults_\chi=\tup{\W_\chi,\R_\chi,\Unc_\chi,\V_\chi}$ given by $\W_\chi = \set{w \mid \modults,w\models\chi}$, $(\R_\chi)_a = \R_a \cap \W_\chi^2$ for each $a\in\ACT$, $\V_\chi(w) = \V(w)$ for all $w\in\W_\chi$, and $\Unc_\chi = {\Unc}$.
+%\begin{spcenter}
+%  \begin{tabular}{l@{\quad \quad \quad }l}
+%    $\W_\chi = \set{w \mid \modults,w\models\chi}$ & $(\R_\chi)_a = \R_a \cap \W_\chi^2, \mbox{ for each } a\in\ACT$ \\
+%    $\V_\chi(w) = \V(w), \mbox{ for all } w\in\W_\chi$ & $\Unc_\chi = {\Unc}$.
+%  \end{tabular}	
+%\end{spcenter}
 Thus, $\modults_\chi$ is obtained by taking $\truthset{\modults}{\chi}$ as the new domain, then restricting relations and valuation accordingly (the indistinguishability classes $U(i)$ are left unchanged). 
 
 A couple of remarks might be useful here. First recall that, in the \emph{knowing how} setting, states other than the evaluation point do not represent epistemic possibilities (as they do in EL), but rather situations reachable by actions. Thus, in the \emph{knowing how} setting, the elimination of some states indicates not that they are no longer \emph{possible}, but rather that they are no longer \emph{reachable}. Moreover, in the original \emph{knowing how} setting, the relations define the agents' abilities. Hence, under that semantics, removing states corresponds to both an ontic and an epistemic change: the effect of available actions changes, and hence so do the agents' abilities~\cite{Wang2016}. However, in the \ults-based semantics, relations provide only ontic information; thus, removing states produces an \emph{ontic} change that might affect, indirectly, the agents' abilities.
@@ -28,24 +27,25 @@ Adding $[\chi]$ to $\KHilogic$ increases the expressive power.
 
 \begin{proof}
   The \ultss $\modults$ and $\modults'$ below (with $\Unc(i)=\Unc'(i)=\set{\set{a}}$, and with dashed lines indicating nodes and edges to be removed after an update with $p$) are $\KHilogic$-bisimilar (\Cref{def:bisim-khi}), and thus indistinguishable in $\KHilogic$. 
+
 \begin{center}
     \begin{tikzpicture}[->]
       \node [state,label=left:\small$w$] (w1) {$p,q$};
-      \node [state, below = of w1] (w2) {$p,q$};
+      \node [state, below = 1em of w1] (w2) {$p,q$};
       \node [state, dashed, right = of w1] (w3) {\phantom{$p$}};
-      \node [state, below = of w3] (w4) {$p$};
+      \node [state, below = 1em of w3] (w4) {$p$};
       \node[left = of w1] (m) {$\modults$};
 
-      \path (w1) edge node [label-edge, left] {$a$} (w2)
+      \path (w1) edge node [label-edge, right] {$a$} (w2)
              (w2) edge[loop left] node [label-edge, left] {$a$} (w2)
              (w1) edge[dashed] node [label-edge, above] {$a$} (w3)
              (w4) edge node [label-edge, below] {$a$} (w2);
 
         \node[right = of w3] (phan) {};
         \node [state,right = of phan,label=left:\small$w'$] (w1) {$p,q$};
-        \node [state, below = of w1] (w2) {$p,q$};
+        \node [state, below = 1em of w1] (w2) {$p,q$};
         \node [state, dashed, right = of w1] (w3) {\phantom{$p$}};
-        \node [state, below = of w3] (w4) {$p$};
+        \node [state, below = 1em of w3] (w4) {$p$};
         \node[right = of w3] (mp) {$\modults'$};
 
         \path (w2) edge[loop left] node [label-edge, left] {$a$} (w2)
@@ -58,9 +58,7 @@ However, $\modults,w\models[p]\khi(p,q)$ whereas
 $\modults',w'\not\models[p]\khi(p,q)$.
 \end{proof}
 
-A consequence of~\Cref{prop:pal-exp} is that the modality for \PAL-like updates, $[\chi]$, is not reducible to the underlying language $\KHilogic$. This makes sense: while $\KHilogic$ can express the agents' abilities to achieve certain goals from given situations (the modality $\khi$), it cannot talk about more specific properties of the courses of action on which the abilities rely. This is in contrast with what happens when these modalities are added to standard epistemic logic, where reduction axioms can be defined (see, e.g.,~\cite{DELbook}).
-
-In such situations, the axiomatization can be approached in different ways. The `extend the basic language' method has already been explored in \cite{Wang2016}. Here, the strategy is to look for a variation of the operation, and then to restrict the setting to a particular class of models.
+A consequence of~\Cref{prop:pal-exp} is that the modality for \PAL-like updates, $[\chi]$, is not reducible to the underlying language $\KHilogic$. This makes sense: while $\KHilogic$ can express the agents' abilities to achieve certain goals from given situations (the modality $\khi$), it cannot talk about more specific properties of the courses of action on which the abilities rely.\footnote{This is in contrast with what happens when these modalities are added to standard epistemic logic, where reduction axioms can be defined (see, e.g.,~\cite{DELbook}).} In such situations, the axiomatization can be approached in different ways. For this operation, the `extend the basic language' method has already been explored in \cite{Wang2016}. Here, the strategy is to look for a variation of the operation, and then to restrict the setting to a particular class of models.
 
 \medskip
 
@@ -73,10 +71,10 @@ Let $\modults = \tup{\W, \R, \Unc, \V}$ be an \ults, and let $\chi$ be a formula
 \item $\annsemantics{\V}{\chi}(w) = \V(w)$ (for all $w\in\annsemantics{\W}{\chi}$).
 \end{itemize}
 \smallskip
-The language $\PAKHilogic$ extends $\KHilogic$ with formulas of the form $\gann{\chi}\varphi$. The semantic interpretation of the new formulas is given by
-\[
-	\modults,w \models \gann{\chi}\varphi \ \ \iff \ \ \modults,w \models \chi \mbox{ implies } \annmodelchi,w \models \varphi.
-\]
+The language $\PAKHilogic$ extends $\KHilogic$ with formulas of the form $\gann{\chi}\varphi$, with the semantic interpretation of the new formulas given by
+\begin{spcenter}
+	$\modults,w \models \gann{\chi}\varphi \ \ \iff \ \ \modults,w \models \chi \mbox{ implies } \annmodelchi,w \models \varphi$.
+\end{spcenter}
 \end{definition}
 
 Thus, given a model $\modults$, the only difference between the standard $\modults_{\chi}$ and the just defined $\annmodelchi$ is in the definition of 
@@ -101,23 +99,23 @@ Even with this, more restricted, version of an update, the resulting logic fails
 	\begin{center}
 		\begin{tikzpicture}[->, grow' = right, level/.style={sibling distance = 3em/#1}, level distance = 3.5em]
 		\node at (0,1) [state,label=left:$w$] (p) {$p,r$} ;
-		\node at (2,0) [state,dashed] (nr) {\phantom{$q,r$}};
-		\node at (2,2) [state] (q) {$q,r$};
+		\node at (2,0.5) [state,dashed] (nr) {\phantom{$q,r$}};
+		\node at (2,1.5) [state] (q) {$q,r$};
 		\node[left = of p] (m) {$\modults$};
 
 		\path (p) edge [dashed, above] node {$a$} (q);
 		\path (q) edge [loop right] node [right] {$b$} (q);
-		\path (p) edge [dashed,above] node {$a$} (nr);
-		\path (nr) edge [dashed,left] node {$b$} (q);
+		\path (p) edge [dashed,below] node {$a$} (nr);
+		\path (nr) edge [dashed,right] node {$b$} (q);
 		\end{tikzpicture}
 		\hspace{2cm}
 		\begin{tikzpicture}[->, grow' = right, level/.style={sibling distance = 3em/#1}, level distance = 3.5em]
 		\node[state] at (0,1) (p) [label=left:$w'$]{$p,r$};
-		\node[state,dashed] at (2,0) (nr) {\phantom{$\neg r$}};
-		\node[state] at (2,2) (q) {$q,r$};
+		\node[state,dashed] at (2,0.5) (nr) {\phantom{$\neg r$}};
+		\node[state] at (2,1.5) (q) {$q,r$};
 		\node[right = 7em of p] (m) {$\modults'$};
 		\path (p) edge [above] node {$a$} (q);
-		\path (p) edge [dashed,above] node {$b$} (nr);
+		\path (p) edge [dashed,below] node {$b$} (nr);
 		\end{tikzpicture}
 \end{center}
 
@@ -142,7 +140,7 @@ Both models are $\KHilogic$-bisimilar (\Cref{def:bisim-khi}); hence, they satisf
 
 In models $\modults$ and $\modults'$ from the above proposition, it is useful to notice the following. First, they both make the formula $\khi(p,q)$ true, their respective witnesses being $\set{ab}$ and $\set{a}$. But, as discussed, after eliminating worlds in which $r$ is false this is no longer the case: the formula fails in $\annmodel{r}$ but holds in $\annmodel{r}'$. Part of the reason is that, while the witness for the first contains a two-step plan, the witness for the second contains only one-step plans (i.e., actions). This makes a difference because, by removing intermediate steps, $\PAKHilogic$ can tell these two models apart. 
 
-But, as mentioned before, the semantic interpretation for $\khi$ is `blind' to certain aspects of its witness. In fact, as the completeness proof shows~\cite{AFSVQ21}, it cannot distinguish between an arbitrary \ults and one in which, for every agent $i$, every plan in $\Unc(i)$ is a singleton containing only one action (i.e., a model in which $\plans \in \Unc(i)$ implies $\plans = \set{a}$ for some $a \in \ACT$). This suggests that, by restricting the class of models, one can still get agents with `the same abilities' while also stopping $\PAKHilogic$ from being able to tell $\KHilogic$-bisimilar models apart.
+But, as mentioned before, the semantic interpretation for $\khi$ is `blind' to certain aspects of its witness. In fact, as the completeness proof shows~\cite{AFSVQ21}, it cannot distinguish between an arbitrary \ults and one in which, for every agent $i$, every set in $\Unc(i)$ is a singleton containing only one action (i.e., a model in which $\plans \in \Unc(i)$ implies $\plans = \set{a}$ for some $a \in \ACT$). This suggests that, by restricting the class of models, one can still get agents with `the same abilities' while also stopping $\PAKHilogic$ from being able to tell $\KHilogic$-bisimilar models apart.
 
 \medskip 
 
@@ -176,10 +174,12 @@ To establish the validity of the reduction axioms, we first need to prove the fo
 \begin{lemma}\label{lem:palproperties} Let $\chi$ and $\varphi$ be $\PAKHilogic$-formulas; let $\modults$ be an arbitrary \ults.
 	%\fer{Arbitrary models, correct?} 
 	The following equalities hold:
+	\begin{multicols}{2}
 	\begin{enumerate}
 	\item $\truthset{\modults}{\gann{\chi}\varphi} = \truthset{\modults}{\neg\chi} \cup \truthset{\annmodelchi}{\varphi}$.
 	\item $\truthset{\annmodelchi}{\varphi} = \truthset{\modults}{\chi \wedge \gann{\chi}\varphi}$.
 	\end{enumerate}
+	\end{multicols}
 	\end{lemma}
 	
 	\begin{proof}
@@ -248,6 +248,8 @@ The result follows by the correctness of the axioms and rule from~\Cref{tab:pala
 % \end{enumerate}
 % \end{definition}
 
+\bigfer{Si trabajamos en la clase $\cultsba$, ¿hay axiomas de reducción para la operación estandar de PAL? Andr\'es: mencionas que te parece que no. ¿Podrías agregar aquí un par de lineas describiendo el problema? Si no estas seguro, entones hay que añadir una linea diciendo que la respuesta a eso no es clara, y luego tal vez mencionarlo en trabajo a futuro.}
+
 To finish this discussion, we prove that the satisfiability problem for $\PAKHilogic$ is decidable at least over $\cultsba$.
 
 \medskip 
@@ -266,4 +268,4 @@ As a result, there are two possible outcomes:
 \end{inlineenum}
 Thus, there is a procedure that decides satisfiability of $\PAKHilogic$ over $\cultsba$. 
 \end{proof}
-\bigfer{Just to tie loose ends: if we work in $\cultsba$, do we have reduction axioms for the standard update operation? Or does this `trick' work only for the alternative version of the operation?}
+
