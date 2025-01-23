@@ -35,6 +35,7 @@
 \usepackage{upgreek}
 \usepackage{cleveref}
 \usepackage{booktabs}
+\usepackage{lineno}
 %\usepackage[font=scriptsize,skip=0pt]{caption}
 \usepackage[justification=centering]{caption}
 
@@ -43,6 +44,10 @@
 \usepackage{fix-cm}
 \usepackage{stmaryrd}
 \SetSymbolFont{stmry}{bold}{U}{stmry}{m}{n}
+
+\usepackage{multicol}
+\setlength{\multicolsep}{4pt plus 2pt minus 2pt}
+
 
 \input{macros}
 
@@ -65,8 +70,10 @@
 
 \affil[3]{\orgname{Universitetet i Bergen}, \orgaddress{\state{Bergen}, \country{Norway}}}
 
+\linenumbers
+
 \abstract{
-We investigate dynamic operations acting over a \emph{knowing how} logic. Our approach uses a recently introduced semantics for the \emph{knowing how} operator, based on an indistinguishability relation between plans. This semantics is arguably closer to the standard presentation of \emph{knowing that} modalities in classic epistemic logic. 
+We investigate dynamic operations acting over a \emph{knowing how} logic. Our approach uses a recently introduced semantics for the \emph{knowing how} operator, based on an indistinguishability relation between plans, and arguably closer to the standard presentation of \emph{knowing that} modalities in classic epistemic logic. 
 Here, we discuss how the new indistinguishability-based semantics enables us to define dynamic modalities representing different ways in which an agent can learn how to achieve a goal. In this regard, we study different alternatives for implementing two types of updates: ontic and epistemic.
 For the former, we provide axiomatizations over a restricted class of models. For the latter, we investigate some semantic properties and discuss what are the difficulties in axiomatizing dynamic modalities. In turn, we introduce a novel dynamic epistemic modality for which we have reduction axioms, over an extended static language of knowing how.
 }
@@ -87,7 +94,7 @@ For the former, we provide axiomatizations over a restricted class of models. Fo
 \input{basic}
 
 
-%\subsection{Dynamics: an brief discussion}
+%\subsection{Dynamics: a brief discussion}
 \input{introdynamic}
 
 %\section{Dynamic Knowing How Logics}
@@ -96,7 +103,7 @@ For the former, we provide axiomatizations over a restricted class of models. Fo
 \section{Ontic updates}
 \label{sec:ontic}
 
-This section discusses model operations updating the underlying \lts in an \ults. We discuss operations that remove states (which in turn produce a change in the relations) and operations for pure relational change. Within the EL setting, these two operations have a natural interpretation: they represent ways in which an agent's uncertainty changes, (in this sense, the second can be seen as a generalisation of the first). Here, they are reinterpreted to match what the affected model components (domain and relations) represent in this indistinguishability-based \emph{knowing how} setting. In each case, we present a discussion, a modality for describing the effects of the operation, and a reduction-axioms-based derivation system over a particular class of models.
+This section discusses model operations updating the underlying \lts in an \ults. We discuss operations that remove states (thus producing a change in the relations) and operations for pure relational change. Within the EL setting, these two operations have a natural interpretation: they represent ways in which an agent's uncertainty changes (in this sense, the second can be seen as a generalisation of the first). Here, they are reinterpreted to match what the affected model components (domain and relations) represent in this indistinguishability-based \emph{knowing how} setting. In each case, we present a discussion, a modality for describing the effects of the operation, and a reduction-axioms-based derivation system over a particular class of models.
 
 \subsection{Removing states}
 \label{sec:pal}
@@ -109,7 +116,7 @@ This section discusses model operations updating the underlying \lts in an \ults
 \section{Epistemic updates: a first attempt}
 \label{sec:epistemic-basic} 
 
-In this section we present a first attempt at defining different ways in which  \emph{epistemic} updates can be performed over knowing how. No complete axiomatization is available yet for the operators to be introduced. Instead, we will discuss their expressivity and some interesting properties (e.g., the lack of uniform substitution) as well as some of the challenges in obtaining their axiom systems. Some of these challenges are addressed in the next section.
+This section presents a first attempt at defining \emph{epistemic} updates over \emph{knowing how}. No complete axiomatization is available yet for the operators to be introduced. Instead, we will discuss their expressivity and some interesting properties (e.g., the lack of uniform substitution) as well as some of the challenges in obtaining their axiom systems. Some of these challenges are addressed in the next section.
 
 \subsection{Removing uncertainty between two plans}
 \label{sec:ref}
@@ -129,6 +136,8 @@ In this section we present a first attempt at defining different ways in which  
 \input{extension/extension_intro}
 
 \input{extension/extension_axiom}
+
+\input{extension/extension_expr}
 
 \input{extension/extension_decid}
 
