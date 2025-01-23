@@ -1,8 +1,6 @@
-As it has been discussed, \ults{s} allow a natural representation of both the actions that affect the abilities of an agent, and her epistemic state. In an \ults, the crucial epistemic component is the sets $\Unc(i)$,
-defining the plans agent $i$ is `aware of',
-and the level at which she can discern among
-them. Thus we can represent changes in the epistemic state of
+As it has been discussed, \ults{s} allow a natural representation of both the actions that affect the abilities of an agent, and her epistemic state. In an \ults, the crucial epistemic component is the sets $\Unc(i)$, defining the plans agent $i$ is `aware of', and the level at which she can discern among them. Thus we can represent changes in the epistemic state of
 an agent by means of operations that modify $\Unc(i)$. 
+
 \medskip
 
 \begin{example}\label{ex:ref}
@@ -108,7 +106,7 @@ $\plan_1 \in \plans_1$, $\plan_2 \in \plans_2$.
 
 \medskip
 
-Notice that the relation $\splitstr{}{}{\plan_1}{\plan_2}$ is serial. Moreover, if $S$ is the set of sets of plans for a given agent $i$ in some \ults (i.e., $S=\Unc(i)$) and $S'$ is a set satisfying $\splitstr{S}{S'}{\plan_1}{\plan_2}$, then the structure resulting from replacing $S$ by $S'$ is an \ults.
+Notice that $\splitstr{}{}{\plan_1}{\plan_2}$ is serial. Moreover, if $S$ is the set of sets of plans for a given agent $i$ in some \ults (i.e., $S=\Unc(i)$) and $S'$ is a set satisfying $\splitstr{S}{S'}{\plan_1}{\plan_2}$, then the structure resulting from replacing $S$ by $S'$ is an \ults.
 
 \medskip
 
@@ -124,29 +122,25 @@ We denote by $\modults^{\Unc}_{\Unc'}$ the \ults obtained by replacing $\Unc$ by
 
 % The definition above guarantees there is a one-to-one correspondence between the sets in $\Unc$ and those in $\Unc'$. 
 %In a sense, $\Unc'$ is a refinement of the sets in $\Unc$, for each particular agent, potentially eliminating some uncertainty for them. 
-With these tools at hand, we introduce the new modality $\refdiam{\plan_1}{\plan_2}$, semantically interpreted
-as an action through which all agents learn that plans $\plan_1$ and
-$\plan_2$ are  different.
-We use $\Reflogic$ ({\small\textsf{Ref}} for ``refinement'') to denote the extension of $\KHilogic$ with formulas of the form $\refdiam{\plan_1}{\plan_2}\varphi$.
+With these tools we introduce a new modality, $\refdiam{\plan_1}{\plan_2}$, intuitively describing an action through which all agents learn that plans $\plan_1$ and
+$\plan_2$ are different. We use $\Reflogic$ ({\small\textsf{Ref}} for ``refinement'') to denote the extension of $\KHilogic$ with such formulas.
 
 \medskip
 
 \begin{definition}\label{def:ref-sem}
 Let $\modults=\tup{\W,\R,\Unc,\V}$ be an \ults and $w \in \W$.
 For $\plan_1\neq\plan_2$,
-\[
-\begin{array}{l@{\ \ }c@{\ \ }l}
+\begin{spcenter}
+$\begin{array}{l@{\ \ }c@{\ \ }l}
 \modults,w\models \refdiam{\plan_1}{\plan_2}\varphi & \iffdef & \text{there is } \Unc' \text{ such that } \splitstr{\Unc}{\Unc'}{\plan_1}{\plan_2} \text{ and }  \modults^{\Unc}_{\Unc'},w \models \varphi.
-\end{array}
-\]
+\end{array}$
+\end{spcenter}
 As usual, we define $\refbox{\plan_1}{\plan_2}\varphi := \lnot \refdiam{\plan_1}{\plan_2}\lnot\varphi$.
 \end{definition}
 
 \medskip
 
-Formulas like $\refdiam{\plan_1}{\plan_2}\varphi$ can be read as follows: \emph{``after it is stated that plans $\plan_1$ and $\plan_2$ are distinguishable, $\varphi$ holds''}. For instance, in~\Cref{ex:ref}, $\refdiam{\mathit{ebmfsp}}{\mathit{ebfmsp}}\kh_j(h,g)$ establishes that \emph{``after it is established that $\mathit{ebmfsp}$ and $\mathit{ebfmsp}$ are different, agent $j$ knows how to bake a good cake, provided she has the ingredients''}. 
-
-The proposed modality has some natural properties. First, it is normal and serial but not deterministic (\ref{itm:distref} through \ref{itm:nodeterref} below). Moreover, it represents an idempotent action in which order matters and in which two consecutive applications cannot be collapsed into a single one (\ref{itm:idempref} through \ref{itm:nocollapseref} below). 
+Formulas like $\refdiam{\plan_1}{\plan_2}\varphi$ state that \emph{``after it is stated that plans $\plan_1$ and $\plan_2$ are distinguishable, $\varphi$ holds''}. For instance, in~\Cref{ex:ref}, $\refdiam{\mathit{ebmfsp}}{\mathit{ebfmsp}}\kh_j(h,g)$ establishes that \emph{``after it is established that $\mathit{ebmfsp}$ and $\mathit{ebfmsp}$ are different, agent $j$ knows how to bake a good cake, provided she has the ingredients''}. This modality has some natural properties. First, it is normal and serial but not deterministic (\ref{itm:distref} through \ref{itm:nodeterref} below). Moreover, it represents an idempotent action in which order matters and in which two consecutive applications cannot be collapsed into a single one (\ref{itm:idempref} through \ref{itm:nocollapseref} below). 
 
 \medskip
 
@@ -162,7 +156,7 @@ It follows from the semantics (\Cref{def:ref-sem}) that:
 
 \item\label{itm:idempref} $\models \refbox{\plan_1}{\plan_2}\refbox{\plan_1}{\plan_2}\varphi \leftrightarrow \refbox{\plan_1}{\plan_2}\varphi$.
 \item\label{itm:commref} $\not\models \refdiam{\plan_1}{\plan_2}\refdiam{\plan_3}{\plan_4}\varphi \leftrightarrow \refdiam{\plan_3}{\plan_4}\refdiam{\plan_1}{\plan_2}\varphi$.
-\item\label{itm:nocollapseref} If $\modults,w \models \refdiam{\plan_1}{\plan_2}\refdiam{\plan_3}{\plan_4}\varphi$, in general one cannot find $\sigma_5, \sigma_6$ such that $\modults,w \models \refdiam{\plan_5}{\plan_6}\varphi$.
+\item\label{itm:nocollapseref} $\modults,w \models \refdiam{\plan_1}{\plan_2}\refdiam{\plan_3}{\plan_4}\varphi$ does not imply $\exists \sigma_5, \sigma_6$ with $\modults,w \models \refdiam{\plan_5}{\plan_6}\varphi$.
 \end{enumerate}
 \end{proposition}
 
@@ -175,7 +169,7 @@ For \Cref{itm:commref}, consider cases in which all the involved plans are in th
 Finally, for \Cref{itm:nocollapseref} it is enough to notice that, if the set of plans containing $\sigma_1, \sigma_2$ is different from that containing $\sigma_3, \sigma_4$, then the two actions refine two indistinguishability clases, something that cannot be replicated by a single application.
 \end{proof}
 
-This dynamic modality preserves the \emph{propositional} knowledge of an agent, and it also can generate new knowledge, as shown above.
+Besides generating new knowledge (see above), this modality preserves the \emph{propositional} knowledge of the agents.
 
 \medskip
 
@@ -209,10 +203,10 @@ For \Cref{itm:gainsknowledge}, let $\plan_1 \neq \plan_2$, and let $\modults=\tu
 The model $\modults$ is depicted below (the plan $\plan_2$ is omitted):
 
 \begin{center}
-\begin{tikzpicture}[->, grow' = right, level/.style={sibling distance = 2em/#1}, level distance = 1.5em]
+\begin{tikzpicture}[->, grow' = right]
 \node (m) {$\modults$:};
 \node [state, right = 0.4cm of m, label=below:$u$] (u) {$\varphi$};
-\node [state, right = of u, label=below:$v$] (v) {$\psi$};
+\node [state, right = 2cm of u, label=below:$v$] (v) {$\psi$};
 
 \path (u) edge[right] node [label-edge, above] {$\plan_1[1]$} (v);
 \path (v) edge[loop right] node [label-edge] {$\plan_1[k], \ k \geq 1$} (v);
@@ -242,9 +236,9 @@ The new modality adds expressivity, as it can talk explicitly about plans.
 $\Reflogic$ is more expressive than $\KHilogic$.
 \end{proposition}
 \begin{proof}
-We need to display two $\KHilogic$-bisimilar \ultss that can be distinguished by an $\Reflogic$-formula.
+%We need to display two $\KHilogic$-bisimilar  that can be distinguished by an $\Reflogic$-formula.
 %Consider the \ultss $\modults$ and $\modults'$ below:
-Let $\modults$ and $\modults'$ be the single agent models depicted below, with $\Unc(i):=\set{\set{a}}$ and $\Unc'(i):=\set{\set{a,b}}$, respectively:
+The single agent \ultss models $\modults$ and $\modults'$ depicted below ($\Unc(i):=\set{\set{a}}$ and $\Unc'(i):=\set{\set{a,b}}$) are $\KHilogic$-bisimilar; thus, they satisfy the same formulas in $\KHilogic$. 
 \begin{center}
 \begin{tikzpicture}[->, grow' = right, level/.style={sibling distance = 2em/#1}, level distance = 1.5em]
 \node[state] at (0,1) (p) [label=left:$w$]{$p$};
@@ -264,8 +258,7 @@ Let $\modults$ and $\modults'$ be the single agent models depicted below, with $
 \node[right = 7em of p] (m) {$\modults'$};
 \end{tikzpicture}
 \end{center}
-
-These models are $\KHilogic$-bisimilar, thus they satisfy the same formulas in $\KHilogic$. But, $\modults,w \not\models \refdiam{a}{b}\khi(p,q)$ since $\splitstr{\Unc(i)}{\Unc(i)}{a}{b}$, % then $\Unc=\overline{\Unc}$,
+Still, $\modults,w \not\models \refdiam{a}{b}\khi(p,q)$ since $\splitstr{\Unc(i)}{\Unc(i)}{a}{b}$, % then $\Unc=\overline{\Unc}$,
 whereas $\modults',w' \models \refdiam{a}{b}\khi(p,q)$, since there is $\Unc''(i)=\set{\set{a},\set{b}}$ such that $\splitstr{\Unc'(i)}{\Unc''(i)}{a}{b}$.
 %
 % \begin{nscenter}
@@ -338,7 +331,6 @@ We conclude by showing that \emph{uniform substitution}, a key form of syntactic
 
 \begin{proof}
 The formula $p\to\refdiam{a}{b}p$ is valid for $p$ a propositional symbol, since $\refdiam{a}{b}$ does not change the valuation. Consider the model below, with $\Unc(i):=\set{\set{a,b}}$:
-
 \begin{center}
 \begin{tikzpicture}[->, grow' = right, level/.style={sibling distance = 2em/#1}, level distance = 1.5em]
     \node[state] at (0,1) (p) [label=left:$w$]{$p$};
@@ -349,7 +341,6 @@ The formula $p\to\refdiam{a}{b}p$ is valid for $p$ a propositional symbol, since
     \path (p) edge [below] node {$b$} (nq);
     \end{tikzpicture} 
 \end{center}
-
 Consider now the substitution of $p$ by $\neg\khi(p,q)$ in the formula above. The resulting formula is $\neg\khi(p,q)\to\refdiam{a}{b}\neg\khi(p,q)$. It is clear that $\modults\models\neg\khi(p,q)$, but $\modults\not\models\refdiam{a}{b}\neg\khi(p,q)$. Thus, $\neg\khi(p,q)\to\refdiam{a}{b}\neg\khi(p,q)$ is not valid.
 \end{proof}
 
