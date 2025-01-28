@@ -2,6 +2,8 @@
 Another way to update \ltss is by modifying their relations directly while keeping the domain intact. Although there are different ways to do so (see, e.g., \cite{ArecesFH15}), in the EL context the focus has been on operations that remove edges, as this represents actions that reduce the agents' uncertainty. The \emph{arrow update logic} ($\AUL$) of~\cite{KooiR11} is a general way to do this. Its operator takes as a parameter a list of arrow specifications (triples of the form formula-action-formula). Then, an edge with label $a$ from state $w$ to state $v$ will not be deleted if and only if there is an arrow specification $(\varphi_1, a, \varphi_2)$ such that $w$ satisfies $\varphi_1$ and $v$ satisfies $\varphi_2$. 
 
 The version of the $\AUL$ framework presented below differs from the original in two aspects. First, an arrow specification is a pair formula-formula; thus, it works for any basic action. Second, similarly as we did in~\Cref{def:annupdate}, an edge with label $a$ from state $w$ to state $v$ will not be deleted when there is an arrow specification $(\varphi_1, \varphi_2)$ such that $w$ satisfies $\varphi_1$ and \emph{all} states that can reached via $a$-edges from $w$ satisfy $\varphi_2$.
+The reason for this last change relies on the same difficulties discussed with the $[\chi]$ operator. The original $\AUL$ modality has an edge-by-edge focus instead of having an group-edge one, something needed for $\khi$ formulas to have a proper translation.
+The answer of whether there is a class of models compatible with this standard operator remains unclear.
 
 \bigfer{Some questions. (1) For tying loose ends, what happens with `standard' arrow updates in the class $\cultsba$? Does the modality increase the expressivity too, thus making reduction axioms impossible? (2) Where is this variation of the arrow specification (the one that does not mention the label of the action) discussed? (3) Is axiom \axm{RJoin} taken from somewhere? If so, we can cite the reference when arguing for its validity; otherwise, some explanation might be useful.}
 \bigfer{Del comentario arriba, dejo las preguntas cuya respuesta falta ser incorporada (en caso de que las queramos incorporar). Para 2 y 3, si la presentación y el axioma son originales, vale la pena mencionar eso (¿se demuestra la validez de \axm{RJoin} en el texto de DALI?)}
@@ -60,6 +62,7 @@ By using the models from~\Cref{prop:exppal}, we have that $\modults,w \not\model
 \end{proof}
 
 Still, the reduction axioms from~\Cref{tab:aulaxiom} are valid in the class of models $\cultsba$, and we can use them to eliminate all occurrences of the $\arrowbox{U}$ modality. %Thus, we get completeness for $\AUKHilogic$.
+Something worth noting is that axiom \axm{RJoin} is a semantic consequence of the definition of $\arrowbox{U}$. If we have a finite list of pair of formulas in an update $U$, we can group all formulas into a pair $(\theta,\theta')$.
 
 \begin{table}[t]
 \begin{tabular}{l@{\quad}l}
@@ -95,9 +98,9 @@ Still, the reduction axioms from~\Cref{tab:aulaxiom} are valid in the class of m
 	% $\modults,w \models \arrowbox{U}(\varphi \vee \psi)$ iff $\arrowmodelU,w \models \varphi \vee \psi$ iff $\arrowmodelU,w \models \varphi$ or $\arrowmodelU,w \models \psi$ iff $\modults,w \models \arrowbox{U}\varphi$ or $\modults,w \models \arrowbox{U}\psi$ iff $\modults,w \models \arrowbox{U}\varphi \vee \arrowbox{U}\psi$.
 	
 	Let $U = (\theta,\theta')$, by the definition of $\arrowbox{U}$, $\modults,w \models \arrowbox{U}\khi(\varphi,\psi)$ iff $\arrowmodelU,w \models \khi(\varphi,\psi)$.
-	Using the definition of $\khi$, $\arrowmodelU,w \models \khi(\varphi,\psi)$ iff there is $\plans \in (\arrowsemantics{\Unc}{U})_i$ with $\plans \subseteq \ACT$ s.t. $\truthset{\arrowmodelU}{\varphi} \subseteq \stexec^{\arrowmodelU}(\plans)$ and $\R'_\plans(\truthset{\arrowmodelU}{\varphi}) \subseteq \truthset{\arrowmodelU}{\psi}$.
+	Using the definition of $\khi$, $\arrowmodelU,w \models \khi(\varphi,\psi)$ iff there is $\plans \in (\arrowsemantics{\Unc}{U})_i$ with $\plans \subseteq \ACT$ s.t. $\truthset{\arrowmodelU}{\varphi} \subseteq \stexec^{\arrowmodelU}(\plans)$ and $(\arrowsemantics{\R}{U})_\plans(w)(\truthset{\arrowmodelU}{\varphi}) \subseteq \truthset{\arrowmodelU}{\psi}$.
 	By the definition of $\arrowmodelU$, $(\arrowsemantics{\Unc}{\chi})_i=\Unc(i)$. Using the definition of $\arrowbox{U}$, $\truthset{\arrowmodelU}{\varphi} = \truthset{\modults}{\arrowbox{U}\varphi}$ and $\truthset{\arrowmodelU}{\psi} = \truthset{\modults}{\arrowbox{U}\psi}$.
-	Thus, $\arrowmodelU,w \models \khi(\varphi,\psi)$ iff there is $\plans \in \Unc(i)$ with $\plans \subseteq \ACT$ s.t. $\truthset{\modults}{\arrowbox{U}\varphi} \subseteq \stexec^{\arrowmodelU}(\plans)$ and $\R'_\plans(\truthset{\modults}{\arrowbox{U}\varphi}) \subseteq \truthset{\modults}{\arrowbox{U}\psi}$.
+	Thus, $\arrowmodelU,w \models \khi(\varphi,\psi)$ iff there is $\plans \in \Unc(i)$ with $\plans \subseteq \ACT$ s.t. $\truthset{\modults}{\arrowbox{U}\varphi} \subseteq \stexec^{\arrowmodelU}(\plans)$ and $(\arrowsemantics{\R}{U})_\plans(w)(\truthset{\modults}{\arrowbox{U}\varphi}) \subseteq \truthset{\modults}{\arrowbox{U}\psi}$.
 	Let $a \in \plans$ and $w \in \arrowsemantics{\W}{U}$. If $w \in \truthset{\modults}{\arrowbox{U}\varphi}$, then:
 	\begin{itemize}
 	\item $(\arrowsemantics{\R}{U})_a(w) \neq \emptyset$ (since $w \in \stexec^{\arrowmodelU}(a)$) and
