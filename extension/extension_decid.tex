@@ -71,7 +71,7 @@ The filtration is defined similarly as for the basic modal logic (see, e.g.,~\ci
 The most significant difference is the addition of a denumerable set of actions and relations (\Cref{item:khiml-fil}) since we use the set $\ACT^\Sigma$ as the set of action names.
 As a consequence, the actions an agent $i$ considers in $\Unc^f(i)$ are separated from the actions defined in $\ACT$.
 Moreover, if $\Sigma$ is finite, the relation $\planequiv_\Sigma$ enables us to obtain a finite set of witnesses for the formulas $\khi(\psi,\varphi) \in \Sigma$, from which (together with $\modequiv_\Sigma$) we also get that $\ACT^\Sigma$ and $\W^f$ are finite.
-The function $\Unc^f(i)$ is well-defined since it is made only of singletons. Specially, if there is no $\plans \in \Unc(i)$ such that $\plans$ is a witness for some $\khi(\varphi,\psi) \in \Sigma$, $\Unc^f(i)\neq \emptyset$ still holds.
+$\Unc^f(i)$ is well-defined since it is made only of singletons. Specially, if there is no $\plans \in \Unc(i)$ such that $\plans$ is a witness for some $\khi(\varphi,\psi) \in \Sigma$, $\Unc^f(i)\neq \emptyset$ still holds.
 This is due to the addition of a vacuous action, $a_\emptyset$, which is not strongly executable in any state.
 The conditions~\ref{item:khiml-fil-a1} and~\ref{item:khiml-fil-a2} are the usual ones for the basic modal logic.
 In fact, notice that they are not in conflict with the new conditions, as the actions used to talk about formulas with $\kh$ are disjoint from those to talk about formulas with $[a]$ modalities.
@@ -273,7 +273,7 @@ Thus, $\R^f$ and $\Unc^f$ are both finite.
 \medskip
 
 Considering~\Cref{th:filtration}, it remains to prove that, given a model $\modults$ and a set of formulas $\Sigma$ closed under subformulas, the set of filtrations of $\modults$ via $\Sigma$ is non empty.
-This can be achieved by defining $G_{[\plans]_\Sigma} = [\plans]_\Sigma \neq \emptyset$ for each $a_{[\plans]_\Sigma} \in \ACT^\Sigma_i$, and considering at least one of the two alternatives to define $\R_a$ for each $a \in \ACT^\Sigma_\square$ given in \cite{HML,mlbook}:
+This can be achieved by defining $G_{[\plans]_\Sigma} = [\plans]_\Sigma \neq \emptyset$ for each $a_{[\plans]_\Sigma} \in \ACT^\Sigma_i$, and considering at least one of the two alternatives to define $\R^f_a$ for each $a \in \ACT^\Sigma_\square$ given in \cite{HML,mlbook}:
 
 \begin{itemize}
 \item $([w]_\Sigma,[v]_\Sigma) \in \R^f_a$ iff there exists $w' \in [w]_\Sigma$, $v' \in [v]_\Sigma$ such that $(w',v') \in \R_a$; or
