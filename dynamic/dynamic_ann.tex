@@ -17,7 +17,7 @@ Thus, $\modults_\chi$ is obtained by taking $\truthset{\modults}{\chi}$ as the n
 
 A couple of remarks might be useful here. First recall that, in the \emph{knowing how} setting, states other than the evaluation point do not represent epistemic possibilities (as they do in EL), but rather situations reachable by actions. Thus, in the \emph{knowing how} setting, the elimination of some states indicates not that they are no longer \emph{possible}, but rather that they are no longer \emph{reachable}. Moreover, in the original \emph{knowing how} setting, the relations define the agents' abilities. Hence, under that semantics, removing states corresponds to both an ontic and an epistemic change: the effect of available actions changes, and hence so do the agents' abilities~\cite{Wang2016}. However, in the \ults-based semantics, relations provide only ontic information; thus, removing states produces an \emph{ontic} change that might affect, indirectly, the agents' abilities.
 
-In the $\ults$ setting, it can be shown that the update operator adds expressivity to $\KHilogic$ (a similar result was established in~\cite{Wang2016} for the original $\lts$ setting).
+In the $\ults$ setting, it can be shown that the update operator adds expressivity to $\KHilogic$ (a similar result was established in~\cite{Wang2016} for the original $\lts$-based setting).
 
 \medskip 
 
@@ -58,7 +58,7 @@ However, $\modults,w\models[p]\khi(p,q)$ whereas
 $\modults',w'\not\models[p]\khi(p,q)$.
 \end{proof}
 
-A consequence of~\Cref{prop:pal-exp} is that the modality for \PAL-like updates, $[\chi]$, is not reducible to the underlying language $\KHilogic$. This makes sense: while $\KHilogic$ can express the agents' abilities to achieve certain goals from given situations (the modality $\khi$), it cannot talk about more specific properties of the courses of action on which the abilities rely.\footnote{This is in contrast with what happens when these modalities are added to standard epistemic logic, where reduction axioms can be defined (see, e.g.,~\cite{DELbook}).} In such situations, the axiomatization can be approached in different ways. For this operation, the `extend the basic language' method has already been explored in \cite{Wang2016}. Here, the strategy is to look for a variation of the operation, and then to restrict the setting to a particular class of models.
+A consequence of~\Cref{prop:pal-exp} is that the modality for \PAL-like updates, $[\chi]$, is not reducible to the underlying language $\KHilogic$. This makes sense: while $\KHilogic$ can express the agents' abilities to achieve certain goals from given situations (the modality $\khi$), it cannot talk about more specific properties of the courses of action on which the abilities rely (this is in contrast with what happens when these modalities are added to standard epistemic logic, where reduction axioms can be defined (see, e.g.,~\cite{DELbook}). In such situations, the axiomatization can be approached in different ways. For this operation, the `extend the basic language' method has already been explored in \cite{Wang2016}. Here, the strategy is to look for a variation of the operation, and then to restrict the setting to a particular class of models.
 
 \medskip
 
@@ -84,7 +84,7 @@ its relations. Indeed, in the former, each $(\R_\chi)_a$ restricts the original 
 %Recall that a neighbourhood model~\cite{pacuit17} is given by: a non-empty domain $\W$, an atomic valuation, and a neighbourhood function $\N:\W \to 2^{2^{\W}}$, assigning a set of sets of states to each possible state. Let $U \subseteq \W$ be a non-empty set of states. On the one hand, the \emph{$U$-intersection} submodel defined in~\cite{MaS18} has $U$ as its domain, with its neighbourhood function built by restricting each set in a neighbourhood to the new domain, analogous to what $\modults_{\chi}$ (a standard announcement) does.
 % On the other hand, the \emph{$U$-subset} submodel therein also has $U$ as its domain, but its neighbourhood function is built by keeping only those sets that are already a subset of the new domain, analogous to what $\annsemantics{\modults}{\chi}$ does. We argue that this second approach is more appropriate in the context of knowing how.}.
 
-Even with this, more restricted, version of an update, the resulting logic fails to have reduction axioms: adding $\gann{\chi}$ to $\KHilogic$ increases the expressive power.
+Even with this more restricted version of an update, the resulting logic fails to have reduction axioms: adding $\gann{\chi}$ to $\KHilogic$ increases the expressive power.
 
 \medskip 
 
@@ -150,7 +150,7 @@ Define $\cultsba$ as the class of models $\modults = \tup{\W, \R, \Unc, \V}$ in 
 
 \medskip 
 
-The class $\cultsba$ (denoted as $\sults$ in \cite{AFSV22}) constitutes a restricted class of models, which could correspond, for example, to a more abstract representation of the abilities of the agents (every plan is modelled as a single action). The reduction axioms from~\Cref{tab:palaxiom} are valid in the class of models $\cultsba$. Moreover, we can use them to eliminate announcements by iteratively replacing the innermost occurrence of a $\gann{\chi}$ modality. Thus, we get completeness for $\PAKHilogic$.
+The class $\cultsba$ (denoted as $\sults$ in \cite{AFSV22}) constitutes a restricted class of models, which could correspond, for example, to a more abstract representation of the abilities of the agents (every plan is modeled as a single action). This class slightly generalizes the one of the canonical model, as here we allow each $\plans$ to be any set of atomic actions instead of just singletons of them. The reduction axioms from~\Cref{tab:palaxiom} are valid in the class of models $\cultsba$. Moreover, we can use them to eliminate announcements by iteratively replacing the innermost occurrence of a $\gann{\chi}$ modality. Thus, we get completeness for $\PAKHilogic$.
 
 \begin{table}[t]
 \begin{tabular}{l@{\quad}l}
