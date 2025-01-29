@@ -28,14 +28,15 @@ where $\modults^\plan = \tup{\W,\R,\Unc',\V}$, with:
 \begin{itemize}
 \item $\Unc'(i) = (\Unc(i) \setminus \set{\plans}) \cup \set{\set{\plan}}$, if there is $\plans \in \Unc(i)$ such that $\plan \in \plans$,
 \item $\Unc'(i) = \Unc(i) \cup \set{\set{\plan}}$ otherwise.
-\bigfer{Just to be sure, if there is $\plans$ with $\plan \in \plans$, then after the operation all plans in $\plans\setminus\set{\plan}$ are erased, right? For an example, if $\Unc = \set{ \set{a,b,c} }$ then, after distinguishing $a$, the result is not $\Unc' = \set{ \set{a}, \set{b,c} }$ but rather $\Unc' = \set{ \set{a} }$, right? I guess there is an argument for that to be reasonable (one could even mention that it does not remove abilities: everything for which $\plans$ was a witness before the action has, after the action, $\set{a}$ as witness). Should this be emphasised?} 
+
+% \bigfer{Just to be sure, if there is $\plans$ with $\plan \in \plans$, then after the operation all plans in $\plans\setminus\set{\plan}$ are erased, right? For an example, if $\Unc = \set{ \set{a,b,c} }$ then, after distinguishing $a$, the result is not $\Unc' = \set{ \set{a}, \set{b,c} }$ but rather $\Unc' = \set{ \set{a} }$, right? I guess there is an argument for that to be reasonable (one could even mention that it does not remove abilities: everything for which $\plans$ was a witness before the action has, after the action, $\set{a}$ as witness). Should this be emphasised?} 
 \end{itemize}
 \end{definition}
 
 \medskip
 
 Intuitively, the new dynamic modality is an announcement of the fact that a given plan has a behavior that can be uniquely determined. In case the plan is not a part of the plans that are under the consideration of a certain agent, it is added to it, making the agent aware of its existence. 
-The nature of this modality is of a destructive one as it collapses a set of plans into a singleton set, removing any trace of uncertainty around $\plan$ in the process. This is a stark contrast compared to the refinement operators, since they partition and conserve the plans.
+The nature of this modality is of a destructive one as it collapses a set of plans into a singleton set, removing any trace of uncertainty around $\plan$ in the process. This is a stark contrast compared to the refinement operators, since they partition and conserve the plans. \textcolor{orange}{Still, the agent's abilities are, in some sense, maintained, as $\plan$ is preserved to represent the set that formerly contained it}.
 
 \medskip
 
