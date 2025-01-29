@@ -1,8 +1,6 @@
 %\subsubsection{Axiom system}
 
-\begin{textonuevo}
-The axiom system in \Cref{tab:khimlaxiom}, extending that in~\Cref{tab:khiaxiom} with the well-known axioms \axm{Dist$\square$} and \axm{A$\square$}, is sound and complete for $\KHiMLlogic$. For soundness, the new axioms are valid. For completeness, note first how the necesitation rule for $\square$ is derivable using \axm{NecA}, \axm{A$\square$} and \axm{MP}. Moreover, no additional `interaction' axioms are needed: the \emph{knowing how} modality does not make explicit the plan that serves as a witness. Then, the witnesses for formulas of the form $\khi(\psi,\varphi)$ and $\mldiam{a}\varphi$ can be kept independent from each other. This is used in the completeness proof below (in particular, in the construction of the canonical model), similar to that in~\cite{AFSVQ21,AFSVQ23report} for $\KHilogic$.
-\end{textonuevo}
+The axiom system in \Cref{tab:khimlaxiom}, extending that in~\Cref{tab:khiaxiom} with the well-known axioms \axm{Dist$\square$} and \axm{A$\square$}, is sound and complete for $\KHiMLlogic$. Soundness easily follows from the validity of the new axioms. For completeness, note first how the necesitation rule for~$[a]$ is derivable using \axm{NecA}, \axm{A$\square$} and \axm{MP}. Moreover, no additional `interaction' axioms are needed: the \emph{knowing how} modality does not make explicit the plan that serves as a witness. Then, the witnesses for formulas of the form $\khi(\psi,\varphi)$ and $\mldiam{a}\varphi$ can be kept independent from each other. This is used in the completeness proof below (in particular, in defining the canonical model), similar to that in~\cite{AFSVQ21,AFSVQ23report} for $\KHilogic$.
 
 \medskip
 
@@ -169,7 +167,7 @@ The following properties about the canonical model $\modults^\Gamma$ are useful 
 
 \medskip
 
-\begin{proposition} \label{pro:canonical}\ 
+\begin{proposition} \label{pro:canonical} The following properties hold:
 	\begin{enumerate}
 		\item \label{pro:cm-ults-khiml-allsame}
 For $\Delta_1, \Delta_2 \in \W^\Gamma$ we have $\restarbitrary{\Delta_1} = \restarbitrary{\Delta_2}$, $\restnarbitrary{\Delta_1} = \restnarbitrary{\Delta_2}$, $\arbitrary \in \set{\khi,\kh,\A}$.
@@ -196,7 +194,7 @@ Given $\Gamma \!\in\! \smcs$, take $\modults^\Gamma = \tup{\W^\Gamma, \R^\Gamma,
 $\modults^\Gamma, \Theta \models \varphi \mbox{ if and only if } \varphi \in \Theta$.
 \end{lemma}
 \begin{proof}
-The proof is by induction on $\varphi$. Here are the $\khi$ and $[a]$ cases.
+The proof is by induction on $\varphi$. We develop here the $\khi$ and $[a]$ cases.
 %The atomic and Boolean cases behave as usual, so we focus on the $\khi$ and $[a]$ cases.
 \medskip
 
