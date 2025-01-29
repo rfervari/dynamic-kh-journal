@@ -172,7 +172,6 @@ To establish the validity of the reduction axioms, we first need to prove the fo
 \medskip 
 
 \begin{lemma}\label{lem:palproperties} Let $\chi$ and $\varphi$ be $\PAKHilogic$-formulas; let $\modults$ be an arbitrary \ults.
-	%\fer{Arbitrary models, correct?} 
 	The following equalities hold:
 	\begin{multicols}{2}
 	\begin{enumerate}
@@ -248,15 +247,19 @@ The result follows by the correctness of the axioms and rule from~\Cref{tab:pala
 % \end{enumerate}
 % \end{definition}
 
-Now, a valid question that comes with these results is: Do we have reduction axioms for $\cultsba$ if we use the standard model update $[\chi]$ from DEL instead of $\gann{\chi}$?
-At the time of writing, the answer seems unclear as the case for reducing $[\chi] \khi(\psi,\varphi)$ in $\cultsba$ presents some challenges at a relations level.
-Using the semantics we can get that there is $\plans \in \Unc(i)$ with $\plans \subseteq \ACT$ s.t.
-$\truthset{\modults}{\chi \wedge [\chi]\psi} \subseteq \stexec^{\modults_\chi}(\plans)$ and $(\R_{\chi})_\plans(\truthset{\modults}{\chi \wedge \gann{\chi}\psi}) \subseteq \truthset{\modults}{\chi \wedge \gann{\chi}\varphi}$.
-But with some further analysis, the parts $\stexec^{\modults_\chi}(\plans)$ and $(\R_{\chi})_\plans(\truthset{\modults}{\chi \wedge \gann{\chi}\psi})$ proved very hard to disassemble and get an expression of the form $\khi(A,B)$.
-One of the reasons we considered is that the $[\chi]$ modality has an edge-by-edge focus instead of having an group-edge one, something needed for $\khi$ formulas to have a proper translation.
-Although we are still considering that there might be a class of models more adequate for $[\chi]$, there seems to be no clear answer.
+% Now, a valid question that comes with these results is: Do we have reduction axioms for $\cultsba$ if we use the standard model update $[\chi]$ from DEL instead of $\gann{\chi}$?
+% At the time of writing, the answer seems unclear as the case for reducing $[\chi] \khi(\psi,\varphi)$ in $\cultsba$ presents some challenges at a relations level.
+% Using the semantics we can get that there is $\plans \in \Unc(i)$ with $\plans \subseteq \ACT$ s.t.
+% $\truthset{\modults}{\chi \wedge [\chi]\psi} \subseteq \stexec^{\modults_\chi}(\plans)$ and $(\R_{\chi})_\plans(\truthset{\modults}{\chi \wedge \gann{\chi}\psi}) \subseteq \truthset{\modults}{\chi \wedge \gann{\chi}\varphi}$.
+% But with some further analysis, the parts $\stexec^{\modults_\chi}(\plans)$ and $(\R_{\chi})_\plans(\truthset{\modults}{\chi \wedge \gann{\chi}\psi})$ proved very hard to disassemble and get an expression of the form $\khi(A,B)$.
+% One of the reasons we considered is that the $[\chi]$ modality has an edge-by-edge focus instead of having an group-edge one, something needed for $\khi$ formulas to have a proper translation.
+% Although we are still considering that there might be a class of models more adequate for $[\chi]$, there seems to be no clear answer.
 
-\bigfer{Si trabajamos en la clase $\cultsba$, ¿hay axiomas de reducción para la operación estandar de PAL? Andr\'es: mencionas que te parece que no. ¿Podrías agregar aquí un par de lineas describiendo el problema? Si no estas seguro, entones hay que añadir una linea diciendo que la respuesta a eso no es clara, y luego tal vez mencionarlo en trabajo a futuro.}
+% \bigfer{Si trabajamos en la clase $\cultsba$, ¿hay axiomas de reducción para la operación estandar de PAL? Andr\'es: mencionas que te parece que no. ¿Podrías agregar aquí un par de lineas describiendo el problema? Si no estas seguro, entones hay que añadir una linea diciendo que la respuesta a eso no es clara, y luego tal vez mencionarlo en trabajo a futuro.}
+
+\begin{textonuevo}
+	It is worth noticing that, even in the class $\cultsba$, the modality $[\chi]$ (usually known in EL as `public annoucement') adds expressive power to $\KHilogic$, i.e., there are no reduction axioms to eliminate its occurrences in formulas. This follows already from~\Cref{prop:pal-exp}, since the counterexample models in the proof belong to the class $\cultsba$. Therefore, the meaning of $[\chi]$ and $\gann{\chi}$ is different even in such a restricted class of models.
+\end{textonuevo}
 
 To finish this discussion, we prove that the satisfiability problem for $\PAKHilogic$ is decidable at least over $\cultsba$.
 
