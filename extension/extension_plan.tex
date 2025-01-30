@@ -35,7 +35,7 @@ where $\modults^\plan = \tup{\W,\R,\Unc',\V}$, with:
 
 \medskip
 
-Intuitively, the new dynamic modality is an announcement of the fact that a given plan has a behavior that can be uniquely determined. In case the plan is not a part of the plans that are under the consideration of a certain agent, it is added to it, making the agent aware of its existence. Otherwise, this modality has some destructive nature, as it collapses a set of plans into a singleton set, removing any trace of uncertainty around $\plan$ in the process. This is a stark contrast compared to the refinement operators, since they partition and conserve the plans. \textcolor{orange}{Still, the agent's abilities are, in some sense, maintained, as $\plan$ is preserved to represent the set that formerly contained it}.
+Intuitively, the new dynamic modality is an announcement of the fact that a given plan has a behavior that can be uniquely determined. In case the plan is not a part of the plans that are under the consideration of a certain agent, it is added to it, making the agent aware of its existence. Otherwise, this modality has some destructive nature, as it collapses a set of plans into a singleton set, removing any trace of uncertainty around $\plan$ in the process. This is a stark contrast compared to the refinement operators, since they partition and conserve the plans. Still, the agent's abilities are, in some sense, maintained, as $\plan$ is preserved to represent the set that formerly contained it.
 
 \medskip
 
@@ -81,7 +81,7 @@ We proceed now to introduce a complete axiom system for $\PlanReflogic$. In this
 
 Reduction axioms can be used to translate every formula of $\PlanReflogic$ into an equivalent formula of $\KHiMLlogic$. The challenging case is, as usual, to eliminate the occurence of a $\srefbox{\plan}$ with $\khi$ under its scope. For simplicity, consider a formula $\srefbox{a}\khi(\psi,\varphi)$ with $a\in\ACT$. After $a$ is ``announced'' to be different from any other plan, there are two possible reasons of why $\khi(\psi,\varphi)$ holds. The first is that $a$ plays no role in the truth of $\khi(\psi,\varphi)$. In this case, we can push the dynamic modality into the front of the pre and post-conditions of the $\khi$ modality to obtain $\khi(\srefbox{a}\psi,\srefbox{a}\varphi)$. The second possibility is that distinguishing $a$ creates new abilities. If the singleton $\set{a}$ is the witness for $\khi(\psi,\varphi)$ it is because: 1) $a$ is SE at every state satisfying $\psi$ after the annoucement of $a$ (notice that as $a$ is a single action, SE is equivalent to executability); and 2) from every $\psi$-state, after every execution of $a$, we always get that $\varphi$ holds (in the model updated by $\srefbox{a}$). The former is captured in formula by $\srefbox{a}\psi \ra \mldiam{a}\top$ holding everywhere, while the latter is captured by $\srefbox{a}\psi \ra \mlbox{a}\srefbox{a}\varphi$. Putting all together, this case is reflected by $\A(\srefbox{a}\psi\ra(\mldiam{a}\top\wedge\mlbox{a}\srefbox{a}\varphi))$.
 
-When we consider an arbitrary plan $\plan$ instead of a single actions, this idea can be generalized. The case in which the announcement does not affect the knowledge, is as before. For the other case, we need to make sure that if the announcement of $\plan$ guarantees that the precondition holds ($\srefbox{\plan}\varphi_1$), then $\plan$ is SE and after its execution, the postcondition holds ($\srefbox{\plan}\varphi_2$). 
+When we consider an arbitrary plan $\plan$ instead of a single actions, this idea can be generalized. The case in which the announcement does not affect the knowledge, is as before. For the other case, we need to make sure that if the announcement of $\plan$ guarantees that the initial condition holds ($\srefbox{\plan}\varphi_1$), then $\plan$ is SE and after its execution, the goal is achieved ($\srefbox{\plan}\varphi_2$). 
 The latter, is expressed by the predicate $P(\plan,\srefbox{\plan}\varphi_2)$, described below. Notice that $P$ can be defined as we extended the expressivity of the underlying language, by allowing basic action modalities. The list of reducion axioms for $\PlanReflogic$ are introduced in~\Cref{tab:srefaxiom}.
 
 \begin{table}[t]
@@ -110,7 +110,8 @@ Let $\beta \in \ACT^*$, we define the extension $\mlbox{\beta}\psi$ of $\mlbox{a
 % \mlbox{\beta[1]} \dots \mlbox{\beta[\card{\beta}]} \psi &\quad \beta \neq \epsilon \\
 % \end{cases}
 % \]
-With this definition at hand, $P$ is defined inductively as: 
+%With this definition at hand, 
+Thus, $P$ is defined inductively as: 
 \begin{spcenter}
 $\begin{array}{lcl}
         P(\epsilon,\psi) & = & \psi \\
