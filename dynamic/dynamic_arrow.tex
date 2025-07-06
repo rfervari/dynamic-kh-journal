@@ -3,7 +3,7 @@ Another way to update \ltss is by modifying their relations directly while keepi
 %the focus has been on operations that remove edges, as 
 removing edges represents actions that reduce the agents' uncertainty. The \emph{arrow update logic} ($\AUL$) of~\cite{KooiR11} is a general way to do this. Its operator takes as a parameter a list of arrow specifications (triples of the form formula-action-formula). Then, an edge with label $a$ from state $w$ to state $v$ will not be deleted if and only if there is an arrow specification $(\varphi_1, a, \varphi_2)$ such that $w$ satisfies $\varphi_1$ and $v$ satisfies $\varphi_2$. 
 
-The version of the $\AUL$ framework presented below differs from the original in two aspects. First, an arrow specification is a pair formula-formula; thus, it works for any basic action. Second, similarly as we did in~\Cref{def:annupdate}, an edge with label $a$ from state $w$ to state $v$ will not be deleted when there is an arrow specification $(\varphi_1, \varphi_2)$ such that $w$ satisfies $\varphi_1$ and \emph{all} states that can reached via $a$-edges from $w$ satisfy $\varphi_2$.
+The version of the $\AUL$ framework presented below differs from the original in two aspects. First, an arrow specification is a pair formula-formula; thus, it works for any basic action. Second, similarly as we did in~\Cref{def:annupdate}, an edge with label $a$ from state $w$ to state $v$ will not be deleted when there is an arrow specification $(\varphi_1, \varphi_2)$ such that $w$ satisfies $\varphi_1$ and \emph{all} states that can be reached via $a$-edges from $w$ satisfy $\varphi_2$.
 The reason for this last change relies on the same difficulties discussed with the $[\chi]$ operator. The original $\AUL$ modality has an edge-by-edge focus instead of having an group-edge one, something needed for $\khi$ formulas to have a proper translation. 
 %The answer of whether there is a class of models compatible with this standard operator remains unclear.
 
@@ -13,15 +13,15 @@ The reason for this last change relies on the same difficulties discussed with t
 \medskip 
 
 \begin{definition}
-Let $\modults = \tup{\W, \R, \Unc, \V}$ be an \ults; let $U = (\theta_1,\theta'_1),\dots,(\theta_n,\theta'_n)$ be a finite list of arrow specifications with $\theta_i,\theta'_i$ formulas for every $0\leq i \leq n$. The \ults $\arrowmodelU = \tup{\W, \arrowsemantics{\R}{U}, \Unc,\V}$ is such that, for every $a\in\ACT$,
+Let $\modults = \tup{\W, \R, \Unc, \V}$ be an \ults; let $S = (\theta_1,\theta'_1),\dots,(\theta_n,\theta'_n)$ be a finite list of arrow specifications with $\theta_i,\theta'_i$ formulas for every $0\leq i \leq n$. The \ults $\arrowmodel{S} = \tup{\W, \arrowsemantics{\R}{S}, \Unc,\V}$ is such that, for every $a\in\ACT$,
 %\[
-	$(\arrowsemantics{\R}{U})_a = \setof{(w,v) \in \R_a(w)}{w \in \truthset{\modults}{\bigwedge_{i=1}^n \theta_i} \text{, } \R_a(w) \subseteq \truthset{\modults}{\bigwedge_{i=1}^n \theta'_i}}$.
+	$(\arrowsemantics{\R}{S})_a = \setof{(w,v) \in \R_a(w)}{w \in \truthset{\modults}{\bigwedge_{i=1}^n \theta_i} \text{, } \R_a(w) \subseteq \truthset{\modults}{\bigwedge_{i=1}^n \theta'_i}}$.
 %\]
 \end{definition}
 
-%\bigfer{About the definition of the new model. I guess the `standard' version would be with $(\arrowsemantics{\R}{U})_a = \setof{(w,v) \in \R_a(w)}{w \in \truthset{\modults}{\bigwedge_{i=1}^n \theta_i} \text{ and } v \in \truthset{\modults}{\bigwedge_{i=1}^n \theta'_i}}$. Is that correct? If so, it seems different from the standard arrow update, at least in that the existential quantification is not explicit. Are we taking this presentation from some other source? If not, it might be worthwhile to explain it a bit.}
+%\bigfer{About the definition of the new model. I guess the `standard' version would be with $(\arrowsemantics{\R}{S})_a = \setof{(w,v) \in \R_a(w)}{w \in \truthset{\modults}{\bigwedge_{i=1}^n \theta_i} \text{ and } v \in \truthset{\modults}{\bigwedge_{i=1}^n \theta'_i}}$. Is that correct? If so, it seems different from the standard arrow update, at least in that the existential quantification is not explicit. Are we taking this presentation from some other source? If not, it might be worthwhile to explain it a bit.}
 
-Note that if $w \in \truthset{\modults}{\bigwedge_{i=1}^n \theta_i}$ and $\R_a(w) \subseteq \truthset{\modults}{\bigwedge_{i=1}^n \theta'_i}$, then $(\arrowsemantics{\R}{U})_a(w) = \R_a(w)$. Moreover, $(\arrowsemantics{\R}{U})_a(w) \neq \emptyset$ iff $w \in \truthset{\modults}{\bigwedge_{i=1}^n \theta_i}$, $\R_a(w) \subseteq \truthset{\modults}{\bigwedge_{i=1}^n \theta'_i}$ and $\R_a(w) \neq \emptyset$.
+Note that if $w \in \truthset{\modults}{\bigwedge_{i=1}^n \theta_i}$ and $\R_a(w) \subseteq \truthset{\modults}{\bigwedge_{i=1}^n \theta'_i}$, then $(\arrowsemantics{\R}{S})_a(w) = \R_a(w)$. Moreover, $(\arrowsemantics{\R}{S})_a(w) \neq \emptyset$ iff $w \in \truthset{\modults}{\bigwedge_{i=1}^n \theta_i}$, $\R_a(w) \subseteq \truthset{\modults}{\bigwedge_{i=1}^n \theta'_i}$ and $\R_a(w) \neq \emptyset$.
 
 \medskip
 
@@ -34,18 +34,18 @@ Formulas of the language $\AUKHilogic$ are defined by the following grammar
 \[
 \begin{array}{lcl}
 \varphi & ::= & p \mid \neg\varphi \mid \varphi\vee\varphi \mid
-\khi(\varphi,\varphi) \mid \arrowbox{U}\varphi, \\
-U & ::= & (\varphi,\varphi) \mid U,(\varphi,\varphi),
+\khi(\varphi,\varphi) \mid \arrowbox{S}\varphi, \\
+S & ::= & (\varphi,\varphi) \mid S,(\varphi,\varphi),
 \end{array}
 \]
 with $p \in \PROP$ and $i\in\AGT$. 
 %Other Boolean connectives are defined as usual. We also define
-%$\arrowbox{U}\varphi := \neg \arrowbox{U} \neg\varphi$.
+%$\arrowbox{S}\varphi := \neg \arrowbox{S} \neg\varphi$.
 For the semantics, formulas already in $\KHilogic$ are interpreted as before. For the new type of formulas, 
 \begin{spcenter}
-	$\modults,w \models \arrowbox{U}\varphi \mbox{ iff } \arrowmodelU,w \models \varphi$.
+	$\modults,w \models \arrowbox{S}\varphi \mbox{ iff } \arrowmodel{S},w \models \varphi$.
 \end{spcenter}
-%Moreover, $\modults,w\models \arrowbox{U}\varphi$ iff $\modults,w\models \arrowbox{U}\varphi$ (i.e., the modality $\arrowbox{U}$ is self-dual).
+%Moreover, $\modults,w\models \arrowbox{S}\varphi$ iff $\modults,w\models \arrowbox{S}\varphi$ (i.e., the modality $\arrowbox{S}$ is self-dual).
 \end{definition}
 
 %\medskip 
@@ -63,14 +63,14 @@ $\AUKHilogic$ is more expressive than $\KHilogic$ over arbitrary \ultss.
 By using the models from~\Cref{prop:exppal}, we have that $\modults,w \not\models [(r,r)]\khi(p,q)$ and $\modults',w' \models[(r,r)]\khi(p,q)$.
 \end{proof}
 
-Still, the reduction axioms from~\Cref{tab:aulaxiom} are valid in the class of models $\cultsba$, and we can use them to eliminate all occurrences of the $\arrowbox{U}$ modality. %Thus, we get completeness for $\AUKHilogic$. 
+Still, the reduction axioms from~\Cref{tab:aulaxiom} are valid in the class of models $\cultsba$, and we can use them to eliminate all occurrences of the $\arrowbox{S}$ modality. %Thus, we get completeness for $\AUKHilogic$. 
 As our presentation is a variation of the original $\AUL$, the axiom system is novel. However, it follows standard ideas, and the soundness of most axioms is clear. 
-Something worth noting is that axiom \axm{RJoin} reflects exactly the semantics of $\arrowbox{U}$. If we have a finite list of pair of formulas in an update $U$, we can group all formulas into a pair $(\theta,\theta')$.
+Something worth noting is that axiom \axm{RJoin} reflects exactly the semantics of $\arrowbox{S}$. If we have a finite list of pair of formulas in an update specification $S$, we can group all formulas into a pair $(\theta,\theta')$.
 
 \begin{table}[t]
 \begin{tabular}{l@{\quad}l}
 \toprule
-\axm{RJoin} & $\arrowbox{U}\varphi \leftrightarrow \arrowbox{(\bigwedge_{i=1}^n \theta_i,\bigwedge_{i=1}^n \theta'_i)}\varphi$ \\
+\axm{RJoin} & $\arrowbox{S}\varphi \leftrightarrow \arrowbox{(\bigwedge_{i=1}^n \theta_i,\bigwedge_{i=1}^n \theta'_i)}\varphi$ \\
 \axm{RAtom} & $\arrowbox{(\theta,\theta')}p \leftrightarrow p$ \\
 \axm{R$\neg$} & $\arrowbox{(\theta,\theta')}\neg\varphi \leftrightarrow \neg \arrowbox{(\theta,\theta')}\varphi$ \\
 \axm{R$\vee$} & $\arrowbox{(\theta,\theta')}(\varphi \vee \psi) \leftrightarrow \arrowbox{(\theta,\theta')}\varphi \vee \arrowbox{(\theta,\theta')}\psi$ \\
@@ -78,7 +78,7 @@ Something worth noting is that axiom \axm{RJoin} reflects exactly the semantics 
 \axm{RE$_U$} & $\text{From } \vdash \varphi \leftrightarrow \psi \text{ derive } \vdash \arrowbox{(\theta,\theta')}\varphi \leftrightarrow \arrowbox{(\theta,\theta')}\psi$ \\
 \bottomrule
 \end{tabular}
-\caption{Reduction axioms $\axset_{\AUKHilogic}$ with $U = (\theta_1,\theta'_1),\dots,(\theta_n,\theta'_n)$.}\label{tab:aulaxiom}
+\caption{Reduction axioms $\axset_{\AUKHilogic}$ with $S = (\theta_1,\theta'_1),\dots,(\theta_n,\theta'_n)$.}\label{tab:aulaxiom}
 \end{table}
 
 \medskip 
@@ -88,44 +88,44 @@ Something worth noting is that axiom \axm{RJoin} reflects exactly the semantics 
 \end{lemma}
 
 \begin{proof} The proof proceeds by cases. We only discuss $\axm{RKh}$.
-	% \item For \axm{RBase}, let $U' = (\bigwedge_{i=1}^n \theta_i,\bigwedge_{i=1}^n \theta'_i) = (\alpha_1,\theta'_1)$, note that $\arrowsemantics{\W}{U} = \arrowsemantics{\W}{U'} = \W$, $\arrowsemantics{\Unc}{U} = \arrowsemantics{\Unc}{U'} = \Unc$ and $\arrowsemantics{\V}{U}(p) = \arrowsemantics{\V}{U'}(p) = \V(p)$ for every $p$. Let $a \in \ACT$, $(w,v) \in (\arrowsemantics{\R}{U})_a$ iff $w \in \truthset{\modults}{\bigwedge_{i=1}^n \theta_i}$, $\R_a(w) \subseteq \truthset{\modults}{\bigwedge_{i=1}^n \theta'_i}$.
-	% Since $\truthset{\modults}{\bigwedge_{i=1}^n \theta_i} = \truthset{\modults}{\alpha_1} = \truthset{\modults}{\bigwedge_{i=1}^1 \alpha_i}$ and $\truthset{\modults}{\bigwedge_{i=1}^n \theta'_i} = \truthset{\modults}{\theta'_1} = \truthset{\modults}{\bigwedge_{i=1}^1 \theta'_i}$, $(w,v) \in (\arrowsemantics{\R}{U})_a$ iff $(w,v) \in (\arrowsemantics{\R}{U'})_a$.
-	% With this, $(\arrowsemantics{\R}{U})_a = (\arrowsemantics{\R}{U'})_a$ for all $a \in \ACT$, $\arrowmodelU = \arrowmodel{U'}$ and satisfy the same formulas.
-	% Thus, $\modults,w \models \arrowbox{U}\varphi$ iff $\modults,w \models \arrowbox{U'}\varphi$.
+	% \item For \axm{RBase}, let $U' = (\bigwedge_{i=1}^n \theta_i,\bigwedge_{i=1}^n \theta'_i) = (\alpha_1,\theta'_1)$, note that $\arrowsemantics{\W}{S} = \arrowsemantics{\W}{U'} = \W$, $\arrowsemantics{\Unc}{S} = \arrowsemantics{\Unc}{U'} = \Unc$ and $\arrowsemantics{\V}{S}(p) = \arrowsemantics{\V}{U'}(p) = \V(p)$ for every $p$. Let $a \in \ACT$, $(w,v) \in (\arrowsemantics{\R}{S})_a$ iff $w \in \truthset{\modults}{\bigwedge_{i=1}^n \theta_i}$, $\R_a(w) \subseteq \truthset{\modults}{\bigwedge_{i=1}^n \theta'_i}$.
+	% Since $\truthset{\modults}{\bigwedge_{i=1}^n \theta_i} = \truthset{\modults}{\alpha_1} = \truthset{\modults}{\bigwedge_{i=1}^1 \alpha_i}$ and $\truthset{\modults}{\bigwedge_{i=1}^n \theta'_i} = \truthset{\modults}{\theta'_1} = \truthset{\modults}{\bigwedge_{i=1}^1 \theta'_i}$, $(w,v) \in (\arrowsemantics{\R}{S})_a$ iff $(w,v) \in (\arrowsemantics{\R}{U'})_a$.
+	% With this, $(\arrowsemantics{\R}{S})_a = (\arrowsemantics{\R}{U'})_a$ for all $a \in \ACT$, $\arrowmodel{S} = \arrowmodel{U'}$ and satisfy the same formulas.
+	% Thus, $\modults,w \models \arrowbox{S}\varphi$ iff $\modults,w \models \arrowbox{U'}\varphi$.
 	
-	% \item For \axm{RAtom}, let $U = (\theta,\theta')$, $\modults,w \models \arrowbox{U}p$ iff $\arrowmodelU,w \models p$. Since $\arrowsemantics{\V}{U}(w) = \V(w)$, $p \in \arrowsemantics{\V}{U}(w)$ iff $w \in \V(p)$. Thus, $\modults,w \models \arrowbox{U}p$ iff $\modults,w \models p$.
+	% \item For \axm{RAtom}, let $U = (\theta,\theta')$, $\modults,w \models \arrowbox{S}p$ iff $\arrowmodel{S},w \models p$. Since $\arrowsemantics{\V}{S}(w) = \V(w)$, $p \in \arrowsemantics{\V}{S}(w)$ iff $w \in \V(p)$. Thus, $\modults,w \models \arrowbox{S}p$ iff $\modults,w \models p$.
 	
-	% \item For \axm{R$\neg$}, let $U = (\theta,\theta')$, $\modults,w \models \arrowbox{U}\neg\varphi$ iff $\arrowmodelU,w \models \neg\varphi$ iff $\arrowmodelU,w \not\models \varphi$ iff $\modults,w \not\models \arrowbox{U}\varphi$ iff $\modults,w \models \neg\arrowbox{U}\varphi$.
+	% \item For \axm{R$\neg$}, let $U = (\theta,\theta')$, $\modults,w \models \arrowbox{S}\neg\varphi$ iff $\arrowmodel{S},w \models \neg\varphi$ iff $\arrowmodel{S},w \not\models \varphi$ iff $\modults,w \not\models \arrowbox{S}\varphi$ iff $\modults,w \models \neg\arrowbox{S}\varphi$.
 	
 	% \item For \axm{R$\vee$}, let $U = (\theta,\theta')$,
-	% $\modults,w \models \arrowbox{U}(\varphi \vee \psi)$ iff $\arrowmodelU,w \models \varphi \vee \psi$ iff $\arrowmodelU,w \models \varphi$ or $\arrowmodelU,w \models \psi$ iff $\modults,w \models \arrowbox{U}\varphi$ or $\modults,w \models \arrowbox{U}\psi$ iff $\modults,w \models \arrowbox{U}\varphi \vee \arrowbox{U}\psi$.
+	% $\modults,w \models \arrowbox{S}(\varphi \vee \psi)$ iff $\arrowmodel{S},w \models \varphi \vee \psi$ iff $\arrowmodel{S},w \models \varphi$ or $\arrowmodel{S},w \models \psi$ iff $\modults,w \models \arrowbox{S}\varphi$ or $\modults,w \models \arrowbox{S}\psi$ iff $\modults,w \models \arrowbox{S}\varphi \vee \arrowbox{S}\psi$.
 	
-	Let $U = (\theta,\theta')$, by the definition of $\arrowbox{U}$, $\modults,w \models \arrowbox{U}\khi(\varphi,\psi)$ iff $\arrowmodelU,w \models \khi(\varphi,\psi)$.
-	Using the definition of $\khi$, $\arrowmodelU,w \models \khi(\varphi,\psi)$ iff there is $\plans \in (\arrowsemantics{\Unc}{U})_i$ with $\plans \subseteq \ACT$ s.t. $\truthset{\arrowmodelU}{\varphi} \subseteq \stexec^{\arrowmodelU}(\plans)$ and $(\arrowsemantics{\R}{U})_\plans(w)(\truthset{\arrowmodelU}{\varphi}) \subseteq \truthset{\arrowmodelU}{\psi}$.
-	By the definition of $\arrowmodelU$, $(\arrowsemantics{\Unc}{\chi})_i=\Unc(i)$. Using the definition of $\arrowbox{U}$, $\truthset{\arrowmodelU}{\varphi} = \truthset{\modults}{\arrowbox{U}\varphi}$ and $\truthset{\arrowmodelU}{\psi} = \truthset{\modults}{\arrowbox{U}\psi}$.
-	Thus, $\arrowmodelU,w \models \khi(\varphi,\psi)$ iff there is $\plans \in \Unc(i)$ with $\plans \subseteq \ACT$ s.t. $\truthset{\modults}{\arrowbox{U}\varphi} \subseteq \stexec^{\arrowmodelU}(\plans)$ and $(\arrowsemantics{\R}{U})_\plans(w)(\truthset{\modults}{\arrowbox{U}\varphi}) \subseteq \truthset{\modults}{\arrowbox{U}\psi}$.
-	Let $a \in \plans$ and $w \in \arrowsemantics{\W}{U}$. If $w \in \truthset{\modults}{\arrowbox{U}\varphi}$, then:
+	Let $S = (\theta,\theta')$, by the definition of $\arrowbox{S}$, $\modults,w \models \arrowbox{S}\khi(\varphi,\psi)$ iff $\arrowmodel{S},w \models \khi(\varphi,\psi)$.
+	Using the definition of $\khi$, $\arrowmodel{S},w \models \khi(\varphi,\psi)$ iff there is $\plans \in (\arrowsemantics{\Unc}{S})_i$ with $\plans \subseteq \ACT$ s.t. $\truthset{\arrowmodel{S}}{\varphi} \subseteq \stexec^{\arrowmodel{S}}(\plans)$ and $(\arrowsemantics{\R}{S})_\plans(w)(\truthset{\arrowmodel{S}}{\varphi}) \subseteq \truthset{\arrowmodel{S}}{\psi}$.
+	By the definition of $\arrowmodel{S}$, $(\arrowsemantics{\Unc}{\chi})_i=\Unc(i)$. Using the definition of $\arrowbox{S}$, $\truthset{\arrowmodel{S}}{\varphi} = \truthset{\modults}{\arrowbox{S}\varphi}$ and $\truthset{\arrowmodel{S}}{\psi} = \truthset{\modults}{\arrowbox{S}\psi}$.
+	Thus, $\arrowmodel{S},w \models \khi(\varphi,\psi)$ iff there is $\plans \in \Unc(i)$ with $\plans \subseteq \ACT$ s.t. $\truthset{\modults}{\arrowbox{S}\varphi} \subseteq \stexec^{\arrowmodel{S}}(\plans)$ and $(\arrowsemantics{\R}{S})_\plans(w)(\truthset{\modults}{\arrowbox{S}\varphi}) \subseteq \truthset{\modults}{\arrowbox{S}\psi}$.
+	Let $a \in \plans$ and $w \in \arrowsemantics{\W}{S}$. If $w \in \truthset{\modults}{\arrowbox{S}\varphi}$, then:
 	\begin{itemize}
-	\item $(\arrowsemantics{\R}{U})_a(w) \neq \emptyset$ (since $w \in \stexec^{\arrowmodelU}(a)$) and
-	\item $(\arrowsemantics{\R}{U})_a(w) \subseteq \truthset{\modults}{\arrowbox{U}\psi}$.
+	\item $(\arrowsemantics{\R}{S})_a(w) \neq \emptyset$ (since $w \in \stexec^{\arrowmodel{S}}(a)$) and
+	\item $(\arrowsemantics{\R}{S})_a(w) \subseteq \truthset{\modults}{\arrowbox{S}\psi}$.
 	\end{itemize}
-	By \Cref{def:arrowupdate}, the first item is equivalent to $w \in \truthset{\modults}{\theta}$, $\R_a(w) \subseteq \truthset{\modults}{\theta'}$ and $\R_a(w) \neq \emptyset$ and hence $(\arrowsemantics{\R}{U})_a(w) = \R_a(w)$, useful for the second item.
-	If $w \in \truthset{\modults}{\arrowbox{U}\varphi}$ then:
+	By \Cref{def:arrowupdate}, the first item is equivalent to $w \in \truthset{\modults}{\theta}$, $\R_a(w) \subseteq \truthset{\modults}{\theta'}$ and $\R_a(w) \neq \emptyset$ and hence $(\arrowsemantics{\R}{S})_a(w) = \R_a(w)$, useful for the second item.
+	If $w \in \truthset{\modults}{\arrowbox{S}\varphi}$ then:
 	\begin{itemize}
 	\item $w \in \truthset{\modults}{\theta}$,
 	\item $\R_a(w) \neq \emptyset$ (thus, $w \in \stexec^\modults(a)$),
-	\item $\R_a(w) \subseteq \truthset{\modults}{\theta'}$ and $\R_a(w) \subseteq \truthset{\modults}{\arrowbox{U}\psi}$.
+	\item $\R_a(w) \subseteq \truthset{\modults}{\theta'}$ and $\R_a(w) \subseteq \truthset{\modults}{\arrowbox{S}\psi}$.
 	\end{itemize}
 	Since the first item is independent of $\plans$, we can put it outside the expression.
-	It is easy to see now that $\modults,w \models \A(\arrowbox{U}\varphi \implies \theta)$ and if $w \in \truthset{\modults}{\arrowbox{U}\varphi}$, then:
+	It is easy to see now that $\modults,w \models \A(\arrowbox{S}\varphi \implies \theta)$ and if $w \in \truthset{\modults}{\arrowbox{S}\varphi}$, then:
 	\begin{itemize}
 	\item $\R_a(w) \neq \emptyset$ (thus, $w \in \stexec^\modults(a)$),
-	\item $\R_a(w) \subseteq \truthset{\modults}{\theta' \wedge \arrowbox{U}\psi}$.
+	\item $\R_a(w) \subseteq \truthset{\modults}{\theta' \wedge \arrowbox{S}\psi}$.
 	\end{itemize}
 	
-	Since $a \in \plans$ and $w \in \arrowsemantics{\W}{U} = \W$ were arbitrary, the result yields for all $a \in \plans$ and $w \in \W$.
-	Now $\arrowmodelU,w \models \khi(\varphi,\psi)$ iff $\modults,w \models \A(\arrowbox{U}\varphi \implies \theta)$ and there is $\plans \in \Unc(i)$ with $\plans \subseteq \ACT$ s.t. $\truthset{\modults}{\arrowbox{U}\varphi} \subseteq \stexec(\plans)$ and $\R_\plans(\arrowbox{U}\varphi) \subseteq \truthset{\modults}{\theta' \wedge \arrowbox{U}\psi}$.
-	This happens iff $\modults,w \models (\A(\arrowbox{U}\varphi \implies \theta) \wedge \khi(\arrowbox{U}\varphi,\theta' \wedge \arrowbox{U}\psi))$ with $U = (\theta,\theta')$.
+	Since $a \in \plans$ and $w \in \arrowsemantics{\W}{S} = \W$ were arbitrary, the result yields for all $a \in \plans$ and $w \in \W$.
+	Now $\arrowmodel{S},w \models \khi(\varphi,\psi)$ iff $\modults,w \models \A(\arrowbox{S}\varphi \implies \theta)$ and there is $\plans \in \Unc(i)$ with $\plans \subseteq \ACT$ s.t. $\truthset{\modults}{\arrowbox{S}\varphi} \subseteq \stexec(\plans)$ and $\R_\plans(\arrowbox{S}\varphi) \subseteq \truthset{\modults}{\theta' \wedge \arrowbox{S}\psi}$.
+	This happens iff $\modults,w \models (\A(\arrowbox{S}\varphi \implies \theta) \wedge \khi(\arrowbox{S}\varphi,\theta' \wedge \arrowbox{S}\psi))$ with $S= (\theta,\theta')$.
 \end{proof}
 
 As a corollary, we obtain the intended result.
@@ -133,7 +133,7 @@ As a corollary, we obtain the intended result.
 \medskip 
 
 \begin{theorem}\label{th:aulcomplete}
-$\axset_{\khi}$ together with the reduction axioms for $[U]$ in~\Cref{tab:aulaxiom} are a sound and strongly complete axiomatization for $\AUKHilogic$ w.r.t. $\cultsba$.
+$\axset_{\khi}$ together with the reduction axioms for $[S]$ in~\Cref{tab:aulaxiom} are a sound and strongly complete axiomatization for $\AUKHilogic$ w.r.t. $\cultsba$.
 \end{theorem}
 
 \begin{proof}

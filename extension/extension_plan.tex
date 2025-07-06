@@ -1,7 +1,7 @@
 \subsection{Plan refinement}
 \label{sec:planref}
 
-We defined $\KHiMLlogic$ to obtain enough expressivity to axiomatize some dynamic modalities. Here, we define the modality $\srefbox{\plan}$, inspired by the refinement modality from~\Cref{sec:ref}. A formula $\srefbox{\plan}\varphi$ publicly establishes that the plan $\plan$ must be distinguished from any other, and in such a context $\varphi$ holds. 
+We defined $\KHiMLlogic$ to obtain enough expressivity to axiomatize some dynamic modalities. Here, we define the modality $\srefbox{\plan}$, inspired by the refinement modality from~\Cref{sec:ref}. A formula $\srefbox{\plan}\varphi$ publicly establishes that the plan $\plan$ must be distinguished from any other, and in such a context $\varphi$ holds. It results natural to think of situations in which this modality can be used. as a simple example, suppose an agent considers two plans $\plan_1$ and $\plan_2$ as indistinguishable possibilities to reach a location, but a map app detects a strike in path $\plan_2$. Thus, independently of being a ``good plan'' or not, $\plan_1$ becomes the only choice to be followed.
 %Unlike the modality $\refbox{\plan_1}{\plan_2}$, this modality takes atomic actions but we will generalize it later to arbitrary plans. 
 
 % In this section we show that the action refinement operator can be generalize to arbitrary plans, and we can still obtain suitable reduction axioms.
@@ -102,7 +102,7 @@ The latter, is expressed by the predicate $P(\plan,\srefbox{\plan}\varphi_2)$, d
 \medskip 
 
 \begin{proposition}\label{pro:srefaxioms}
-Let $\beta \in \ACT^*$, we define the extension $\mlbox{\beta}\psi$ of $\mlbox{a}\psi$ as: $\mlbox{\beta}\psi = \psi$ if $\beta=\epsilon$, and $\mlbox{\beta[1]} \dots \mlbox{\beta[\card{\beta}]} \psi$, otherwise.
+Let $\alpha \in \ACT^*$, we define the extension $\mlbox{\alpha}\psi$ of $\mlbox{a}\psi$ as: $\mlbox{\alpha}\psi = \psi$ if $\alpha=\epsilon$, and $\mlbox{\alpha[1]} \dots \mlbox{\alpha[\card{\alpha}]} \psi$, otherwise.
 % \[
 % \mlbox{\beta} \psi = 
 % \begin{cases}
@@ -111,11 +111,11 @@ Let $\beta \in \ACT^*$, we define the extension $\mlbox{\beta}\psi$ of $\mlbox{a
 % \end{cases}
 % \]
 %With this definition at hand, 
-Thus, $P$ is defined inductively as: 
+Thus, $P$ is defined as: 
 \begin{spcenter}
 $\begin{array}{lcl}
         P(\epsilon,\psi) & = & \psi \\
-        P(\alpha,\psi)  &= &(\bigwedge_{k=0}^{\card{\alpha}-1}(\mlbox{\alpha_k}\mldiam{\alpha[k+1]}\top) \wedge \mlbox{\alpha} \psi), \mbox{ with } \mlbox{\beta} = \mlbox{\beta[1]} \dots \mlbox{\beta[\card{\beta}]}. 
+        P(\alpha,\psi)  &= &(\bigwedge_{k=0}^{\card{\alpha}-1}(\mlbox{\alpha_k}\mldiam{\alpha[k+1]}\top) \wedge \mlbox{\alpha} \psi). %, \mbox{ with } \mlbox{\alpha} = \mlbox{\alpha[1]} \dots \mlbox{\alpha[\card{\alpha}]}. 
     \end{array}$
 \end{spcenter}
 Then, the reduction axioms from~\Cref{tab:srefaxiom} are valid.
@@ -189,7 +189,7 @@ where $\modults^\plan_i = \tup{\W,\R,\Unc',\V}$, with:
 \medskip 
 
 \begin{example}
-Suppose as in~\Cref{ex:cook}, we have an expert chef $i$, but we have two inexpert chefs $j$ and $k$, with $\Unc(j)=\Unc(k)=\set{\set{\mathit{ebfmsp},\mathit{ebmfsp}}}$. Suppose now, that agent $j$ subscribed for a course taught by agent $i$, while agent $k$ does not. Then, the information of that \textit{ebgmsp} is the correct course of action is only revealed to $j$, obtaining that $\modults\models\srefbox{ebfmsp,j}\kh_j(h,g)$ while $\modults\models\srefbox{ebfmsp,j}\neg\kh_k(h,g)$.
+Suppose as in~\Cref{ex:cook}, we have an expert chef $i$, but we have two inexpert chefs $j$ and $k$, with $\Unc(j)=\Unc(k)=\set{\set{\mathit{ebfmsp},\mathit{ebmfsp}}}$. Suppose now, that agent $j$ subscribed for a course taught by agent $i$, while agent $k$ does not. Then, the information of that \textit{ebfmsp} is the correct course of action is only revealed to $j$, obtaining that $\modults\models\srefbox{ebfmsp,j}\kh_j(h,g)$ while $\modults\models\srefbox{ebfmsp,j}\neg\kh_k(h,g)$.
 \end{example}
 
 \medskip 

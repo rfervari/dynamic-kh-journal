@@ -257,7 +257,7 @@ The result follows by the correctness of the axioms and rule from~\Cref{tab:pala
 
 % \bigfer{Si trabajamos en la clase $\cultsba$, ¿hay axiomas de reducción para la operación estandar de PAL? Andr\'es: mencionas que te parece que no. ¿Podrías agregar aquí un par de lineas describiendo el problema? Si no estas seguro, entones hay que añadir una linea diciendo que la respuesta a eso no es clara, y luego tal vez mencionarlo en trabajo a futuro.}
 
-It is worth noticing that, even in the class $\cultsba$, the modality $[\chi]$ (usually known in EL as `public annoucement') adds expressive power to $\KHilogic$, i.e., there are no reduction axioms to eliminate its occurrences in formulas. This follows already from~\Cref{prop:pal-exp}, since the counterexample models in the proof belong to the class $\cultsba$. Therefore, the meaning of $[\chi]$ and $\gann{\chi}$ is different even in such a restricted class of models.
+It is worth noticing that, even in the class $\cultsba$, the modality $[\chi]$ (usually known in EL as `public announcement') adds expressive power to $\KHilogic$, i.e., there are no reduction axioms to eliminate its occurrences in formulas. This follows already from~\Cref{prop:pal-exp}, since the counterexample models in the proof belong to the class $\cultsba$. Therefore, the meaning of $[\chi]$ and $\gann{\chi}$ is different even in such a restricted class of models.
 
 To finish this discussion, we prove that the satisfiability problem for $\PAKHilogic$ is decidable at least over $\cultsba$.
 
@@ -271,7 +271,7 @@ Let $\varphi$ be a formula of $\PAKHilogic$. By using the reduction axioms from~
 Since the satisfiability problem for $\KHilogic$ is decidable (\cite{AFSVQ21,AFSVQ23report}), there is a procedure, although non-deterministic, such that in a finite amount of steps determines whether $\varphi'$ is satisfiable or not.
 As a result, there are two possible outcomes:
 \begin{inlineenum}
-\item If $\varphi'$ is satisfiable, then it is satisfiable in the class $\cultsba$, since as established in~\cite{AFSVQ21,AFSVQ23report}, every formula is satisfiable if it satisfiable in a finite model where each $\Unc(i)\subseteq\set{\set{a} \mid a\in\ACT}$, a subclass of models strictly contained in $\cultsba$.  
+\item If $\varphi'$ is satisfiable, then it is satisfiable in the class $\cultsba$, since as established in~\cite{AFSVQ21,AFSVQ23report}, every formula is satisfiable if it is  satisfiable in a finite model where each $\Unc(i)\subseteq\set{\set{a} \mid a\in\ACT}$, a subclass of models strictly contained in $\cultsba$.  
 % As $\cultsfnu \subseteq \cultsba$, since each $\Unc(i)$ has singleton sets of actions, then $\varphi$ is satisfiable in $\cultsba$.
 \item If $\varphi'$ is not satisfiable, then clearly neither it is satisfiable in $\cultsba$. %Then, $\varphi$ is not in $\cultsba$.
 \end{inlineenum}
