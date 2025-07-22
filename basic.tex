@@ -300,6 +300,7 @@ $\mbox{Axioms}$
 & \axm{4KhA}  & $\vdash \khi(\psi,\varphi) \ra \A\khi(\psi,\varphi)$ \\
 & \axm{5KhA}  & $\vdash \neg\khi(\psi,\varphi) \ra \A\neg\khi(\psi,\varphi)$ \\
 & \axm{KhA}   & $\vdash \left(\A(\chi \rightarrow \psi) \land \khi(\psi,\varphi) \land \A(\varphi \rightarrow \theta)\right) \rightarrow \khi(\chi, \theta)$ \\
+& \axm{G} & $\vdash \khi(\varphi,\bot) \ra \kh_j(\varphi,\bot)$ \\
 \midrule
 \mbox{Rules}
 &  \axm{MP}   & $\mbox{From $\vdash \varphi$ and $\vdash \varphi \rightarrow \psi$ infer $\vdash \psi$ }$ \\
@@ -317,7 +318,7 @@ The axiom system from~\Cref{tab:khiaxiom} is sound and strongly complete with re
 
 \medskip
 
-It is worth noticing that the validity $\left(\E\psi \land \khi(\psi,\varphi)\right) \rightarrow \E\varphi$, called \axm{KhE} and part of the axiom system as presented in \cite{AFSVQ23report}, is omitted here. This is because it is derivable in the system, as proved by showing the derivability of the equivalent $(\E\psi \wedge \khi(\psi,\varphi) \wedge \A\neg\varphi) \ra \bot$. First,
+\textcolor{blue}{It is worth noticing that there are two differences with the system presented in~\cite{AFSVQ23report}. The first one,} is that the validity $\left(\E\psi \land \khi(\psi,\varphi)\right) \rightarrow \E\varphi$, called \axm{KhE} and part of the axiom system as presented in \cite{AFSVQ23report}, is omitted here. This is because it is derivable in the system, as proved by showing the derivability of the equivalent $(\E\psi \wedge \khi(\psi,\varphi) \wedge \A\neg\varphi) \ra \bot$. First,
 % , $\left(\E\psi \land \khi(\psi,\varphi) \land \A \neg\varphi \right) \rightarrow \bot$, using \axm{KhA}. %\raul{To write down the syntactic proof in detail here.}
 %
 % By \axm{TAUT}, it is equivalent to prove that
@@ -389,9 +390,11 @@ $\begin{array}{lll}
 %
 Given the implications proved above, by transitivity we get \axm{KhE} as wanted.
 
+\textcolor{blue}{The second difference with the system from~\cite{AFSVQ23report}, is the presence of the axiom \axm{G} (standing for 'global' formulas). It states that formulas that are trivially validated for an agent, are also trivially validated for other agents. In a sense, some form of 'global knowledge' is preserved between agents. This axiom needs to be added as a consequence of a gap in the arguments established therein. Concretely, in~\cite[Prop.~4]{AFSVQ23report}, the validity called \axm{SCond} cannot be proved without axiom \axm{G} (since the universal modality $\A$ is defined as a disjunction, the last step therein is not actually an equivalence). By adding \axm{G} here, we fix this issue.}
+
 % \ssparagraph{Complexity.} 
 
-Strong completeness of the axiomatization above is established in~\cite{AFSVQ21,AFSVQ23report} via a canonical model construction. By taking such a model, and selecting its relevant pieces, we can prove a small (polynomial) model property. This property is important in establishing the following complexity results.
+Strong completeness of the axiomatization above is established in~\cite{AFSVQ21,AFSVQ23report} via a canonical model construction\textcolor{blue}{, and modulo the fix stated above}. By taking such a model, and selecting its relevant pieces, we can prove a small (polynomial) model property. This property is important in establishing the following complexity results.
 
 \medskip 
 
