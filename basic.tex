@@ -1,5 +1,5 @@
 %\nsparagraph{Syntax and semantics.}
-This section recalls the syntax and semantics of the \emph{knowing how} framework as presented in~\cite{AFSVQ21} as well as a complete axiomatization and a suitable notion of bisimulation (both from~\cite{AFSVQ23report}). It also discusses complexity results. Throughout the text, let $\PROP$ be a countable set of propositional symbols, $\ACT$ a denumerable set of action symbols, and $\AGT$ a non-empty finite set of agents.
+This section recalls the syntax and semantics of the \emph{knowing how} framework as presented in~\cite{AFSVQ21} as well as a complete axiomatization and a suitable notion of bisimulation (both from~\cite{AFSVQ23report}). It also discusses some complexity and expressivity results. Throughout the text, let $\PROP$ be a countable set of propositional symbols, $\ACT$ a denumerable set of action symbols, and $\AGT$ a non-empty finite set of agents.
 
 \medskip
 
@@ -12,7 +12,7 @@ with $p \in \PROP$ and $i\in\AGT$. Other Boolean connectives are defined as
 usual. The formula $\khi(\psi,\varphi)$ is read as
 \emph{``when $\psi$ is the case, agent $i$ knows how to make
 $\varphi$ true''}.
-Define also the abbreviations $\A\varphi:=\bigvee_{i\in\AGT} \khi(\neg\varphi,\bot)$ and $\E\varphi:=\neg\A\neg\varphi$.
+Define also the abbreviations $\A\varphi:=\khi(\neg\varphi,\bot)$ for an arbitrary $i$, and $\E\varphi:=\neg\A\neg\varphi$.
 % as established in~\cite{AFSVQ21}, they behave exactly as the universal and existential modalities (see, e.g.~\cite{GorankoP92}), respectively.
 \end{definition}
 \medskip
@@ -38,7 +38,7 @@ In the setting introduced in~\cite{AFSVQ21}, \lts{s} are extended with a notion 
 Let $\ACT^*$ be the set of finite sequences over $\ACT$. Elements of
 $\ACT^*$ are called \emph{plans}, with $\epsilon$ being the
 \emph{empty plan}. %Let $\ACT^+ := \ACT^* \setminus  \set{\epsilon}$.
-Given $\plan \in \ACT^*$, use $\card{\plan}$ to denote its length (note: $\card{\epsilon} = 0$). For
+Given $\plan \in \ACT^*$, we use $\card{\plan}$ to denote its length (in particular, $\card{\epsilon} = 0$). For
 $0 \le k \le \card{\plan}$, the plan $\plan_k$ is $\plan$'s initial
 segment up to (and including) the $k$th position (with
 $\plan_0 := \epsilon$). For $0 < k \le \card{\plan}$, the action
@@ -49,12 +49,12 @@ $\plan[k]$ is the one in $\plan$'s $k$th position.
 
 \begin{definition}[Uncertainty-based \lts]\label{def:ults}
 %Let \AGT be a finite non-empty set of agents.
-An \emph{uncertainty-based \lts (\ults)} for $\PROP$, $\ACT$ and $\AGT$ is a tuple $\modults = \tup{\W,\R,\Unc,\V}$ where $\W$ is a non-empty set of states (the domain, and denoted also by $\D{\modults}$), $\R = \setof{\R_a \subseteq \W \times \W}{a \in \ACT}$ is a collection of binary relations on $\W$, $\Unc = \setof{\Unc(i) \subseteq 2^{\ACT^*}\setminus \set{\emptyset}}{i \in \AGT}$ assigns to every agent a non-empty collection of pairwise disjoint non-empty sets of plans (i.e., $\Unc(i) \neq \emptyset$, $\plans_1, \plans_2 \in \Unc(i)$ with $\plans_1 \neq \plans_2$ implies $\plans_1 \cap \plans_2 = \emptyset$, and $\emptyset \notin \Unc(i)$) and $\V:\W \to 2^\PROP$ is a labelling function. The tuple $\tup{\W,\R,\V}$ is called an LTS. Given an \ults $\modults$ and $w \in \D{\modults}$, the pair $(\modults,w)$ (parenthesis usually dropped) is called a \emph{pointed \ults}.
+An \emph{uncertainty-based \lts (\ults)} for $\PROP$, $\ACT$ and $\AGT$ is a tuple $\modults = \tup{\W,\R,\Unc,\V}$ where $\W$ is a non-empty set of states (the domain, and denoted also by $\D{\modults}$), $\R = \setof{\R_a \subseteq \W \times \W}{a \in \ACT}$ is a collection of binary relations on $\W$, $\Unc = \setof{\Unc(i) \subseteq 2^{\ACT^*}\setminus \set{\emptyset}}{i \in \AGT}$ assigns to every agent a non-empty collection of pairwise disjoint non-empty sets of plans (i.e., $\Unc(i) \neq \emptyset$, $\plans_1, \plans_2 \in \Unc(i)$ with $\plans_1 \neq \plans_2$ implies $\plans_1 \cap \plans_2 = \emptyset$, and $\emptyset \notin \Unc(i)$) and $\V:\W \to 2^\PROP$ is a labeling function. The tuple $\tup{\W,\R,\V}$ is called an LTS. Given an \ults $\modults$ and $w \in \D{\modults}$, the pair $(\modults,w)$ (parenthesis usually dropped) is called a \emph{pointed \ults}.
 \end{definition}
 \medskip
 
 
-Intuitively, $\DS{i} = \bigcup_{\plans \in \Unc(i)} \plans$ is the set of plans agent $i$ has at her disposal (alternatively, is aware of), and each $\plans \in \Unc(i)$ is an indistinguishability class. As discussed in~\cite{AFSVQ21}, there is a one-to-one correspondence between each $\Unc(i)$ and an `indistinguishability relation' ${\sim_i} \subseteq \DS{i} \times \DS{i}$ describing the agent's \emph{uncertainty} over her available plans ($\plan_1 \sim_i \plan_2$ iff there is $\plans \in \Unc(i)$ such that $\set{\plan_1, \plan_2} \subseteq \plans$). The presentation used here simplifies the definitions that will follow.
+Intuitively, $\DS{i} = \bigcup_{\plans \in \Unc(i)} \plans$ is the set of plans agent $i$ has at her disposal (alternatively, is aware of), and each $\plans \in \Unc(i)$ is an indistinguishability class. As discussed in~\cite{AFSVQ21}, there is a one-to-one correspondence between each $\Unc(i)$ and an `indistinguishability relation' ${\sim_i} \subseteq \DS{i} \times \DS{i}$ describing the agent's \emph{uncertainty} over her available plans ($\plan_1 \sim_i \plan_2$ iff there is $\plans \in \Unc(i)$ such that $\set{\plan_1, \plan_2} \subseteq \plans$). The presentation used here simplifies some of the definitions that will follow.
 
 Given her uncertainty over (a subset of) $\ACT^*$, the abilities of an agent $i$ depend not on what a single plan can achieve, but rather on what a set of them can guarantee.
 
@@ -66,7 +66,7 @@ Given $\R=\setof{\R_a \subseteq \W \times \W}{a\in\ACT}$ and $\plan \in \ACT^*$,
 
 \medskip
 
-In what follows, we introduce the notion of strong executability of plans (see, e.g.,~\cite{Wang15lori,AFSVQ23report}), a condition which determines that a given plan (or a set of them) is appropriate for achieving a certain goal.
+In what follows, we introduce the notion of strong executability of plans (see, e.g.,~\cite{Wang15lori,AFSVQ23report} for further discussions), a condition which determines that a given plan (or a set of them) is appropriate for achieving a certain goal.
 
 \medskip
 
@@ -80,12 +80,12 @@ $\stexec^\modults(\plans) = \bigcap_{\plan \in \plans} \stexec^\modults(\plan)$ 
 \medskip
 
 
-Thus, while \emph{a plan} is strongly executable (at a state) when \emph{all its partial executions} %(including~$\epsilon$) 
-can be completed, \emph{a set of plans} is strongly executable when \emph{all its plans} are strongly executable. When the model is clear from the context, we will drop the superscript $\modults$ and write simply $\stexec(\plan)$ and $\stexec(\plans)$.
+Thus, \emph{a plan} is strongly executable (at a state) when \emph{all its partial executions} %(including~$\epsilon$) 
+can be completed; and \emph{a set of plans} is strongly executable when \emph{all its plans} are strongly executable. When the model is clear from context, we drop the superscript $\modults$ and write simply $\stexec(\plan)$ and $\stexec(\plans)$.
 
 % \smallskip
 
-Now, we have all the ingredients to define the semantics of the logic.
+Now, we have all the ingredients to define the semantics for $\KHilogic$.
 \medskip
 
 \begin{definition}\label{def:sem-esm}
@@ -101,13 +101,13 @@ $\begin{array}{l@{\ \ \ }c@{\ \ \  }l}
 & & \ \ \text{\bfseries \itshape (ii)} \; \R_\plans(\truthset{\modults}{\psi}) \subseteq \truthset{\modults}{\varphi},
 \end{array}$
 \end{spcenter}
-where: $\truthset{\modults}{\chi} := \setof{w\in\W}{\modults,w\models\chi}$. Any $\plans$ making true the existential statement in the semantic clause of $\khi(\psi,\varphi)$ is called a \emph{witness} for $\khi(\psi,\varphi)$. Define $\modults\models\varphi$ iff  $\truthset{\modults}{\varphi}=\W$, and $\models\varphi$ iff $\modults\models\varphi$, for all \ults $\modults$. These notions are extended as expected for all the logics in the rest of the paper.
+where: $\truthset{\modults}{\chi} := \setof{w\in\W}{\modults,w\models\chi}$. Any $\plans$ making true the existential statement in the semantic clause of $\khi(\psi,\varphi)$ is called a \emph{witness} for $\khi(\psi,\varphi)$. Define $\modults\models\varphi$ iff  $\truthset{\modults}{\varphi}=\W$, and $\models\varphi$ iff $\modults\models\varphi$, for all \ults $\modults$. These notions are extended as expected for all the logics in the rest of the article.
 \end{definition}
 
 \medskip
 
-Two observations are useful here. First note how the modality $\A$ ($\E$), defined by abbreviation in~\Cref{def:khsyntax}, is actually the universal (existential) \emph{global modality} from~\cite{GorankoP92}. Indeed, for every model $\modults$ and every state $w$, $\modults,w\models\A\varphi$ ($\modults,w\models\E\varphi$) holds if and only if $\varphi$ is true in every (some) state in $\modults$ (see~\cite{AFSVQ21,AFSVQ23report} for details). %This will be of use in the rest of the paper.
-But, despite this, $\KHilogic$ is a `simple' language. In particular, even though the $\khi$ modality has fairly complex requirements for its witness $\plans$, it is `blind' to some of its aspects, e.g., its cardinality or the kind of plans it contains.
+Some comments are useful here. First note how the modality $\A$ ($\E$), defined by abbreviation in~\Cref{def:khsyntax}, is actually the universal (existential) \emph{global modality} from, e.g.,~\cite{GorankoP92}. Indeed, for every model $\modults$ and every state $w$, $\modults,w\models\A\varphi$ ($\modults,w\models\E\varphi$) holds if and only if $\varphi$ is true in every (some) state in $\modults$ (see~\cite{AFSVQ21,AFSVQ23report} for details). %This will be of use in the rest of the paper.
+Second, notice that $\KHilogic$ is a very `simple' language. In particular, even though the $\khi$ modality has fairly complex requirements for its witness $\plans$, the language is `blind' to the actual actions that appear in the semantics.  Indeed, as we are going to discuss below, the sets of plans in a given model can be drastically changed, without affecting satisfiability. 
 
 \medskip
 
@@ -159,7 +159,7 @@ But, despite this, $\KHilogic$ is a `simple' language. In particular, even thoug
 %   \end{example}
 
 \begin{example}\label{ex:cook}
-Consider a (simplified) scenario in which two agents $i$ and $j$ attempt to bake a good cake (represented by~$g$). Suppose they follow a similar recipe, and they have all the ingredients ($h$). The recipe states that $g$ is achieved via the following steps: adding eggs ($e$), beating the eggs ($b$), adding flour ($f$), adding milk ($m$), stir these ingredients ($s$) and finally, bake the preparation ($p$). Thus, the plan needed to achieve $g$ is $\mathit{ebfmsp}$, whenever the agents have all the ingredients ($h$). 
+Consider a simple scenario in which two agents $i$ and $j$ attempt to bake a good cake (represented by~$g$). Suppose they follow a similar recipe, and they have all the ingredients ($h$). The recipe states that $g$ is achieved via the following steps: adding eggs ($e$), beating the eggs ($b$), adding flour ($f$), adding milk ($m$), stir these ingredients ($s$) and finally, bake the preparation ($p$). Thus, the plan needed to achieve $g$ is $\mathit{ebfmsp}$, whenever the agents have all the ingredients ($h$). 
 Agent $i$, an experienced chef, is aware that this is the way to get a good cake. On the other hand, agent $j$  has no cooking experience, so she considers that the order in the instructions does not matter (for instance, that she can add milk before adding the flour).
 \begin{spcenter}
 \hspace*{-1cm}\begin{tikzpicture}[->]
@@ -195,7 +195,8 @@ Agent $i$, an experienced chef, is aware that this is the way to get a good cake
 \end{picture}
 \end{spcenter}
 The diagram shows, on the right, the set of indistinguishable plans in $\Unc(i)$ and in~$\Unc(j)$. %, containing two sets: $\plans_1=\set{ew}$ and   $\plans_2=\set{we,eew}$.
-Agent $i$ knows how to bake a good cake, provided she has all the ingredients (i.e., $\modults\models\khi(h,g)$). This is because agent $i$ \emph{distinguishes} $\mathit{ebfmsp}$ as the ``good plan''. On the other hand, $j$ considers that adding milk and adding flour can be done in any order (i.e., $\mathit{ebfmsp}$ and $\mathit{ebmfsp}$ are indistinguishable), leading to $\modults\not\models\kh_j(h,g)$.
+Agent $i$ knows how to bake a good cake, provided she has all the ingredients (i.e., $\modults\models\khi(h,g)$). This is because agent $i$ \emph{distinguishes} $\mathit{ebfmsp}$ as the ``good plan''. On the other hand, $j$ considers that adding milk and adding flour can be done in any order (i.e., $\mathit{ebfmsp}$ and $\mathit{ebmfsp}$ are indistinguishable), leading to $\modults\not\models\kh_j(h,g)$, as the plan
+$\mathit{ebmfsp}$ is not strongly executable in the model \carlos{chequear.}.
 \end{example}
 
 \medskip 
@@ -217,7 +218,7 @@ Additionally, $U \subseteq \W$ is propositionally definable in $\modults$ if and
 
 \medskip
 
-Now we are in a position to introduce the notion of bisimulation for $\KHilogic$. 
+Now we are ready to introduce the notion of bisimulation for $\KHilogic$. 
 
 \medskip 
 
@@ -239,7 +240,7 @@ Let $\modults = \tup{\W,\R,\Unc,\V}$ and $\modults' = \tup{\W',\R',\Unc',\V'}$ b
 %        \end{tabular}
 %      \end{nscenter}
 %    \end{itemize}
-A non-empty $Z \subseteq \W \times \W'$ is called an $\KHilogic$-bisimulation between $\modults$ and $\modults'$ if and only if $wZw'$ implies all of the following.
+A non-empty $Z \subseteq \W \times \W'$ is called an $\KHilogic$-bisimulation between $\modults$ and $\modults'$ if and only if $wZw'$ implies that the following conditions hold:
 \begin{itemize} 
     \item \textbf{Atom}: $\V(w)=\V'(w')$.
 
@@ -390,17 +391,47 @@ $\begin{array}{lll}
 %
 Given the implications proved above, by transitivity we get \axm{KhE} as wanted.
 
-\textcolor{blue}{The second difference with the system from~\cite{AFSVQ23report} is the presence of the axiom \axm{G} (standing for `global' formulas). It states that formulas that are trivially validated for an agent, are also trivially validated for other agents. In a sense, some form of `general knowledge' is preserved between agents. This axiom needs to be added as a consequence of a gap in the arguments established therein. Concretely, in~\cite[Prop.~4]{AFSVQ23report}, the validity called \axm{SCond} cannot be proved without axiom \axm{G} (since the universal modality $\A$ is defined as a disjunction, the last step therein is not actually an equivalence). By adding \axm{G} here, we fix this issue.}
+\textcolor{blue}{The second difference  is the presence of the axiom \axm{G} (standing for `global' formulas).  This axiom indicates that the validity of formulas of the form $\khi(\varphi,\bot)$ is shared among all agents.  Notice that these formulas are particular, as they describe conditions that would lead to the impossible case of a goal satisfying $\bot$.  the axiom states that these formulas do not depend of the particular agent under consideration. 
+%	It states that knowing how formulas that are trivially validated for an agent (in the sense that as the goal to be achieved is impossible, ), are also trivially validated for other agents. In a sense, some form of `general knowledge' is preserved between agents. 
+This axiom needs to be added as a consequence of a gap in the arguments  in~\cite[Prop.~4]{AFSVQ23report}. The validity called \axm{SCond} cannot be proved without axiom \axm{G} (since the universal modality $\A$ is defined in that article as a disjunction, the last step in~\cite[Prop.~4]{AFSVQ23report} is not an equivalence). By adding \axm{G} here we fix this issue.}
 
 % \ssparagraph{Complexity.} 
 
-Strong completeness of the axiomatization above is established in~\cite{AFSVQ21,AFSVQ23report} via a canonical model construction\textcolor{blue}{, and modulo the fix stated above}. By taking such a model, and selecting its relevant pieces, we can prove a small (polynomial) model property. This property is important in establishing the following complexity results.
+Strong completeness of the axiomatization above is established in~\cite{AFSVQ21,AFSVQ23report} via a canonical model construction \textcolor{blue}{(modulo the correction just mentioned)}. In addition, 
+starting from the canonical model, a careful selection function can be used to prove a small (polynomial) model property that leads to the following complexity results.
 
 \medskip 
 
 \begin{theorem}[\cite{AFSVQ21,AFSVQ23report}]
     The model-checking problem for $\KHiMLlogic$ is in \Poly, while the satisfiability problem for $\KHiMLlogic$ is \NP-complete.
 \end{theorem}
+
+
+\carlos{Todavía no introducimos $\KHiMLlogic$, supongo que alcanza con hablar de 
+$\KHilogic$}
+\medskip
+
+\begin{mrevised}
+We mentioned before that the semantic interpretation for $\khi$ is `blind' to certain aspects of its witness. In fact, as the completeness proof in~\cite{AFSVQ21} shows, it cannot distinguish between the class of all arbitrary \ults and the class in which, for every agent $i$, every set in $\Unc(i)$ is a set of one-step plans. Formally, we can define this class as follows: 
+\medskip 
+
+\begin{definition}\label{def:class-m-one}
+	Define $\cultsba$ (\textbf{BA} stands for `basic actions') as the class of models $\modults = \tup{\W, \R, \Unc, \V}$ in which, for all $i \in \AGT$, we have that $\plans \in \Unc(i)$ implies $\plans \subseteq \ACT$.
+\end{definition}
+
+\medskip 
+
+$\cultsba$ (denoted $\sults$ in~\cite{AFSV22}) is a restricted class of models, which could be interpreted as a more abstract representation of the abilities of the agents where every plan is modeled as a single atomic action. 
+\medskip	
+	
+\begin{proposition}
+	A formula in $\KHilogic$ is valid over the class of all $\ults$ if and only if 
+	it is valid over $\cultsba$.
+\end{proposition}	
+\medskip
+
+The last proposition can be interpreted as a limitation on the expressivity of $\KHilogic$: since actions do not appear in its syntax, the logic is unable to distinguish between models in which agents may execute arbitrary plans and those in which every admissible plan consists of a single atomic action.
+\end{mrevised}
 
 
 % Moreover, a small (polynomial) model property can be proved using selection functions and, as a corollary, the satisfiability and model checking problems of $\KHilogic$ are \NP-complete and \Poly, respectively~\cite{AFSVQ21,AFSVQ23report}. As a consequence, we have the following corollary.

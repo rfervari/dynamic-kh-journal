@@ -2,7 +2,8 @@
 
 %As discussed in the previous sections, our goal is to take ideas from standard epistemic logic to perform operations that update an agent's know-how.
 
-A typical way of updating a relational model is by removing states~\cite{Plaza89:lopc,DELbook}. This model update, interpreted in the just referred literature as an announcement indicating to all agents that $\chi$ is true (hence the setting's name: \emph{public announcement logic}; \PAL), is typically described with a modal operator $[\chi]$. Given an $\ults$ $\modults=\tup{\W,\R,\Unc,\V}$, its semantic interpretation is defined as:
+A well-established form of update in the DEL literature is the public announcement~\cite{Plaza89:lopc,DELbook}. This model update is interpreted as an announcement indicating (truthfully) to all agents that $\chi$ is the case.
+Public Announcement Logic (\PAL) extends the basic modal logic with a dynamic operator $[\chi]$ to represent this kind of updates. Given an $\ults$ $\modults=\tup{\W,\R,\Unc,\V}$, the semantic interpretation of $[\chi]$ is defined as:
 \begin{spcenter}
   $\modults,w\models[\chi]\varphi \ \ \iff \ \  \modults,w\models\chi \mbox{ implies } \modults_{\chi},w\models\varphi$,
 \end{spcenter}
@@ -138,19 +139,12 @@ Both models are $\KHilogic$-bisimilar (\Cref{def:bisim-khi}); hence, they satisf
 	% \end{nscenter}
 \end{proof}
 
-In models $\modults$ and $\modults'$ from the above proposition, it is useful to notice the following. First, they both make the formula $\khi(p,q)$ true, with their respective witnesses being $\set{ab}$ and $\set{a}$. But, as discussed, after eliminating worlds in which $r$ is false this is no longer the case: the formula fails in $\annmodel{r}$ but holds in $\annmodel{r}'$. Part of the reason is that, while the witness for the first contains a two-step plan, the witness for the second contains only one-step plans (i.e., actions). This makes a difference because, by removing intermediate steps, $\PAKHilogic$ can tell these two models apart. 
+It is useful to notice the following observations about
+models $\modults$ and $\modults'$ in~\Cref{prop:exppal} above. First, they both make the formula $\khi(p,q)$ true, with their respective witnesses being $\set{ab}$ and $\set{a}$. But, as discussed, after eliminating worlds in which $r$ is false this is no longer the case: the formula fails in $\annmodel{r}$ but holds in $\annmodel{r}'$. Notice that the witness in $\modults$ is a singleton set with a two-step plan, while the witness in $\modults'$ is a singleton set with a one-step plan (i.e., an atomic action). This makes a difference because, by removing intermediate steps, $\PAKHilogic$ can tell these two models apart. 
+\carlos{chequear}
 
-But, as mentioned before, the semantic interpretation for $\khi$ is `blind' to certain aspects of its witness. In fact, as the completeness proof shows~\cite{AFSVQ21}, it cannot distinguish between an arbitrary \ults and one in which, for every agent $i$, every set in $\Unc(i)$ is a singleton containing a one-step plan (i.e., a model in which $\plans \in \Unc(i)$ implies $\plans = \set{a}$ for some $a \in \ACT$). This suggests that, by restricting the class of models, one can still get agents with `the same abilities' while also stopping $\PAKHilogic$ from being able to tell $\KHilogic$-bisimilar models apart.
 
-\medskip 
-
-\begin{definition}\label{def:class-m-one}
-Define $\cultsba$ as the class of models $\modults = \tup{\W, \R, \Unc, \V}$ in which, for all $i \in \AGT$, we have that $\plans \in \Unc(i)$ implies $\plans \subseteq \ACT$.
-\end{definition}
-
-\medskip 
-
-The class $\cultsba$ (denoted as $\sults$ in \cite{AFSV22}) constitutes a restricted class of models, which could correspond, for example, to a more abstract representation of the abilities of the agents (every plan is modeled as a single action). This class slightly generalizes the one of the canonical model, as here we allow each $\plans$ to be any set of one-step plans (i.e., models are such that $\plans \in \Unc(i)$ implies $\plans = \set{a_1,\ldots,a_k} \subseteq \ACT$),  instead of just singletons of them. The reduction axioms from~\Cref{tab:palaxiom} are valid in the class of models $\cultsba$. Moreover, we can use them to eliminate announcements by iteratively replacing the innermost occurrence of a $\gann{\chi}$ modality. Putting all together, completeness for $\PAKHilogic$ follows.
+Remember the class $\cultsba$ introduced in~\Cref{def:class-m-one}. By restricting the class of models to $\cultsba$, one can still get agents with `the same abilities' while also stopping $\PAKHilogic$ from being able to tell $\KHilogic$-bisimilar models apart.  Indeed, the reduction axioms from~\Cref{tab:palaxiom} are valid in the class of models $\cultsba$. Moreover, we can use them to eliminate announcements by iteratively replacing the innermost occurrence of a $\gann{\chi}$ modality. Putting all together, completeness for $\PAKHilogic$ follows.
 
 \begin{table}[t]
 \begin{tabular}{l@{\quad}l}

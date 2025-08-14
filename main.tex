@@ -2,7 +2,13 @@
 
 %\usepackage{apacite}
 
+
+\usepackage{xcolor}
+\newenvironment{mrevised}{\color{blue}}{}
+
+
 \usepackage[utf8]{inputenc}
+
 
 \usepackage{hyperref}
 \hypersetup{
@@ -103,7 +109,7 @@ For the former, we provide axiomatizations over a restricted class of models. Fo
 \section{Ontic updates}
 \label{sec:ontic}
 
-This section discusses model operations updating the underlying \lts in an \ults. We discuss operations that remove states (thus producing a change in the relations) and operations for pure relational change. Within the EL setting, these two operations have a natural interpretation: they represent ways in which an agent's uncertainty changes (in this sense, the second can be seen as a generalization of the first). Here, they are reinterpreted to match what the affected model components (domain and relations) represent in this indistinguishability-based \emph{knowing how} setting. In each case, we present a discussion, a modality for describing the effects of the operation, and a reduction axioms-based derivation system over a particular class of models.
+This section discusses model operations updating the underlying \lts in an \ults. We discuss operations that remove states (possibly changing also the accessibility relations) and operations that directly delete edges. Within the EL setting, these two operations have a natural interpretation: they represent ways in which an agent's uncertainty changes (in this sense, the second can be seen as a generalization of the first). Here, they are reinterpreted to match what the affected model components (domain and relations) represent in the indistinguishability-based \emph{knowing how} setting. In each case, we present a discussion, a modality for describing the effects of the operation, and a sound and complete axiomatization using reduction axioms, over a particular class of models.
 
 \subsection{Removing states}
 \label{sec:pal}
@@ -163,7 +169,7 @@ Marie Skłodowska-Curie grant agreements 101008233
 (MISSION), and the IRP SINFIN.
 
 \section*{Declaration of conflict of interest}
-The authors declare that there are no conflicts of interest regarding the publication of this paper.
+The authors declare that there are no conflicts of interest regarding the publication of this article.
 
 \section*{Declaration of data availability}
 No new data were created or analyzed in this study.
