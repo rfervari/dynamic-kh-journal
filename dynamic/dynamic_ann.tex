@@ -3,18 +3,13 @@
 %As discussed in the previous sections, our goal is to take ideas from standard epistemic logic to perform operations that update an agent's know-how.
 
 A well-established form of update in the DEL literature is the public announcement~\cite{Plaza89:lopc,DELbook}. This model update is interpreted as an announcement indicating (truthfully) to all agents that $\chi$ is the case.
-Public Announcement Logic (\PAL) extends the basic modal logic with a dynamic operator $[\chi]$ to represent this kind of updates. Given an $\ults$ $\modults=\tup{\W,\R,\Unc,\V}$, the semantic interpretation of $[\chi]$ is defined as:
+Public Announcement Logic (\PAL) extends the basic modal logic with a dynamic operator $[\chi]$ to represent this kind of updates. Given an $\lts$ $\modults=\tup{\W,\R,\V}$, the semantic interpretation of $[\chi]$ is usually defined as:
 \begin{spcenter}
   $\modults,w\models[\chi]\varphi \ \ \iff \ \  \modults,w\models\chi \mbox{ implies } \modults_{\chi},w\models\varphi$,
 \end{spcenter}
-with the $\ults$ $\modults_\chi=\tup{\W_\chi,\R_\chi,\Unc_\chi,\V_\chi}$ given by $\W_\chi = \set{w \mid \modults,w\models\chi}$, $(\R_\chi)_a = \R_a \cap \W_\chi^2$ for each $a\in\ACT$, $\V_\chi(w) = \V(w)$ for all $w\in\W_\chi$, and $\Unc_\chi = {\Unc}$.
-%\begin{spcenter}
-%  \begin{tabular}{l@{\quad \quad \quad }l}
-%    $\W_\chi = \set{w \mid \modults,w\models\chi}$ & $(\R_\chi)_a = \R_a \cap \W_\chi^2, \mbox{ for each } a\in\ACT$ \\
-%    $\V_\chi(w) = \V(w), \mbox{ for all } w\in\W_\chi$ & $\Unc_\chi = {\Unc}$.
-%  \end{tabular}	
-%\end{spcenter}
-Thus, $\modults_\chi$ is obtained by taking $\truthset{\modults}{\chi}$ as the new domain, then restricting relations and valuation accordingly (the indistinguishability classes $\Unc(i)$ are left unchanged). 
+with the $\lts$ $\modults_\chi=\tup{\W_\chi,\R_\chi,\V_\chi}$ given by $\W_\chi = \set{w \mid \modults,w\models\chi}$, $(\R_\chi)_a = \R_a \cap \W_\chi^2$ for each $a\in\ACT$, $\V_\chi(w) = \V(w)$ for all $w\in\W_\chi$.  The operator can be naturally extended to 
+$\ults$s by setting $\Unc_\chi = {\Unc}$, as the update does not affect indistinguishability sets. 
+In other words, $\modults_\chi$ is obtained by taking $\truthset{\modults}{\chi}$ as the new domain, then restricting relations and valuation accordingly (the indistinguishability classes $\Unc(i)$ are left unchanged). 
 
 A couple of remarks might be useful here. First recall that, in the \emph{knowing how} setting, states other than the evaluation point do not represent epistemic possibilities (as they do in EL), but rather situations reachable by actions. Thus, in the \emph{knowing how} setting, the elimination of some states indicates not that they are no longer (epistemically) \emph{possible}, but rather that they are no longer (action-wise) \emph{reachable}. Moreover, in the original \emph{knowing how} setting, the relations define the agents' abilities. Hence, under that semantics, removing states corresponds to both an ontic and an epistemic change: the effect of available actions changes, and hence so do the agents' abilities~\cite{Wang2016}. However, in the \ults-based semantics, relations provide only ontic information; thus, removing states produces an \emph{ontic} change that might affect, indirectly, the agents' abilities.
 
@@ -59,7 +54,7 @@ However, $\modults,w\models[p]\khi(p,q)$ whereas
 $\modults',w'\not\models[p]\khi(p,q)$.
 \end{proof}
 
-A consequence of~\Cref{prop:pal-exp} is that the modality for \PAL-like updates, $[\chi]$, is not reducible to the underlying language $\KHilogic$. This makes sense: while $\KHilogic$ can express the agents' abilities to achieve certain goals from given situations (the modality $\khi$), it cannot talk about more specific properties of the courses of action on which the abilities rely (this is in contrast with what happens when these modalities are added to standard epistemic logic, where reduction axioms can be defined (see, e.g.,~\cite{DELbook}). In such situations, the axiomatization can be approached in different ways. For this operation, the `extend the basic language' method has already been explored in \cite{Wang2016}. Here, the strategy is to look for a variation of the operation, and then to restrict the setting to a particular class of models.
+A consequence of~\Cref{prop:pal-exp} is that the modality for \PAL-like updates, $[\chi]$, is not reducible to the underlying language $\KHilogic$. This makes sense: while $\KHilogic$ can express the agents' abilities to achieve certain goals from given situations (the modality $\khi$), it cannot talk about more specific properties of the courses of action on which the abilities rely. This is in contrast with what happens when these modalities are added to standard epistemic logic, where reduction axioms can be defined (see, e.g.,~\cite{DELbook}). In such situations, the axiomatization can be approached in different ways. For this operation, the `extend the basic language' method has already been explored in \cite{Wang2016}. Here, the strategy is to look for a variation of the operation, and then to restrict the setting to a particular class of models.
 
 \medskip
 
@@ -144,7 +139,7 @@ models $\modults$ and $\modults'$ in~\Cref{prop:exppal} above. First, they both 
 \carlos{chequear}
 
 
-Remember the class $\cultsba$ introduced in~\Cref{def:class-m-one}. By restricting the class of models to $\cultsba$, one can still get agents with `the same abilities' while also stopping $\PAKHilogic$ from being able to tell $\KHilogic$-bisimilar models apart.  Indeed, the reduction axioms from~\Cref{tab:palaxiom} are valid in the class of models $\cultsba$. Moreover, we can use them to eliminate announcements by iteratively replacing the innermost occurrence of a $\gann{\chi}$ modality. Putting all together, completeness for $\PAKHilogic$ follows.
+Remember the class $\cultsba$ introduced in~\Cref{def:class-m-one}. By restricting the class of models to $\cultsba$, one can still get agents with `the same abilities' while also stopping $\PAKHilogic$ from being able to tell $\KHilogic$-bisimilar models apart.  Indeed, the reduction axioms from~\Cref{tab:palaxiom} are valid in the class of models $\cultsba$. Moreover, we can use them to eliminate announcements by iteratively replacing the innermost occurrence of a $\gann{\chi}$ modality. Putting all together, completeness for $\PAKHilogic$ over $\cultsba$ follows.
 
 \begin{table}[t]
 \begin{tabular}{l@{\quad}l}
@@ -165,7 +160,7 @@ To establish the validity of the reduction axioms, we first need to prove the fo
 
 \medskip 
 
-\begin{lemma}\label{lem:palproperties} Let $\chi$ and $\varphi$ be $\PAKHilogic$-formulas; let $\modults$ be an arbitrary \ults.
+\begin{lemma}\label{lem:palproperties} Let $\chi$ and $\varphi$ be $\PAKHilogic$-formulas and let $\modults$ be an arbitrary \ults.
 	The following equalities hold:
 	\begin{multicols}{2}
 	\begin{enumerate}
@@ -251,9 +246,9 @@ The result follows by the correctness of the axioms and rule from~\Cref{tab:pala
 
 % \bigfer{Si trabajamos en la clase $\cultsba$, ¿hay axiomas de reducción para la operación estandar de PAL? Andr\'es: mencionas que te parece que no. ¿Podrías agregar aquí un par de lineas describiendo el problema? Si no estas seguro, entones hay que añadir una linea diciendo que la respuesta a eso no es clara, y luego tal vez mencionarlo en trabajo a futuro.}
 
-It is worth noticing that, even in the class $\cultsba$, the modality $[\chi]$ (usually known in EL as `public announcement') adds expressive power to $\KHilogic$, i.e., there are no reduction axioms to eliminate its occurrences in formulas. This follows already from~\Cref{prop:pal-exp}, since the counterexample models in the proof belong to the class $\cultsba$. Therefore, the meaning of $[\chi]$ and $\gann{\chi}$ is different even in such a restricted class of models.
+It is worth noticing that, even in the class $\cultsba$, the modality $[\chi]$ adds expressive power to $\KHilogic$, i.e., there are no reduction axioms to eliminate its occurrences in formulas. This follows already from~\Cref{prop:pal-exp}, since the counterexample models in the proof belong to the class $\cultsba$. Therefore, the meaning of $[\chi]$ and $\gann{\chi}$ is different even in such a restricted class of models.
 
-To finish this discussion, we prove that the satisfiability problem for $\PAKHilogic$ is decidable at least over $\cultsba$.
+To finish this discussion, we prove that the satisfiability problem for $\PAKHilogic$ is decidable  over $\cultsba$.
 
 \medskip 
 
@@ -261,13 +256,12 @@ To finish this discussion, we prove that the satisfiability problem for $\PAKHil
 The satisfiability problem for $\PAKHilogic$ over $\cultsba$ is decidable.
 \end{corollary}
 \begin{proof}
-Let $\varphi$ be a formula of $\PAKHilogic$. By using the reduction axioms from~\Cref{tab:palaxiom} repeatedly, $\varphi$ can be translated (in a finite amount of steps) into a formula $\varphi'$, such that $\varphi$ and $\varphi'$ are equivalent in the class $\cultsba$ (\Cref{lemma:palkh-valid}). 
-Since the satisfiability problem for $\KHilogic$ is decidable (\cite{AFSVQ21,AFSVQ23report}), there is a procedure, although non-deterministic, such that in a finite amount of steps determines whether $\varphi'$ is satisfiable or not.
-As a result, there are two possible outcomes:
+Let $\varphi$ be a formula of $\PAKHilogic$. By using the reduction axioms from~\Cref{tab:palaxiom} repeatedly, $\varphi$ can be translated (in a finite number of steps) into a formula $\varphi'$, such that $\varphi$ and $\varphi'$ are equivalent in the class $\cultsba$ (\Cref{lemma:palkh-valid}). 
+Since the satisfiability problem for $\KHilogic$ is decidable (\cite{AFSVQ21,AFSVQ23report}), we can compute the satisfiability of $\varphi'$.
+There are two possible outcomes:
 \begin{inlineenum}
-\item If $\varphi'$ is satisfiable, then it is satisfiable in the class $\cultsba$, since as established in~\cite{AFSVQ21,AFSVQ23report}, every formula is satisfiable if it is  satisfiable in a finite model where each $\Unc(i)\subseteq\set{\set{a} \mid a\in\ACT}$, a subclass of models strictly contained in $\cultsba$.  
+\item If $\varphi'$ is satisfiable, then it is satisfiable in $\cultsba$. This is the case because~\cite{AFSVQ21,AFSVQ23report} shows that every formula in $\KHilogic$ is satisfiable if it is  satisfiable in a finite model where each $\Unc(i)\subseteq\set{\set{a} \mid a\in\ACT}$, a subclass of models strictly contained in $\cultsba$.  
 % As $\cultsfnu \subseteq \cultsba$, since each $\Unc(i)$ has singleton sets of actions, then $\varphi$ is satisfiable in $\cultsba$.
-\item If $\varphi'$ is not satisfiable, then clearly neither it is satisfiable in $\cultsba$. %Then, $\varphi$ is not in $\cultsba$.
-\end{inlineenum}
-Thus, there is a procedure that decides satisfiability of $\PAKHilogic$ over $\cultsba$. 
+\item If $\varphi'$ is not satisfiable over \lts{s} then, a fortiori, it is not satisfiable in $\cultsba$. %Then, $\varphi$ is not in $\cultsba$.
+\end{inlineenum}\carlos{chequear}
 \end{proof}

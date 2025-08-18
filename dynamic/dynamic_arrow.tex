@@ -1,13 +1,13 @@
 % For this section we will use models $\modults = \tup{\W, \R, \Unc, \V}$ such that for all $i \in \AGT$ and all $\strategy \in \Unc(i)$, $\strategy \subseteq \ACT$ i.e. models where the knowledge every agent has are about the basic actions.
-Another way to update \ltss is by modifying their relations directly while keeping the domain intact. Although there are different ways to do so (see, e.g., \cite{ArecesFH15}), in the EL context 
-%the focus has been on operations that remove edges, as 
-removing edges represents actions that reduce the agents' uncertainty. The \emph{arrow update logic} ($\AUL$) of~\cite{KooiR11} is a general way to do this. Its operator takes as a parameter a list of arrow specifications (triples of the form formula-action-formula). Then, an edge with label $a$ from state $w$ to state $v$ will not be deleted if and only if there is an arrow specification $(\varphi_1, a, \varphi_2)$ such that $w$ satisfies $\varphi_1$ and $v$ satisfies $\varphi_2$. 
+Another way to update \ltss is by modifying their relations directly, while keeping the domain intact. In the context of DEL, one proposal that stands out is Arrow Update Logic ($\AUL$)~\cite{KooiR11}. The dynamic operator of $\AUL$ takes as a parameter a list of arrow specifications in the form of triples (formula, action, formula). Then, an edge with label $a$ from state $w$ to state $v$ will not be deleted if and only if there is an arrow specification $(\varphi_1, a, \varphi_2)$ such that $w$ satisfies $\varphi_1$ and $v$ satisfies $\varphi_2$. 
 
-The version of the $\AUL$ framework presented below differs from the original in two aspects. First, an arrow specification is a pair formula-formula; thus, it works for any basic action. Second, similarly as we did in~\Cref{def:annupdate}, an edge with label $a$ from state $w$ to state $v$ will not be deleted when there is an arrow specification $(\varphi_1, \varphi_2)$ such that $w$ satisfies $\varphi_1$ and \emph{all} states that can be reached via $a$-edges from $w$ satisfy $\varphi_2$.
-The reason for this last change relies on the same difficulties discussed with the $[\chi]$ operator. The original $\AUL$ modality has an edge-by-edge focus instead of having an group-edge one, something needed for $\khi$ formulas to have a proper translation. 
+The version of the $\AUL$ framework presented below differs from the original in two aspects. First, an arrow specification is defined as a pair (formula, formula) with no reference to actions; this is in line with the syntax of $\KHlogic$, which does not include them. 
+Second, as in~\Cref{def:annupdate}, an edge labeled $a$ from state $w$ to state $v$ will not be deleted if there exists an arrow specification $(\varphi_1, \varphi_2)$ such that $w$ satisfies $\varphi_1$ and \emph{all states} reachable from $w$ via $a$-edges satisfy $\varphi_2$. The reason for this modification is similar to the one we discussed for the $[\chi]$ operator. The original $\AUL$ modality adopts an edge-by-edge perspective rather than a group-edge one, as it is done in the semantics of $\khi$-formulas.
+
+
 %The answer of whether there is a class of models compatible with this standard operator remains unclear.
 
-% \bigfer{Some questions. (1) For tying loose ends, what happens with `standard' arrow updates in the class $\cultsba$? Does the modality increase the expressivity too, thus making reduction axioms impossible? (2) Where is this variation of the arrow specification (the one that does not mention the label of the action) discussed? (3) Is axiom \axm{RJoin} taken from somewhere? If so, we can cite the reference when arguing for its validity; otherwise, some explanation might be useful.}
+% \bigfer{Some questions. (1) For tying loose ends, what happens with `standard' arrow updates in the class $\cultsba$A? Does the modality increase the expressivity too, thus making reduction axioms impossible? (2) Where is this variation of the arrow specification (the one that does not mention the label of the action) discussed? (3) Is axiom \axm{RJoin} taken from somewhere? If so, we can cite the reference when arguing for its validity; otherwise, some explanation might be useful.}
 % \bigfer{Del comentario arriba, dejo las preguntas cuya respuesta falta ser incorporada (en caso de que las queramos incorporar). Para 2 y 3, si la presentación y el axioma son originales, vale la pena mencionar eso (¿se demuestra la validez de \axm{RJoin} en el texto de DALI?)}
 
 \medskip 
@@ -20,12 +20,10 @@ Let $\modults = \tup{\W, \R, \Unc, \V}$ be an \ults; let $S = (\theta_1,\theta'_
 \end{definition}
 
 %\bigfer{About the definition of the new model. I guess the `standard' version would be with $(\arrowsemantics{\R}{S})_a = \setof{(w,v) \in \R_a(w)}{w \in \truthset{\modults}{\bigwedge_{i=1}^n \theta_i} \text{ and } v \in \truthset{\modults}{\bigwedge_{i=1}^n \theta'_i}}$. Is that correct? If so, it seems different from the standard arrow update, at least in that the existential quantification is not explicit. Are we taking this presentation from some other source? If not, it might be worthwhile to explain it a bit.}
-
-Note that if $w \in \truthset{\modults}{\bigwedge_{i=1}^n \theta_i}$ and $\R_a(w) \subseteq \truthset{\modults}{\bigwedge_{i=1}^n \theta'_i}$, then $(\arrowsemantics{\R}{S})_a(w) = \R_a(w)$. Moreover, $(\arrowsemantics{\R}{S})_a(w) \neq \emptyset$ iff $w \in \truthset{\modults}{\bigwedge_{i=1}^n \theta_i}$, $\R_a(w) \subseteq \truthset{\modults}{\bigwedge_{i=1}^n \theta'_i}$ and $\R_a(w) \neq \emptyset$.
-
 \medskip
 
-Now, we introduce the language.
+In the definition above, notice that if $w \in \truthset{\modults}{\bigwedge_{i=1}^n \theta_i}$ and $\R_a(w) \subseteq \truthset{\modults}{\bigwedge_{i=1}^n \theta'_i}$, then $(\arrowsemantics{\R}{S})_a(w) = \R_a(w)$. Moreover, $(\arrowsemantics{\R}{S})_a(w) \neq \emptyset$ iff $w \in \truthset{\modults}{\bigwedge_{i=1}^n \theta_i}$, $\R_a(w) \subseteq \truthset{\modults}{\bigwedge_{i=1}^n \theta'_i}$ and $\R_a(w) \neq \emptyset$.
+We are now ready to introduce the language.
 
 \medskip
 
@@ -52,7 +50,7 @@ For the semantics, formulas already in $\KHilogic$ are interpreted as before. Fo
 
 %As in the $\PAL$ case, $\AUL$ performs ontic updates rather than epistemic %updates over $\ults$-based knowing how.
 
-Adding the defined arrow-update modalities increases the language's expressivity.
+Adding the defined arrow-update modalities increases the expressivity of the language.
 
 \medskip
 
@@ -63,7 +61,8 @@ $\AUKHilogic$ is more expressive than $\KHilogic$ over arbitrary \ultss.
 By using the models from~\Cref{prop:exppal}, we have that $\modults,w \not\models [(r,r)]\khi(p,q)$ and $\modults',w' \models[(r,r)]\khi(p,q)$.
 \end{proof}
 
-Still, the reduction axioms from~\Cref{tab:aulaxiom} are valid in the class of models $\cultsba$, and we can use them to eliminate all occurrences of the $\arrowbox{S}$ modality. %Thus, we get completeness for $\AUKHilogic$. 
+As was the case with $\PAKHilogic$, if we restrict ourselves to models in $\cultsba$ 
+reduction axioms can be defined (see~\Cref{tab:aulaxiom}), and we can use them to eliminate all occurrences of the $\arrowbox{S}$ modality. %Thus, we get completeness for $\AUKHilogic$. 
 As our presentation is a variation of the original $\AUL$, the axiom system is novel. However, it follows standard ideas, and the soundness of most axioms is clear. 
 Something worth noting is that axiom \axm{RJoin} reflects exactly the semantics of $\arrowbox{S}$. If we have a finite list of pair of formulas in an update specification $S$, we can group all formulas into a pair $(\theta,\theta')$.
 
