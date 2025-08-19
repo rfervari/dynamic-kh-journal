@@ -1,7 +1,7 @@
 %\subsubsection{Axiom system}
 
-The axiom system in \Cref{tab:khimlaxiom}, extending that in~\Cref{tab:khiaxiom} with the well-known axioms \axm{Dist$\square$} and \axm{A$\square$}, is sound and complete for $\KHiMLlogic$. Soundness easily follows from the validity of the new axioms. For completeness, note first how the necessitation rule for~$[a]$ is derivable using \axm{NecA}, \axm{A$\square$} and \axm{MP}. Moreover, no additional `interaction' axioms are needed: the \emph{knowing how} modality does not make explicit the plan that serves as a witness. Then, the witnesses for formulas of the form $\khi(\psi,\varphi)$ and $\mldiam{a}\varphi$ can be kept independent from each other. This is used in the completeness proof below (in particular, in defining the canonical model), similar to that in~\cite{AFSVQ21,AFSVQ23report} for $\KHilogic$.
-
+The axiom system in \Cref{tab:khimlaxiom}\carlos{No hay que agregar G?}, extending that in~\Cref{tab:khiaxiom} with the well-known axioms \axm{Dist$\square$} and \axm{A$\square$}, is sound and complete for $\KHiMLlogic$. Soundness easily follows from the validity of the new axioms. For completeness, note first how the necessitation rule for~$[a]$ is derivable using \axm{NecA}, \axm{A$\square$} and \axm{MP}. Moreover, no additional `interaction' axioms are needed: the \emph{knowing how} modality does not make explicit the plan that serves as a witness. Then, the witnesses for formulas of the form $\khi(\psi,\varphi)$ and $\mldiam{a}\varphi$ can be kept independent from each other. 
+This is used in the completeness proof below (in particular, in the definition of the canonical model), in a way similar to that of~\cite{AFSVQ21,AFSVQ23report} for $\KHilogic$.
 \medskip
 
 % Finally, there is a property, \axm{KhE} ($\vdash \left(\E\psi \land \khi(\psi,\varphi)\right) \rightarrow \E\varphi$) by using \axm{KhA}. This will be useful for the completeness proof.
@@ -163,7 +163,7 @@ It is easy to argue that $\emptyset \notin \Unc^\Gamma(i)$.
 
 %As a corollary for the truth lemma (stated in \Cref{tlm:cm-ults-lkhi}), given a formula, we can construct a model where the actions the agent is considering do not appear in the formula at all.
 
-The following properties about the canonical model $\modults^\Gamma$ are useful in what follows (cf.~\cite{Wang2016,AFSVQ23report} for proofs). Below, we refer to actions $\tup{\psi,\varphi}$ to be those in $\ACT^\Gamma\setminus\ACT$.
+The following properties about the canonical model $\modults^\Gamma$ are useful in what follows (cf.~\cite{Wang2016,AFSVQ23report} for proofs). Below, we take actions $\tup{\psi,\varphi}$ to be those in $\ACT^\Gamma \setminus \ACT$.
 
 \medskip
 

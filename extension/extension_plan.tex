@@ -1,7 +1,7 @@
 \subsection{Plan refinement}
 \label{sec:planref}
 
-We defined $\KHiMLlogic$ to obtain enough expressivity to axiomatize some dynamic modalities. Here, we define the modality $\srefbox{\plan}$, inspired by the refinement modality from~\Cref{sec:ref}. A formula $\srefbox{\plan}\varphi$ publicly establishes that the plan $\plan$ must be distinguished from any other, and in such a context $\varphi$ holds. It results natural to think of situations in which this modality can be used. As a simple example, suppose an agent considers two plans $\plan_1$ and $\plan_2$ as indistinguishable possibilities to reach a location, but a map app detects a strike in path $\plan_2$. Thus, independently of being a ``good plan'' or not, $\plan_1$ becomes the only choice to be followed.
+We defined $\KHiMLlogic$ to obtain enough expressivity to axiomatize some dynamic modalities. Here, we define the modality $\srefbox{\plan}$, inspired by the refinement modality from~\Cref{sec:ref}. A formula $\srefbox{\plan}\varphi$ publicly establishes that the plan $\plan$ must be distinguished from any other, and in such a context $\varphi$ holds. It is natural to come up with situations in which this modality can be used. As an example, suppose an agent considers two plans $\plan_1$ and $\plan_2$ as indistinguishable possibilities to reach a location, but a map app detects a strike in path $\plan_2$. Thus, independently of being a ``good plan'' or not, $\plan_1$ becomes the only choice to be followed.
 %Unlike the modality $\refbox{\plan_1}{\plan_2}$, this modality takes atomic actions but we will generalize it later to arbitrary plans. 
 
 % In this section we show that the action refinement operator can be generalize to arbitrary plans, and we can still obtain suitable reduction axioms.
@@ -35,7 +35,9 @@ where $\modults^\plan = \tup{\W,\R,\Unc',\V}$, with:
 
 \medskip
 
-Intuitively, the new dynamic modality is an announcement of the fact that a given plan has a behavior that can be uniquely determined. In case the plan is not a part of the plans that are under the consideration of a certain agent, it is added to it, making the agent aware of its existence. Otherwise, this modality has some destructive nature, as it collapses a set of plans into a singleton set, removing any trace of uncertainty around $\plan$ in the process. This is a stark contrast compared to the refinement operators, since they partition and conserve the plans. Still, the agent's abilities are, in some sense, maintained, as $\plan$ is preserved to represent the set that formerly contained it.
+Intuitively, the new dynamic modality announces that a given plan has a unique characteristic. If the plan is not among those already under the consideration of a certain agent, it is added to her set of plans, thereby making the agent aware of its existence.
+Otherwise, this modality replaces the set of plans containing $\plan$ with the singleton
+$\{\plan\}$, eliminating any uncertainty around $\plan$ in the process. This stands in contrast to the refinement operators we considered before, which instead partition and preserve the original set of plans. Nevertheless, the agent’s capacities are, in a sense, maintained, since $\plan$ remains to represent the set that originally contained it.
 
 \medskip
 
@@ -77,12 +79,12 @@ The following propositions hold:
 
 % Now it is time to investigate a complete axiomatization for $\PlanReflogic$, one of the main goals of introducing this framework over an extended basic language. As shown in what follows, the elimination of the dynamic modality $\srefbox{\plan}$ in presence of the modality $\khi$ requires a little bit more of work than the single action case we presented already.  The case in which the announcement does not affect the knowledge, is as before. For the other case, we need to make sure that if the announcement of $\plan$ guarantees that the precondition holds ($\srefbox{\plan}\varphi_1$), then $\plan$ is SE and after its execution, the postcondition holds ($\srefbox{\plan}\varphi_2$). 
 
-We proceed now to introduce a complete axiom system for $\PlanReflogic$. In this case, the expressive power of the underlying static logic is sufficient to capture the behavior of $\srefbox{\plan}$, then we can obtain an axiomatization via reduction axioms.
+We proceed now to introduce a complete axiom system for $\PlanReflogic$. In this case, the expressive power of the underlying static logic is sufficient to capture the behavior of $\srefbox{\plan}$, and we can obtain an axiomatization via reduction axioms.
 
-Reduction axioms can be used to translate every formula of $\PlanReflogic$ into an equivalent formula of $\KHiMLlogic$. The challenging case is, as usual, to eliminate the occurence of a $\srefbox{\plan}$ with $\khi$ under its scope. For simplicity, consider a formula $\srefbox{a}\khi(\psi,\varphi)$ with $a\in\ACT$. After $a$ is ``announced'' to be different from any other plan, there are two possible reasons of why $\khi(\psi,\varphi)$ holds. The first is that $a$ plays no role in the truth of $\khi(\psi,\varphi)$. In this case, we can push the dynamic modality into the front of the pre and post-conditions of the $\khi$ modality to obtain $\khi(\srefbox{a}\psi,\srefbox{a}\varphi)$. The second possibility is that distinguishing $a$ creates new abilities. If the singleton $\set{a}$ is the witness for $\khi(\psi,\varphi)$ it is because: 1) $a$ is SE at every state satisfying $\psi$ after the annoucement of $a$ (notice that as $a$ is a single action, SE is equivalent to executability); and 2) from every $\psi$-state, after every execution of $a$, we always get that $\varphi$ holds (in the model updated by $\srefbox{a}$). The former is captured in formula by $\srefbox{a}\psi \ra \mldiam{a}\top$ holding everywhere, while the latter is captured by $\srefbox{a}\psi \ra \mlbox{a}\srefbox{a}\varphi$. Putting all together, this case is reflected by $\A(\srefbox{a}\psi\ra(\mldiam{a}\top\wedge\mlbox{a}\srefbox{a}\varphi))$.
+Reduction axioms can be used to translate every formula of $\PlanReflogic$ into an equivalent formula of $\KHiMLlogic$. The challenging case is, as usual, to eliminate the occurence of a $\srefbox{\plan}$ with $\khi$ under its scope. For simplicity, consider a formula $\srefbox{a}\khi(\psi,\varphi)$ with $a\in\ACT$. After $a$ is announced to be different from any other plan, there are two possible reasons for $\khi(\psi,\varphi)$ to be true. The first is that $a$ plays no role in the truth of $\khi(\psi,\varphi)$. In this case, we can push the dynamic modality into the front of the pre and post-conditions of the $\khi$ modality to obtain $\khi(\srefbox{a}\psi,\srefbox{a}\varphi)$. The second possibility is that distinguishing $a$ creates new epistemic abilities\carlos{en el principio del articulo se dijo que las "habilidades" estaban en el LTS, despues se habla de abilidades como epistémicas.  Revisar.}. If the singleton $\set{a}$ is the witness for $\khi(\psi,\varphi)$ it is because: 1) $a$ is SE at every state satisfying $\psi$ after the annoucement of $a$ (notice that as $a$ is a single action, SE is equivalent to executability); and 2) from every $\psi$-state, after every execution of $a$, we always get that $\varphi$ holds (in the model updated by $\srefbox{a}$). The former is captured in the reduction axiom by $\srefbox{a}\psi \ra \mldiam{a}\top$ holding everywhere, while the latter is captured by $\srefbox{a}\psi \ra \mlbox{a}\srefbox{a}\varphi$. Putting all together, this case is reflected by $\A(\srefbox{a}\psi\ra(\mldiam{a}\top\wedge\mlbox{a}\srefbox{a}\varphi))$.
 
-When we consider an arbitrary plan $\plan$ instead of a single actions, this idea can be generalized. The case in which the announcement does not affect the knowledge, is as before. For the other case, we need to make sure that if the announcement of $\plan$ guarantees that the initial condition holds ($\srefbox{\plan}\varphi_1$), then $\plan$ is SE and after its execution, the goal is achieved ($\srefbox{\plan}\varphi_2$). 
-The latter, is expressed by the predicate $P(\plan,\srefbox{\plan}\varphi_2)$, described below. Notice that $P$ can be defined as we extended the expressivity of the underlying language, by allowing basic action modalities. The list of reducion axioms for $\PlanReflogic$ are introduced in~\Cref{tab:srefaxiom}.
+This idea can be generalized when we consider an arbitrary plan $\plan$ instead of a single action. The case in which the announcement does not affect the knowledge, is as before. For the other case, we need to make sure that if the announcement of $\plan$ guarantees that the initial condition holds ($\srefbox{\plan}\varphi_1$), then $\plan$ is SE and after its execution, the goal is achieved ($\srefbox{\plan}\varphi_2$). 
+The latter, is expressed by the predicate $P(\plan,\srefbox{\plan}\varphi_2)$, defined below. The complete list of reduction axioms for $\PlanReflogic$ are introduced in~\Cref{tab:srefaxiom}.
 
 \begin{table}[t]
 \begin{tabular}{l@{\quad}l}
@@ -153,7 +155,7 @@ $\modults \models \A(\srefbox{\plan} \varphi_1 \ra P(\plan,\srefbox{\plan}\varph
 The only thing left to prove is that $\set{\plan} \in \Unc'(i)$. But that is direct since whether $\plan \in \plans$ for some $\plans \in \Unc(i)$ or not, in the end $\set{\plan} \in \Unc'(i)$. Hence, $\modults \models \srefbox{\plan}\khi(\varphi_1,\varphi_2)$.
 \end{proof}
 
-Thus, by again putting all the pieces together (\Cref{pro:srefaxioms} and \Cref{th:cm-ults-khikt-completeness}), we get:
+Once more, from \Cref{pro:srefaxioms} and \Cref{th:cm-ults-khikt-completeness} we get:
 
 \medskip 
 
@@ -175,7 +177,7 @@ The satisfiability problem for $\PlanReflogic$ is decidable.
 
 \medskip 
 
-Let us conclude this section by discussing how the aforementioned modality can be extended to capture other notions. In particular, it is easy to extend the modality $\srefbox{\plan}$ to handle semi-private announcements, as it is usual in DEL. We can define a modality  $\srefbox{\plan,i}\varphi$ interpreted as \emph{``after it is announced to agent $i$ that the plan $\plan$ is distinguishable from any other plan, $\varphi$ holds''.} Its semantics is given by 
+It is easy to define a version of $\srefbox{\plan}$ to handle semi-private announcements. $\srefbox{\plan,i}\varphi$ is interpreted as \emph{``after it is announced to agent $i$ that the plan $\plan$ is distinguishable from any other plan, $\varphi$ holds''.} Its semantics is given by 
 \[
     \modults,w \models \srefbox{\plan,i}\varphi \ \ \iff \ \ \modults^\plan_i,w \models \varphi,
 \]
@@ -188,11 +190,11 @@ where $\modults^\plan_i = \tup{\W,\R,\Unc',\V}$, with:
 
 \medskip 
 
-\begin{example}
-Suppose as in~\Cref{ex:cook}, we have an expert chef $i$, but we have two inexpert chefs $j$ and $k$, with $\Unc(j)=\Unc(k)=\set{\set{\mathit{ebfmsp},\mathit{ebmfsp}}}$. Suppose now, that agent $j$ subscribed for a course taught by agent $i$, while agent $k$ does not. Then, the information of that \textit{ebfmsp} is the correct course of action is only revealed to $j$, obtaining that $\modults\models\srefbox{ebfmsp,j}\kh_j(h,g)$ while $\modults\models\srefbox{ebfmsp,j}\neg\kh_k(h,g)$.
-\end{example}
+%\begin{example}
+%Suppose as in~\Cref{ex:cook}, we have an expert chef $i$, but we have two inexpert chefs $j$ and $k$, with $\Unc(j)=\Unc(k)=\set{\set{\mathit{ebfmsp},\mathit{ebmfsp}}}$. Suppose now, that agent $j$ subscribed for a course taught by agent $i$, while agent $k$ does not. Then, the information of that \textit{ebfmsp} is the correct course of action is only revealed to $j$, obtaining that $\modults\models\srefbox{ebfmsp,j}\kh_j(h,g)$ while $\modults\models\srefbox{ebfmsp,j}\neg\kh_k(h,g)$.
+%\end{example}
 
-\medskip 
+%\medskip 
 
-Again, this logic can be axiomatized via reduction axioms, where $\srefbox{\plan,i}\khi(\varphi_1,\varphi_2)$ can be eliminated via $\axm{RKh}_i$ in~\Cref{tab:srefaxiom}, while for $i\neq j$ we can simply add the axiom $\vdash \srefbox{\plan,i} \kh_j(\varphi_1,\varphi_2) \lra \khi(\srefbox{\plan,i} \varphi_1,\srefbox{\plan,i} \varphi_2)$. 
-With this at hand, we again obtain completeness and decidability results for the logic.
+The resulting logic can be axiomatized via reduction axioms, where $\srefbox{\plan,i}\khi(\varphi_1,\varphi_2)$ can be eliminated via $\axm{RKh}_i$ in~\Cref{tab:srefaxiom}, while for $i\neq j$ we can simply add the axiom $\vdash \srefbox{\plan,i} \kh_j(\varphi_1,\varphi_2) \lra \khi(\srefbox{\plan,i} \varphi_1,\srefbox{\plan,i} \varphi_2)$. 
+With this at hand, we again obtain completeness and decidability.

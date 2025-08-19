@@ -1,4 +1,4 @@
-As it has been discussed, \ults{s} allow a natural representation of both the actions that affect the abilities of an agent, and her epistemic state. In an \ults, the crucial epistemic component is the sets $\Unc(i)$, defining the plans agent $i$ is `aware of', and the level at which she can discern among them. Thus we can represent changes in the epistemic state of
+As it has been discussed, \ults{s} allow a natural representation of both the actions that affect the abilities of an agent, and her epistemic state. In an \ults, the crucial epistemic components are the sets $\Unc(i)$, defining the plans agent $i$ is aware of, and the degree at which she can discern among them. Thus we can represent changes in the epistemic state of
 an agent by means of operations that modify $\Unc(i)$. 
 
 \medskip
@@ -122,7 +122,7 @@ We denote by $\modults^{\Unc}_{\Unc'}$ the \ults obtained by replacing $\Unc$ by
 
 % The definition above guarantees there is a one-to-one correspondence between the sets in $\Unc$ and those in $\Unc'$. 
 %In a sense, $\Unc'$ is a refinement of the sets in $\Unc$, for each particular agent, potentially eliminating some uncertainty for them. 
-With these tools we introduce a new modality, $\refdiam{\plan_1}{\plan_2}$, intuitively describing an action through which all agents learn that plans $\plan_1$ and
+With these definitions in place we introduce a new modality, $\refdiam{\plan_1}{\plan_2}$, intuitively describing an action through which all agents learn that plans $\plan_1$ and
 $\plan_2$ are different. The extension of $\KHilogic$ with formulas of the form $\refdiam{\plan_1}{\plan_2}\varphi$ is denoted $\Reflogic$ ({\small\textsf{Ref}} for ``refinement'').
 
 \medskip
@@ -140,7 +140,7 @@ As usual, we define $\refbox{\plan_1}{\plan_2}\varphi := \lnot \refdiam{\plan_1}
 
 \medskip
 
-Formulas like $\refdiam{\plan_1}{\plan_2}\varphi$ state that \emph{``after it is stated that plans $\plan_1$ and $\plan_2$ are distinguishable, $\varphi$ holds''}. For instance, in~\Cref{ex:ref}, $\refdiam{\mathit{ebmfsp}}{\mathit{ebfmsp}}\kh_j(h,g)$ establishes that \emph{``after it is established that $\mathit{ebmfsp}$ and $\mathit{ebfmsp}$ are different, agent $j$ knows how to bake a good cake, provided she has the ingredients''}. This modality has some natural properties. First, it is normal and serial but not deterministic (\ref{itm:distref} through \ref{itm:nodeterref} below). Moreover, it represents an idempotent action in which order does not matter and in which two consecutive applications cannot be always collapsed into a single one (\ref{itm:idempref} through \ref{itm:nocollapseref} below). 
+Formulas like $\refdiam{\plan_1}{\plan_2}\varphi$ state that \emph{``after it is (publicly) stated that plans $\plan_1$ and $\plan_2$ are distinguishable, $\varphi$ holds''}. For instance, in~\Cref{ex:ref}, $\refdiam{\mathit{ebmfsp}}{\mathit{ebfmsp}}\kh_j(h,g)$ means that \emph{``after it is stated that $\mathit{ebmfsp}$ and $\mathit{ebfmsp}$ are different, agent $j$ knows how to bake a good cake, provided she has the ingredients''}. This modality has some natural properties. First, it is normal and serial but not deterministic (\ref{itm:distref} through \ref{itm:nodeterref} below). Moreover, it represents an idempotent action in which order does not matter and in which two consecutive applications cannot be always collapsed into a single one (\ref{itm:idempref} through \ref{itm:nocollapseref} below). 
 
 \medskip
 
@@ -170,7 +170,7 @@ For \Cref{itm:commrefdiam} there are several cases. The one we should focus on i
 \Cref{itm:commrefbox} can be proved using \Cref{itm:commrefdiam}. Finally, for \Cref{itm:nocollapseref} it is enough to notice that, if the set of plans containing $\sigma_1, \sigma_2$ is different from that containing $\sigma_3, \sigma_4$, then the two actions refine two indistinguishability classes, something that cannot be replicated by a single application.
 \end{proof}
 
-Besides generating new knowledge (see above), this modality preserves the \emph{propositional} knowledge of the agents.
+The new dynamic modality preserves knowing how information when it refers to propositional formulas (\Cref{itm:preservesknowledge} below).  And it is not trivial, in the sense that it leads to increase of knowledge in certain situations (\Cref{itm:gainsknowledge}).\carlos{chequear.}
 
 \medskip
 
@@ -229,8 +229,7 @@ Consider again~\Cref{ex:cook}, and let $\theta = \kh_j(h,g)$. Since $\modults \n
 
 \medskip
 
-The new modality adds expressivity, as it can talk explicitly about plans.
-
+As it would be expected from its ability to explicitly refer to plans, the new modality adds expressivity.
 \medskip
 
 \begin{proposition}\label{prop:expref}
@@ -239,7 +238,7 @@ $\Reflogic$ is more expressive than $\KHilogic$.
 \begin{proof}
 %We need to display two $\KHilogic$-bisimilar  that can be distinguished by an $\Reflogic$-formula.
 %Consider the \ultss $\modults$ and $\modults'$ below:
-The single agent \ultss models $\modults$ and $\modults'$ depicted below ($\Unc(i):=\set{\set{a}}$ and $\Unc'(i):=\set{\set{a,b}}$) are $\KHilogic$-bisimilar; thus, they satisfy the same formulas in $\KHilogic$. 
+The single agent \ultss models $\modults$ and $\modults'$ depicted below (with $\Unc(i):=\set{\set{a}}$ and $\Unc'(i):=\set{\set{a,b}}$) are $\KHilogic$-bisimilar; thus, they satisfy the same formulas in $\KHilogic$. 
 \begin{center}
 \begin{tikzpicture}[->, grow' = right, level/.style={sibling distance = 2em/#1}, level distance = 1.5em]
 \node[state] at (0,1) (p) [label=left:$w$]{$p$};
@@ -322,7 +321,7 @@ whereas $\modults',w' \models \refdiam{a}{b}\khi(p,q)$, since there is $\Unc''(i
 % It is clear that $\modults,w\bisim\modults',w'$, but $\modults,w \not\models \refdiam{a}{b}\khi(p,p)$ whereas $\modults',w' \models \refdiam{a}{b}\khi(p,p)$.
 \end{proof}
 
-We conclude by showing that \emph{uniform substitution}, a key form of syntactic transformation, fails in $\Reflogic$. Uniform substitution establishes that given a valid formula $\varphi$, we can uniformly replace any propositional symbol appearing in $\varphi$ by an arbitrary formula, and obtain a valid formula.
+We conclude by showing that \emph{uniform substitution} fails in $\Reflogic$. Uniform substitution establishes that given a valid formula $\varphi$, we can uniformly replace any propositional symbol appearing in $\varphi$ by an arbitrary formula, and obtain a valid formula.
 
 \medskip
 
@@ -346,7 +345,7 @@ Consider now the substitution of $p$ by $\neg\khi(p,q)$ in the formula above. Th
 \end{proof}
 
 It is well-known that the lack of uniform substitution in many dynamic logics poses a serious challenge in obtaining complete axiomatizations (see, e.g.,~\cite{HoHoIc11}). This issue has been dealt with in, e.g.,~\cite{BenthemMZ2022,BenthemLSY22}, for sabotage modal logics.
-Therein, hybrid logic machinery is used to get axiom systems. This approach seems difficult to apply in our setting, as the language is unable to talk about the actual plans witnessing a formula. Thus, we will use different ideas to tackle this problem in~\Cref{sec:extension}.
+Therein, hybrid logic machinery is used to obtain complete axiomatic systems. This approach seems difficult to apply in our setting, as the language is unable to talk about the actual plans witnessing a formula. We will take a different path in~\Cref{sec:extension}.
 
 % \begin{definition}[Reachability]\label{def:reachability}
 % Let $\modults = \tup{\W,\R,\Unc,\V}$ be \ultss, $\Unc'$ is finitely reachable from $\Unc$ if there is a finite sequence of $\Unc(k)$, $\plan_1^k$ and $\plan_2^k$ for $k=1,...,n$ such that $\splitstr{\Unc(k)}{\Unc(k+1)}{\plan_1^k}{\plan_2^k}$, $\Unc(1)=\Unc$ and $\Unc(n)=\Unc'$.

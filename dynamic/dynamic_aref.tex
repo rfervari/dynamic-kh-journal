@@ -1,4 +1,4 @@
-The operation $\refdiam{\plan_1}{\plan_2}$ can be seen as a particular form of (publicly) removing uncertainty: one that indicates precisely the plans that should be distinguished, and then quantifies over the different ways of doing so. The operation defined below is more abstract: following proposals that quantify over epistemic actions (e.g., arbitrary announcements~\cite{BalbianiBDHHL08}, arbitrary arrow updates~\cite{DitmarschHKK17}, group announcements~\cite{GroupAJ}, coalition announcements~\cite{AgotnesD08}, arbitrary radical upgrades~\cite{FI24}), it quantifies over the different ways in which the agent's indistinguishability can be refined. 
+The operation $\refdiam{\plan_1}{\plan_2}$ can be seen as a particular form of publicly removing uncertainty: one that indicates precisely the plans that should be distinguished, and then quantifies over the different ways of doing so. The operation defined below is more abstract: taking inspiration from other proposals that quantify over epistemic actions (e.g., arbitrary announcements~\cite{BalbianiBDHHL08}, arbitrary arrow updates~\cite{DitmarschHKK17}, group announcements~\cite{GroupAJ}, coalition announcements~\cite{AgotnesD08}, arbitrary radical upgrades~\cite{FI24}), it quantifies over the different ways in which the agent's indistinguishability can be refined. 
 
 \medskip
 
@@ -13,7 +13,7 @@ As usual $\arefbox\varphi = \neg\arefdiam\neg\varphi$. We denote $\AReflogic$ (f
 
 \medskip
 
-Here is a first use of this modality. Knowing how operators are \emph{goal-directed}: the agent looks for a suitable course of action that makes her achieve a certain state. 
+Let us discuss some ways in which this modality can be used. Knowing how operators are \emph{goal-directed}: the agent looks for a suitable course of action that makes her achieve a certain state. 
 In $\AReflogic$ we can define an operator that indicates whether it is possible for the agent to \emph{learn how} to achieve a given goal: it is enough to ask whether there is a way of spliting \emph{some} existing set of plans so that, afterwards, the agent knows how to achieve $\varphi$ given $\psi$. Let $\LHlogic$ (for ``learning how'') be $\KHilogic$ extended with the ternary modality $\lh{\psi}{\varphi}_i\chi$ defined as
 \begin{spcenter}
 $\lh{\psi}{\varphi}_i\chi := \arefdiam(\khi(\psi,\varphi) \wedge\chi)$ \qquad (for its `dual', $[\psi,\varphi]_i\chi := \neg\lh{\psi}{\varphi}_i\neg\chi$).
@@ -171,7 +171,7 @@ It is also easy to see that Monotonicity and Weakening hold. For \Cref{itm:idemp
 %For Item 7, notice that $\modults,w \models \neg\arefbox \kh(p,q)$ but $\modults,w \models \neg\arefbox\neg\arefbox \kh(p,q)$, since $\modults,w \models \refdiam{a}{b}\arefbox \kh(p,q)$.
 \end{proof}
 
-Knowing how information on propositional formulas is preserved under $\arefbox$, while new knowledge can still be obtained by a $\arefdiam$ update.
+Knowing how information on propositional formulas is preserved under $\arefbox$, while new knowledge can be obtained by a $\arefdiam$ update.
 \medskip
 
 \begin{proposition}\label{prop:aref-preserves-gains}
@@ -209,7 +209,7 @@ Uniform substitution fails for $\AReflogic$ which, in combination with its high 
 Similar to~\Cref{prop:substitution-ref}, and taking $p\to\arefdiam p$ as the original valid formula.
 \end{proof}
 
-The problem of defining dynamic operators and corresponding axiomatizations will be addressed in the next section. 
+The problem of defining dynamic operators and corresponding complete axiomatizations will be addressed in the next section. 
 We finish the current one by stating some expressivity connections between the
 dynamic modalities we just discussed.
 
