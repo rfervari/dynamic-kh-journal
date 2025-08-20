@@ -5,11 +5,32 @@ Building on this, we studied two forms of updates: ontic updates, via annoucemen
 In this extended setting, apart from showing how it could be useful for the examples we introduced, we obtained sound and complete axiomatizations via reduction axioms, and showed that the satisfiability problem for these logics is decidable. 
 \end{comment}
 
-This article investigated dynamic modalities in the context of \emph{knowing how} logics. Our starting point has been the uncertainty-based semantics from~\cite{AFSVQ21,AFSVQ23report}. 
-Building on this, we studied two forms of updates: ontic updates (via model operations for removing worlds and for removing edges) and, more extensively, epistemic updates (via model operations for refining the agents' uncertainty over plans). For the operators encompassed in the former family, we showed that in their general form, they increase the expressivity of the logic. Then, we provided axiomatizations via reductions axioms by restricting ourselves to a particular class of models. For those in the latter family, we started by presenting an operation for distinguishing between two given plans, discussing some of its properties and building an action for arbitrary refinement on top of it. The issue of complete axiomatization over the class of all models is still elusive in this setting, and this leads to the final proposal in this text: an extension of the underlying static language (with a normal modality for each basic action) and an arguably `more robust' epistemic action (which makes a single plan distinguishable from any other). For this extended setting, we provided sound and complete axiomatizations via reduction axioms, and showed that the satisfiability problem for these logics is decidable via filtrations. 
+In this article, we investigated dynamic modalities in the context of \emph{knowing how} logics. Our starting point has been the uncertainty-based semantics from~\cite{AFSVQ21,AFSVQ23report}. 
+Building on this, we studied two kinds of model updates: ontic updates (via model operations for removing worlds and for removing edges) and, more extensively, epistemic updates (via model operations for refining the agents' uncertainty over plans). 
+
+We show that, in general, the logics obtained when these operators are added to the basic knowing how logic $\KHilogic$ have increased expressive power.  As a result, the logics cannot be axiomatized simply by reduction axioms. 
 
 \begin{mrevised}
-To the best of our knowledge, this is the first attempt to establish a theory of dynamic epistemic logics for knowing how.  For the ontic updates, we considered existing dynamic modalities~\cite{} to perform changes in the knowledge of the agents represented by the \lts. Conceptually, these operations are natural choices, since part of the knowing how knowledge of an agent arises from the ability she has to access certain worlds through certain plans. Interestingly, we show that these modalities increase the expressive power 
+In most cases, we were able to define a complete axiomatization using reduction axioms by restricting the class of models considered.  We introduced the class of models $\cultsba$ (\textbf{BA} stands for `basic actions') as the class of models $\modults = \tup{\W, \R, \Unc, \V}$ in which, for all $i \in \AGT$, we have that $\plans \in \Unc(i)$ implies $\plans \subseteq \ACT$.  $\cultsba$ could be interpreted as a more abstract representation of the abilities of the agents where every plan is modeled as a single atomic action.  Interestingly, while the basic knowing how logic $\KHilogic$ cannot distinguish between the class of all \ults and $\cultsba$, this is not the case in the presence of the dynamic operators we introduced. 
+
+For the ontic updates, we considered dynamic modalities well investigated in the DEL literature (see, e.g.,~\cite{Plaza89:lopc,KooiR11,DELbook}) that perform changes in the knowledge of the agents encoded by the \lts. These modalities take new meanings in the context of \ults{s}.  Conceptually, these operations are natural choices, since part of the knowing how knowledge of an agent arises from the ability she has to access certain worlds through certain plans.  These updates concern changes in the set of states of the model or in the accessibility relations.  Remember that, in the knowing how
+setting, states other than the evaluation point and the accessibility relations linking them, do not represent epistemic information (as they do in DEL). Rather, they encode the network of situations reachable by the actions agents can perform. 
+
+Thus, in uncertainty based knowing how setting, the elimination of states and relations indicates not that they are no longer epistemically considered possible, but rather that they are no longer available in the current representation of the world. 
+Contrast this situation with the one in the original knowing how setting of, e.g.~\cite{Wang15lori,Wang2016}, where the relations define the agents’
+abilities. Under that semantics, removing states corresponds to both an ontic
+and an epistemic change: the effect of available actions changes, and hence so do the
+agents’ abilities. However, in the \ults-based semantics, relations provide only
+ontic information; thus, removing states produces an ontic change that might affect,
+indirectly, the agents’ abilities.\carlos{charlar con Raul.}
+
+
+Ultimately, the main focus of the article is on epistemic updates.  We started by presenting an operation for distinguishing between two given plans and discussing some of its properties. In turn, this operator can be used to define one for arbitrary refinement. The issue of complete axiomatization over the class of all models is still elusive in this setting, and this leads to the final proposal in this article: an extension of the underlying static language (with a normal modality for each basic action) and an arguably `more robust' epistemic action (which makes a single plan distinguishable from any other). For this extended setting, we provided sound and complete axiomatizations via reduction axioms, and showed that the satisfiability problem for these logics is decidable via filtrations. 
+
+
+\carlos{all logics are not closed under uniform substitutions.  me parece que eso todavía hay que enderezarlo en el paper. El problema es cuando tiene mas expresividad y no está cerrada.  Entonces hay que encontrar la lógica base apropiada.}
+
+ Interestingly, we show that these modalities increase the expressive power 
 of the language (and hence, no axiomatization purely based on reduction axioms is possible).  Moreover, the fact that modalities in $\KHilogic$ cannot refer explicitly about plans seems to make the formal language too weak to capture the dynamic behavior. 
 
 We show that it is possible to obtain a sound and complete axiomatizations via reduction axioms over the restricted class of models $\cultsba$ (this class bears resemblance to restricted classes considered in~\cite{Li21} for a local knowing how modality). 	
