@@ -6,7 +6,7 @@ an agent by means of operations that modify $\Unc(i)$.
 \begin{example}\label{ex:ref}
     Let $\modults$ be the \ults from \Cref{ex:cook}.
     Recall that $\modults\not\models\kh_j(h,g)$. The conflicting plan is $\mathit{ebmfsp}$, which does not lead to a good cake. Thus, if agent $j$ is able to tell apart $\mathit{ebmfsp}$ from $\mathit{ebfmsp}$ (which is the good plan), she would be able to know how to bake a good cake, provided she has the ingredients. If agent $j$ \emph{learns} that the
-    order of the actions matters (so $\mathit{ebmfsp}$ is distinct from $\mathit{ebfmsp}$), the set $\plans=\set{\mathit{ebfmsp}, \mathit{ebmfsp}}$ is split into two singleton sets (i.e., $\Unc'(j)=\set{\set{\mathit{ebfmsp}},\set{\mathit{ebmfsp}}}$, where $\Unc'(j)$ is the set of indistinguishability classes obtained from the update). After such a splitting, she knows how to achieve $g$ given $h$.
+    order of the actions matters (so $\mathit{ebmfsp}$ is now considered distinguishable from $\mathit{ebfmsp}$), the set $\plans=\set{\mathit{ebfmsp}, \mathit{ebmfsp}}$ is split into two singleton sets (i.e., $\Unc'(j)=\set{\set{\mathit{ebfmsp}},\set{\mathit{ebmfsp}}}$, where $\Unc'(j)$ are the indistinguishability sets in the updated model). After the splitting, the agent knows how to achieve $g$ given $h$.
 \end{example}
 
 \medskip
@@ -167,7 +167,7 @@ It follows from the semantics (\Cref{def:ref-sem}) that:
 The seriality of $\splitstr{}{}{\plan_1}{\plan_2}$ ensures \Cref{itm:serialityref}, and its non-determinism (there is more than one way to split a set) ensures \Cref{itm:nodeterref}.
 For \Cref{itm:idempref} note that, once the sets including the given plans have been split, the operation does nothing. % Take any pointed model. If there is no agent i with $\plans \in \Unc(i)$ such that $\plan_1, \plan_2 \in \plans$, then the first case of \Cref{def:splitstr} kicks in and the operation does nothing. Otherwise, the first application will split such $\plans$, but then a further application will do nothing, as there would be no such $\plans$ left afterwards.
 For \Cref{itm:commrefdiam} there are several cases. The one we should focus on is that in which all of the involved plans are in the same set $\plans$. Since we are talking about existential modalities, a partition of $\plans$ into three parts on the left side of the equivalence can always be reproduced by the right part and viceversa. % More precisely, consider a single agent with S = { {s1, s2, s3, s4} }. Then it is possible to obtain S' = { {s1, s3}, {s2, s4} } and then S'' = { {s1, s3}, {s2, s4} }, but also to obtain S' = { {s1}, {s2, s3, s4} } and then S'' = { {s1}, {s2, s3}, {s4} }, and also S' = { {s1}, {s2, s3, s4} } and then S'' = { {s1}, {s2, s4}, {s3} }. In the very first, s1 and s3 are indistinguishable, but they are distinguishable in the very last. Then, just adjust what those plans do, to be sure their indistinguishability affects the agent's abilities
-\Cref{itm:commrefbox} can be proved using \Cref{itm:commrefdiam}. Finally, for \Cref{itm:nocollapseref} it is enough to notice that, if the set of plans containing $\sigma_1, \sigma_2$ is different from that containing $\sigma_3, \sigma_4$, then the two actions refine two indistinguishability classes, something that cannot be replicated by a single application.
+\Cref{itm:commrefbox} can be proved using \Cref{itm:commrefdiam}. Finally, for \Cref{itm:nocollapseref} it is enough to notice that, if the set of plans containing $\sigma_1, \sigma_2$ is different from that containing $\sigma_3, \sigma_4$, then the two actions refine two indistinguishability sets, something that cannot be replicated by a single application.
 \end{proof}
 
 The new dynamic modality preserves knowing how information when it refers to propositional formulas (\Cref{itm:preservesknowledge} below).  And it is not trivial, in the sense that it leads to increase of knowledge in certain situations (\Cref{itm:gainsknowledge}).\carlos{chequear.}
@@ -229,7 +229,7 @@ Consider again~\Cref{ex:cook}, and let $\theta = \kh_j(h,g)$. Since $\modults \n
 
 \medskip
 
-As it would be expected from its ability to explicitly refer to plans, the new modality adds expressivity.
+As it could be expected given that the new modality can explicitly refer to plans, it adds expressivity w.r.t.\ the basic knowing how logic. 
 \medskip
 
 \begin{proposition}\label{prop:expref}
@@ -321,7 +321,13 @@ whereas $\modults',w' \models \refdiam{a}{b}\khi(p,q)$, since there is $\Unc''(i
 % It is clear that $\modults,w\bisim\modults',w'$, but $\modults,w \not\models \refdiam{a}{b}\khi(p,p)$ whereas $\modults',w' \models \refdiam{a}{b}\khi(p,p)$.
 \end{proof}
 
-We conclude by showing that \emph{uniform substitution} fails in $\Reflogic$. Uniform substitution establishes that given a valid formula $\varphi$, we can uniformly replace any propositional symbol appearing in $\varphi$ by an arbitrary formula, and obtain a valid formula.
+We conclude by showing that \emph{uniform substitution} fails in $\Reflogic$. Uniform substitution establishes that given a valid formula $\varphi$, we can uniformly replace any propositional symbol appearing in $\varphi$ by an arbitrary formula, and obtain a valid formula.  
+\begin{mrevised}
+The property fails for many dynamic logics.  For example the logics $\PAKHilogic$ and $\AUKHilogic$ introduced in the previous section are not closed under uniform substitution.  Particular cases where the property fails are the respective $\axm{RAtom}$ axioms, which are valid for $p \in \PROP$ but validity is not preserved under arbitrary substitutions. 
+
+Failure of uniform substitution is not so problematic in the cases of $\PAKHilogic$, $\AUKHilogic$ and, more generally, for dynamic logics with 
+reduction axioms. In these cases, the dynamic modalities can be eliminated to obtain an equivalent formula which is closed under substitutions. The case of $\Reflogic$ is more complex. Its increased expressive power w.r.t.\ $\KHilogic$ implies that reduction axioms cannot be defined.  This, in addition to the failure of uniform substitution indicates that complete axiomatizations might be difficult to find. 
+\end{mrevised}
 
 \medskip
 

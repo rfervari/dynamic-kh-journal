@@ -70,14 +70,14 @@ Something worth noting is that axiom \axm{RJoin} reflects exactly the semantics 
 \begin{tabular}{l@{\quad}l}
 \toprule
 \axm{RJoin} & $\arrowbox{S}\varphi \leftrightarrow \arrowbox{(\bigwedge_{i=1}^n \theta_i,\bigwedge_{i=1}^n \theta'_i)}\varphi$ \\
-\axm{RAtom} & $\arrowbox{(\theta,\theta')}p \leftrightarrow p$ \\
+\axm{RAtom} & $\arrowbox{(\theta,\theta')}p \leftrightarrow p, p \in \PROP$ \\
 \axm{R$\neg$} & $\arrowbox{(\theta,\theta')}\neg\varphi \leftrightarrow \neg \arrowbox{(\theta,\theta')}\varphi$ \\
 \axm{R$\vee$} & $\arrowbox{(\theta,\theta')}(\varphi \vee \psi) \leftrightarrow \arrowbox{(\theta,\theta')}\varphi \vee \arrowbox{(\theta,\theta')}\psi$ \\
 \axm{RKh} & $\arrowbox{(\theta,\theta')}\khi(\varphi,\psi) \leftrightarrow \A(\arrowbox{(\theta,\theta')}\varphi \implies \theta) \wedge \khi(\arrowbox{(\theta,\theta')}\varphi,\theta' \wedge \arrowbox{(\theta,\theta')}\psi)$ \\
 \axm{RE$_U$} & $\text{From } \vdash \varphi \leftrightarrow \psi \text{ derive } \vdash \arrowbox{(\theta,\theta')}\varphi \leftrightarrow \arrowbox{(\theta,\theta')}\psi$ \\
 \bottomrule
 \end{tabular}
-\caption{Reduction axioms $\axset_{\AUKHilogic}$ with $S = (\theta_1,\theta'_1),\dots,(\theta_n,\theta'_n)$.}\label{tab:aulaxiom}
+\caption{Reduction axioms $\axset_{\AUKHilogic}$, with $S = (\theta_1,\theta'_1),\dots,(\theta_n,\theta'_n)$.}\label{tab:aulaxiom}
 \end{table}
 
 \medskip 

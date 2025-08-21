@@ -1,5 +1,5 @@
 %\nsparagraph{Syntax and semantics.}
-This section recalls the syntax and semantics of the \emph{knowing how} framework as presented in~\cite{AFSVQ21} as well as a complete axiomatization and a suitable notion of bisimulation (both from~\cite{AFSVQ23report}). It also discusses some complexity and expressivity results. Throughout the text, let $\PROP$ be a countable set of propositional symbols, $\ACT$ a denumerable set of action symbols, and $\AGT$ a non-empty finite set of agents.
+This section recalls the syntax and semantics of the knowing how framework as presented in~\cite{AFSVQ21} as well as a complete axiomatization and a suitable notion of bisimulation (both from~\cite{AFSVQ23report}). It also discusses some complexity and expressivity results. Throughout the text, let $\PROP$ be a countable set of propositional symbols, $\ACT$ a denumerable set of action symbols, and $\AGT$ a non-empty finite set of agents.
 
 \medskip
 
@@ -54,9 +54,9 @@ An \emph{uncertainty-based \lts (\ults)} for $\PROP$, $\ACT$ and $\AGT$ is a tup
 \medskip
 
 
-Intuitively, $\DS{i} = \bigcup_{\plans \in \Unc(i)} \plans$ is the set of plans agent $i$ has at her disposal (alternatively, is aware of), and each $\plans \in \Unc(i)$ is an indistinguishability class. As discussed in~\cite{AFSVQ21}, there is a one-to-one correspondence between each $\Unc(i)$ and an `indistinguishability relation' ${\sim_i} \subseteq \DS{i} \times \DS{i}$ describing the agent's \emph{uncertainty} over her available plans ($\plan_1 \sim_i \plan_2$ iff there is $\plans \in \Unc(i)$ such that $\set{\plan_1, \plan_2} \subseteq \plans$). The presentation used here simplifies some of the definitions that will follow.
+Intuitively, $\DS{i} = \bigcup_{\plans \in \Unc(i)} \plans$ is the set of plans agent $i$ has at her disposal (alternatively, is aware of), and each $\plans \in \Unc(i)$ is an indistinguishability class. As discussed in~\cite{AFSVQ21}, there is a one-to-one correspondence between each $\Unc(i)$ and an indistinguishability relation ${\sim_i} \subseteq \DS{i} \times \DS{i}$ describing the agent's \emph{uncertainty} over her available plans ($\plan_1 \sim_i \plan_2$ iff there is $\plans \in \Unc(i)$ such that $\set{\plan_1, \plan_2} \subseteq \plans$). The presentation used here simplifies some of the definitions that will follow.
 
-Given her uncertainty over (a subset of) $\ACT^*$, the abilities of an agent $i$ depend not on what a single plan can achieve, but rather on what a set of them can guarantee.
+Given her uncertainty over (a subset of) $\ACT^*$, the epistemic abilities of an agent $i$ depend not on what a single plan can achieve, but rather on what a set of them can guarantee.
 
 \medskip
 
@@ -93,10 +93,10 @@ Let $\modults=\tup{\W,\R,\Unc,\V}$ be an \ults and $w \in \W$.
 The satisfiability relation $\models$ for $\KHilogic$ is inductively defined as:
 \begin{spcenter}
 $\begin{array}{l@{\ \ \ }c@{\ \ \  }l}
-\modults, w \models p & \iffdef & p \in \V(w) \\
-\modults, w \models \neg\varphi & \iffdef & \modults, w \not\models \varphi \\
-\modults, w \models \psi\vee\varphi & \iffdef & \modults, w \models \psi \mbox{ or }\modults, w \models \varphi \\
-\modults, w \models \khi(\psi,\varphi) & \iffdef & \text{there is } \plans \in \Unc(i) \;\text{such that:} \\
+\modults, w \models p & \text{iff} & p \in \V(w) \\
+\modults, w \models \neg\varphi & \text{iff} & \modults, w \not\models \varphi \\
+\modults, w \models \psi\vee\varphi & \text{iff} & \modults, w \models \psi \mbox{ or }\modults, w \models \varphi \\
+\modults, w \models \khi(\psi,\varphi) & \text{iff} & \text{there is } \plans \in \Unc(i) \;\text{such that:} \\
 & & \ \ \text{\bfseries \itshape (i)} \; \truthset{\modults}{\psi} \subseteq \stexec(\plans),\; \text{and} \\
 & & \ \ \text{\bfseries \itshape (ii)} \; \R_\plans(\truthset{\modults}{\psi}) \subseteq \truthset{\modults}{\varphi},
 \end{array}$
@@ -419,7 +419,7 @@ We mentioned before that the semantic interpretation for $\khi$ is `blind' to ce
 
 \medskip 
 
-$\cultsba$ (denoted $\sults$ in~\cite{AFSV22}) is a restricted class of models, which could be interpreted as a more abstract representation of the abilities of the agents where every plan is modeled as a single atomic action. 
+$\cultsba$ (denoted $\sults$ in~\cite{AFSV22}) is a restricted class of models, which could be interpreted as a more abstract representation of the actions available to agents, where every plan is modeled as a single atomic action. 
 \medskip	
 	
 \begin{proposition}

@@ -5,13 +5,13 @@
 A well-established form of update in the DEL literature is the public announcement~\cite{Plaza89:lopc,DELbook}. This model update is interpreted as an announcement indicating (truthfully) to all agents that $\chi$ is the case.
 Public Announcement Logic (\PAL) extends the basic modal logic with a dynamic operator $[\chi]$ to represent this kind of updates. Given an $\lts$ $\modults=\tup{\W,\R,\V}$, the semantic interpretation of $[\chi]$ is usually defined as:
 \begin{spcenter}
-  $\modults,w\models[\chi]\varphi \ \ \iff \ \  \modults,w\models\chi \mbox{ implies } \modults_{\chi},w\models\varphi$,
+  $\modults,w\models[\chi]\varphi \ \ \text{iff} \ \  \modults,w\models\chi \mbox{ implies } \modults_{\chi},w\models\varphi$,
 \end{spcenter}
 with the $\lts$ $\modults_\chi=\tup{\W_\chi,\R_\chi,\V_\chi}$ given by $\W_\chi = \set{w \mid \modults,w\models\chi}$, $(\R_\chi)_a = \R_a \cap \W_\chi^2$ for each $a\in\ACT$, $\V_\chi(w) = \V(w)$ for all $w\in\W_\chi$.  The operator can be naturally extended to 
 $\ults$s by setting $\Unc_\chi = {\Unc}$, as the update does not affect indistinguishability sets. 
-In other words, $\modults_\chi$ is obtained by taking $\truthset{\modults}{\chi}$ as the new domain, then restricting relations and valuation accordingly (the indistinguishability classes $\Unc(i)$ are left unchanged). 
+In other words, $\modults_\chi$ is obtained by taking $\truthset{\modults}{\chi}$ as the new domain, then restricting relations and valuation accordingly (the indistinguishability sets $\Unc(i)$ are left unchanged). 
 
-A couple of remarks might be useful here. First recall that, in the \emph{knowing how} setting, states other than the evaluation point do not represent epistemic possibilities (as they do in EL), but rather situations reachable by actions. Thus, in the \emph{knowing how} setting, the elimination of some states indicates not that they are no longer (epistemically) \emph{possible}, but rather that they are no longer (action-wise) \emph{reachable}. Moreover, in the original \emph{knowing how} setting, the relations define the agents' abilities. Hence, under that semantics, removing states corresponds to both an ontic and an epistemic change: the effect of available actions changes, and hence so do the agents' abilities~\cite{Wang2016}. However, in the \ults-based semantics, relations provide only ontic information; thus, removing states produces an \emph{ontic} change that might affect, indirectly, the agents' abilities.
+A couple of remarks might be useful here. First recall that, in the knowing how setting, states other than the evaluation point do not represent epistemic possibilities (as they do in EL), but rather situations reachable by actions. Thus, in the knowing how setting, the elimination of some states indicates not that they are no longer (epistemically) \emph{possible}, but rather that they are no longer (action-wise) \emph{reachable}. Moreover, in the original knowing how setting, the relations define the agents' abilities. Hence, under that semantics, removing states corresponds to both an ontic and an epistemic change: the effect of available actions changes, and hence so do the agents' abilities~\cite{Wang2016}. However, in the \ults-based semantics, relations provide only ontic information; thus, removing states produces an \emph{ontic} change that might affect, indirectly, the agents' abilities.
 
 In the $\ults$ setting, it can be shown that the update operator adds expressivity to $\KHilogic$ (a similar result was established in~\cite{Wang2016} for the original $\lts$-based setting).
 
@@ -144,7 +144,7 @@ Remember the class $\cultsba$ introduced in~\Cref{def:class-m-one}. By restricti
 \begin{table}[t]
 \begin{tabular}{l@{\quad}l}
 \toprule
-\axm{RAtom} & $\vdash \gann{\chi}p \leftrightarrow (\chi \implies p)$ \\
+\axm{RAtom} & $\vdash \gann{\chi}p \leftrightarrow (\chi \implies p), p \in \PROP$ \\
 \axm{R$\neg$} & $\vdash \gann{\chi}\neg\varphi \leftrightarrow (\chi \implies \neg\gann{\chi}\varphi)$ \\
 \axm{R$\vee$} & $\vdash \gann{\chi}(\varphi\vee\psi) \leftrightarrow \gann{\chi}\varphi \vee\gann{\chi}\psi$ \\
 \axm{RKh} & $\vdash \gann{\chi}\khi(\varphi,\psi) \leftrightarrow (\chi \implies \khi(\chi \wedge \gann{\chi}\varphi,\chi \wedge \gann{\chi}\psi))$ \\
