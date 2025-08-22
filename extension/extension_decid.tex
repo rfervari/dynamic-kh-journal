@@ -98,7 +98,7 @@ Let $\modults = \tup{\W,\R,\Unc,\V}$ be an \ults defined over $\AGT=\set{k,j}$ a
 $\R_{a_i} = \setof{(w^i_1,w^j_2)}{j \in \natnum}$,
 $\R_{b_i} = \set{(w^i_2,v^i)}$;
 \item
-$\Unc(k) = \set{\plans_1,\plans_2,\plans_3}$, where  $\plans_1=\set{a_1b_1}$, $\plans_2=\set{a_1}$, and $\plans_3= \setof{a_i b_i}{i \in \natnum \setminus \set{1}}$, and
+$\Unc(k) = \set{\plans_1,\plans_2,\plans_3}$, where  $\plans_1=\set{a_1b_1}$, $\plans_2=\set{a_1}$, $\plans_3= \setof{a_i b_i}{i \in \natnum \setminus \set{1}}$, and
 $\Unc(j) = \setof{\set{a_i}}{i \in \natnum \setminus \set{1}}$;
 \item $\V(w^i_1) = \set{p}$, $\V(w^i_2) = \set{r}$, $\V(v^i) = \set{q,s^i}$, for all $i \in \natnum$.
 \end{enumerate}
@@ -289,6 +289,8 @@ As we established that every satisfiable formula of $\KHiMLlogic$, is satisfiabl
 \begin{corollary}\label{cor:extended-decidable}
 The satisfiability problem for $\KHiMLlogic$ is decidable.
 \end{corollary}
+
+\carlos{cuan grande es el modelo filtrado?  Tiene sentido incluir an upper bound for complexity?s}
 
 %\begin{proof}
 %Suppose $\varphi$ is satisfiable, then there exists a model $\modults$ and a state $w$ such that $\modults,w\models\varphi$. Let $\Sigma$ be the set of subformulas of $\varphi$ (including $\varphi$).

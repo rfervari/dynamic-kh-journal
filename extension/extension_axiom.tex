@@ -1,6 +1,6 @@
 %\subsubsection{Axiom system}
 
-The axiom system in \Cref{tab:khimlaxiom}\carlos{No hay que agregar G?}, extending that in~\Cref{tab:khiaxiom} with the well-known axioms \axm{Dist$\square$} and \axm{A$\square$}, is sound and complete for $\KHiMLlogic$. Soundness easily follows from the validity of the new axioms. For completeness, note first how the necessitation rule for~$[a]$ is derivable using \axm{NecA}, \axm{A$\square$} and \axm{MP}. Moreover, no additional `interaction' axioms are needed: the knowing how modality does not make explicit the plan that serves as a witness. Then, the witnesses for formulas of the form $\khi(\psi,\varphi)$ and $\mldiam{a}\varphi$ can be kept independent from each other. 
+The axiom system in \Cref{tab:khimlaxiom}, extending that in~\Cref{tab:khiaxiom} with the well-known axioms \axm{Dist$\square$} and \axm{A$\square$}, is sound and complete for $\KHiMLlogic$. Soundness easily follows from the validity of the new axioms. For completeness, note first how the necessitation rule for~$[a]$ is derivable using \axm{NecA}, \axm{A$\square$} and \axm{MP}. Moreover, no additional `interaction' axioms are needed: the knowing how modality does not make explicit the plan that serves as a witness. Then, the witnesses for formulas of the form $\khi(\psi,\varphi)$ and $\mldiam{a}\varphi$ can be kept independent from each other. 
 This is used in the completeness proof below (in particular, in the definition of the canonical model), in a way similar to that of~\cite{AFSVQ21,AFSVQ23report} for $\KHilogic$.
 \medskip
 
@@ -67,6 +67,7 @@ This is used in the completeness proof below (in particular, in the definition o
 & \axm{KhA}   & $\vdash \left(\A(\chi \rightarrow \psi) \land \khi(\psi,\varphi) \land \A(\varphi \rightarrow \theta)\right) \rightarrow \khi(\chi, \theta)$ \\
 & \axm{Dist$\square$} & $\vdash \mlbox{a}(\varphi\ra\psi) \ra (\mlbox{a}\varphi \ra \mlbox{a}\psi)$ \\
 & \axm{A$\square$} & $\vdash \A\varphi \ra \mlbox{a}\varphi$ \\
+& \axm{G} & $\vdash \khi(\varphi,\bot) \ra \kh_j(\varphi,\bot)$ \\
 \midrule
 \mbox{Rules}
 &  \axm{MP}   & $\mbox{From $\vdash \varphi$ and $\vdash \varphi \rightarrow \psi$ infer $\vdash \psi$ }$ \\
