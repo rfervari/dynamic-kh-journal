@@ -196,7 +196,7 @@ Agent $i$, an experienced chef, is aware that this is the way to get a good cake
 \end{spcenter}
 The diagram shows, on the right, the set of indistinguishable plans in $\Unc(i)$ and in~$\Unc(j)$. %, containing two sets: $\plans_1=\set{ew}$ and   $\plans_2=\set{we,eew}$.
 Agent $i$ knows how to bake a good cake, provided she has all the ingredients (i.e., $\modults\models\khi(h,g)$). This is because agent $i$ \emph{distinguishes} $\mathit{ebfmsp}$ as the ``good plan''. On the other hand, $j$ considers that adding milk and adding flour can be done in any order (i.e., $\mathit{ebfmsp}$ and $\mathit{ebmfsp}$ are indistinguishable), leading to $\modults\not\models\kh_j(h,g)$, as the plan
-$\mathit{ebmfsp}$ is not strongly executable in the model \carlos{chequear.}.
+$\mathit{ebmfsp}$ is not strongly executable in the model.
 \end{example}
 
 \medskip 
@@ -391,7 +391,7 @@ $\begin{array}{lll}
 %
 Given the implications proved above, by transitivity we get \axm{KhE} as wanted.
 
-\textcolor{blue}{The second difference  is the presence of the axiom \axm{G} (standing for `global' formulas).  This axiom indicates that the validity of formulas of the form $\khi(\varphi,\bot)$ is shared among all agents.  Notice that these formulas are particular, as they describe conditions that would lead to the impossible case of a goal satisfying $\bot$.  the axiom states that these formulas do not depend of the particular agent under consideration. 
+\textcolor{blue}{The second difference  is the presence of the axiom \axm{G} (standing for `global' formulas).  This axiom indicates that the validity of formulas of the form $\khi(\varphi,\bot)$ is shared among all agents.  Notice that these formulas are particular, as they describe conditions that would lead to the impossible case of a goal satisfying $\bot$.  The axiom states that these formulas do not depend of the particular agent under consideration. 
 %	It states that knowing how formulas that are trivially validated for an agent (in the sense that as the goal to be achieved is impossible, ), are also trivially validated for other agents. In a sense, some form of `general knowledge' is preserved between agents. 
 This axiom needs to be added as a consequence of a gap in the arguments  in~\cite[Prop.~4]{AFSVQ23report}. The validity called \axm{SCond} cannot be proved without axiom \axm{G} (since the universal modality $\A$ is defined in that article as a disjunction, the last step in~\cite[Prop.~4]{AFSVQ23report} is not an equivalence). By adding \axm{G} here we fix this issue.}
 
@@ -419,7 +419,7 @@ We mentioned before that the semantic interpretation for $\khi$ is `blind' to ce
 
 \medskip 
 
-$\cultsba$ (denoted $\sults$ in~\cite{AFSV22}) is a restricted class of models, which could be interpreted as a more abstract representation of the actions available to agents, where every plan is modeled as a single atomic action. 
+$\cultsba$ (denoted $\sults$ in~\cite{AFSV22}) is a restricted class of models, which could be interpreted as a more abstract representation of the actions available to agents, where every plan is modeled as a single atomic action (similar to what is done in formal verification using the so-called `path abstraction' technique, see e.g.~\cite{AbrahamJWKB10} for an example). 
 \medskip	
 	
 \begin{proposition}
