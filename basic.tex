@@ -319,7 +319,7 @@ The axiom system from~\Cref{tab:khiaxiom} is sound and strongly complete with re
 
 \medskip
 
-\textcolor{blue}{It is worth noticing that there are two differences with the system presented in~\cite{AFSVQ23report}. The first one,} is that the validity $\left(\E\psi \land \khi(\psi,\varphi)\right) \rightarrow \E\varphi$, called \axm{KhE} and part of the axiom system as presented in \cite{AFSVQ23report}, is omitted here. This is because it is derivable in the system, as proved by showing the derivability of the equivalent $(\E\psi \wedge \khi(\psi,\varphi) \wedge \A\neg\varphi) \ra \bot$. First,
+It is worth noticing that there are two differences with the system presented in~\cite{AFSVQ23report}. The first one, is that the validity $\left(\E\psi \land \khi(\psi,\varphi)\right) \rightarrow \E\varphi$, called \axm{KhE} and part of the axiom system as presented in \cite{AFSVQ23report}, is omitted here. This is because it is derivable in the system, as proved by showing the derivability of the equivalent $(\E\psi \wedge \khi(\psi,\varphi) \wedge \A\neg\varphi) \ra \bot$. First,
 % , $\left(\E\psi \land \khi(\psi,\varphi) \land \A \neg\varphi \right) \rightarrow \bot$, using \axm{KhA}. %\raul{To write down the syntactic proof in detail here.}
 %
 % By \axm{TAUT}, it is equivalent to prove that
@@ -391,13 +391,14 @@ $\begin{array}{lll}
 %
 Given the implications proved above, by transitivity we get \axm{KhE} as wanted.
 
-\textcolor{blue}{The second difference  is the presence of the axiom \axm{G} (standing for `global' formulas).  This axiom indicates that the validity of formulas of the form $\khi(\varphi,\bot)$ is shared among all agents.  Notice that these formulas are particular, as they describe conditions that would lead to the impossible case of a goal satisfying $\bot$.  The axiom states that these formulas do not depend of the particular agent under consideration. 
+\begin{mrevised}The second difference  is the presence of the axiom \axm{G} (standing for `global' formulas).  This axiom indicates that the validity of formulas of the form $\khi(\varphi,\bot)$ is shared among all agents.  Notice that these formulas are particular, as they describe conditions that would lead to the impossible case of a goal satisfying $\bot$.  The axiom states that these formulas do not depend of the particular agent under consideration. 
 %	It states that knowing how formulas that are trivially validated for an agent (in the sense that as the goal to be achieved is impossible, ), are also trivially validated for other agents. In a sense, some form of `general knowledge' is preserved between agents. 
-This axiom needs to be added as a consequence of a gap in the arguments  in~\cite[Prop.~4]{AFSVQ23report}. The validity called \axm{SCond} cannot be proved without axiom \axm{G} (since the universal modality $\A$ is defined in that article as a disjunction, the last step in~\cite[Prop.~4]{AFSVQ23report} is not an equivalence). By adding \axm{G} here we fix this issue.}
+This axiom needs to be added as a consequence of a gap in the arguments  in~\cite[Prop.~4]{AFSVQ23report}. The validity called \axm{SCond} cannot be proved without axiom \axm{G} (since the universal modality $\A$ is defined in that article as a disjunction, the last step in~\cite[Prop.~4]{AFSVQ23report} is not an equivalence). By adding \axm{G} here we fix this issue.
+\end{mrevised}
 
 % \ssparagraph{Complexity.} 
 
-Strong completeness of the axiomatization above is established in~\cite{AFSVQ21,AFSVQ23report} via a canonical model construction \textcolor{blue}{(modulo the correction just mentioned)}. In addition, 
+Strong completeness of the axiomatization above is established in~\cite{AFSVQ21,AFSVQ23report} via a canonical model construction (modulo the correction just mentioned). In addition, 
 starting from the canonical model, a careful selection function can be used to prove a small (polynomial) model property that leads to the following complexity results.
 
 \medskip 
