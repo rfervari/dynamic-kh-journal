@@ -3,7 +3,7 @@
 %As discussed in the previous sections, our goal is to take ideas from standard epistemic logic to perform operations that update an agent's know-how.
 
 A well-established form of update in the DEL literature is the public announcement~\cite{Plaza89:lopc,DELbook}. This model update is interpreted as an announcement indicating (truthfully) to all agents that $\chi$ is the case.
-Public Announcement Logic (\PAL) extends the basic modal logic with a dynamic operator $[\chi]$ to represent this kind of updates. Given an $\lts$ $\modults=\tup{\W,\R,\V}$, the semantic interpretation of $[\chi]$ is usually defined as:
+Public Announcement Logic (\PAL) extends the basic modal logic with a dynamic operator $[\chi]$ to represent these updates. Given an $\lts$ $\modults=\tup{\W,\R,\V}$, the semantic interpretation of $[\chi]$ is usually defined as: 
 \begin{spcenter}
   $\modults,w\models[\chi]\varphi \ \ \text{iff} \ \  \modults,w\models\chi \mbox{ implies } \modults_{\chi},w\models\varphi$,
 \end{spcenter}
@@ -12,7 +12,7 @@ $\ults$s by setting $\Unc_\chi = {\Unc}$, as the update does not affect indistin
 In other words, $\modults_\chi$ is obtained by taking $\truthset{\modults}{\chi}$ as the new domain, then restricting relations and valuation accordingly (the indistinguishability sets $\Unc(i)$ are left unchanged). 
 
 \begin{mrevised}
-A couple of remarks might be useful here. In the original knowing how setting with semantics defined in terms of \lts{s}~\cite{Wang2016}, edges can be taken to encode the agents' \emph{epistemic take on her abilities}: the actions she considers possible, the preconditions required of a given situation for their execution, and the effects they have (how a situation is changed under the execution of a given action). As a result, in the original knowing how setting, updates on states and edges are epistemic updates.
+A couple of remarks might be useful here. In the original knowing how setting with semantics defined in terms of \lts{s}~\cite{Wang2016}, edges can be taken to encode the agents' \emph{epistemic take on their abilities}: the actions she considers possible, the preconditions required of a given situation for their execution, and the effects they have (how a situation is changed under the execution of a given action). As a result, in the original knowing how setting, updates on states and edges are epistemic updates.
 
 
 In the \ults-based semantics, however, the edges in an \ults stand for the actions available in the considered situation, their preconditions
@@ -141,7 +141,7 @@ Both models are $\KHilogic$-bisimilar (\Cref{def:bisim-khi}); hence, they satisf
 	% \end{nscenter}
 \end{proof}
 
-models $\modults$ and $\modults'$ in~\Cref{prop:exppal} above. First, they both make the formula $\khi(p,q)$ true, with their respective witnesses being $\set{ab}$ and $\set{a}$. But, as discussed, after eliminating worlds in which $r$ is false this is no longer the case: the formula fails in $\annmodel{r}$ but holds in $\annmodel{r}'$. Notice that the witness in $\modults$ is a singleton set with a two-step plan, while the witness in $\modults'$ is a singleton set with a one-step plan (i.e., an atomic action). This makes a difference because, by removing intermediate steps, $\PAKHilogic$ can tell these two models apart. 
+Note the following regarding models $\modults$ and $\modults'$ in~\Cref{prop:exppal} above. First, they both make the formula $\khi(p,q)$ true, with their respective witnesses being $\set{ab}$ and $\set{a}$. But, as discussed, after eliminating worlds in which $r$ is false, this is no longer the case: the formula fails in $\annmodel{r}$ but holds in $\annmodel{r}'$. Notice that the witness in $\modults$ is a singleton set with a two-step plan, while the witness in $\modults'$ is a singleton set with a one-step plan (i.e., an atomic action). This makes a difference because, by removing intermediate steps, $\PAKHilogic$ can tell these two models apart. 
 It is useful to notice the following observations about
 
 Remember the class $\cultsba$ introduced in~\Cref{def:class-m-one}. By restricting the class of models to $\cultsba$, one can still get agents with `the same abilities' while also stopping $\PAKHilogic$ from being able to tell $\KHilogic$-bisimilar models apart.  Indeed, the reduction axioms from~\Cref{tab:palaxiom} are valid in the class of models $\cultsba$. Moreover, we can use them to eliminate announcements by iteratively replacing the innermost occurrence of a $\gann{\chi}$ modality. Putting all together, completeness for $\PAKHilogic$ over $\cultsba$ follows.
