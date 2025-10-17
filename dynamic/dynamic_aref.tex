@@ -1,4 +1,4 @@
-The operation $\refdiam{\plan_1}{\plan_2}$ can be seen as a particular form of publicly removing uncertainty: one that indicates precisely the plans that should be distinguished, and then quantifies over the different ways of doing so. The operation defined below is more abstract: taking inspiration from other proposals that quantify over epistemic actions (e.g., arbitrary announcements~\cite{BalbianiBDHHL08}, arbitrary arrow updates~\cite{DitmarschHKK17}, group announcements~\cite{GroupAJ}, coalition announcements~\cite{AgotnesD08}, arbitrary radical upgrades~\cite{FI24}), it quantifies over the different ways in which the agent's indistinguishability can be refined. 
+The `refinement' relation described by $\refdiam{\plan_1}{\plan_2}$ indicates precisely the plans that should be distinguished, with the modality itself quantifying over the different ways to do so. The operation defined below is more abstract: taking inspiration from other proposals that quantify over epistemic actions (e.g., arbitrary announcements~\cite{BalbianiBDHHL08}, arbitrary arrow updates~\cite{DitmarschHKK17}, group announcements~\cite{GroupAJ}, coalition announcements~\cite{AgotnesD08}, arbitrary radical upgrades~\cite{FI24}), it quantifies over the different ways in which the agent's indistinguishability can be refined. 
 
 \medskip
 
@@ -19,7 +19,7 @@ In $\AReflogic$ we can define an operator that indicates whether it is possible 
 $\lh{\psi}{\varphi}_i\chi := \arefdiam(\khi(\psi,\varphi) \wedge\chi)$ \qquad (for its `dual', $[\psi,\varphi]_i\chi := \neg\lh{\psi}{\varphi}_i\neg\chi$).
 \end{spcenter}
 
-Thus, $\lh{\psi}{\varphi}_i\chi$ expresses that agent $i$ is able to learn how to achieve $\varphi$ given $\psi$, and that after this learning operation takes place, $\chi$ holds. One can further define $\learn_i(\psi,\varphi) := \lh{\psi}{\varphi}_i\top$, an abbreviation for \emph{``the agent $i$ can learn how to make $\varphi$ true in the presence of $\psi$''}. 
+Thus, $\lh{\psi}{\varphi}_i\chi$ expresses that agent $i$ can learn how to achieve $\varphi$ given $\psi$, and that after this learning operation takes place, $\chi$ holds. One can further define $\learn_i(\psi,\varphi) := \lh{\psi}{\varphi}_i\top$, an abbreviation for \emph{``the agent $i$ can learn how to make $\varphi$ true in the presence of $\psi$''}. 
 %However, as we will see below, it can be seen as a unary modality similarly to public announcements or action models.
 This modality, which can be seen as defining a notion of ``learnability'' in this knowing how context, has the following properties.
 
@@ -37,8 +37,7 @@ It follows from the semantics that:
 \begin{proof}
 \Cref{itm:nolearnable} shows that not everything is learnable by an agent.
 %The properties of the underlying LTS
-The (un)avail\-abil\-i\-ty of certain actions in an \ults restricts
-what can be learnt.  Consider the following single-agent \ults $\modults$, with
+The (un)avail\-abil\-i\-ty of certain actions in an \ults restricts what can be learnt.  Consider the following single-agent \ults $\modults$, with
 the set $\Unc(i)$ shown on the right.
 \begin{center}
 \begin{tabular}{c}
@@ -71,7 +70,7 @@ the set $\Unc(i)$ shown on the right.
 \end{center}
 Note that $\modults,w\not\models\khi(p,r)$.
 The set $\set{ab,a}$ is not executable at every $p$-state, it is only executable at $w$.
-On the other hand, $\set{\epsilon}$ is executable everywhere, but does not lead always to $r$-states.
+On the other hand, $\set{\epsilon}$ is executable everywhere, but does not always lead to $r$-states.
 Moreover, $\modults,w\not\models\learn_i(p,r)$.
 The set $\set{\epsilon}$ cannot be refined, and no refinement of $\set{ab,a}$ does the work.
 Therefore, agent $i$ cannot learn how to make $r$ true when $p$ holds.
@@ -88,6 +87,8 @@ to cure a disease if there is no doctor
 available. \Crefitem{itm:learnboth} shows how the agent might be able
 to learn not only how to make a formula true under a given condition,
 but, at the same time, how to make the same formula false under the same condition.
+
+\smallskip
 
 Let us go back to discussing the properties of $\AReflogic$, and their impact in obtaining complete axiomatizations. The modality $\arefdiam$ is normal and serial, and satisfies  natural properties 
 of Monotonicity and Weakening. Moreover, it is a non-idempotent action. 
@@ -186,7 +187,7 @@ The proofs are similar to those in~\Cref{prop:ref-preserves-gains}.
 \end{proof}
 
 By definition, $\models \refdiam{\plan_1}{\plan_2}\varphi \implies \arefdiam\varphi$, but characterizing the exact expressivity relation between the two resulting logics requires further developments.
-In particular, given the mismatch between the two languages ($\Reflogic$ is able to talk about specific plans whereas $\AReflogic$ is not), it does not seem trivial to give a translation from one logic to the other.
+In particular, given the mismatch between the two languages ($\Reflogic$ can talk about specific plans, whereas $\AReflogic$ cannot), it does not seem trivial to give a translation from one logic to the other.
 However, by using the same argument as in \Cref{prop:expref}, it is easy to show the following:
 
 \medskip
@@ -197,7 +198,7 @@ $\AReflogic$ is more expressive than $\KHilogic$.
 
 \medskip
 
-Uniform substitution fails for $\AReflogic$ which, in combination with its high expressivity, makes it difficult to axiomatize.
+Uniform substitution fails for $\AReflogic$. This, in combination with its high expressivity, makes it difficult to axiomatize.
 
 \medskip
 
@@ -210,8 +211,7 @@ Similar to~\Cref{prop:substitution-ref}, and taking $p\to\arefdiam p$ as the ori
 \end{proof}
 
 The problem of defining dynamic operators and corresponding complete axiomatizations will be addressed in the next section. 
-We finish the current one by stating some expressivity connections between the
-dynamic modalities we just discussed.
+We finish the current one by stating some expressivity connections between the just discussed dynamic modalities.
 
 \medskip
 
@@ -311,7 +311,7 @@ In $\Reflogic$ on the other hand, $\modults,w\models \dialhepis{a{\not\sim}b}\kh
 % $\truthset{\modults}{\varphi}$ is propositionally-definable.
 % \end{claim}
 % \begin{proof}
-% The propositional variables and Boolean conectors cases are straightforward.
+% The propositional variables and Boolean connectives cases are straightforward.
 % Let $\varphi = \khi(\varphi_1,\varphi_2)$, then either $\truthset{\modults}{\varphi}$ is $\emptyset$ $(= \truthset{\modults}{\bot})$ or is $\W$ $(= \truthset{\modults}{\top})$.
 % Thus, it is propositionally-definable.
 % If $\varphi = \arefdiam \varphi_1$, then $w \in \truthset{\modults}{\varphi}$ iff $\modults,w \models \arefdiam \varphi_1$ iff $\modults,w \models \refdiam{\plan_1}{\plan_2}$
@@ -395,7 +395,7 @@ In $\Reflogic$ on the other hand, $\modults,w\models \dialhepis{a{\not\sim}b}\kh
 % % The pointed \ultss $\modults, w$ and $\modults', w'$ are \emph{$\AReflogic$-equivalent} (written $\modults, w \modequiv_\AReflogic \modults', w'$) if and only if $\modults, w \models \varphi$ iff $\modults', w' \models \varphi$ for all $\varphi \in \AReflogic$.
 % % \end{definition}
 
-% Then we are in position to prove the intended theorem (notice that $\modequiv_\AReflogic$ is defined simply by extending~\Cref{def:equiv-kh} to $\AReflogic$-formulas).
+% Then we are in a position to prove the intended theorem (notice that $\modequiv_\AReflogic$ is defined simply by extending~\Cref{def:equiv-kh} to $\AReflogic$-formulas).
 
 % \begin{theorem}[Invariance for $\AReflogic$]\label{th:arefbisim-to-arefequiv}
 % Let $\modults, w$ and $\modults', w'$ be pointed \ultss.
