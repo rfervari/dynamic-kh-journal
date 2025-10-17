@@ -137,7 +137,7 @@ Let $\Gamma \in \smcs$. The structure $\modults^\Gamma=\tup{\W^\Gamma, \R^\Gamma
 $\R^{\Gamma}_{\tup{\psi,\varphi}^i} = \setof{(\Delta_1, \Delta_2) \in (\W^\Gamma)^2}{\khi(\psi,\varphi) \in \Gamma, \psi \in \Delta_1, \varphi \in \Delta_2}$,
 \end{center}
 
-\item $\R^{\Gamma}_a := \setof{(\Delta_1, \Delta_2) \in (\W^\Gamma)^2}{\text{for all } \mlbox{a}\varphi \in \Delta_1 \text{ implies } \varphi \in \Delta_2}$,
+\item $\R^{\Gamma}_a := \setof{(\Delta_1, \Delta_2) \in (\W^\Gamma)^2}{ \text{for all } \varphi \in \KHiMLlogic: \mlbox{a}\varphi \in \Delta_1 \text{ implies } \varphi \in \Delta_2 }$,
 
 \item $\Unc^\Gamma(i) := \left\{ \set{\tup{\psi,\varphi}} \mid \tup{\psi,\varphi} \in \ACT^\Gamma_i \right\}$,
 
@@ -154,7 +154,7 @@ Since the $\kh$ modality does not mention explicitly the plan that serves as a w
 The structure $\modults^\Gamma = \tup{\W^\Gamma, \R^\Gamma, \Unc^\Gamma, \V^\Gamma}$ is an $\ults$.
 \end{proposition}
 \begin{proof}
-The set of actions $\ACT^\Gamma$ is denumerable, Thus $\ACT^\Gamma\cup\ACT$ is also denumerable.
+The set of actions $\ACT^\Gamma$ is denumerable; thus, $\ACT^\Gamma\cup\ACT$ is also denumerable.
 Since $\Gamma \in \W^\Gamma$, $\W^\Gamma \neq \emptyset$.
 It is enough to show that each $\Unc^\Gamma(i)$ defines a partition over a non-empty subset of $2^{(\ACT^\Gamma)^*}$ since its elements are singletons (thus, mutually disjoint).
 As we have that $\khi(\bot,\bot) \in \Gamma$, so $\tup{\bot, \bot} \in \ACT^\Gamma_i$ and hence $\set{\tup{\bot, \bot}} \in \Unc^\Gamma(i)$; thus, $\Unc(i) \neq \emptyset$.
