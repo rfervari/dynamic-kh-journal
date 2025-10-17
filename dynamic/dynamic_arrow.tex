@@ -2,7 +2,7 @@
 Another way to update \ltss is by modifying their relations directly, while keeping the domain intact. In the context of DEL, one proposal that stands out is Arrow Update Logic ($\AUL$)~\cite{KooiR11}. The dynamic operator of $\AUL$ takes as a parameter a list of arrow specifications in the form of triples (formula, action, formula). Then, an edge with label $a$ from state $w$ to state $v$ will not be deleted if and only if there is an arrow specification $(\varphi_1, a, \varphi_2)$ such that $w$ satisfies $\varphi_1$ and $v$ satisfies $\varphi_2$. 
 
 The version of the $\AUL$ framework presented below differs from the original in two aspects. First, an arrow specification is defined as a pair (formula, formula) with no reference to actions; this is in line with the syntax of $\KHlogic$, which does not include them. 
-Second, as in~\Cref{def:annupdate}, an edge labeled $a$ from state $w$ to state $v$ will not be deleted if there exists an arrow specification $(\varphi_1, \varphi_2)$ such that $w$ satisfies $\varphi_1$ and \emph{all states} reachable from $w$ via $a$-edges satisfy $\varphi_2$. The reason for this modification is similar to the one we discussed for the $[\chi]$ operator. The original $\AUL$ modality adopts an edge-by-edge perspective rather than a group-edge one, as it is done in the semantics of $\khi$-formulas.
+Second, as in~\Cref{def:annupdate}, an edge labeled $a$ from state $w$ to state $v$ will not be deleted if there exists an arrow specification $(\varphi_1, \varphi_2)$ such that $w$ satisfies $\varphi_1$ and \emph{all states} reachable from $w$ via $a$-edges satisfy $\varphi_2$. The reason for this modification is similar to the one we discussed for the $[\chi]$ operator. The original $\AUL$ modality adopts an edge-by-edge perspective rather than a group-edge one, as is done in the semantics of $\khi$-formulas.
 
 
 %The answer of whether there is a class of models compatible with this standard operator remains unclear.
@@ -61,10 +61,8 @@ $\AUKHilogic$ is more expressive than $\KHilogic$ over arbitrary \ultss.
 By using the models from~\Cref{prop:exppal}, we have that $\modults,w \not\models [(r,r)]\khi(p,q)$ and $\modults',w' \models[(r,r)]\khi(p,q)$.
 \end{proof}
 
-As was the case with $\PAKHilogic$, if we restrict ourselves to models in $\cultsba$ 
-reduction axioms can be defined (see~\Cref{tab:aulaxiom}), and we can use them to eliminate all occurrences of the $\arrowbox{S}$ modality. %Thus, we get completeness for $\AUKHilogic$. 
-As our presentation is a variation of the original $\AUL$, the axiom system is novel. However, it follows standard ideas, and the soundness of most axioms is clear. 
-Something worth noting is that axiom \axm{RJoin} reflects exactly the semantics of $\arrowbox{S}$. If we have a finite list of pair of formulas in an update specification $S$, we can group all formulas into a pair $(\theta,\theta')$.
+As it was the case with $\PAKHilogic$, if we restrict ourselves to models in $\cultsba$, there are reduction axioms (see~\Cref{tab:aulaxiom}) that can be used to eliminate all occurrences of the $\arrowbox{S}$ modality. %Thus, we get completeness for $\AUKHilogic$. 
+As our presentation is a variation of the original $\AUL$, the axiom system is novel. However, it follows standard ideas, and the soundness of most axioms is clear. Something worth noting is that axiom \axm{RJoin} reflects exactly the semantics of $\arrowbox{S}$: if we have a finite list of pairs of formulas in an update specification $S$, we can group all formulas into a pair $(\theta,\theta')$.
 
 \begin{table}[t]
 \begin{tabular}{l@{\quad}l}
@@ -83,10 +81,10 @@ Something worth noting is that axiom \axm{RJoin} reflects exactly the semantics 
 \medskip 
 
 \begin{lemma}\label{lemma:arrow-kh-valid}
-	The reduction axioms from \Cref{tab:aulaxiom} are valid in $\cultsba$.
+	The reduction axioms from \Cref{tab:aulaxiom} are sound in $\cultsba$.
 \end{lemma}
 
-\begin{proof} The proof proceeds by cases. We only discuss $\axm{RKh}$.
+\begin{proof} We only discuss $\axm{RKh}$.
 	% \item For \axm{RBase}, let $U' = (\bigwedge_{i=1}^n \theta_i,\bigwedge_{i=1}^n \theta'_i) = (\alpha_1,\theta'_1)$, note that $\arrowsemantics{\W}{S} = \arrowsemantics{\W}{U'} = \W$, $\arrowsemantics{\Unc}{S} = \arrowsemantics{\Unc}{U'} = \Unc$ and $\arrowsemantics{\V}{S}(p) = \arrowsemantics{\V}{U'}(p) = \V(p)$ for every $p$. Let $a \in \ACT$, $(w,v) \in (\arrowsemantics{\R}{S})_a$ iff $w \in \truthset{\modults}{\bigwedge_{i=1}^n \theta_i}$, $\R_a(w) \subseteq \truthset{\modults}{\bigwedge_{i=1}^n \theta'_i}$.
 	% Since $\truthset{\modults}{\bigwedge_{i=1}^n \theta_i} = \truthset{\modults}{\alpha_1} = \truthset{\modults}{\bigwedge_{i=1}^1 \alpha_i}$ and $\truthset{\modults}{\bigwedge_{i=1}^n \theta'_i} = \truthset{\modults}{\theta'_1} = \truthset{\modults}{\bigwedge_{i=1}^1 \theta'_i}$, $(w,v) \in (\arrowsemantics{\R}{S})_a$ iff $(w,v) \in (\arrowsemantics{\R}{U'})_a$.
 	% With this, $(\arrowsemantics{\R}{S})_a = (\arrowsemantics{\R}{U'})_a$ for all $a \in \ACT$, $\arrowmodel{S} = \arrowmodel{U'}$ and satisfy the same formulas.
@@ -139,9 +137,11 @@ $\axset_{\khi}$ together with the reduction axioms for $[S]$ in~\Cref{tab:aulaxi
 Similar to~\Cref{th:palcomplete}.
 \end{proof}
 
-Again, if we consider the $\AUL$ modality from the literature instead of the version introduced here, we increase the expressive power of the logic $\KHilogic$, even over the class $\cultsba$. This easily follows from~\Cref{prop:pal-exp} as for the case of $\PAL$, by taking the formula $[(p,p)]\khi(p,q)$ (or $[(p,a,p)]\khi(p,q)$ in the version that also specifies the edge name) to distinguish the models used there. Futher details are omitted here. 
+Again, if we consider the $\AUL$ modality from the literature instead of the version introduced here, we increase the expressive power of the logic $\KHilogic$, even over the class $\cultsba$. This easily follows from~\Cref{prop:pal-exp} as for the case of $\PAL$, by taking the formula $[(p,p)]\khi(p,q)$ (or $[(p,a,p)]\khi(p,q)$ in the version that also specifies the edge name) to distinguish the models used there. Further details are omitted here. 
 
 %We can claim that the satisfiability problem for $\AUKHilogic$ is decidable over $\cultsba$.
+
+\smallskip
 
 We finish this section with a last result about the computational behavior of $\AUKHilogic$ over $\cultsba$.
 
