@@ -1,4 +1,4 @@
-As it has been discussed, \ults{s} allow a natural representation of both the actions that affect the abilities of an agent, and her epistemic state. In an \ults, the crucial epistemic components are the sets $\Unc(i)$, defining the plans agent $i$ is aware of, and the degree at which she can discern among them. Thus we can represent changes in the epistemic state of
+As it has been discussed, \ults{s} allow a natural representation of the actions that affect both the abilities of an agent and her epistemic state. In an \ults, the crucial epistemic components are the sets $\Unc(i)$, defining the plans agent $i$ is aware of, and the degree at which she can discern among them. Thus, we can represent changes in the epistemic state of
 an agent by means of operations that modify $\Unc(i)$. 
 
 \medskip
@@ -18,7 +18,7 @@ an agent by means of operations that modify $\Unc(i)$.
 % $\modults'\not\models\khi(s,s)$. The conflicting plan is $we$, since
 % from a safe zone (an $s$-state) it leads to a non-safe zone.
 % Thus, if agent $i$ is able to \emph{distinguish} between $we$ and the
-% rest of the plans, she would be able to know how to flight to a safe
+% rest of the plans, she would be able to know how to fly to a safe
 % zone, departing from a safe zone. If agent $i$ \emph{learns} that the
 % order of the actions matter (so $we$ is distinct from $ew$), she can
 % split $\plans$; one way of doing this produces
@@ -27,7 +27,7 @@ an agent by means of operations that modify $\Unc(i)$.
 % \end{example}
 
 % Moreover, knowing how frameworks deal with \emph{goal-oriented} knowledge.
-% So, by simply removing the uncertainty between two plans might not be helpful
+% So, simply removing the uncertainty between two plans might not be helpful
 % (for instance, stating $\epsilon$ distinct to $we$ is not helpful in order to
 % learn how to achieve $s$). However, an alternative is to look for a splitting
 % of $\Unc$ that \emph{ensures} how to achieve $s$, given $s$. This approach is
@@ -89,7 +89,7 @@ For $\plans \in S$ and $\plans=\plans_1\uplus\plans_2$, define  $\lmodel{S}{\pla
 
 \medskip
 
-We define a relation that links sets before an update, with those after the update.
+We define a relation that links sets before an update with those after the update.
 
 \medskip
 
@@ -111,9 +111,9 @@ Notice that $\splitstr{}{}{\plan_1}{\plan_2}$ is serial. Moreover, if $S$ is the
 \medskip
 
 \begin{definition}
-Let $\modults=\tup{\W,\R,\Unc,\V}$ be an \ults, and let $\Unc'=\set{\Unc'(i)}_{i\in\AGT}$ with ${\Unc'(i)\subseteq 2^{\ACT^*}}$.
-Let $\plan_1,\plan_2 \in \ACT^*$. We write $\splitstr{\Unc}{\Unc'}{\plan_1}{\plan_2}$ iff $\splitstr{\Unc(i)}{\Unc'(i)}{\plan_1}{\plan_2}$ for every $i\in\AGT$.
-We denote by $\modults^{\Unc}_{\Unc'}$ the \ults obtained by replacing $\Unc$ by $\Unc'$.
+  Let $\Unc=\set{\Unc(i)}_{i\in\AGT}$ and $\Unc'=\set{\Unc'(i)}_{i\in\AGT}$ assign, to every agent in $\AGT$, a non-empty
+collection of pairwise disjoint non-empty sets of plans (so $\Unc(i), \Unc'(i) \subseteq 2^{\ACT^*}$); let $\plan_1,\plan_2$ be plans in $\ACT^*$. We write $\splitstr{\Unc}{\Unc'}{\plan_1}{\plan_2}$ iff $\splitstr{\Unc(i)}{\Unc'(i)}{\plan_1}{\plan_2}$ for every $i\in\AGT$. If $\modults=\tup{\W,\R,\Unc,\V}$ is an \ults, denote by $\modults^{\Unc}_{\Unc'}$ the \ults obtained by replacing $\Unc$ by $\Unc'$.
+
 %\fer{Minor thing, but the notation for the new model ($\modults^{\Unc}_{\Unc'}$) does not mention the plans that define the split, namely $\sigma_1, \sigma_2$}
 %, and $\card{\Unc}=\card{\Unc'}$.
 \end{definition}
@@ -121,9 +121,7 @@ We denote by $\modults^{\Unc}_{\Unc'}$ the \ults obtained by replacing $\Unc$ by
 \medskip
 
 % The definition above guarantees there is a one-to-one correspondence between the sets in $\Unc$ and those in $\Unc'$. 
-%In a sense, $\Unc'$ is a refinement of the sets in $\Unc$, for each particular agent, potentially eliminating some uncertainty for them. 
-With these definitions in place we introduce a new modality, $\refdiam{\plan_1}{\plan_2}$, intuitively describing an action through which all agents learn that plans $\plan_1$ and
-$\plan_2$ are different. The extension of $\KHilogic$ with formulas of the form $\refdiam{\plan_1}{\plan_2}\varphi$ is denoted $\Reflogic$ ({\small\textsf{Ref}} for ``refinement'').
+%In a sense, $\Unc'$ is a refinement of the sets in $\Unc$, for each particular agent, potentially eliminating some uncertainty for them. With these definitions in place, we introduce a new modality, $\refdiam{\plan_1}{\plan_2}$, intuitively describing an action through which all agents learn that plans $\plan_1$ and $\plan_2$ are different. The extension of $\KHilogic$ with formulas of the form $\refdiam{\plan_1}{\plan_2}\varphi$ is denoted $\Reflogic$ ({\small\textsf{Ref}} for ``refinement'').
 
 \medskip
 
@@ -140,7 +138,7 @@ As usual, we define $\refbox{\plan_1}{\plan_2}\varphi := \lnot \refdiam{\plan_1}
 
 \medskip
 
-Formulas like $\refdiam{\plan_1}{\plan_2}\varphi$ state that \emph{``after it is (publicly) stated that plans $\plan_1$ and $\plan_2$ are distinguishable, $\varphi$ holds''}. For instance, in~\Cref{ex:ref}, $\refdiam{\mathit{ebmfsp}}{\mathit{ebfmsp}}\kh_j(h,g)$ means that \emph{``after it is stated that $\mathit{ebmfsp}$ and $\mathit{ebfmsp}$ are different, agent $j$ knows how to bake a good cake, provided she has the ingredients''}. This modality has some natural properties. First, it is normal and serial but not deterministic (\ref{itm:distref} through \ref{itm:nodeterref} below). Moreover, it represents an idempotent action in which order does not matter and in which two consecutive applications cannot be always collapsed into a single one (\ref{itm:idempref} through \ref{itm:nocollapseref} below). 
+Formulas like $\refdiam{\plan_1}{\plan_2}\varphi$ state that \emph{``after it is (publicly) stated that plans $\plan_1$ and $\plan_2$ are distinguishable, $\varphi$ holds''}. For instance, in~\Cref{ex:ref}, $\refdiam{\mathit{ebmfsp}}{\mathit{ebfmsp}}\kh_j(h,g)$ means that \emph{``after it is stated that $\mathit{ebmfsp}$ and $\mathit{ebfmsp}$ are different, agent $j$ knows how to bake a good cake, provided she has the ingredients''}. This modality has some natural properties. First, it is normal and serial but not deterministic (\ref{itm:distref} through \ref{itm:nodeterref} below). Moreover, it represents an idempotent action in which order does not matter and in which two consecutive applications cannot always be collapsed into a single one (\ref{itm:idempref} through \ref{itm:nocollapseref} below). 
 
 \medskip
 
@@ -165,12 +163,12 @@ It follows from the semantics (\Cref{def:ref-sem}) that:
 \Cref{itm:distref} follows from the $\forall$-pattern in the semantics of $\refbox{\plan_1}{\plan_2}$.
 \Cref{itm:necessitationref} holds because the structure resulting from the operation is an \ults.
 The seriality of $\splitstr{}{}{\plan_1}{\plan_2}$ ensures \Cref{itm:serialityref}, and its non-determinism (there is more than one way to split a set) ensures \Cref{itm:nodeterref}.
-For \Cref{itm:idempref} note that, once the sets including the given plans have been split, the operation does nothing. % Take any pointed model. If there is no agent i with $\plans \in \Unc(i)$ such that $\plan_1, \plan_2 \in \plans$, then the first case of \Cref{def:splitstr} kicks in and the operation does nothing. Otherwise, the first application will split such $\plans$, but then a further application will do nothing, as there would be no such $\plans$ left afterwards.
-For \Cref{itm:commrefdiam} there are several cases. The one we should focus on is that in which all of the involved plans are in the same set $\plans$. Since we are talking about existential modalities, a partition of $\plans$ into three parts on the left side of the equivalence can always be reproduced by the right part and viceversa. % More precisely, consider a single agent with S = { {s1, s2, s3, s4} }. Then it is possible to obtain S' = { {s1, s3}, {s2, s4} } and then S'' = { {s1, s3}, {s2, s4} }, but also to obtain S' = { {s1}, {s2, s3, s4} } and then S'' = { {s1}, {s2, s3}, {s4} }, and also S' = { {s1}, {s2, s3, s4} } and then S'' = { {s1}, {s2, s4}, {s3} }. In the very first, s1 and s3 are indistinguishable, but they are distinguishable in the very last. Then, just adjust what those plans do, to be sure their indistinguishability affects the agent's abilities
+For \Cref{itm:idempref}, note that, once the sets including the given plans have been split, the operation does nothing. % Take any pointed model. If there is no agent i with $\plans \in \Unc(i)$ such that $\plan_1, \plan_2 \in \plans$, then the first case of \Cref{def:splitstr} kicks in and the operation does nothing. Otherwise, the first application will split such $\plans$, but then a further application will do nothing, as there would be no such $\plans$ left afterwards.
+For \Cref{itm:commrefdiam}, there are several cases. The one we should focus on is that in which all of the involved plans are in the same set $\plans$. Since we are talking about existential modalities, a partition of $\plans$ into three parts on the left side of the equivalence can always be reproduced by the right part and viceversa. % More precisely, consider a single agent with S = { {s1, s2, s3, s4} }. Then it is possible to obtain S' = { {s1, s3}, {s2, s4} } and then S'' = { {s1, s3}, {s2, s4} }, but also to obtain S' = { {s1}, {s2, s3, s4} } and then S'' = { {s1}, {s2, s3}, {s4} }, and also S' = { {s1}, {s2, s3, s4} } and then S'' = { {s1}, {s2, s4}, {s3} }. In the very first, s1 and s3 are indistinguishable, but they are distinguishable in the very last. Then, just adjust what those plans do, to be sure their indistinguishability affects the agent's abilities
 \Cref{itm:commrefbox} can be proved using \Cref{itm:commrefdiam}. Finally, for \Cref{itm:nocollapseref} it is enough to notice that, if the set of plans containing $\sigma_1, \sigma_2$ is different from that containing $\sigma_3, \sigma_4$, then the two actions refine two indistinguishability sets, something that cannot be replicated by a single application.
 \end{proof}
 
-The new dynamic modality preserves knowing how information when it refers to propositional formulas (\Cref{itm:preservesknowledge} below).  And it is not trivial, in the sense that it leads to increase of knowledge in certain situations (\Cref{itm:gainsknowledge}).
+The new dynamic modality preserves knowing how information when it refers to propositional formulas (\Cref{itm:preservesknowledge} below).  And it is not trivial, in the sense that it leads to an increase of knowledge in certain situations (\Cref{itm:gainsknowledge}).
 
 \medskip
 
@@ -188,7 +186,7 @@ Let $\plan_1$, $\plan_2$ $\in \ACT^*$.
 If $\plan_1 \not\in \plans$ or $\plan_2 \not\in \plans$, then $\plans$ does not change and is still the witness for $\khi(\varphi,\psi)$.
 If, however, $\plan_1,\plan_2 \in \plans$, there will be a partition of $\plans$, $\set{\plans_1,\plans_2}$ such that $\splitstr{\Unc(i)}{\lmodel{\Unc(i)}{\plans}{\set{\plans_1,\plans_2}}}{\plan_1}{\plan_2}$.
 But this does not cause any problem since $\truthset{\modults}{\varphi} \subseteq \stexec(\plans) \subseteq \stexec(\plans_k)$ and $\R_{\plans_k}(\truthset{\modults}{\varphi}) \subseteq \R_\plans(\truthset{\modults}{\varphi}) \subseteq \truthset{\modults}{\psi}$, for $k\in\set{1,2}$.
-Here agent $i$ knew how to %do a certain task under a restricted condition from the
+Here, agent $i$ knew how to %do a certain task under a restricted condition from the
 go from $\varphi$-states to $\psi$-states via $\plans$.
 Weakening such a $\plans$ by splitting it into two pieces still works, allowing the agent to choose between $\plans_1$ or $\plans_2$ as her next witness.
 Since all the cases for $\plan_1$ and $\plan_2$ are covered, we can conclude that $\modults,w\models \refbox{\plan_1}{\plan_2}\khi(\varphi,\psi)$.
@@ -229,7 +227,8 @@ Consider again~\Cref{ex:cook}, and let $\theta = \kh_j(h,g)$. Since $\modults \n
 
 \medskip
 
-As it could be expected given that the new modality can explicitly refer to plans, it adds expressivity w.r.t.\ the basic knowing how logic. 
+The new modality can explicitly refer to plans. Thus, as it could be expected, it adds expressivity w.r.t.\ the basic knowing how logic. 
+
 \medskip
 
 \begin{proposition}\label{prop:expref}
@@ -323,10 +322,10 @@ whereas $\modults',w' \models \refdiam{a}{b}\khi(p,q)$, since there is $\Unc''(i
 
 We conclude by showing that \emph{uniform substitution} fails in $\Reflogic$. Uniform substitution establishes that given a valid formula $\varphi$, we can uniformly replace any propositional symbol appearing in $\varphi$ by an arbitrary formula, and obtain a valid formula.  
 \begin{mrevised}
-The property fails for many dynamic logics.  For example the logics $\PAKHilogic$ and $\AUKHilogic$ introduced in the previous section are not closed under uniform substitution.  Particular cases where the property fails are the respective $\axm{RAtom}$ axioms, which are valid for $p \in \PROP$ but validity is not preserved under arbitrary substitutions. 
+The property fails for many dynamic logics.  For example, the logics $\PAKHilogic$ and $\AUKHilogic$ introduced in the previous section are not closed under uniform substitution.  Particular cases where the property fails are the respective $\axm{RAtom}$ axioms, which are valid for $p \in \PROP$ but validity is not preserved under arbitrary substitutions. 
 
 Failure of uniform substitution is not so problematic in the cases of $\PAKHilogic$, $\AUKHilogic$ over the class $\cultsba$ and, more generally, for dynamic logics with 
-reduction axioms. In these cases, the dynamic modalities can be eliminated to obtain an equivalent formula which is closed under substitutions. The case of $\Reflogic$ is more complex. Its increased expressive power w.r.t.\ $\KHilogic$ implies that reduction axioms cannot be defined.  This, in addition to the failure of uniform substitution indicates that complete axiomatizations might be difficult to find. 
+reduction axioms. In these cases, the dynamic modalities can be eliminated to obtain an equivalent formula which is closed under substitutions. The case of $\Reflogic$ is more complex. Its increased expressive power w.r.t.\ $\KHilogic$ implies that reduction axioms cannot be defined.  This, in addition to the failure of uniform substitution, indicates that complete axiomatizations might be difficult to find. 
 \end{mrevised}
 
 \medskip
