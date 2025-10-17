@@ -2,9 +2,9 @@
 \label{sec:planref}
 
 We defined $\KHiMLlogic$ to obtain enough expressivity to axiomatize some dynamic modalities. Here, we define the modality $\srefbox{\plan}$, inspired by the refinement modality from~\Cref{sec:ref}. A formula $\srefbox{\plan}\varphi$ publicly establishes that the plan $\plan$ must be distinguished from any other, and in such a context $\varphi$ holds. It is natural to come up with situations in which this modality can be used. As an example, suppose an agent considers two plans $\plan_1$ and $\plan_2$ as indistinguishable possibilities to reach a location, but a map app detects a strike in path $\plan_2$. Thus, independently of being a ``good plan'' or not, $\plan_1$ becomes the only choice to be followed.
-%Unlike the modality $\refbox{\plan_1}{\plan_2}$, this modality takes atomic actions but we will generalize it later to arbitrary plans. 
+%Unlike the modality $\refbox{\plan_1}{\plan_2}$, this modality takes atomic actions, but we will generalize it later to arbitrary plans. 
 
-% In this section we show that the action refinement operator can be generalize to arbitrary plans, and we can still obtain suitable reduction axioms.
+% In this section, we show that the action refinement operator can be generalized to arbitrary plans, and we can still obtain suitable reduction axioms.
 % We start by presenting the syntax and semantics of the new logic. 
 
 \medskip 
@@ -24,18 +24,22 @@ Let $\modults = \tup{\W, \R, \Unc, \V}$ be an \ults; take $\plan \in \ACT^*$ and
 \begin{spcenter}
 $\modults,w \models \srefbox{\plan}\varphi \ \ \iff \ \ \modults^\plan,w \models \varphi$,
 \end{spcenter}
-where $\modults^\plan = \tup{\W,\R,\Unc',\V}$, with:
-\begin{itemize}
-\item $\Unc'(i) = (\Unc(i) \setminus \set{\plans}) \cup \set{\set{\plan}}$, if there is $\plans \in \Unc(i)$ such that $\plan \in \plans$,
-\item $\Unc'(i) = \Unc(i) \cup \set{\set{\plan}}$ otherwise.
-
+where $\modults^\plan = \tup{\W,\R,\Unc',\V}$, with
+\begin{center}
+  $\Unc'(i) =
+  \left\{
+    \begin{array}{ll}
+      (\Unc(i) \setminus \set{\plans}) \cup \set{\set{\plan}} & \text{if there is } \plans \in \Unc(i) \text{ such that } \plan \in \plans, \\
+      \Unc(i) \cup \set{\set{\plan}} & \text{otherwise}.
+    \end{array}
+  \right.$
+\end{center}
 % \bigfer{Just to be sure, if there is $\plans$ with $\plan \in \plans$, then after the operation all plans in $\plans\setminus\set{\plan}$ are erased, right? For an example, if $\Unc = \set{ \set{a,b,c} }$ then, after distinguishing $a$, the result is not $\Unc' = \set{ \set{a}, \set{b,c} }$ but rather $\Unc' = \set{ \set{a} }$, right? I guess there is an argument for that to be reasonable (one could even mention that it does not remove abilities: everything for which $\plans$ was a witness before the action has, after the action, $\set{a}$ as witness). Should this be emphasised?} 
-\end{itemize}
 \end{definition}
 
 \medskip
 
-Intuitively, the new dynamic modality announces that a given plan has a unique characteristic. If the plan is not among those already under the consideration of a certain agent, it is added to her set of plans, thereby making the agent aware of its existence.
+Intuitively, the new dynamic modality announces that a given plan has a unique characteristic. If the plan is not already under consideration by a certain agent, it is added to her set of plans, thereby making the agent aware of its existence.
 Otherwise, this modality replaces the set of plans containing $\plan$ with the singleton
 $\{\plan\}$, eliminating any uncertainty around $\plan$ in the process. This stands in contrast to the refinement operators we considered before, which instead partition and preserve the original set of plans. Nevertheless, the agent’s capacities are, in a sense, maintained, since $\plan$ remains to represent the set that originally contained it.
 
@@ -48,7 +52,7 @@ This new operator would be useful in the situation we discussed in~\Cref{ex:cook
 \begin{example}\label{ex:sref}
 Recall the model $\modults$ from \Cref{ex:cook}.
 Now, suppose that a cooking professor teaches (announces) to both agents about the plan $\mathit{ebmfsp}$.
-Now every agent is able to distinguish the plan $\mathit{ebmfsp}$ from all others.
+Now every agent can distinguish the plan $\mathit{ebmfsp}$ from all others.
 And, after the announcement, agent~$j$ knows how to make a good cake.
 Thus, $\modults \models \srefbox{\mathit{ebmfsp}} \kh_j(h,g)$.
 \end{example}
@@ -77,14 +81,14 @@ The following propositions hold:
 
 \medskip 
 
-% Now it is time to investigate a complete axiomatization for $\PlanReflogic$, one of the main goals of introducing this framework over an extended basic language. As shown in what follows, the elimination of the dynamic modality $\srefbox{\plan}$ in presence of the modality $\khi$ requires a little bit more of work than the single action case we presented already.  The case in which the announcement does not affect the knowledge, is as before. For the other case, we need to make sure that if the announcement of $\plan$ guarantees that the precondition holds ($\srefbox{\plan}\varphi_1$), then $\plan$ is SE and after its execution, the postcondition holds ($\srefbox{\plan}\varphi_2$). 
+% Now it is time to investigate a complete axiomatization for $\PlanReflogic$, one of the main goals of introducing this framework over an extended basic language. As shown in what follows, the elimination of the dynamic modality $\srefbox{\plan}$ in the presence of the modality $\khi$ requires a little bit more work than the single action case we presented already.  The case in which the announcement does not affect the knowledge is as before. For the other case, we need to make sure that if the announcement of $\plan$ guarantees that the precondition holds ($\srefbox{\plan}\varphi_1$), then $\plan$ is SE and after its execution, the postcondition holds ($\srefbox{\plan}\varphi_2$). 
 
 We proceed now to introduce a complete axiom system for $\PlanReflogic$. In this case, the expressive power of the underlying static logic is sufficient to capture the behavior of $\srefbox{\plan}$, and we can obtain an axiomatization via reduction axioms.
 
-Reduction axioms can be used to translate every formula of $\PlanReflogic$ into an equivalent formula of $\KHiMLlogic$. The challenging case is, as usual, to eliminate the occurence of a $\srefbox{\plan}$ with $\khi$ under its scope. For simplicity, consider a formula $\srefbox{a}\khi(\psi,\varphi)$ with $a\in\ACT$. After $a$ is announced to be different from any other plan, there are two possible reasons for $\khi(\psi,\varphi)$ to be true. The first is that $a$ plays no role in the truth of $\khi(\psi,\varphi)$. In this case, we can push the dynamic modality into the front of the pre and post-conditions of the $\khi$ modality to obtain $\khi(\srefbox{a}\psi,\srefbox{a}\varphi)$. The second possibility is that distinguishing $a$ creates new epistemic abilities. If the singleton $\set{a}$ is the witness for $\khi(\psi,\varphi)$ it is because: 1) $a$ is SE at every state satisfying $\psi$ after the annoucement of $a$ (notice that as $a$ is a single action, SE is equivalent to executability); and 2) from every $\psi$-state, after every execution of $a$, we always get that $\varphi$ holds (in the model updated by $\srefbox{a}$). The former is captured in the reduction axiom by $\srefbox{a}\psi \ra \mldiam{a}\top$ holding everywhere, while the latter is captured by $\srefbox{a}\psi \ra \mlbox{a}\srefbox{a}\varphi$. Putting all together, this case is reflected by $\A(\srefbox{a}\psi\ra(\mldiam{a}\top\wedge\mlbox{a}\srefbox{a}\varphi))$.
+Reduction axioms can be used to translate every formula of $\PlanReflogic$ into an equivalent formula of $\KHiMLlogic$. The challenging case is, as usual, to eliminate the occurrence of a $\srefbox{\plan}$ with $\khi$ under its scope. For simplicity, consider a formula $\srefbox{a}\khi(\psi,\varphi)$ with $a\in\ACT$. After $a$ is announced to be different from any other plan, there are two possible reasons for $\khi(\psi,\varphi)$ to be true. The first is that $a$ plays no role in the truth of $\khi(\psi,\varphi)$. In this case, we can push the dynamic modality into the front of the pre- and post-conditions of the $\khi$ modality to obtain $\khi(\srefbox{a}\psi,\srefbox{a}\varphi)$. The second possibility is that distinguishing $a$ creates new epistemic abilities. If the singleton $\set{a}$ is the witness for $\khi(\psi,\varphi)$ it is because: 1) $a$ is SE at every state satisfying $\psi$ after the annoucement of $a$ (notice that as $a$ is a single action, SE is equivalent to executability); and 2) from every $\psi$-state, after every execution of $a$, we always get that $\varphi$ holds (in the model updated by $\srefbox{a}$). The former is captured in the reduction axiom by $\srefbox{a}\psi \ra \mldiam{a}\top$ holding everywhere, while the latter is captured by $\srefbox{a}\psi \ra \mlbox{a}\srefbox{a}\varphi$. Putting all together, this case is reflected by $\A(\srefbox{a}\psi\ra(\mldiam{a}\top\wedge\mlbox{a}\srefbox{a}\varphi))$.
 
-This idea can be generalized when we consider an arbitrary plan $\plan$ instead of a single action. The case in which the announcement does not affect the knowledge, is as before. For the other case, we need to make sure that if the announcement of $\plan$ guarantees that the initial condition holds ($\srefbox{\plan}\varphi_1$), then $\plan$ is SE and after its execution, the goal is achieved ($\srefbox{\plan}\varphi_2$). 
-The latter, is expressed by the predicate $P(\plan,\srefbox{\plan}\varphi_2)$, defined below. The complete list of reduction axioms for $\PlanReflogic$ are introduced in~\Cref{tab:srefaxiom}.
+This idea can be generalized when we consider an arbitrary plan $\plan$ instead of a single action. The case in which the announcement does not affect the knowledge is as before. For the other case, we need to make sure that if the announcement of $\plan$ guarantees that the initial condition holds ($\srefbox{\plan}\varphi_1$), then $\plan$ is SE and after its execution, the goal is achieved ($\srefbox{\plan}\varphi_2$). 
+The latter conjunction is expressed by the predicate $P(\plan,\srefbox{\plan}\varphi_2)$ defined below. The complete list of reduction axioms for $\PlanReflogic$ are introduced in~\Cref{tab:srefaxiom}.
 
 \begin{table}[t]
 \begin{tabular}{l@{\quad}l}
@@ -144,10 +148,10 @@ From the first part, using the definition of SE, we can derive that for all $w \
 From the second one, we can reach that for all $w \in \truthset{\modults}{\srefbox{\plan}\varphi_1}$, $\modults,w \models \mlbox{\plan} \srefbox{\plan}\varphi_2$.
 Thus, for all $w \in \W$, $\modults,w \models \srefbox{\plan} \varphi_1 \ra P(\plan,\srefbox{\plan}\varphi_2)$.
 
-$(\Leftarrow)$ Conversely, suppose $\modults \models \khi(\srefbox{\plan} \varphi_1,\srefbox{\plan} \varphi_2) \vee \A(\srefbox{\plan} \varphi_1 \ra P(\plan,\srefbox{\plan}\varphi_2))$, then the disjunction is satified by either one of the following situations:
+$(\Leftarrow)$ Conversely, suppose $\modults \models \khi(\srefbox{\plan} \varphi_1,\srefbox{\plan} \varphi_2) \vee \A(\srefbox{\plan} \varphi_1 \ra P(\plan,\srefbox{\plan}\varphi_2))$, then the disjunction is satisfied by either one of the following situations:
 
   $\modults \models \khi(\srefbox{\plan} \varphi_1,\srefbox{\plan} \varphi_2)$: Let $\plans \in \Unc(i)$ be s.t. $\truthset{\modults}{\srefbox{\plan}\varphi_1} \subseteq \stexec^\modults(\plans)$ and $\R_\plans(\truthset{\modults}{\srefbox{\plan}\varphi_1}) \subseteq \truthset{\modults}{\srefbox{\plan}\varphi_2}$.
-As we already stated, this is equivalent to say that $\truthset{\modults^\plan}{\varphi_1} \subseteq \stexec^{\modults^\plan}(\plans)$ and $\R_\plans(\truthset{\modults^\plan}{\varphi_1}) \subseteq \truthset{\modults^\plan}{\varphi_2}$.
+As we already stated, this is equivalent to saying that $\truthset{\modults^\plan}{\varphi_1} \subseteq \stexec^{\modults^\plan}(\plans)$ and $\R_\plans(\truthset{\modults^\plan}{\varphi_1}) \subseteq \truthset{\modults^\plan}{\varphi_2}$.
 If $\plan \notin \plans$, then $\plans \in \Unc'(i)$.
 If $\plan \in \plans$, then $\set{\plan} \in \Unc'(i)$, $\stexec^{\modults^\plan}(\plans) \subseteq \stexec^{\modults^\plan}(\set{\plan})$ and $\R_{\set{\plan}}(\truthset{\modults^\plan}{\varphi_1}) \subseteq \R_\plans(\truthset{\modults^\plan}{\varphi_1})$. In any case, we get $\modults \models \srefbox{\plan}\khi(\varphi_1,\varphi_2)$.
 
@@ -191,7 +195,7 @@ where $\modults^\plan_i = \tup{\W,\R,\Unc',\V}$, with:
 \medskip 
 
 %\begin{example}
-%Suppose as in~\Cref{ex:cook}, we have an expert chef $i$, but we have two inexpert chefs $j$ and $k$, with $\Unc(j)=\Unc(k)=\set{\set{\mathit{ebfmsp},\mathit{ebmfsp}}}$. Suppose now, that agent $j$ subscribed for a course taught by agent $i$, while agent $k$ does not. Then, the information of that \textit{ebfmsp} is the correct course of action is only revealed to $j$, obtaining that $\modults\models\srefbox{ebfmsp,j}\kh_j(h,g)$ while $\modults\models\srefbox{ebfmsp,j}\neg\kh_k(h,g)$.
+%Suppose as in~\Cref{ex:cook}, we have an expert chef $i$, but we have two inexpert chefs $j$ and $k$, with $\Unc(j)=\Unc(k)=\set{\set{\mathit{ebfmsp},\mathit{ebmfsp}}}$. Suppose now that agent $j$ subscribed for a course taught by agent $i$, while agent $k$ did not. Then, the information of that \textit{ebfmsp} is the correct course of action is only revealed to $j$, obtaining that $\modults\models\srefbox{ebfmsp,j}\kh_j(h,g)$ while $\modults\models\srefbox{ebfmsp,j}\neg\kh_k(h,g)$.
 %\end{example}
 
 %\medskip 
