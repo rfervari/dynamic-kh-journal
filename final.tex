@@ -8,8 +8,6 @@ In this extended setting, apart from showing how it could be useful for the exam
 In this article, we investigated dynamic modalities in the context of knowing how logics. Our starting point has been the uncertainty-based semantics from~\cite{AFSVQ21,AFSVQ23report}, where indistinguishability is defined over plans instead of over states as in the framework of e.g.~\cite{FervariHLW17,LiW24}. Building on this, we studied two kinds of model updates: ontic updates (via model operations for removing states and edges) and, more extensively, epistemic updates (via model operations for refining the agents' uncertainty over plans). 
 
 We show that, in general, the logics obtained when these operators are added to the basic knowing how logic $\KHilogic$ have increased expressive power.  As a result, the logics cannot be axiomatized by reduction axioms. 
-
-\begin{mrevised}
 In most cases, we were able to define a complete axiomatization using reduction axioms by restricting the class of models considered.  We introduced the class of models $\cultsba$ (\textbf{BA} stands for `basic actions') as the class of models $\modults = \tup{\W, \R, \Unc, \V}$ in which, for all $i \in \AGT$, we have that $\plans \in \Unc(i)$ implies $\plans \subseteq \ACT$.  $\cultsba$ could be interpreted as a more abstract representation of the abilities of the agents, where every plan is modeled as a single atomic action.  This class bears resemblance to restricted classes considered in~\cite{Li21} for a local knowing how modality.
 Interestingly, while the basic knowing how logic $\KHilogic$ cannot distinguish between the class of all \ults and $\cultsba$, this is not the case in the presence of the dynamic operators we introduced. 
 
@@ -32,8 +30,7 @@ Thus, removing states produces an ontic change that might affect,
 indirectly, the agents’ epistemic abilities. 
 
 
-Ultimately, the main focus of the article is on epistemic updates.  We started by presenting an operation that distinguishes between two given plans and discussing some of its properties. In turn, this operator can be used to define one for arbitrary refinement. The issue of complete axiomatization (both over the class of all models and over some restricted class like $\cultsba$) is still elusive in this setting. 
-
+Ultimately, the main focus of the article is on epistemic updates.  We started by presenting an operation that distinguishes between two given plans and discussing some of its properties. In turn, this operator can be used to define one for arbitrary refinement. The issue of complete axiomatization (both over the class of all models and over some restricted class like $\cultsba$) is still elusive in this setting.  
 Our final proposal for an epistemic dynamic modality is the operator $\srefbox{\plan}$ that makes the plan $\plan$ distinguishable from any other, for all agents. In this case, we propose the language $\PlanReflogic$ that also extends the underlying static language with a normal modality for each basic action. For this logic, we provide sound and complete axiomatizations via reduction axioms over the class of all \ults{s}, and show that the satisfiability problem is decidable via filtrations.  
 
 \begin{comment}
@@ -52,6 +49,4 @@ Among the introduced languages, $\PlanReflogic$ is,  to our knowledge, the first
 
 Concerning the extension of the `static' knowing how setting, one wonders the precise relationship, expressivity-wise, between the new language $\KHiMLlogic$ and other known languages (e.g., $\mathsf{L}_{\square,\A}$). In fact, following that line of thought, one also wonders whether the $\kh$ modality is definable from other `more basic' operators (e.g., standard normal modalities plus nominals and/or operators quantifying over actions) and whether this would yield a more expressive language on which reduction axioms for the introduced dynamic modalities exist (see~\cite{BenthemMZ2022}). Also, we would like to characterize the exact complexity of the introduced dynamic logics.
 
-A broader look is also possible, which would involve investigating other (maybe more general) dynamic operators that change the agents' epistemic abilities. For instance, one can use ideas from~\cite{BaltagMS98,GalimullinA22} to define actions of semi-private ability-change. 
-\end{mrevised}
- 
+A broader look is also possible, which would involve investigating other (maybe more general) dynamic operators that change the agents' epistemic abilities. For instance, one can use ideas from~\cite{BaltagMS98,GalimullinA22} to define actions of semi-private ability-change.  
