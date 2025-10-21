@@ -8,10 +8,8 @@ A well-established form of updating relational models is the elimination of worl
 \end{spcenter}
 with the $\lts$ $\modults_\chi=\tup{\W_\chi,\R_\chi,\V_\chi}$ given by $\W_\chi = \set{w \mid \modults,w\models\chi}$, $(\R_\chi)_a = \R_a \cap \W_\chi^2$ for each $a\in\ACT$, and $\V_\chi(w) = \V(w)$ for all $w\in\W_\chi$.  In other words, $\modults_\chi$ is obtained by taking $\truthset{\modults}{\chi}$ as the new domain, then restricting relations and valuation accordingly. This operation can be naturally extended to $\ults$s by setting $\Unc_\chi = {\Unc}$ to indicate that the update does not affect indistinguishability sets.  
 
-\begin{mrevised}
-A remark might be useful here. In the original knowing how setting with semantics defined in terms of \lts{s}~\cite{Wang2016}, edges can be taken to encode the agents' \emph{epistemic take on their abilities}: the actions they consider possible, the preconditions required for their execution, and the effects they have (how a situation changes under the execution of a given action). As a result, in the original knowing how setting, updates on states and edges are epistemic updates. In the \ults-based semantics, however, the edges in an \ults stand for the actions available in the considered situation, their preconditions and effects, independently of the agents' knowledge about them. In short, the 
+A remark might be useful here. In the original knowing how setting with semantics defined in terms of \lts{s}~\cite{Wang2016}, edges can be taken to encode the agents' \emph{epistemic take on their abilities}: the actions they consider possible, the preconditions required for their execution, and the effects they have (how a situation changes under the execution of a given action). As a result, in such a setting, updates on states and edges are epistemic updates. In the \ults-based semantics, however, the edges in an \ults stand for the actions available in the considered situation, their preconditions and effects, independently of the agents' knowledge about them. In short, the 
 underlying \lts in an \ults provides ontic information. Thus, removing states and edges produces an \emph{ontic} change that might affect, indirectly, the agents' epistemic abilities.  The elimination of some states indicates not that they are no longer (epistemically) \emph{possible}, but rather that they are no longer existent or (action-wise) \emph{reachable} in the current situation. 
-\end{mrevised}
 
 \smallskip
 
@@ -24,7 +22,7 @@ Adding $[\chi]$ to $\KHilogic$ increases the expressive power.
 \end{proposition}
 
 \begin{proof}
-  Consider the pointed \ultss $(\modults,w)$ and $(\modults', w')$ below, with $\Unc(i)=\Unc'(i)=\set{\set{a}}$, and with dashed lines indicating the nodes and edges an update with $p$ removes. 
+  Consider the pointed \ultss $(\modults,w)$ and $(\modults', w')$ below, with $\Unc(i)=\Unc'(i)=\set{\set{a}}$, and with dashed lines indicating the nodes and edges removed by an update with $[p]$. 
 \begin{center}
     \begin{tikzpicture}[->]
       \node [state,label=left:\small$w$] (w1) {$p,q$};
@@ -54,7 +52,7 @@ Adding $[\chi]$ to $\KHilogic$ increases the expressive power.
   These pointed models are $\KHilogic$-bisimilar (\Cref{def:bisim-khi}), and thus indistinguishable in $\KHilogic$. However, they can be distinguished by a formula using the update modality: $\modults,w\models[p]\khi(p,q)$ and yet $\modults',w'\not\models[p]\khi(p,q)$.
 \end{proof}
 
-A consequence of~\Cref{prop:pal-exp} is that the modality for \PAL-like updates, $[\chi]$, is not reducible to the underlying language $\KHilogic$. This makes sense: while $\KHilogic$ can express the agents' abilities to achieve certain goals from given situations (the modality $\khi$), it cannot talk about more specific properties of the courses of action on which the abilities rely. This is in contrast with what happens when these modalities are added to standard epistemic logic, where reduction axioms can be defined (see, e.g.,~\cite{DELbook}). In such situations, the axiomatization can be approached in different ways. For this operation, the `extend the basic language' method has already been explored in \cite{Wang2016}. Here, the strategy is to look for a variation of the operation, and then to restrict the setting to a particular class of models.
+A consequence of~\Cref{prop:pal-exp} is that the modality for \PAL-like updates $[\chi]$ is not reducible to the underlying language $\KHilogic$. This makes sense: while $\KHilogic$ can express the agents' abilities to achieve certain goals from given situations (the modality $\khi$), it cannot talk about more specific properties of the courses of action on which the abilities rely. This is in contrast with what happens when these modalities are added to standard epistemic logic, where reduction axioms can be defined (see, e.g.,~\cite{DELbook}). In such situations, the axiomatization can be approached in different ways. For this operation, the `extend the basic language' method has been discussed in \cite{Wang2016}, but no successful extension was found. Here, the strategy is to look for a variation of the update operation, and then to restrict the setting to a particular class of models.
 
 \medskip
 
@@ -114,7 +112,7 @@ Even with this more restricted version of an update, the resulting logic fails t
 		\path (p) edge [dashed,below] node {$b$} (nr);
 		\end{tikzpicture}
 \end{center}
-The pointed models are $\KHilogic$-bisimilar (\Cref{def:bisim-khi}); hence, they satisfy the same formulas in $\KHilogic$. However, $\modults,w \not\models \gann{r}\khi(p,q)$ (given that $\modults,w \models r$ and $\annmodel{r},w \not\models \khi(p,q)$) whereas $\modults',w' \models \gann{r}\khi(p,q)$ (given that $\modults',w' \models r$ and $\annmodel{r}',w \models \khi(p,q)$).
+The pointed models are $\KHilogic$-bisimilar (\Cref{def:bisim-khi}), hence, they satisfy the same formulas in $\KHilogic$. However, $\modults,w \not\models \gann{r}\khi(p,q)$ (given that $\modults,w \models r$ and $\annmodel{r},w \not\models \khi(p,q)$) whereas $\modults',w' \models \gann{r}\khi(p,q)$ (given that $\modults',w' \models r$ and $\annmodel{r}',w \models \khi(p,q)$).
 	%
 	% \begin{nscenter}
 	%   \scalebox{.7}{
@@ -176,7 +174,7 @@ For Item 2, $w \in \truthset{\annmodelchi}{\varphi}$ iff $w \in \annsemantics{\W
 	The reduction axioms from~\Cref{tab:palaxiom} are sound in $\cultsba$.
 	\end{lemma}
 	
-	\begin{proof} We will focus only on axiom $\axm{RKh}$; proving the validity of the rest can be done as in $\PAL$.
+	\begin{proof} We will focus only on axiom $\axm{RKh}$, while proving the validity of the rest can be done as in $\PAL$.
 
 	By the definition of $\gann{\chi}$, $\modults,w \models \gann{\chi}\khi(\varphi,\psi)$ iff $\modults,w \models \chi$ implies $\annmodelchi,w \models \khi(\varphi,\psi)$. Using the definition of $\khi$, $\annmodelchi,w \models \khi(\varphi,\psi)$ iff there is $\plans \in (\annsemantics{\Unc}{\chi})(i)$ with $\plans \subseteq \ACT$ s.t. $\truthset{\annmodelchi}{\varphi} \subseteq \stexec^{\annmodelchi}(\plans)$ and $(\annsemantics{\R}{\chi})_\plans(\truthset{\annmodelchi}{\varphi}) \subseteq \truthset{\annmodelchi}{\psi}$.
 	By the definition of $\annmodelchi$, $(\annsemantics{\Unc}{\chi})(i)=\Unc(i)$. Using \Cref{lem:palproperties}, $\truthset{\annmodelchi}{\varphi} = \truthset{\modults}{\chi \wedge \gann{\chi}\varphi}$ and $\truthset{\annmodelchi}{\psi} = \truthset{\modults}{\chi \wedge \gann{\chi}\psi}$.

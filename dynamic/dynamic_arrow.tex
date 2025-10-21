@@ -1,7 +1,7 @@
 % For this section we will use models $\modults = \tup{\W, \R, \Unc, \V}$ such that for all $i \in \AGT$ and all $\strategy \in \Unc(i)$, $\strategy \subseteq \ACT$ i.e. models where the knowledge every agent has are about the basic actions.
 Another way to update \ltss is by modifying their relations directly, while keeping the domain intact. In the context of DEL, one proposal that stands out is Arrow Update Logic ($\AUL$)~\cite{KooiR11}. The dynamic operator of $\AUL$ takes as a parameter a list of arrow specifications in the form of triples (formula, action, formula). Then, an edge with label $a$ from state $w$ to state $v$ will not be deleted if and only if there is an arrow specification $(\varphi_1, a, \varphi_2)$ such that $w$ satisfies $\varphi_1$ and $v$ satisfies $\varphi_2$. 
 
-The version of the $\AUL$ framework presented below differs from the original in two aspects. First, an arrow specification is defined as a pair (formula, formula) with no reference to actions; this is in line with the syntax of $\KHlogic$, which does not include them. 
+The version of the $\AUL$ framework presented below differs from the original in two aspects. First, an arrow specification is defined as a pair (formula, formula) with no reference to actions, in line with the syntax of $\KHlogic$ which does not include them. 
 Second, as in~\Cref{def:annupdate}, an edge labeled $a$ from state $w$ to state $v$ will not be deleted if there exists an arrow specification $(\varphi_1, \varphi_2)$ such that $w$ satisfies $\varphi_1$ and \emph{all states} reachable from $w$ via $a$-edges satisfy $\varphi_2$. The reason for this modification is similar to the one we discussed for the $[\chi]$ operator. The original $\AUL$ modality adopts an edge-by-edge perspective rather than a group-edge one, as is done in the semantics of $\khi$-formulas.
 
 
@@ -28,7 +28,7 @@ We are now ready to introduce the language.
 \medskip
 
 \begin{definition}\label{def:arrowsyntax}\label{def:arrowupdate}
-Formulas of the language $\AUKHilogic$ are defined by the following grammar
+Formulas of the language $\AUKHilogic$ are defined by the following grammar:
 \[
 \begin{array}{lcl}
 \varphi & ::= & p \mid \neg\varphi \mid \varphi\vee\varphi \mid
@@ -50,7 +50,7 @@ For the semantics, formulas already in $\KHilogic$ are interpreted as before. Fo
 
 %As in the $\PAL$ case, $\AUL$ performs ontic updates rather than epistemic %updates over $\ults$-based knowing how.
 
-Adding the defined arrow-update modalities increases the expressivity of the language.
+Again, adding the defined arrow-update modalities increases the expressivity of the language.
 
 \medskip
 
@@ -84,24 +84,25 @@ As our presentation is a variation of the original $\AUL$, the axiom system is n
 	The reduction axioms from \Cref{tab:aulaxiom} are sound in $\cultsba$.
 \end{lemma}
 
-\begin{proof} We only discuss $\axm{RKh}$.
+\begin{proof} We only discuss $\axm{RKh}$.  
 	% \item For \axm{RBase}, let $U' = (\bigwedge_{i=1}^n \theta_i,\bigwedge_{i=1}^n \theta'_i) = (\alpha_1,\theta'_1)$, note that $\arrowsemantics{\W}{S} = \arrowsemantics{\W}{U'} = \W$, $\arrowsemantics{\Unc}{S} = \arrowsemantics{\Unc}{U'} = \Unc$ and $\arrowsemantics{\V}{S}(p) = \arrowsemantics{\V}{U'}(p) = \V(p)$ for every $p$. Let $a \in \ACT$, $(w,v) \in (\arrowsemantics{\R}{S})_a$ iff $w \in \truthset{\modults}{\bigwedge_{i=1}^n \theta_i}$, $\R_a(w) \subseteq \truthset{\modults}{\bigwedge_{i=1}^n \theta'_i}$.
 	% Since $\truthset{\modults}{\bigwedge_{i=1}^n \theta_i} = \truthset{\modults}{\alpha_1} = \truthset{\modults}{\bigwedge_{i=1}^1 \alpha_i}$ and $\truthset{\modults}{\bigwedge_{i=1}^n \theta'_i} = \truthset{\modults}{\theta'_1} = \truthset{\modults}{\bigwedge_{i=1}^1 \theta'_i}$, $(w,v) \in (\arrowsemantics{\R}{S})_a$ iff $(w,v) \in (\arrowsemantics{\R}{U'})_a$.
 	% With this, $(\arrowsemantics{\R}{S})_a = (\arrowsemantics{\R}{U'})_a$ for all $a \in \ACT$, $\arrowmodel{S} = \arrowmodel{U'}$ and satisfy the same formulas.
 	% Thus, $\modults,w \models \arrowbox{S}\varphi$ iff $\modults,w \models \arrowbox{U'}\varphi$.
-	
+	%
 	% \item For \axm{RAtom}, let $U = (\theta,\theta')$, $\modults,w \models \arrowbox{S}p$ iff $\arrowmodel{S},w \models p$. Since $\arrowsemantics{\V}{S}(w) = \V(w)$, $p \in \arrowsemantics{\V}{S}(w)$ iff $w \in \V(p)$. Thus, $\modults,w \models \arrowbox{S}p$ iff $\modults,w \models p$.
-	
+	%
 	% \item For \axm{R$\neg$}, let $U = (\theta,\theta')$, $\modults,w \models \arrowbox{S}\neg\varphi$ iff $\arrowmodel{S},w \models \neg\varphi$ iff $\arrowmodel{S},w \not\models \varphi$ iff $\modults,w \not\models \arrowbox{S}\varphi$ iff $\modults,w \models \neg\arrowbox{S}\varphi$.
-	
+	%
 	% \item For \axm{R$\vee$}, let $U = (\theta,\theta')$,
 	% $\modults,w \models \arrowbox{S}(\varphi \vee \psi)$ iff $\arrowmodel{S},w \models \varphi \vee \psi$ iff $\arrowmodel{S},w \models \varphi$ or $\arrowmodel{S},w \models \psi$ iff $\modults,w \models \arrowbox{S}\varphi$ or $\modults,w \models \arrowbox{S}\psi$ iff $\modults,w \models \arrowbox{S}\varphi \vee \arrowbox{S}\psi$.
-	
+	%
 	Let $S = (\theta,\theta')$, by the definition of $\arrowbox{S}$, $\modults,w \models \arrowbox{S}\khi(\varphi,\psi)$ iff $\arrowmodel{S},w \models \khi(\varphi,\psi)$.
-	Using the definition of $\khi$, $\arrowmodel{S},w \models \khi(\varphi,\psi)$ iff there is $\plans \in (\arrowsemantics{\Unc}{S})_i$ with $\plans \subseteq \ACT$ s.t. $\truthset{\arrowmodel{S}}{\varphi} \subseteq \stexec^{\arrowmodel{S}}(\plans)$ and $(\arrowsemantics{\R}{S})_\plans(w)(\truthset{\arrowmodel{S}}{\varphi}) \subseteq \truthset{\arrowmodel{S}}{\psi}$.
-	By the definition of $\arrowmodel{S}$, $(\arrowsemantics{\Unc}{\chi})_i=\Unc(i)$. Using the definition of $\arrowbox{S}$, $\truthset{\arrowmodel{S}}{\varphi} = \truthset{\modults}{\arrowbox{S}\varphi}$ and $\truthset{\arrowmodel{S}}{\psi} = \truthset{\modults}{\arrowbox{S}\psi}$.
+	Using the definition of $\khi$, $\arrowmodel{S},w \models \khi(\varphi,\psi)$ iff there is $\plans \in \Unc(i)$ with $\plans \subseteq \ACT$ s.t. $\truthset{\arrowmodel{S}}{\varphi} \subseteq \stexec^{\arrowmodel{S}}(\plans)$ and $(\arrowsemantics{\R}{S})_\plans(w)(\truthset{\arrowmodel{S}}{\varphi}) \subseteq \truthset{\arrowmodel{S}}{\psi}$. 
+	%By the definition of $\arrowmodel{S}$, $(\arrowsemantics{\Unc}{\chi})(i)=\Unc(i)$. 
+	Using the definition of $\arrowbox{S}$, $\truthset{\arrowmodel{S}}{\varphi} = \truthset{\modults}{\arrowbox{S}\varphi}$ and $\truthset{\arrowmodel{S}}{\psi} = \truthset{\modults}{\arrowbox{S}\psi}$.
 	Thus, $\arrowmodel{S},w \models \khi(\varphi,\psi)$ iff there is $\plans \in \Unc(i)$ with $\plans \subseteq \ACT$ s.t. $\truthset{\modults}{\arrowbox{S}\varphi} \subseteq \stexec^{\arrowmodel{S}}(\plans)$ and $(\arrowsemantics{\R}{S})_\plans(w)(\truthset{\modults}{\arrowbox{S}\varphi}) \subseteq \truthset{\modults}{\arrowbox{S}\psi}$.
-	Let $a \in \plans$ and $w \in \arrowsemantics{\W}{S}$. If $w \in \truthset{\modults}{\arrowbox{S}\varphi}$, then:
+	Let $a \in \plans$ and $w \in \W$. If $w \in \truthset{\modults}{\arrowbox{S}\varphi}$, then:
 	\begin{itemize}
 	\item $(\arrowsemantics{\R}{S})_a(w) \neq \emptyset$ (since $w \in \stexec^{\arrowmodel{S}}(a)$) and
 	\item $(\arrowsemantics{\R}{S})_a(w) \subseteq \truthset{\modults}{\arrowbox{S}\psi}$.
@@ -120,7 +121,7 @@ As our presentation is a variation of the original $\AUL$, the axiom system is n
 	\item $\R_a(w) \subseteq \truthset{\modults}{\theta' \wedge \arrowbox{S}\psi}$.
 	\end{itemize}
 	
-	Since $a \in \plans$ and $w \in \arrowsemantics{\W}{S} = \W$ were arbitrary, the result yields for all $a \in \plans$ and $w \in \W$.
+	Since $a \in \plans$ and $w \in \W$ were arbitrary, the result yields for all $a \in \plans$ and $w \in \W$.
 	Now $\arrowmodel{S},w \models \khi(\varphi,\psi)$ iff $\modults,w \models \A(\arrowbox{S}\varphi \implies \theta)$ and there is $\plans \in \Unc(i)$ with $\plans \subseteq \ACT$ s.t. $\truthset{\modults}{\arrowbox{S}\varphi} \subseteq \stexec(\plans)$ and $\R_\plans(\arrowbox{S}\varphi) \subseteq \truthset{\modults}{\theta' \wedge \arrowbox{S}\psi}$.
 	This happens iff $\modults,w \models (\A(\arrowbox{S}\varphi \implies \theta) \wedge \khi(\arrowbox{S}\varphi,\theta' \wedge \arrowbox{S}\psi))$ with $S= (\theta,\theta')$.
 \end{proof}

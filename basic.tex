@@ -4,7 +4,7 @@ This section recalls the syntax and semantics of the knowing how framework as pr
 \medskip
 
 \begin{definition}\label{def:khsyntax}
-Formulas of the language $\KHilogic$ are defined by the following grammar
+Formulas of the language $\KHilogic$ are defined by the following grammar:
 \begin{spcenter}
   $\varphi ::= p \mid \neg\varphi \mid \varphi\vee\varphi \mid \khi(\varphi,\varphi)$,
 \end{spcenter}
@@ -45,7 +45,7 @@ $\plan[k]$ is the one in $\plan$'s $k$th position.
 
 \begin{definition}[Uncertainty-based \lts]\label{def:ults}
 %Let \AGT be a finite non-empty set of agents.
-An \emph{uncertainty-based \lts (\ults)} for $\PROP$, $\ACT$ and $\AGT$ is a tuple $\modults = \tup{\W,\R,\Unc,\V}$ where $\W$ is a non-empty set of states (the domain, also denoted by $\D{\modults}$), $\R = \setof{\R_a \subseteq \W \times \W}{a \in \ACT}$ is a collection of binary relations on $\W$, $\Unc = \setof{\Unc(i) \subseteq 2^{\ACT^*}\setminus \set{\emptyset}}{i \in \AGT}$ assigns to every agent a non-empty collection of pairwise disjoint non-empty sets of plans (i.e., $\Unc(i) \neq \emptyset$, $\plans_1, \plans_2 \in \Unc(i)$ with $\plans_1 \neq \plans_2$ implies $\plans_1 \cap \plans_2 = \emptyset$, and $\emptyset \notin \Unc(i)$) and $\V:\W \to 2^\PROP$ is a labeling function. The tuple $\tup{\W,\R,\V}$ is called an LTS. Given an \ults $\modults$ and $w \in \D{\modults}$, the pair $(\modults,w)$ (parentheses usually dropped) is called a \emph{pointed \ults}.
+An \emph{uncertainty-based \lts (\ults)} for $\PROP$, $\ACT$ and $\AGT$ is a tuple $\modults = \tup{\W,\R,\Unc,\V}$ where $\W$ is a non-empty set of states (the domain, also denoted by $\D{\modults}$), $\R = \setof{\R_a \subseteq \W \times \W}{a \in \ACT}$ is a collection of binary relations on $\W$, $\Unc = \setof{\Unc(i) \subseteq 2^{\ACT^*}\setminus \set{\emptyset}}{i \in \AGT}$ assigns to every agent a non-empty collection of pairwise disjoint non-empty sets of plans (i.e., $\Unc(i) \neq \emptyset$, $\plans_1, \plans_2 \in \Unc(i)$ with $\plans_1 \neq \plans_2$ implies $\plans_1 \cap \plans_2 = \emptyset$, and $\emptyset \notin \Unc(i)$) and $\V:\W \to 2^\PROP$ is the valuation function. The tuple $\tup{\W,\R,\V}$ is called an LTS. Given an \ults $\modults$ and $w \in \D{\modults}$, the pair $(\modults,w)$ (parentheses usually dropped) is called a \emph{pointed \ults}.
 \end{definition}
 \medskip
 
@@ -57,7 +57,7 @@ Given her uncertainty over (a subset of) $\ACT^*$, the epistemic abilities of an
 \medskip
 
 \begin{definition}
-Given $\R=\setof{\R_a \subseteq \W \times \W}{a\in\ACT}$ and $\plan \in \ACT^*$, define $\R_\plan \subseteq \W \times \W$ in the standard way.\footnote{More precisely, $\R_\epsilon := \set{(w,w) \mid w \in W}$ and $\R_{{\plan}a} := \R_\plan \circ \R_a$ (first $\R_{\plan}$ and then $\R_a$).} Then, for $\plans \subseteq \ACT^*$ and $U \cup \{u \} \subseteq \W$, define $\R_\plans := \bigcup_{\plan \in \plans} \R_{\plan}$, $\R_{\plans}(u) := \bigcup_{\plan \in \plans} \R_\plan(u)$, and $\R_{\plans}(U) := \bigcup_{u \in U} \R_{\plans}(u)$.
+Given $\R=\setof{\R_a \subseteq \W \times \W}{a\in\ACT}$ and $\plan \in \ACT^*$, define $\R_\plan \subseteq \W \times \W$  inductively as: $\R_\epsilon := \set{(w,w) \mid w \in W}$ and $\R_{{\plan}a} := \R_\plan \circ \R_a$ (first $\R_{\plan}$ and then $\R_a$). Then, for $\plans \subseteq \ACT^*$ and $U \cup \{u \} \subseteq \W$, define $\R_\plans := \bigcup_{\plan \in \plans} \R_{\plan}$, $\R_{\plans}(u) := \bigcup_{\plan \in \plans} \R_\plan(u)$, and $\R_{\plans}(U) := \bigcup_{u \in U} \R_{\plans}(u)$.
 \end{definition}
 
 \medskip
@@ -101,7 +101,7 @@ with $\truthset{\modults}{\chi} := \setof{w\in\W}{\modults,w\models\chi}$. Any $
 
 \medskip
 
-Some comments are useful here. First note how the modality $\A$ ($\E$), defined by abbreviation in~\Cref{def:khsyntax}, is actually the universal (existential) \emph{global modality} from, e.g.,~\cite{GorankoP92}. Indeed, for every model $\modults$ and every state $w$, $\modults,w\models\A\varphi$ ($\modults,w\models\E\varphi$) holds if and only if $\varphi$ is true in every (some) state in $\modults$ (see~\cite{AFSVQ21,AFSVQ23report} for details). %This will be of use in the rest of the paper.
+Some comments are useful here. First note how the modality $\A$ (respectively, $\E$), defined by abbreviation in~\Cref{def:khsyntax}, is actually the universal (respectively, existential) \emph{global modality} from, e.g.,~\cite{GorankoP92}. Indeed, for every model $\modults$ and every state $w$, $\modults,w\models\A\varphi$ ($\modults,w\models\E\varphi$) holds if and only if $\varphi$ is true in every (some) state in $\modults$ (see~\cite{AFSVQ21,AFSVQ23report} for details). %This will be of use in the rest of the paper.
 Second, notice that $\KHilogic$ is a very `simple' language. In particular, even though the $\khi$ modality has fairly complex requirements for its witness $\plans$, the language is `blind' to the actual actions that appear in the semantics.  Indeed, as we are going to discuss below, the sets of plans in a given model can be drastically changed without affecting the agents' abilities as described by the language. 
 
 \medskip
@@ -313,7 +313,7 @@ The axiom system from~\Cref{tab:khiaxiom} is sound and strongly complete with re
 
 \medskip
 
-It is worth noticing two differences between the system in \Cref{tab:khiaxiom} and the one presented in~\cite{AFSVQ23report}. First, the formula $\left(\E\psi \land \khi(\psi,\varphi)\right) \rightarrow \E\varphi$, called \axm{KhE} and part of the axiom system presented in \cite{AFSVQ23report}, is omitted here. This is because it is derivable in the system, as proved by showing the derivability of the equivalent $(\E\psi \wedge \khi(\psi,\varphi) \wedge \A\neg\varphi) \ra \bot$. One can start with
+It is worth noticing two differences between the system in \Cref{tab:khiaxiom} and the one presented in~\cite{AFSVQ23report}. First, the formula $\left(\E\psi \land \khi(\psi,\varphi)\right) \rightarrow \E\varphi$, called \axm{KhE} and part of the axiom system presented in \cite{AFSVQ23report}, is omitted here. This is because it is derivable in the system, as proved below by showing the derivability of the equivalent formula $(\E\psi \wedge \khi(\psi,\varphi) \wedge \A\neg\varphi) \ra \bot$. One can start with
 % , $\left(\E\psi \land \khi(\psi,\varphi) \land \A \neg\varphi \right) \rightarrow \bot$, using \axm{KhA}. %\raul{To write down the syntactic proof in detail here.}
 %
 % By \axm{TAUT}, it is equivalent to prove that
@@ -403,7 +403,6 @@ Strong completeness of the axiomatization above is established in~\cite{AFSVQ21,
 
 \medskip
 
-\begin{mrevised}
 We mentioned before that the semantic interpretation for $\khi$ is `blind' to certain aspects of its witness. In fact, as the completeness proof in~\cite{AFSVQ21} shows, it cannot distinguish between the class of all arbitrary \ults and the class in which, for every agent $i$, every set in $\Unc(i)$ is a set of one-step plans (i.e., a set of basic actions). Formally, we can define this class as follows: 
 \medskip 
 
@@ -424,7 +423,6 @@ $\cultsba$ (denoted $\sults$ in~\cite{AFSV22}) is a restricted class of models, 
 \medskip
 
 The last proposition can be interpreted as a limitation on the expressivity of $\KHilogic$: since actions do not appear in its syntax, the logic is unable to distinguish between models in which witnesses are arbitrary plans and those in which they are all single atomic actions.
-\end{mrevised}
 
 
 % Moreover, a small (polynomial) model property can be proved using selection functions and, as a corollary, the satisfiability and model checking problems of $\KHilogic$ are \NP-complete and \Poly, respectively~\cite{AFSVQ21,AFSVQ23report}. As a consequence, we have the following corollary.
