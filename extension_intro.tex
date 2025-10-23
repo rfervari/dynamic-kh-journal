@@ -1,0 +1,43 @@
+A recurring issue when defining both ontic and epistemic updates is the lack of reduction axioms over a general class of models. The reason for this is that the expressivity of the basic language is not enough to describe the effects produced by the update modalities. This makes sense, as the modality $\kh_i$ is very simple, and cannot express properties about explicit courses of action. 
+%
+%Thus, we managed to define updates for instance for which completeness can be obtained only over a restricted class of models. Moreover, it seems hard to obtain completeness by using a different method. It is well-known that dynamic modalities suffer the lack of desirable properties (from an axiomatizability perspective) such as uniform substitution (see, e.g.,~\cite{HoHoIc11,ArecesFH15}). Naturally, this is also the case for some of our modalities. 
+%
+% A persistent constraint about the definition of the previous ontic and epistemic operators is that:
+% (1) the knowing how modality cannot express explicitly about the plan that meets the requirements to be a proper course of action; and
+% (2) to achieve completeness, it is compulsory to limit the scope of the models we are considering.
+%
+This section explores a different alternative: enrich the underlying static language $\KHilogic$ with a modality to explicitly talk about the actions (or courses of actions) that the agents can take. This modality is simply the basic modal logic operator $\mlbox{a}$ (with $a\in\ACT$). 
+%Thus, by extending the axiom system presented in~\Cref{tab:khiaxiom}, we are able to prove that the new logic is sound and complete.
+%Moreover, with a similar definition of filtrations used in \cite{mlbook}, we prove that this logic is decidable. \raul{to be checked} 
+%Once this has been done, we will be in position to introduce a series of dynamic epistemic operators. The gain of this new approach is that, due to the expressivity added in the underlying static language, we are able to provide reduction axioms for axiomatizing the dynamic modalities over the class of all models.
+%Concretely, the meaning of these operators simply reflect situations in which it is announced to all agents (or a group of them) that a plan $\plan$ is distinguishable from every other.
+
+\subsection{The extended basic logic}
+
+We start by introducing the syntax and semantics of the logic $\KHiMLlogic$,  an extension of $\KHilogic$ with the standard $\mlbox{a}$ modality (see, e.g.,~\cite{HML,mlbook}).
+
+\medskip
+
+\begin{definition}\label{def:khimlsyntax}
+Formulas of the language $\KHiMLlogic$ are defined by the following grammar:
+\begin{spcenter}
+$\varphi ::= p \mid \neg\varphi \mid \varphi\vee\varphi \mid \khi(\varphi,\varphi) \mid \mlbox{a}\varphi$,
+\end{spcenter}
+with $p \in \PROP$, $i \in \AGT$ and $a \in \ACT$.
+As usual, we define $\mldiam{a}\varphi$ as $\neg\mlbox{a}\neg\varphi$. %Formulas of the form $\mlbox{a}\varphi$ are read as: \emph{``every execution of action $a$ leads always to situations in which $\varphi$ holds''};
+%whereas  $\mldiam{a}\varphi$ stands for 
+%\emph{``there exists a situation after executing action $a$ in which $\varphi$ holds''}.
+\end{definition}
+
+\medskip
+
+We introduce now the usual semantics for the $\mlbox{a}$ modality.
+
+\medskip
+
+\begin{definition}\label{def:khimlsemantics}
+Let $\modults = \tup{\W, \R, \Unc, \V}$ be an \ults, $a \in \ACT$ and $\varphi$ be a $\KHiMLlogic$-formula, the semantics of a formula $\mlbox{a}\varphi$ is defined as
+\begin{spcenter}
+$\modults,w \models \mlbox{a}\varphi \ \ \iff \ \ \modults,v \models \varphi \mbox{ for all }v \in \R_a(w)$.
+\end{spcenter}
+\end{definition}

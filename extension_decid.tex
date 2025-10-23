@@ -1,0 +1,304 @@
+%\subsubsection{Decidability via filtrations}
+
+Now we turn to the decidability of the satisfiability problem of $\KHiMLlogic$. We will use a \emph{filtration} technique (see, e.g.,~\cite{mlbook}). 
+The filtration we will define generalizes the one introduced in~\cite{AFSVQ23report} for $\KHilogic$, by also handling the basic modal logic modality $[a]$. Moreover, in~\cite{AFSVQ23report} it is not shown that a filtration always exists for a model and a set of formulas, which is a missing ingredient in the proof. This aspect is fixed here too.
+
+%We start by introducing two relations that, given a set of formulas $\Sigma$ and a model $\modults$, will be crucial to define a proper notion of filtration.
+
+\medskip
+
+\begin{definition}[$\Sigma$-equivalence]
+Let $\modults=\tup{\W,\R,\Unc,\V}$ be an \ults and let $\Sigma$ be a set of $\KHiMLlogic$-formulas closed under subformulas.
+Define the equivalence relations ${\modequiv_\Sigma} \subseteq \W\times\W$ and ${\planequiv_\Sigma} \subseteq \Unc_\AGT \times \Unc_\AGT$ (with $\Unc_\AGT := \bigcup_{i \in \AGT}\Unc(i)$) as:
+\begin{spcenter}
+$\begin{array}{lcl}
+w \modequiv_\Sigma v &  \iffdef &
+\text{for all } \psi \in \Sigma, \modults,w\models \psi \text{ iff } \modults,v\models \psi,\\
+\plans \planequiv_\Sigma \plans' & \iffdef &
+\text{for all } i \in \AGT \text{ and } \khi(\psi,\varphi) \in \Sigma,  \plans \text{ is a witness for }\\ 
+& & \khi(\psi,\varphi) \text{ in } \modults \text{ iff } \plans' \text{ is a witness for } \khi(\psi,\varphi) \text{ in } \modults.
+\end{array}
+$
+\end{spcenter}
+Given $w \in \W$ and $\plans \in \Unc_\AGT$, we define their $\Sigma$-equivalence class as
+$[w]_\Sigma := \setof{v \in \W}{w \modequiv_\Sigma v}$ and  $[\plans]_\Sigma := \setof{\plans' \in 2^{\ACT^*}}{\plans \planequiv_\Sigma \plans'}$. Although the notation $[\_]_\Sigma$ is overloaded, its argument will always disambiguate its use.
+\end{definition}
+\medskip
+
+
+
+\begin{definition}\label{def:filtration-actions}
+Let $\modults = \tup{\W,\R,\Unc,\V}$ be an \ults defined over a denumerable set of actions $\ACT$, and let $\Sigma$ be a set of $\KHiMLlogic$-formulas closed under subformulas.
+Define
+\begin{spcenter}
+$
+\begin{array}{rcl}
+\ACT^{\Sigma}_i & := & \setof{a_{[\plans]_\Sigma}}{\plans \in \Unc(i) \text{ is a witness of some } \khi(\psi,\varphi) \in \Sigma \text{ in } \modults},\\
+\ACT^\Sigma_{\square} & := & \setof{a \in \ACT}{\mlbox{a}\varphi \in \Sigma}, \text{ and }\\
+\ACT^\Sigma & := & \bigcup_{i \in \AGT} \ACT^\Sigma_i \cup \ACT^\Sigma_{\square}\cup \set{a_\emptyset}.
+\end{array}
+$
+\end{spcenter}
+\end{definition}
+
+The idea behind the definition of $\ACT^{\Sigma}_i$ is that, for each $\khi(\psi,\varphi) \in \Sigma$ that is true at $\modults$, we consider an action mimicking the behavior of those sets of plans $\plans$ that witness the satisfiability of $\khi(\psi,\varphi)$ in $\modults$. In turn, $\ACT^\Sigma_{\square}$ takes into account those action symbols that are explicitly used in formulas of $\Sigma$. Finally, $a_\emptyset$ will be used to guarantee the existence of an action in the set $\ACT^\Sigma$, as we will see without provoking any side effect. 
+Now, we are in position of defining the notion of filtration. 
+
+\medskip
+
+\begin{definition}[Filtration of $\modults$ through $\Sigma$] \label{def:filtrations}
+Let $\modults = \tup{\W,\R,\Unc,\V}$ be an \ults defined over $\ACT$; let $\Sigma$ be a set of $\KHiMLlogic$-formulas that is closed under subformulas.
+An \ults defined over $\ACT^\Sigma$, $\modults^f = \tup{\W^f,\R^f,\Unc^f,\V^f}$, is \emph{a filtration of $\modults$ through~$\Sigma$} if and only if it satisfies the following conditions:
+
+\begin{enumerate}
+\item $\W^f := \setof{[w]_\Sigma}{w \in \W}$;
+\item $\V^f([w]_\Sigma) := \setof{p \in \Sigma}{\modults,w\models p}$;
+\item $\Unc(i)^f := \setof{\set{a_{[\plans]_{\Sigma}}}}{a_{[\plans]_{\Sigma}} \in \ACT^\Sigma_i} \cup \set{\set{a_\emptyset}}$ for each $i \in \AGT$;
+\item \label{item:khiml-fil} $\R^f_{a_\emptyset} = \emptyset$ and for all $a_{[\plans]_\Sigma} \in \ACT^\Sigma_i$, there exists a non empty set $G_{[\plans]_\Sigma} \subseteq [\plans]_\Sigma$ such that $([w]_\Sigma,[v]_\Sigma) \in \R^f_{a_{[\plans]_\Sigma}}$ iff
+\begin{itemize}
+\item for all $w' \in [w]_\Sigma$ and $\plans' \in G_{[\plans]_\Sigma}$, we have $w' \in \stexec(\plans')$, and
+\item there are $w'' \in [w]_\Sigma$, $v'' \in [v]_\Sigma$ and $\plans'' \in G_{[\plans]_\Sigma}$ such that $(w'',v'') \in \R_{\plans''}$;
+\end{itemize}
+\item \label{item:khiml-fil-a1} for $a \in \ACT^\Sigma_\square$, if $(w,v) \in \R_a$, then $([w]_\Sigma,[v]_\Sigma) \in \R^f_a$; and
+\item \label{item:khiml-fil-a2} for $a \in \ACT^\Sigma_\square$, if $([w]_\Sigma,[v]_\Sigma) \in \R^f_a$ then for all $\mlbox{a} \varphi \in \Sigma$,  $\modults,w \models \mlbox{a}\varphi$ implies $\modults,v \models \varphi$.
+\end{enumerate}
+\end{definition}
+
+\medskip
+
+\Cref{def:filtrations} deserves further comments.
+The filtration is defined similarly as for the basic modal logic (see, e.g.,~\cite{mlbook}).
+The most significant difference is the addition of a denumerable set of actions and relations (\Cref{item:khiml-fil}) since we use the set $\ACT^\Sigma$ as the set of action names.
+As a consequence, the actions an agent $i$ considers in $\Unc^f(i)$ are separated from the actions defined in $\ACT$.
+Moreover, if $\Sigma$ is finite, the relation $\planequiv_\Sigma$ enables us to obtain a finite set of witnesses for the formulas $\khi(\psi,\varphi) \in \Sigma$, from which (together with $\modequiv_\Sigma$) we also get that $\ACT^\Sigma$ and $\W^f$ are finite.
+$\Unc^f(i)$ is well-defined since it is made only of singletons. Specially, if there is no $\plans \in \Unc(i)$ such that $\plans$ is a witness for some $\khi(\varphi,\psi) \in \Sigma$, $\Unc^f(i)\neq \emptyset$ still holds.
+This is due to the addition of a vacuous action, $a_\emptyset$, which is not strongly executable in any state.
+The conditions~\ref{item:khiml-fil-a1} and~\ref{item:khiml-fil-a2} are the usual ones for the basic modal logic.
+In fact, notice that they are not in conflict with the new conditions, as the actions used to talk about formulas with $\kh$ are disjoint from those to talk about formulas with $[a]$ modalities.
+So, new actions $a_{[\plans]_\Sigma}$ are introduced as a result of the witness for a knowing how, but as they are fresh actions, they do not impact on any formula from $\Sigma$.
+Finally, \Cref{item:khiml-fil} can be rewritten as $([w]_\Sigma,[v]_\Sigma) \in \R^f_{a_{[\plans]_\Sigma}}$ if and only if the following conditions hold:
+
+\begin{itemize}
+\item $[w]_\Sigma \subseteq \bigcap_{\plans' \in G_{[\plans]_\Sigma}} \stexec(\plans')$, and
+\item $(w'',v'') \in \bigcup_{\plans'' \in G_{[\plans]_\Sigma}} \R_{\plans''}$ for some $w'' \in [w]_\Sigma$ and $v'' \in [v]_\Sigma$.
+\end{itemize}
+Moreover, $[w]_\Sigma \in \stexec(a_{[\plans]_\Sigma})$ iff $[w]_\Sigma \subseteq \bigcap_{\plans' \in G_{[\plans]_\Sigma}} \stexec(\plans')$.
+The example below shows how filtrations preserve the information for evaluating formulas from the input set.
+
+\medskip
+
+\begin{example}\label{ex:afiltration}
+Let $\modults = \tup{\W,\R,\Unc,\V}$ be an \ults defined over $\AGT=\set{k,j}$ and $\ACT = \setof{a_i,b_i}{i \in \natnum}$ as: 
+\begin{enumerate}
+\item $\W =
+\setof{w^i_1}{i \in \natnum} \cup
+\setof{w^i_2}{i \in \natnum} \cup
+\setof{v^i}{i \in \natnum}$;
+\item
+$\R_{a_i} = \setof{(w^i_1,w^j_2)}{j \in \natnum}$,
+$\R_{b_i} = \set{(w^i_2,v^i)}$;
+\item
+$\Unc(k) = \set{\plans_1,\plans_2,\plans_3}$, where  $\plans_1=\set{a_1b_1}$, $\plans_2=\set{a_1}$, $\plans_3= \setof{a_i b_i}{i \in \natnum \setminus \set{1}}$, and
+$\Unc(j) = \setof{\set{a_i}}{i \in \natnum \setminus \set{1}}$;
+\item $\V(w^i_1) = \set{p}$, $\V(w^i_2) = \set{r}$, $\V(v^i) = \set{q,s^i}$, for all $i \in \natnum$.
+\end{enumerate}
+
+\medskip
+
+The model just defined is depicted below:
+
+\begin{center}
+\begin{tikzpicture}[->]
+\node [state, label=above:\small$w^1_1$] (w11) {$p$};
+\node [state, label=above:$w^1_2$, right = 1.8cm of w11] (w12) {$r$};
+\node [state, label=above:\small$v^1$, right = 1.8cm of w12] (v1) {$q,s^1$};
+\node [state, label=below:\small$w^2_1$, below = 1.5cm of w11] (w21) {$p$};
+\node [state, label=below:\small$w^2_2$, right = 1.8cm of w21] (w22) {$r$};
+\node [state, label=below:\small$v^2$, right = 1.8cm of w22] (v2) {$q,s^2$};
+\node [below = 0.35cm of w21] (w31) {$\vdots$};
+\node [right = 1.85cm of w31] (w32) {$\vdots$};
+\node [right = 2cm of w32] (v3) {$\vdots$};
+
+\path (w11) edge[right] node [label-edge, above] {$a_1$} (w12);
+\path (w11) edge[right] node [label-edge, left, pos=0.3] {$a_2$} (w22);
+\path (w12) edge[right] node [label-edge, above] {$b_1$} (v1);
+
+\path (w21) edge[right] node [label-edge, above] {$a_2$} (w22);
+\path (w21) edge[right] node [label-edge, left, pos=0.3] {$a_1$} (w12);
+\path (w22) edge[right] node [label-edge, above] {$b_2$} (v2);
+\end{tikzpicture}
+\end{center}
+
+Let $\Sigma = \set{\kh_k(p,q),\kh_k(p,r),\neg\kh_j(p,q),\kh_j(p,r),p,q,r,\mlbox{b_1} s^1,s^1}$ a set of formulas closed by subformulas.
+The respective equivalence classes for the plans in $\Unc_\AGT$ are defined as:
+
+\begin{itemize}
+    \item $[\plans_1]_\Sigma = [\plans_3]_\Sigma = \set{\plans_1,\plans_3}$,
+    \item $[\plans_2]_\Sigma = [\set{a_1}]_\Sigma= \set{\set{a_1}}$, and 
+    \item $[\set{a_2}]_\Sigma = [\plans_4]_\Sigma = \setof{\set{a_i}}{i \in \natnum\setminus\set{1}}$.
+\end{itemize}
+
+From now on, $\set{a_2}$ will be denoted as $\plans_4$ as we did above. 
+Notice that $[\plans_1]_\Sigma$ encompasses the set of plans that are witnesses for $\kh_k(p,q)$, while $[\plans_2]_\Sigma$ encompasses the witnesses for $\kh_k(p,r)$. For the case of $\kh_j(p,q)$ there is no witness under consideration, as the formula does not hold at $\modults$.   
+Finally, $[\plans_4]_\Sigma$ encompassess the witnesses for $\kh_j(p,r)$. Thus, we have $\ACT^\Sigma =\set{a_\emptyset,a_{[\plans_1]_\Sigma},a_{[\plans_2]_\Sigma},a_{[\plans_4]_\Sigma},b_1}$.
+
+A possible filtration would be $\modults^f = \tup{\W^f,\R^f,\Unc^f,\V^f}$, with: 
+\begin{enumerate}
+\item $\W^f := \set{[w^1_1]_\Sigma,[w^1_2]_\Sigma,[v^1]_\Sigma,[v^2]_\Sigma}$, where:
+    \begin{itemize}
+        \item $[w^1_1]_\Sigma=\setof{w^i_1}{i \in \natnum}$,
+        \item $[w^1_2]_\Sigma=\setof{w^i_2}{i \in \natnum}$, 
+        \item $[v^1]_\Sigma=\set{v^1}$, 
+        and 
+        \item $[v^2]_\Sigma=\setof{v^i}{i \in \natnum \setminus \set{1}}$.
+    \end{itemize}
+\item $\V^f([w^1_1]_\Sigma) = \set{p}$, $\V([w^1_2]_\Sigma) = \set{r}$, $\V([v^1]_\Sigma) = \set{q,s^1}$ and $\V([v^2]_\Sigma) = \set{q}$.
+\item
+$\Unc^f(k) = \set{\set{a_{[\plans_1]_\Sigma}}, \set{a_{[\plans_2]_\Sigma}}, \set{a_\emptyset}}$, and 
+$\Unc^f(j) = \set{\set{a_{[\plans_4]_\Sigma}}, \set{a_\emptyset}}$;
+% $\Unc^f(k) = \set{\set{a_\emptyset}}$;
+\item $\R^f$ is defined as follows for each $a \in \ACT^\Sigma$:
+\begin{itemize}
+\item $\R^f_{a_\emptyset} = \emptyset$,
+\item $\R^f_{a_{[\plans_1]_\Sigma}} = \setof{([w^1_1]_\Sigma,[v^i]_\Sigma)}{i \in \natnum}$ (if $G_{[\plans_1]_\Sigma} = [\plans_1]_\Sigma$),
+\item $\R^f_{a_{[\plans_2]_\Sigma}} = \set{([w^1_1]_\Sigma,[w^1_2]_\Sigma)}$ (if $G_{[\plans_2]_\Sigma} = [\plans_2]_\Sigma$),
+\item $\R^f_{a_{[\plans_4]_\Sigma}} = \set{([w^1_1]_\Sigma,[w^1_2]_\Sigma)}$ (if $G_{[\plans_4]_\Sigma} = [\plans_4]_\Sigma$), and 
+\item $\R^f_{b_1} = \set{([w^1_2]_\Sigma,[v^1]_\Sigma)}$. % (given $\ACT^\Sigma_\square = \set{b_1}$)
+\end{itemize}
+\end{enumerate}
+
+% \medskip
+
+The filtration $\modults^f$ is depicted below:
+
+\begin{center}
+\begin{tikzpicture}[->]
+\node [state, label=above:\small{$[w^1_1]_\Sigma$}] (w11) {$p$};
+\node [state, label=above:\small{$[w^1_2]_\Sigma$}, right = 1.8cm of w11] (w12) {$r$};
+\node [state, label=above:\small{$[v^1]_\Sigma$}, right = 1.8cm of w12] (v1) {$q,s^1$};
+\node [state, label=above:\small{$[v^2]_\Sigma$}, below = 1.25cm of v1] (v2) {$q$};
+% \node [below = 0.1cm of v2] (v3) {$\vdots$};
+% \node [below = 1.8cm of w12] (w32) {$\vdots$};
+
+\path (w11) edge[right] node [label-edge, above] {$a_{[\plans_2]_\Sigma}$} (w12);
+\path (w11) edge[right] node [label-edge, below] {$a_{[\plans_4]_\Sigma}$} (w12);
+\path (w11) edge[below, bend right=40] node [label-edge, above] {$a_{[\plans_1]_\Sigma}$} (v1);
+\path (w11) edge[right, bend right=30] node [label-edge, right] {$a_{[\plans_1]_\Sigma}$} (v2);
+\path (w12) edge[right] node [label-edge, above] {$b_1$} (v1);
+\end{tikzpicture}
+\end{center}
+If, however, we consider $G_{[\plans_1]_\Sigma} = \set{\plans_1}$, then $\R^f_{a_{[\plans_1]_\Sigma}} = \set{([w^1_1]_\Sigma,[v^1]_\Sigma)}$, as $(w^1_1,v^1)$ is the only edge that holds the two conditions. Thus, we can observe how there are at least two alternatives for defining a filtration from $\modults$ and $\Sigma$.
+\end{example}
+
+\medskip
+
+Now we prove that a model and its filtration via $\Sigma$ satisfy the same formulas in $\Sigma$.
+
+\medskip
+
+\begin{theorem}\label{th:filtration}
+Let $\modults = \tup{\W,\R,\Unc,\V}$ be an \ults and
+let $\Sigma$ be a set of $\KHiMLlogic$-formulas that is closed under subformulas.
+Then, for all $\psi \in \Sigma$ and $w \in \W$, 
+    $\modults,w\models \psi \ \mbox{  iff  } \ \modults^f,[w]_\Sigma\models \psi$.
+Moreover, if $\Sigma$ is finite then $\modults^f$ is a finite model.
+\end{theorem}
+
+\begin{proof}
+We will prove the cases for $\khi$ and $\mlbox{a}$ (Boolean cases are as expected).
+\smallskip
+
+\noindent
+\textbf{Case $\khi(\psi,\varphi)$}:
+$(\Rightarrow)$ Suppose $\modults \models \khi(\psi,\varphi)$, and let $\plans \in \Unc(i)$ be one of its witnesses.
+By~\Cref{def:filtration-actions}, $a_{[\plans]_\Sigma} \in \ACT^\Sigma_i$ and thus, $\set{a_{[\plans]_\Sigma}} \in \Unc^f(i)$. It is enough to prove that this is a witness for $ \khi(\psi,\varphi)$ in $\modults^f$. 
+By \Cref{item:khiml-fil} of~\Cref{def:filtrations}, for all $\plans' \in G_{[\plans]_\Sigma}$, $\plans \planequiv_\Sigma \plans'$.
+Then, for all $\plans' \in G_{[\plans]_\Sigma}$, $\truthset{\modults}{\psi} \subseteq \stexec(\plans')$ and $\R_{\plans'}(\truthset{\modults}{\psi}) \subseteq \truthset{\modults}{\varphi}$.
+    \begin{enumerate}
+        \item Let $[w]_\Sigma \in \truthset{\modults^f}{\psi}$. By IH, for all $w' \in [w]_\Sigma = [w']_\Sigma$, $w' \in \truthset{\modults}{\psi}$,  thus $[w]_\Sigma \subseteq \stexec(\plans')$, for all $\plans' \in G_{[\plans]_\Sigma}$.
+        Then, $[w]_\Sigma \in \stexec(a_{[\plans]_\Sigma})$. Hence, $\truthset{\modults^f}{\psi} \subseteq \stexec(\set{a_{[\plans]_\Sigma}})$.
+
+        \item Let $([w]_\Sigma,[v]_\Sigma) \in \R^f_{a_{[\plans]_\Sigma}}$ be such that $[w]_\Sigma \in \truthset{\modults^f}{\psi}$.
+        Then, for some $w' \in [w]_\Sigma = [w']_\Sigma$, $v' \in [v]_\Sigma = [v']_\Sigma$ and $\plans' \in G_{[\plans]_\Sigma}$ we have $(w',v') \in \R_{\plans'}$.
+        By inductive hypothesis, $w' \in \truthset{\modults}{\psi}$ and thus $v' \in \truthset{\modults}{\varphi}$.
+        Again, by inductive hypothesis, $[v']_\Sigma = [v]_\Sigma \in \truthset{\modults^f}{\varphi}$.
+        Then, $\R^f_{\set{a_{[\plans]_\Sigma}}}(\truthset{\modults^f}{\psi}) \subseteq \truthset{\modults^f}{\varphi}$.
+    \end{enumerate}
+
+As a consequence, we get $\modults^f \models \khi(\psi,\varphi)$.
+
+$(\Leftarrow)$ Suppose $\modults^f \models \khi(\psi,\varphi)$, and let $\plans \in \Unc^f(i)$ be one of its witnesses. 
+If $\plans = \set{a_\emptyset}$, then $\truthset{\modults^f}{\psi} \subseteq \stexec(\set{a_\emptyset}) = \emptyset$.
+By inductive hypothesis, $\truthset{\modults}{\psi} = \emptyset$ and any $\plans \in \Unc(i)$ is a witness in $\modults$ for $\khi(\psi,\varphi)$. 
+If $\plans = \set{a_{[\plans']_{\Sigma}}}$, then $\truthset{\modults^f}{\psi} \subseteq \stexec(\set{a_{[\plans']_\Sigma}})$ and $\R^f_{\set{a_{[\plans']_\Sigma}}}(\truthset{\modults^f}{\psi}) \subseteq \truthset{\modults^f}{\varphi}$.
+We prove that any $\plans'' \in G_{[\plans']_\Sigma}$ does the job.
+
+    \begin{enumerate}
+        \item Let $w \in \truthset{\modults}{\psi}$, by inductive hypothesis, $[w]_\Sigma \in \truthset{\modults^f}{\psi}$ and consequently $[w]_\Sigma \in \stexec(\set{a_{[\plans']_\Sigma}})$.
+        By \Cref{item:khiml-fil} in~\Cref{def:filtrations}, we have that $[w]_\Sigma \subseteq \bigcap_{\plans'' \in G_{[\plans']_\Sigma}} \stexec(\plans'')$, and naturally that $w \in \bigcap_{\plans'' \in G_{[\plans']_\Sigma}} \stexec(\plans'')$.
+        Thus, $\truthset{\modults}{\psi} \subseteq \stexec(\plans'')$, for all $\plans'' \in G_{[\plans']_\Sigma}$.
+
+        \item Take $(w,v) \in \R_{\plans''}$ with $w \in \truthset{\modults}{\psi}$.
+        Since $w \in \bigcap_{\plans'' \in G_{[\plans']_\Sigma}} \stexec(\plans'')$, necessarily we have $([w]_\Sigma,[v]_\Sigma) \in \R^f_{a_{[\plans']_\Sigma}}$.
+        By IH, $[w]_\Sigma \in \truthset{\modults^f}{\psi}$ and with this $[v]_\Sigma \in \truthset{\modults^f}{\varphi}$.
+        Again, by IH, $v \in \truthset{\modults}{\varphi}$. Then, $\R_{\plans''}(\truthset{\modults}{\psi}) \subseteq \truthset{\modults}{\varphi}$, for any $\plans'' \in G_{[\plans']_\Sigma}$.
+    \end{enumerate}
+Therefore, $\modults \models \khi(\psi,\varphi)$. 
+\smallskip
+
+\noindent
+\textbf{Case $\mlbox{a}\varphi$}: $(\Rightarrow)$ Suppose $\modults,w \models \mlbox{a}\varphi$.
+Let $([w]_\Sigma,[v]_\Sigma) \in \R^f_a$, since $\mlbox{a}\varphi \in \Sigma$, then $\modults,v \models \varphi$.
+By IH, $\modults^f,[v]_\Sigma \models \varphi$.
+Hence, $\modults^f,[w]_\Sigma \models \mlbox{a}\varphi$.
+
+$(\Leftarrow)$ Suppose $\modults^f,[w]_\Sigma \models \mlbox{a}\varphi$.
+Let $(w,v) \in \R_a$, then $([w]_\Sigma,[v]_\Sigma) \in \R^f_a$ and $\modults^f,[v]_\Sigma \models \varphi$.
+By IH, $\modults,v \models \varphi$.
+Hence, $\modults,w \models \mlbox{a}\varphi$.
+\smallskip
+
+It remains to show that if $\Sigma$ is finite, then $\modults^f$ is finite.
+First, note that the number of elements in $\W^f$ is at most exponential in the number of formulas in $\Sigma$.
+Thus, $\W^f$ and $\V^f$ are finite. Similarly, as the number of $\khi(\psi,\varphi)$ and $\mlbox{a} \varphi$ in $\Sigma$ are finite, $\ACT^{\Sigma}$ is also finite.
+Thus, $\R^f$ and $\Unc^f$ are both finite.
+\end{proof}
+
+\medskip 
+
+\begin{example}\label{ex:filtration-preserves}
+ Consider~\Cref{ex:afiltration}. Notice that the filtration preserves the satisfiability of formulas in $\Sigma$. For instance, $\modults\models\kh_k(p,q)$ with $\plans_1$ as witness, while $\modults^f\models\kh_k(p,q)$ with $\set{a_{[\plans_1]_\Sigma}}$ as witness. Also, it is clear that both $\modults\not\models\kh_j(p,q)$ and $\modults^f\not\models\kh_j(p,q)$, and that $\modults,w^1_2\models[b_1] s^1$ and $\modults^f,[w^1_2]_\Sigma\models[b_1] s^1$. One can verify that this is also the case for other alternative filtrations, as established by~\Cref{th:filtration}.
+\end{example}
+
+\medskip
+
+Considering~\Cref{th:filtration}, it remains to prove that, given a model $\modults$ and a set of formulas $\Sigma$ closed under subformulas, the set of filtrations of $\modults$ via $\Sigma$ is non empty.
+This can be achieved by defining $G_{[\plans]_\Sigma} = [\plans]_\Sigma \neq \emptyset$ for each $a_{[\plans]_\Sigma} \in \ACT^\Sigma_i$, and considering at least one of the two alternatives to define $\R^f_a$ for each $a \in \ACT^\Sigma_\square$ given in \cite{HML,mlbook}:
+
+\begin{itemize}
+\item $([w]_\Sigma,[v]_\Sigma) \in \R^f_a$ iff there exists $w' \in [w]_\Sigma$, $v' \in [v]_\Sigma$ such that $(w',v') \in \R_a$; or
+\item $([w]_\Sigma,[v]_\Sigma) \in \R^f_a$ iff for all $\mlbox{a}\varphi \in \Sigma$, $\modults,w \models \mlbox{a}\varphi$ then $\modults,v \models \varphi$.
+\end{itemize}
+
+The different alternatives for $G_{[\plans]_\Sigma}$ and $\R^f_a$ enable us to obtain more than one filtration, all of them satisfying the intended properties.
+
+As we established that every satisfiable formula of $\KHiMLlogic$, is satisfiable in a finite, bounded model, the satisfiability problem for $\KHiMLlogic$ is decidable.
+
+\medskip
+
+\begin{corollary}\label{cor:extended-decidable}
+The satisfiability problem for $\KHiMLlogic$ is decidable.
+\end{corollary}
+
+%\begin{proof}
+%Suppose $\varphi$ is satisfiable, then there exists a model $\modults$ and a state $w$ such that $\modults,w\models\varphi$. Let $\Sigma$ be the set of subformulas of $\varphi$ (including $\varphi$).
+%Then, there exists a filtration $\modults^f$ such that, by~\Cref{th:filtration}, $\modults^f,[w]_\Sigma\models\varphi$. Since $\Sigma$ is finite, $\modults^f$ is finite, and of size at most exponential.
+%Consequently, we know there exists a finite model of $\varphi$. Thus, we can list all the models and try one by one, whether they satisfy $\varphi$ or not, by calling a model-checking algorithm.
+%Since model-checking is decidable (by simply combining the algorithm for basic modal logic~\cite{mlbook}, and the one for $\KHilogic$~\cite{AFSVQ21,AFSVQ23report}), the corollary follows. \raul{No tenemos demo especifica de que model-checking es decidible, dejamos asi como esta?}
+%\end{proof}
+
+%\medskip
+
+%It is worth noticing that the conditions regarding the treatment of $\Unc^f(i)$ in~\Cref{def:filtrations} are slightly different from the conditions introduced in~\cite{AFSVQ23report} for the basic logic $\KHilogic$. Therein, the existence of a filtration is not established. Thus, in this work we update the definition of filtrations, making easier to guarantee that we can always obtain a finite model from any set of finite formulas, and consequently~\Cref{cor:extended-decidable}.
+
+% The rest of the section will be devoted to introduce a new family of dynamic epistemic logics extending $\KHiMLlogic$.
